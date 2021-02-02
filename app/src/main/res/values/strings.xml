@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Tajika</string>
+
+    <string name="splash_info_user_provider">To get services select User, to provide service select service provider individual/business</string>
+
+    <string name="reset_password_text">We will send you a link on your registered email or one-time-password (OTP) on your mobile to reset your password</string>
+
 </resources>
