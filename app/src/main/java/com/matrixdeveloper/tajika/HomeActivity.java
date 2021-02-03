@@ -6,17 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class OTPInputActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otp_input);
+        setContentView(R.layout.activity_home);
     }
 
-    public void onLoginCLick(View view) {
-        startActivity(new Intent(
-                this, HomeActivity.class
-        ));
+    public void onMyPRofileClick(View view) {
+        startActivity(new Intent(this, MyProfileActivity.class));
     }
 }

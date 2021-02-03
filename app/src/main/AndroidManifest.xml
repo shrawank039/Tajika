@@ -9,13 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tajika">
-        <activity android:name=".ResetPasswordActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".MyProfileActivity" />
+        <activity android:name=".RequestServiceActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".OTPInputActivity" />
         <activity android:name=".CreateNewPasswordActivity" />
         <activity android:name=".LoginThroughOTPActivity" />
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

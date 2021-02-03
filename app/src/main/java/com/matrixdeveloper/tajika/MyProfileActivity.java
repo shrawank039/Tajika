@@ -6,18 +6,15 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CreateNewPasswordActivity extends AppCompatActivity {
+public class MyProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_password);
+        setContentView(R.layout.activity_my_profile);
     }
 
-    public void onLoginCLick(View view) {
-        startActivity(new Intent(
-                this, HomeActivity.class
-        ));
+    public void onEditClick(View view) {
+        startActivity(new Intent(this, EditProfileActivity.class));
     }
-
 }

@@ -63,6 +63,7 @@
                     android:backgroundTint="@color/orange"
                     android:drawableTop="@drawable/run_1x"
                     android:paddingVertical="10dp"
+                    android:onClick="onIndividualClick"
                     android:text="Service Provider Individual"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
