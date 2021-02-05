@@ -13,5 +13,7 @@
     <color name="light_blue">#C0CAC4</color>
     <color name="orange">#EF941A</color>
     <color name="dark_blue">#202A44</color>
+    <color name="blue">#2F80ED</color>
+    <color name="purple_400">#603EC6</color>
 
 </resources>

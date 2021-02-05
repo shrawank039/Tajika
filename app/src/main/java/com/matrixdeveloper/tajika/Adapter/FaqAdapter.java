@@ -64,4 +64,5 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.MyViewHolder> {
             expand=itemView.findViewById(R.id.iv_expandMore);
         }
     }
+
 }
