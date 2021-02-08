@@ -17,4 +17,7 @@ public class MyProfileActivity extends AppCompatActivity {
     public void onEditClick(View view) {
         startActivity(new Intent(this, EditProfileActivity.class));
     }
+
+    public void onCancelRequestClick(View view) {
+    }
 }

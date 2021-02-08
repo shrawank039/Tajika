@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tajika">
         <activity android:name=".BookingDetailsActivity"/>
+        <activity android:name=".CompareListActivity" />
         <activity android:name=".ReferralActivity" />
         <activity android:name=".RedeemCoinActivity" />
         <activity android:name=".VouchersActivity" />
@@ -26,7 +27,7 @@
         <activity android:name=".CreateNewPasswordActivity" />
         <activity android:name=".LoginThroughOTPActivity" />
         <activity android:name=".EditProfileActivity" />
-        <activity android:name=".CompareListActivity">
+        <activity android:name=".CoinsWalletActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
