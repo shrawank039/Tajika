@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tajika">
-        <activity android:name=".BookingDetailsActivity"/>
+        <activity android:name=".ConversationListActivity" />
+        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".PrivacyPolicyActivity" />
+        <activity android:name=".CoinsWalletActivity" />
+        <activity android:name=".BookingDetailsActivity" />
         <activity android:name=".CompareListActivity" />
         <activity android:name=".ReferralActivity" />
         <activity android:name=".RedeemCoinActivity" />
@@ -27,7 +31,7 @@
         <activity android:name=".CreateNewPasswordActivity" />
         <activity android:name=".LoginThroughOTPActivity" />
         <activity android:name=".EditProfileActivity" />
-        <activity android:name=".CoinsWalletActivity">
+        <activity android:name=".BookServiceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
