@@ -19,6 +19,17 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="cancellation_details"><u>Cancellation Details</u></string>
     <string name="dummy_services">1. Catering \n2. Cooking\n3. Dine-in\n 4. Italian</string>
     <string name="dummy_skills">1. Chopped cooking \n2. Plater\n3. Dine in specialist</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Hello,</string>
+    <string name="nav_header_subtitle">Peter Lawerance</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 
 
 </resources>

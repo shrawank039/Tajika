@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Tajika" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.Tajika" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -18,4 +18,13 @@
         <item name="colorControlNormal">@color/grey_700</item>
         <item name="colorControlActivated">@color/orange</item>
     </style>
+
+    <style name="Theme.Tajika.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Tajika.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Tajika.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
