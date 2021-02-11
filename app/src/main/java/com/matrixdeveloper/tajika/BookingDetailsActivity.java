@@ -1,11 +1,11 @@
 package com.matrixdeveloper.tajika;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class BookingDetailsActivity extends AppCompatActivity {
 

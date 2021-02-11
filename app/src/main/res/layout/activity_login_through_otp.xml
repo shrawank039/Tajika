@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/light_blue"
+    android:orientation="vertical"
     tools:context=".LoginThroughOTPActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/layout_top_design"
-        android:layout_weight="2">
+        android:layout_weight="2"
+        android:background="@drawable/layout_top_design">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_marginHorizontal="20dp"
+            android:gravity="center"
             android:text="Enter your Mobile number  or Email to receive OTP"
             android:textColor="@color/orange"
             android:textSize="24sp"
@@ -28,13 +28,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
 
         <LinearLayout
@@ -69,10 +69,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="@drawable/layout_input_outline"
+            android:onClick="onLoginThroughOTPNEXTCLick"
             android:paddingHorizontal="50dp"
             android:shadowColor="@color/grey_700"
             android:text="Next"
-            android:onClick="onLoginThroughOTPNEXTCLick"
             android:textAllCaps="false"
             android:textColor="@color/dark_blue" />
 
@@ -81,8 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:text="Login through Password"
             android:onClick="onLoginThroughPasswordCLick"
+            android:text="Login through Password"
             android:textColor="@color/black"
             android:textSize="16sp" />
 

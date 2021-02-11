@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.Adapter.RedeemCoinAdapter;
-import com.matrixdeveloper.tajika.Adapter.VoucherAdapter;
 import com.matrixdeveloper.tajika.Model.RedeemCoinModel;
 
 public class RedeemCoinActivity extends AppCompatActivity {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,11 +27,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
 
         <LinearLayout
@@ -43,6 +42,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@drawable/layout_input_outline"
                 android:gravity="center"
                 android:hint="0"
@@ -50,13 +50,13 @@
                 android:maxLength="1"
                 android:paddingHorizontal="22dp"
                 android:paddingVertical="15dp"
-                android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@drawable/layout_input_outline"
                 android:gravity="center"
                 android:hint="0"
@@ -64,13 +64,13 @@
                 android:maxLength="1"
                 android:paddingHorizontal="22dp"
                 android:paddingVertical="15dp"
-                android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@drawable/layout_input_outline"
                 android:gravity="center"
                 android:hint="0"
@@ -78,13 +78,13 @@
                 android:maxLength="1"
                 android:paddingHorizontal="22dp"
                 android:paddingVertical="15dp"
-                android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="@drawable/layout_input_outline"
                 android:gravity="center"
                 android:hint="0"
@@ -92,20 +92,19 @@
                 android:maxLength="1"
                 android:paddingHorizontal="22dp"
                 android:paddingVertical="15dp"
-                android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
         </LinearLayout>
 
         <TextView
-            android:layout_gravity="center"
-            android:textColor="@color/grey_700"
-            android:textSize="16sp"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Resend OTP"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Resend OTP"
+            android:textColor="@color/grey_700"
+            android:textSize="16sp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -113,23 +112,23 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="@drawable/layout_input_outline"
+            android:onClick="onLoginCLick"
             android:paddingHorizontal="50dp"
             android:shadowColor="@color/grey_700"
             android:text="Login"
-            android:onClick="onLoginCLick"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:textAllCaps="false"
-            android:textColor="@color/dark_blue" />
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginTop="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back" />
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="Back"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

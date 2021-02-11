@@ -1,15 +1,13 @@
 package com.matrixdeveloper.tajika;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-
 import com.matrixdeveloper.tajika.Adapter.ConversationListAdapter;
-import com.matrixdeveloper.tajika.Adapter.VoucherAdapter;
 import com.matrixdeveloper.tajika.Model.ConversationListModel;
-import com.matrixdeveloper.tajika.Model.VoucherModel;
 
 public class ConversationListActivity extends AppCompatActivity {
 

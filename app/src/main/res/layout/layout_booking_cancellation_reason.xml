@@ -67,6 +67,7 @@
                     app:tint="@color/dark_blue" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,14 +88,16 @@
                     android:textColorHint="@color/black" />
 
             </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cancellation charge: Ksh500"
-                android:gravity="center"
                 android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="Cancellation charge: Ksh500"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

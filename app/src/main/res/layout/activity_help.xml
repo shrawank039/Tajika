@@ -157,10 +157,10 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="20dp"
                 android:id="@+id/recView_FAQ"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 tools:listitem="@layout/item_faq" />
         </LinearLayout>
     </ScrollView>

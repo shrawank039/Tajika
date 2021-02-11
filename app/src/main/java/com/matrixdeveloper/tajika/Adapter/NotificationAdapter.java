@@ -1,7 +1,6 @@
 package com.matrixdeveloper.tajika.Adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Model.FaqModel;
 import com.matrixdeveloper.tajika.Model.NotificationModel;
 import com.matrixdeveloper.tajika.R;
 

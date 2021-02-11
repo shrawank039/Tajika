@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Adapter.FaqAdapter;
 import com.matrixdeveloper.tajika.Adapter.NotificationAdapter;
 import com.matrixdeveloper.tajika.Model.NotificationModel;
 
