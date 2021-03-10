@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_my_profile"
+            android:icon="@drawable/person_pin_icon"
+            android:title="My profile" />
+        <item
+            android:id="@+id/nav_my_bookings"
+            android:icon="@drawable/date_icon"
+            android:title="My Bookings" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/notifications_icon"
+            android:title="Notifications" />
+        <item
+            android:id="@+id/nav_offers"
+            android:icon="@drawable/offer_icon"
+            android:title="Offers" />
+    </group>
+
+
+    <group android:id="@+id/hpa">
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/call_icon"
+            android:title="Help" />
+        <item
+            android:id="@+id/nav_privacy_policy"
+            android:icon="@drawable/security_icon"
+            android:title="Privacy Policy" />
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/satisfied_icon"
+            android:title="About Us" />
+    </group>
+    <group android:id="@+id/rrl">
+        <item
+            android:id="@+id/nav_refer_friends"
+            android:icon="@drawable/group_profile_2x"
+            android:title="Refer Friends" />
+        <item
+            android:id="@+id/nav_rate_app"
+            android:icon="@drawable/thumb_up_icon"
+            android:title="Rate Application" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/logout_icon"
+            android:title="Logout" />
+    </group>
+</menu>
