@@ -12,6 +12,7 @@ import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.network.VolleyCallback;
+import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
@@ -63,23 +64,24 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.USER_REGISTRATION, data, new VolleyCallback() {
-            @Override
-            public void onSuccess(JSONObject response) {
-                Utils.log(TAG, response.toString());
+        ApiCall.postMethod(getApplicationContext(), ServiceNames.USER_REGISTRATION, data, response -> {
 
-                try {
+            Utils.log(TAG, response.toString());
 
-                    Register register= gson.fromJson(response.getJSONObject("data").toString(), Register.class);
-                    Toast.makeText(RegisterActivity.this, register.getEmail(), Toast.LENGTH_SHORT).show();
+            try {
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Register register= gson.fromJson(response.getJSONObject("data").toString(), Register.class);
 
-                prf.setString("","");
+                prf.setString(Global.user_id, register.getId().toString());
+                prf.setString(Global.token, register.getToken());
+                prf.setString(Global.role, register.getRoles().toString());
+                prf.setString(Global.email, register.getEmail());
 
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+
         });
 
     }

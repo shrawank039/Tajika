@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.model.Login;
-import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.network.VolleyCallback;
+import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
@@ -24,7 +24,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPass;
-    private String TAG = "RegisterAct";
+    private String TAG = "LoginAct";
     private static PrefManager prf;
     private Gson gson;
 
@@ -69,23 +69,24 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.LOGIN, data, new VolleyCallback() {
-            @Override
-            public void onSuccess(JSONObject response) {
-                Utils.log(TAG, response.toString());
+        ApiCall.postMethod(getApplicationContext(), ServiceNames.LOGIN, data, response -> {
 
-                try {
+            Utils.log(TAG, response.toString());
 
-                    Login register= gson.fromJson(response.getJSONObject("data").toString(), Login.class);
-                    Toast.makeText(LoginActivity.this, register.getEmail(), Toast.LENGTH_SHORT).show();
+            try {
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Login login= gson.fromJson(response.getJSONObject("data").toString(), Login.class);
 
-                prf.setString("","");
+                prf.setString(Global.user_id, login.getId().toString());
+                prf.setString(Global.token, login.getToken());
+                prf.setString(Global.role, login.getRoles().toString());
+                prf.setString(Global.email, login.getEmail());
 
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+
         });
 
     }
