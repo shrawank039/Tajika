@@ -15,6 +15,10 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     public void onIndividualClick(View view) {
+
+    }
+
+    public void onUserClick(View view) {
         startActivity(new Intent(this, LoginActivity.class));
     }
 }

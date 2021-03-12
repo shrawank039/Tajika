@@ -1,4 +1,4 @@
-package com.matrixdeveloper.tajika.Adapter;
+package com.matrixdeveloper.tajika.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Model.ConversationListModel;
+import com.matrixdeveloper.tajika.model.ConversationListModel;
 import com.matrixdeveloper.tajika.R;
 
 public class ConversationListAdapter extends RecyclerView.Adapter<ConversationListAdapter.viewModel> {

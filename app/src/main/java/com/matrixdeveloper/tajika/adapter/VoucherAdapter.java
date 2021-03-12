@@ -1,4 +1,4 @@
-package com.matrixdeveloper.tajika.Adapter;
+package com.matrixdeveloper.tajika.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Model.VoucherModel;
+import com.matrixdeveloper.tajika.model.VoucherModel;
 import com.matrixdeveloper.tajika.R;
 
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHolder> {

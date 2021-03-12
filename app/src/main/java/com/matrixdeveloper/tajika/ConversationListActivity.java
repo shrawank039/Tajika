@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Adapter.ConversationListAdapter;
-import com.matrixdeveloper.tajika.Model.ConversationListModel;
+import com.matrixdeveloper.tajika.adapter.ConversationListAdapter;
+import com.matrixdeveloper.tajika.model.ConversationListModel;
 
 public class ConversationListActivity extends AppCompatActivity {
 

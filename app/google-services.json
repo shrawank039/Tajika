@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "630643040043",
+    "project_id": "tajika-4b7ef",
+    "storage_bucket": "tajika-4b7ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630643040043:android:d46e0f3cd87b39fe4aaf6e",
+        "android_client_info": {
+          "package_name": "com.matrixdeveloper.tajika"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630643040043-6vbnpue141u5qj0809b9fupjg47qmbnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAORjh8SfEgDbmacenHkgmPgiFY9Oz0X-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630643040043-6vbnpue141u5qj0809b9fupjg47qmbnp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.matrixdeveloper.tajika.Model;
+package com.matrixdeveloper.tajika.model;
 
 public class NotificationModel {
     private int id;

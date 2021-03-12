@@ -51,6 +51,7 @@
                     android:backgroundTint="@color/orange"
                     android:drawableTop="@drawable/happy_1x"
                     android:padding="10dp"
+                    android:onClick="onUserClick"
                     android:text="User"
                     android:textAllCaps="false"
                     android:textColor="@color/black"

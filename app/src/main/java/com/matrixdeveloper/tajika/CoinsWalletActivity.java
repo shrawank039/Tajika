@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Adapter.CoinsWalletAdapter;
-import com.matrixdeveloper.tajika.Model.CoinsWalletModel;
+import com.matrixdeveloper.tajika.adapter.CoinsWalletAdapter;
+import com.matrixdeveloper.tajika.model.CoinsWalletModel;
 
 public class CoinsWalletActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.matrixdeveloper.tajika.Adapter;
+package com.matrixdeveloper.tajika.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Model.CoinsWalletModel;
+import com.matrixdeveloper.tajika.model.CoinsWalletModel;
 import com.matrixdeveloper.tajika.R;
 
 public class CoinsWalletAdapter extends RecyclerView.Adapter<CoinsWalletAdapter.viewHolder> {

@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Adapter.FaqAdapter;
-import com.matrixdeveloper.tajika.Model.FaqModel;
+import com.matrixdeveloper.tajika.adapter.FaqAdapter;
+import com.matrixdeveloper.tajika.model.FaqModel;
 
 public class HelpActivity extends AppCompatActivity {
 

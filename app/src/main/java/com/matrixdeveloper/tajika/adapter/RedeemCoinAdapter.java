@@ -1,4 +1,4 @@
-package com.matrixdeveloper.tajika.Adapter;
+package com.matrixdeveloper.tajika.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Model.RedeemCoinModel;
+import com.matrixdeveloper.tajika.model.RedeemCoinModel;
 import com.matrixdeveloper.tajika.R;
 
 public class RedeemCoinAdapter extends RecyclerView.Adapter<RedeemCoinAdapter.viewHolder> {

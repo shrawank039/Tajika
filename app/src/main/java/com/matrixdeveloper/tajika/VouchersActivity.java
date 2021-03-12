@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.Adapter.VoucherAdapter;
-import com.matrixdeveloper.tajika.Model.VoucherModel;
+import com.matrixdeveloper.tajika.adapter.VoucherAdapter;
+import com.matrixdeveloper.tajika.model.VoucherModel;
 
 public class VouchersActivity extends AppCompatActivity {
 
