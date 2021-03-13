@@ -12,10 +12,14 @@ public class Category implements Serializable
     private Integer id;
     @SerializedName("name")
     @Expose
+    private String image;
+    @SerializedName("image")
+    @Expose
     private String name;
     @SerializedName("status")
     @Expose
     private Integer status;
+
     private final static long serialVersionUID = 3555046175266321640L;
 
     public Integer getId() {
@@ -28,6 +32,14 @@ public class Category implements Serializable
 
     public String getName() {
         return name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setName(String name) {

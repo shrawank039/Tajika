@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +12,6 @@ import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
-import com.matrixdeveloper.tajika.network.VolleyCallback;
 import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
@@ -81,6 +79,8 @@ public class LoginActivity extends AppCompatActivity {
                 prf.setString(Global.token, login.getToken());
                 prf.setString(Global.role, login.getRoles().toString());
                 prf.setString(Global.email, login.getEmail());
+
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
 
             } catch (JSONException e) {
                 e.printStackTrace();

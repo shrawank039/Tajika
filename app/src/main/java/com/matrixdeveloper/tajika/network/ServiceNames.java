@@ -13,12 +13,14 @@ public class ServiceNames {
     public static final String USER_REGISTRATION = API +"/createAccount";
     public static final String SEND_OTP =  API + "/sendotp";
     public static final String VALIDATE_OTP =  API + "/validateotp";
-    public static final String SET_PASSWORD =  API + "";
+    public static final String SET_PASSWORD =  API + "/setPassword";
     public static final String PROFILE =  API + "";
-    public static final String CATEGORY =  API + "";
-    public static final String FILTER_CATEGORY =  API + "";
-    public static final String SERVICE_LIST =  API + "";
+    public static final String CATEGORY =  API + "/getCategoryList";
+    public static final String FILTER_SERVICE_LIST =  API + "/filterServiceList";
+    public static final String SERVICE_LIST =  API + "/getServiceList";
     public static final String SERVICE_DETAILS =  API + "";
+    public static final String SERVICE_PROVIDER_LIST = API + "/getAllServiceProviderByService";
+    public static final String SUBMIT_SERVICE_REQUEST = API + "/submitServiceRequest";
 
 
     public static boolean is = true;

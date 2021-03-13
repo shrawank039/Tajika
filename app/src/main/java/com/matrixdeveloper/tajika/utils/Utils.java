@@ -29,7 +29,7 @@ public class Utils {
             window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                     WindowManager.LayoutParams.MATCH_PARENT);
             //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 0);
-            customDialog.show();
+//            customDialog.show();
         }
     }
 
