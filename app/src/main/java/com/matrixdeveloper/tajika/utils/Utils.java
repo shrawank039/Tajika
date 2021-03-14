@@ -23,13 +23,9 @@ public class Utils {
             customDialog.setCancelable(false);
             customDialog.setCanceledOnTouchOutside(false);
             customDialog.setContentView(R.layout.custom_dialog);
-            //ImageView iv = customDialog.findViewById(R.id.threeDotCustomDialog);
-            //Glide.with(context).load(R.raw.three_dot_loader).into(iv);
             Window window = customDialog.getWindow();
-            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.MATCH_PARENT);
-            //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 0);
-//            customDialog.show();
+            window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT);
         }
     }
 

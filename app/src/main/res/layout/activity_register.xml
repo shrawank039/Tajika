@@ -104,6 +104,8 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Enter mobile number"
+                    android:inputType="number"
+                    android:maxLength="10"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
                     android:textColor="@color/black"
@@ -132,6 +134,7 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Enter e-mail (optional)"
+                    android:inputType="textEmailAddress"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
                     android:textColor="@color/black"
@@ -161,16 +164,19 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Enter Password"
+                    android:inputType="textPassword"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
                 <ImageView
+                    android:id="@+id/showPass"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="20dp"
+                    android:onClick="onPasswordClick"
                     android:src="@drawable/eye_2x" />
             </LinearLayout>
 
@@ -195,20 +201,24 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Confirm Password"
+                    android:inputType="textPassword"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
                 <ImageView
+                    android:id="@+id/showCPass"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="20dp"
+                    android:onClick="onPasswordClick"
                     android:src="@drawable/eye_2x" />
             </LinearLayout>
 
             <CheckBox
+                android:id="@+id/checkboxTermsandPolicy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

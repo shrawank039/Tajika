@@ -2,8 +2,11 @@ package com.matrixdeveloper.tajika;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,14 +58,14 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginCLick(View view) {
 
-        String email = edtEmail.getText().toString();
+        String email = edtEmail.getText().toString().trim();
         String pass = edtPass.getText().toString();
 
         JSONObject data = new JSONObject();
         try {
-            data.put("email",email);
-            data.put("password",pass);
-            data.put("role","2");
+            data.put("email", email);
+            data.put("password", pass);
+            data.put("role", "2");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -70,10 +73,11 @@ public class LoginActivity extends AppCompatActivity {
         ApiCall.postMethod(getApplicationContext(), ServiceNames.LOGIN, data, response -> {
 
             Utils.log(TAG, response.toString());
+            Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();
 
             try {
 
-                Login login= gson.fromJson(response.getJSONObject("data").toString(), Login.class);
+                Login login = gson.fromJson(response.getJSONObject("data").toString(), Login.class);
 
                 prf.setString(Global.user_id, login.getId().toString());
                 prf.setString(Global.token, login.getToken());
@@ -95,5 +99,18 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(
                 this, ResetPasswordActivity.class
         ));
+    }
+
+    public void onHideClick(View view) {
+        if (view.getId() == R.id.eye) {
+            if (edtPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                //Show Password
+                edtPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                //Hide Passsword
+                edtPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+            }
+        }
     }
 }

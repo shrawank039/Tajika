@@ -26,32 +26,37 @@ public class PrefManager {
         editor.putBoolean(PREF_NAME, val);
         editor.commit();
     }
+
     public void setString(String PREF_NAME, String VAL) {
         editor.putString(PREF_NAME, VAL);
         editor.commit();
     }
+
     public void setInt(String PREF_NAME, int VAL) {
         editor.putInt(PREF_NAME, VAL);
         editor.commit();
     }
+
     public boolean getBoolean(String PREF_NAME) {
-        return pref.getBoolean(PREF_NAME,true);
+        return pref.getBoolean(PREF_NAME, true);
     }
+
     public String getString(String PREF_NAME) {
-        if(pref.contains(PREF_NAME)){
-            return pref.getString(PREF_NAME,null);
+        if (pref.contains(PREF_NAME)) {
+            return pref.getString(PREF_NAME, null);
         }
-        return  "";
+        return "";
     }
-    public void remove(String PREF_NAME){
-        if(pref.contains(PREF_NAME)){
+
+    public void remove(String PREF_NAME) {
+        if (pref.contains(PREF_NAME)) {
             editor.remove(PREF_NAME);
             editor.commit();
         }
     }
 
     public int getInt(String key) {
-        return pref.getInt(key,0);
+        return pref.getInt(key, 0);
     }
 
     public void clearall() {
