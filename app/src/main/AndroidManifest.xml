@@ -20,11 +20,12 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
-
-        <activity android:name=".LocationSelectorActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity android:name=".AllServiceActivity"></activity>
+        <activity android:name=".LandingPage" />
+        <activity
+            android:name=".LocationSelectorActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".SearchActivity" />
 
         <meta-data
@@ -43,7 +44,7 @@
         <activity android:name=".VouchersActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

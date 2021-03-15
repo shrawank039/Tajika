@@ -8,16 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
-public class SplashScreen extends AppCompatActivity {
+public class LandingPage extends AppCompatActivity {
 
     private static PrefManager prf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_landing_page);
 
-        prf = new PrefManager(SplashScreen.this);
+        prf = new PrefManager(LandingPage.this);
 
         if (prf.getString("id").equals(""))
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));

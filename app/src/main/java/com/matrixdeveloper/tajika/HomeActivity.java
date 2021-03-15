@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -53,6 +54,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private Gson gson;
     private NavigationView navigationView;
     private LinearLayout coinsWallet,compareList,referFriends;
+    private TextView viewAllService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,11 +69,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         compareList=findViewById(R.id.ll_compareList);
         coinsWallet=findViewById(R.id.ll_coinsWallet);
         referFriends=findViewById(R.id.ll_referFriends);
+        viewAllService=findViewById(R.id.txt_viewAllService);
+        recyclerView = findViewById(R.id.recyclerView);
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
         gson = gsonBuilder.create();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         serviceLists = new ArrayList<>();
         mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists);
@@ -137,6 +140,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),ReferralActivity.class));
+            }
+        });
+
+        viewAllService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),AllServiceActivity.class));
             }
         });
 

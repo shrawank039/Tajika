@@ -4,6 +4,7 @@ package com.matrixdeveloper.tajika.network;
 public class ServiceNames {
 
     public static String PRODUCTION_API = "http://93.188.162.41/tajika/api";
+    public static String IMAGE_BASEURL="http://93.188.162.41/tajika/";
 
     public static final String API_VERSION = "/v1";
 

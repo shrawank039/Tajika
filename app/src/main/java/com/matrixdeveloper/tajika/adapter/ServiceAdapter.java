@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.ServiceList;
-import com.matrixdeveloper.tajika.utils.PrefManager;
 
 import java.util.List;
+
+import static com.matrixdeveloper.tajika.network.ServiceNames.IMAGE_BASEURL;
 
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHolder> {
 
@@ -57,7 +58,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         holder.title.setText(serviceList.getServiceName());
         holder.message.setText(serviceList.getServiceDescription());
         Glide.with(ctx)
-                .load(serviceList.getServiceImage())
+                .load(IMAGE_BASEURL + serviceList.getServiceImage())
                 .placeholder(R.drawable.plumbing)
                 .into(holder.imageView);
     }
