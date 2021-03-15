@@ -19,6 +19,7 @@ public class ServiceNames {
     public static final String PROFILE =  API + "";
     public static final String CATEGORY =  API + "/getCategoryList";
     public static final String FILTER_SERVICE_LIST =  API + "/filterServiceList";
+    public static final String BANNER =  API + "/getbanner";
     public static final String SERVICE_LIST =  API + "/getServiceList";
     public static final String SERVICE_DETAILS =  API + "";
     public static final String SERVICE_PROVIDER_LIST = API + "/getAllServiceProviderByService";

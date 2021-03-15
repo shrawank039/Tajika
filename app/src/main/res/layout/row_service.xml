@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Catering"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:maxLines="2"
+                android:minLines="2"
                 android:text="@string/dummy_text"
                 android:textColor="@color/black" />
         </LinearLayout>
