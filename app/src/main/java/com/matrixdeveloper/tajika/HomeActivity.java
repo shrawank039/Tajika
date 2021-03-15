@@ -83,6 +83,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view, int position) {
                 ServiceList serviceList = serviceLists.get(position);
 
+                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class));
                 Toast.makeText(HomeActivity.this, serviceList.getServiceName(), Toast.LENGTH_SHORT).show();
 
             }

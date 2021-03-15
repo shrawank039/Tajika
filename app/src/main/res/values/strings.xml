@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Tajika</string>
 
+    <string name="place_api_key">AIzaSyBSidc4z430X8vnpwPBm417ISf3XODdTyE</string>
+    <string name="api_key">AIzaSyBSidc4z430X8vnpwPBm417ISf3XODdTyE</string>
+    <string name="map_api_key">&amp;key=AIzaSyBSidc4z430X8vnpwPBm417ISf3XODdTyE</string>
+
     <string name="splash_info_user_provider">To get services select User, to provide service select service provider individual/business</string>
 
     <string name="reset_password_text">We will send you a link on your registered email or one-time-password (OTP) on your mobile to reset your password</string>

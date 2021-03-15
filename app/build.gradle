@@ -1,7 +1,10 @@
+
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -41,6 +44,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.31"
+
     // Google Support Lib
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
@@ -51,6 +56,9 @@ dependencies {
 
     // Google GMS
     implementation "com.google.android.gms:play-services-maps:17.0.0"
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'com.google.android.libraries.places:places:2.2.0'
     implementation "com.google.android.gms:play-services-gcm:17.0.0"
     implementation 'com.google.android.ads.consent:consent-library:1.0.8'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
@@ -104,5 +112,9 @@ dependencies {
 
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.1.6'
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+    implementation 'com.github.aarsy.googlemapsrippleeffect:googlemapsrippleeffect:1.0.2'
 
 }

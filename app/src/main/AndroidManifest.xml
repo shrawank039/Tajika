@@ -20,7 +20,11 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".LocationSelectorActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".SearchActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -59,7 +63,7 @@
             android:label="@string/title_activity_navigation_drawer" />
         <activity
             android:name=".ProviderSearchActivity"
-            android:label="@string/title_activity_provider_search"></activity>
+            android:label="@string/title_activity_provider_search" />
     </application>
 
 </manifest>
