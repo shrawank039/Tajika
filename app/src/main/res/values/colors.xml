@@ -21,4 +21,6 @@
     <color name="blue">#2F80ED</color>
     <color name="purple_400">#603EC6</color>
 
+    <color name="home_search_hint">#888888</color>
+
 </resources>

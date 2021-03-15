@@ -4,9 +4,12 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.request.RequestOptions;
+import com.glide.slider.library.SliderLayout;
+import com.glide.slider.library.slidertypes.BaseSliderView;
+import com.glide.slider.library.slidertypes.TextSliderView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,6 +36,7 @@ import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +48,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ServiceAdapter mAdapter;
     private static PrefManager prf;
     private String TAG = "HomeAct";
+    SliderLayout homeSlider;
     private List<ServiceList> serviceLists;
     private Gson gson;
     NavigationView navigationView;
@@ -48,9 +57,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawer = findViewById(R.id.drawer_layout);
+        homeSlider = findViewById(R.id.slider);
         prf = new PrefManager(this);
 
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -82,7 +93,74 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }));
 
+        // for responsive screen size
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        float density = getResources().getDisplayMetrics().density;
+        //  float height =  displayMetrics.heightPixels/density;
+        float width = displayMetrics.widthPixels / density;
+        int a = (int) (width * density / 3.189);  // 1920*602
+
+        prf.setInt("banner_height", a + 20);
+
+        // for responsive banner size
+        LinearLayout llbanner = findViewById(R.id.ll_banner);
+        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, prf.getInt("banner_height"));
+        llbanner.setLayoutParams(parms);
+
+
         getServiceList();
+        getBannerImage();
+    }
+
+    private void getBannerImage() {
+
+        ApiCall.getMethod(getApplicationContext(), ServiceNames.SERVICE_LIST, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray jsonArray = null;
+            try {
+
+                jsonArray = response.getJSONArray("data");
+                RequestOptions requestOptions = new RequestOptions();
+                requestOptions.centerCrop();
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+
+                    JSONObject c = null;
+                    try {
+                        c = jsonArray.getJSONObject(i);
+                        Log.d("TAG", "image : " + c.optString("image"));
+                        TextSliderView sliderView = new TextSliderView(this);
+                        sliderView
+                                .image(c.optString("image"))
+                                .setRequestOption(requestOptions)
+                                .setProgressBarVisible(true)
+                                .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                                    @Override
+                                    public void onSliderClick(BaseSliderView slider) {
+
+                                    }
+                                });
+
+                        //add your extra information
+                        sliderView.bundle(new Bundle());
+                        sliderView.getBundle().putString("extra", c.optString("link"));
+                        homeSlider.addSlider(sliderView);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        });
+
     }
 
     private void getServiceList() {
