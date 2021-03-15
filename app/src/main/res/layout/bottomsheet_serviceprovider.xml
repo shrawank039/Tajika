@@ -369,15 +369,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:text="Engineering"
-                            android:textColor="@color/dark_blue"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="1"
                             android:text="Servicing"
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp" />
@@ -388,6 +379,15 @@
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             android:text="Repairing"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:text="Engineering"
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp" />
 
@@ -439,6 +439,7 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/catering" />
 
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -448,6 +449,7 @@
                     android:visibility="visible">
 
                     <TextView
+                        android:id="@+id/txt_requestService"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -464,6 +466,7 @@
                         android:background="@color/orange" />
 
                     <LinearLayout
+                        android:id="@+id/ll_viewDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

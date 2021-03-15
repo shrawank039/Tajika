@@ -1,6 +1,5 @@
 package com.matrixdeveloper.tajika;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +15,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +42,7 @@ import com.matrixdeveloper.tajika.utils.AppConstants;
 import com.matrixdeveloper.tajika.widget.BottomSheetDialog;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,8 +51,7 @@ public class LocationSelectorActivity extends FragmentActivity
         BottomSheetDialog.BottomSheetListener {
     private GoogleMap mMap;
     private MapRipple mapRipple;
-    protected ProgressDialog mProgressDialog;
-    TextView edtAddress;
+    TextView edtAddress, requestService;
     private LatLng mSelectedLatLng;
     private AddressBean mSelectedAddress = null;
     String cityName, areaName, countryName, stateName, postalCode, fullAddress;
@@ -59,6 +59,8 @@ public class LocationSelectorActivity extends FragmentActivity
     private Location location;
     private String lati, longi;
     private ImageView gotoCurrentLocation, backPress;
+    private LinearLayout viewDetails;
+    ArrayList<LatLng> pointer = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,12 @@ public class LocationSelectorActivity extends FragmentActivity
         edtAddress = findViewById(R.id.edt_location);
         gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
         backPress = findViewById(R.id.iv_backPress);
+        requestService = findViewById(R.id.txt_requestService);
+
+        pointer.add(new LatLng(27.0180798, 85.8893507));
+        pointer.add(new LatLng(28.0180710, 86.8893503));
+        pointer.add(new LatLng(29.0180720, 84.8893507));
+        pointer.add(new LatLng(30.0180730, 83.8893501));
 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), getString(R.string.place_api_key));
@@ -80,6 +88,7 @@ public class LocationSelectorActivity extends FragmentActivity
         mapFragment.getMapAsync(this);
 
         initListeners();
+
     }
 
     private void initListeners() {
@@ -96,6 +105,13 @@ public class LocationSelectorActivity extends FragmentActivity
                 onBackPressed();
             }
         });
+
+        requestService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class));
+            }
+        });
     }
 
     @Override
@@ -106,6 +122,19 @@ public class LocationSelectorActivity extends FragmentActivity
         mMap.getUiSettings().setCompassEnabled(false);
 
         initLocation();
+
+        //BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.app_logo);
+        for (int i = 0; i < pointer.size(); i++) {
+
+            mMap.addMarker(new MarkerOptions().position(pointer.get(i)).title("Marker"));
+
+            // below lin is use to zoom our camera on map.
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
+
+            // below line is use to move our camera to the specific location.
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(pointer.get(i)));
+
+        }
     }
 
     private void initLocation() {
