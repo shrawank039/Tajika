@@ -51,18 +51,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     SliderLayout homeSlider;
     private List<ServiceList> serviceLists;
     private Gson gson;
-    NavigationView navigationView;
-
+    private NavigationView navigationView;
+    private LinearLayout coinsWallet,compareList,referFriends;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawer = findViewById(R.id.drawer_layout);
         homeSlider = findViewById(R.id.slider);
         prf = new PrefManager(this);
+        compareList=findViewById(R.id.ll_compareList);
+        coinsWallet=findViewById(R.id.ll_coinsWallet);
+        referFriends=findViewById(R.id.ll_referFriends);
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
@@ -109,14 +113,39 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, prf.getInt("banner_height"));
         llbanner.setLayoutParams(parms);
 
+        handleClickListener();
 
         getServiceList();
         getBannerImage();
     }
 
+    private void handleClickListener() {
+        compareList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),CompareListActivity.class));
+            }
+        });
+        coinsWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),CoinsWalletActivity.class));
+            }
+        });
+
+        referFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),ReferralActivity.class));
+            }
+        });
+
+
+    }
+
     private void getBannerImage() {
 
-        ApiCall.getMethod(getApplicationContext(), ServiceNames.SERVICE_LIST, response -> {
+        ApiCall.getMethod(getApplicationContext(), ServiceNames.BANNER, response -> {
 
             Utils.log(TAG, response.toString());
 
@@ -132,10 +161,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     JSONObject c = null;
                     try {
                         c = jsonArray.getJSONObject(i);
-                        Log.d("TAG", "image : " + c.optString("image"));
+                        Log.d("TAG", "image : " + c.optString("url"));
                         TextSliderView sliderView = new TextSliderView(this);
                         sliderView
-                                .image(c.optString("image"))
+                                .image(c.optString("url"))
                                 .setRequestOption(requestOptions)
                                 .setProgressBarVisible(true)
                                 .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
