@@ -13,12 +13,14 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -35,10 +37,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.AddressBean;
 import com.matrixdeveloper.tajika.model.PlaceBean;
-import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.model.ServiceProvider;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
@@ -69,10 +71,13 @@ public class LocationSelectorActivity extends FragmentActivity
     private Location location;
     private String lati, longi;
     private ImageView gotoCurrentLocation, backPress;
-    private LinearLayout viewDetails;
+    private LinearLayout viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService;
+    private View view;
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
     private String TAG = "LocationSelectorAct";
+    BottomSheetBehavior behavior;
+    int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +88,19 @@ public class LocationSelectorActivity extends FragmentActivity
         gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
+        view = findViewById(R.id.view_viewDetails);
+        viewDetails = findViewById(R.id.ll_viewDetails);
+        noProviderFound = findViewById(R.id.ll_noProviderFound);
+        providerDetails = findViewById(R.id.ll_providerDetails);
+        moreDetails = findViewById(R.id.ll_moreDetails);
+        recommendedService = findViewById(R.id.ll_recommendedService);
+
 
         serviceProviderList = new ArrayList<>();
 
+
+        View bottomSheet = findViewById(R.id.bottom_sheet);
+        behavior = BottomSheetBehavior.from(bottomSheet);
 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), getString(R.string.place_api_key));
@@ -122,6 +137,26 @@ public class LocationSelectorActivity extends FragmentActivity
                 startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class));
             }
         });
+
+        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    viewDetails.setVisibility(View.GONE);
+                    moreDetails.setVisibility(View.VISIBLE);
+                    recommendedService.setVisibility(View.VISIBLE);
+                } else {
+                    viewDetails.setVisibility(View.VISIBLE);
+                    moreDetails.setVisibility(View.GONE);
+                    recommendedService.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                // React to dragging events
+            }
+        });
     }
 
     @Override
@@ -140,6 +175,7 @@ public class LocationSelectorActivity extends FragmentActivity
             @Override
             public void onLocationFound(double latitide, double longitude) {
                 animateMarker(new LatLng(latitide, longitude));
+                getServiceProvider(String.valueOf(latitide), String.valueOf(longitude));
             }
 
             @Override
@@ -158,14 +194,14 @@ public class LocationSelectorActivity extends FragmentActivity
 
         JSONObject data = new JSONObject();
         try {
-            data.put("service_id", "7");
+            data.put("service_id", 7);
             data.put("latitude", "25.6203");
             data.put("longitude", "85.1394");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.SERVICE_PROVIDER_LIST,data, response -> {
+        ApiCall.postMethod(getApplicationContext(), ServiceNames.SERVICE_PROVIDER_LIST, data, response -> {
 
             Utils.log(TAG, response.toString());
 
@@ -174,34 +210,49 @@ public class LocationSelectorActivity extends FragmentActivity
 
                 jsonarray = response.getJSONArray("data");
 
-                if (jsonarray.length()>1){
-                        // no service provider bottom sheet
-                }else {
-                    // no bottom sheet until user click on any marker
-                }
+                if (jsonarray.length() < 1) {
+                    // no service provider bottom sheet
+                    behavior.setPeekHeight(toPixels(235));
+                } else {
+                    behavior.setPeekHeight(toPixels(0));
+                    for (int i = 0; i < jsonarray.length(); i++) {
 
-                // after marker click - header info in bottom sheet
-                // click to expand bottom sheet
+                        try {
 
-                for (int i = 0; i < jsonarray.length(); i++) {
+                            ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
+                            LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
+                            Marker m = mMap.addMarker(new MarkerOptions().position(latLng));
+                            serviceProviderList.add(serviceProvider);
+                            m.setTag(serviceProvider.getUserId());
 
-                    try {
-
-                        ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
-                        LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
-                        mMap.addMarker(new MarkerOptions().position(latLng).title("Provider"));
-                        serviceProviderList.add(serviceProvider);
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                @Override
+                                public boolean onMarkerClick(Marker m) {
+                                    Toast.makeText(LocationSelectorActivity.this, "" + m.getTag(), Toast.LENGTH_SHORT).show();
+                                    behavior.setPeekHeight(toPixels(168));
+                                    viewDetails.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                                            viewDetails.setVisibility(View.GONE);
+                                            view.setVisibility(View.GONE);
+                                            moreDetails.setVisibility(View.VISIBLE);
+                                            recommendedService.setVisibility(View.VISIBLE);
+                                        }
+                                    });
+                                    return true;
+                                }
+                            });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
 
+            }
 
         });
 
@@ -225,8 +276,7 @@ public class LocationSelectorActivity extends FragmentActivity
         this.mSelectedLatLng = location;
 
         edtAddress.setText("");
-        mMap.clear();
-        getServiceProvider(String.valueOf(location.latitude), String.valueOf(location.longitude));
+        //  mMap.clear();
         if (mapRipple == null) {
             mapRipple = new MapRipple(mMap, location, getApplicationContext());
         }
@@ -242,7 +292,10 @@ public class LocationSelectorActivity extends FragmentActivity
         mapRipple.withRippleDuration(5000);    //12000ms
         mapRipple.withTransparency(0.5f);
         mapRipple.startRippleMapAnimation();
-
+//        mMap.addMarker(new MarkerOptions().position(location).title("Current Location").
+//                draggable(true).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)));
+//        //resizing Bitmap image and setting to add marker
+        /*  image to bitmap compressed */
         BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_marker);
         Bitmap b = bitmapdraw.getBitmap();
         Bitmap smallMarker = Bitmap.createScaledBitmap(b, 90, 150, true);
@@ -254,10 +307,11 @@ public class LocationSelectorActivity extends FragmentActivity
                 .draggable(true)
                 .icon(bitmapDescriptorFromVector(this)));
 
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         final CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(location)      // Sets the center of the map to Mountain View
                 .zoom(16)                   // Sets the zoom
-                .bearing(0)                // Sets the orientation of the camera to east
+                .bearing(90)                // Sets the orientation of the camera to east
                 .tilt(20)                   // Sets the tilt of the camera to 30 degrees
                 .build();                   // Creates a CameraPosition from the builder
 
@@ -360,5 +414,9 @@ public class LocationSelectorActivity extends FragmentActivity
 
     }
 
+    private int toPixels(int sheetHeight) {
+        height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, sheetHeight, getResources().getDisplayMetrics());
+        return height;
 
+    }
 }
