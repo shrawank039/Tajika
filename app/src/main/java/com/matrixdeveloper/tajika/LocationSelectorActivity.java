@@ -13,12 +13,14 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -35,11 +37,21 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.AddressBean;
 import com.matrixdeveloper.tajika.model.PlaceBean;
+import com.matrixdeveloper.tajika.model.ServiceProvider;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
+import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.AppConstants;
+import com.matrixdeveloper.tajika.utils.Utils;
 import com.matrixdeveloper.tajika.widget.BottomSheetDialog;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,8 +71,13 @@ public class LocationSelectorActivity extends FragmentActivity
     private Location location;
     private String lati, longi;
     private ImageView gotoCurrentLocation, backPress;
-    private LinearLayout viewDetails;
+    private LinearLayout viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService;
+    private View view;
     ArrayList<LatLng> pointer = new ArrayList<>();
+    private List<ServiceProvider> serviceProviderList;
+    private String TAG = "LocationSelectorAct";
+    BottomSheetBehavior behavior;
+    int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +88,19 @@ public class LocationSelectorActivity extends FragmentActivity
         gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
+        view = findViewById(R.id.view_viewDetails);
+        viewDetails = findViewById(R.id.ll_viewDetails);
+        noProviderFound = findViewById(R.id.ll_noProviderFound);
+        providerDetails = findViewById(R.id.ll_providerDetails);
+        moreDetails = findViewById(R.id.ll_moreDetails);
+        recommendedService = findViewById(R.id.ll_recommendedService);
 
-        pointer.add(new LatLng(23.320366, 85.290410));
-        pointer.add(new LatLng(23.321213, 85.293244));
-        pointer.add(new LatLng(23.319321, 85.292643));
-        pointer.add(new LatLng(23.322415, 85.294876));
+
+        serviceProviderList = new ArrayList<>();
+
+
+        View bottomSheet = findViewById(R.id.bottom_sheet);
+        behavior = BottomSheetBehavior.from(bottomSheet);
 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), getString(R.string.place_api_key));
@@ -112,6 +137,26 @@ public class LocationSelectorActivity extends FragmentActivity
                 startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class));
             }
         });
+
+        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    viewDetails.setVisibility(View.GONE);
+                    moreDetails.setVisibility(View.VISIBLE);
+                    recommendedService.setVisibility(View.VISIBLE);
+                } else {
+                    viewDetails.setVisibility(View.VISIBLE);
+                    moreDetails.setVisibility(View.GONE);
+                    recommendedService.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                // React to dragging events
+            }
+        });
     }
 
     @Override
@@ -123,18 +168,6 @@ public class LocationSelectorActivity extends FragmentActivity
 
         initLocation();
 
-        //BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.app_logo);
-        for (int i = 0; i < pointer.size(); i++) {
-
-            mMap.addMarker(new MarkerOptions().position(pointer.get(i)).title("Marker"));
-
-            // below lin is use to zoom our camera on map.
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
-
-            // below line is use to move our camera to the specific location.
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(pointer.get(i)));
-
-        }
     }
 
     private void initLocation() {
@@ -159,6 +192,70 @@ public class LocationSelectorActivity extends FragmentActivity
 
     private void getServiceProvider(String valueOf, String valueOf1) {
 
+        JSONObject data = new JSONObject();
+        try {
+            data.put("service_id", 7);
+            data.put("latitude", "25.6203");
+            data.put("longitude", "85.1394");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(getApplicationContext(), ServiceNames.SERVICE_PROVIDER_LIST, data, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray jsonarray = null;
+            try {
+
+                jsonarray = response.getJSONArray("data");
+
+                if (jsonarray.length() < 1) {
+                    // no service provider bottom sheet
+                    behavior.setPeekHeight(toPixels(235));
+                } else {
+                    behavior.setPeekHeight(toPixels(0));
+                    for (int i = 0; i < jsonarray.length(); i++) {
+
+                        try {
+
+                            ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
+                            LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
+                            Marker m = mMap.addMarker(new MarkerOptions().position(latLng));
+                            serviceProviderList.add(serviceProvider);
+                            m.setTag(serviceProvider.getUserId());
+
+                            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                @Override
+                                public boolean onMarkerClick(Marker m) {
+                                    Toast.makeText(LocationSelectorActivity.this, "" + m.getTag(), Toast.LENGTH_SHORT).show();
+                                    behavior.setPeekHeight(toPixels(168));
+                                    viewDetails.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                                            viewDetails.setVisibility(View.GONE);
+                                            view.setVisibility(View.GONE);
+                                            moreDetails.setVisibility(View.VISIBLE);
+                                            recommendedService.setVisibility(View.VISIBLE);
+                                        }
+                                    });
+                                    return true;
+                                }
+                            });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+
+            }
+
+        });
+
     }
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context) {
@@ -179,7 +276,7 @@ public class LocationSelectorActivity extends FragmentActivity
         this.mSelectedLatLng = location;
 
         edtAddress.setText("");
-      //  mMap.clear();
+        //  mMap.clear();
         if (mapRipple == null) {
             mapRipple = new MapRipple(mMap, location, getApplicationContext());
         }
@@ -317,5 +414,9 @@ public class LocationSelectorActivity extends FragmentActivity
 
     }
 
+    private int toPixels(int sheetHeight) {
+        height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, sheetHeight, getResources().getDisplayMetrics());
+        return height;
 
+    }
 }
