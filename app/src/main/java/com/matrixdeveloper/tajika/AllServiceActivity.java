@@ -70,6 +70,7 @@ public class AllServiceActivity extends AppCompatActivity {
     }
 
     private void getAllService() {
+
         ApiCall.getMethod(getApplicationContext(), ServiceNames.SERVICE_LIST, response -> {
 
             Utils.log(TAG, response.toString());

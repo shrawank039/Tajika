@@ -38,8 +38,18 @@ import com.google.android.libraries.places.api.Places;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.AddressBean;
 import com.matrixdeveloper.tajika.model.PlaceBean;
+import com.matrixdeveloper.tajika.model.ServiceList;
+import com.matrixdeveloper.tajika.model.ServiceProvider;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
+import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.AppConstants;
+import com.matrixdeveloper.tajika.utils.Utils;
 import com.matrixdeveloper.tajika.widget.BottomSheetDialog;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,6 +71,8 @@ public class LocationSelectorActivity extends FragmentActivity
     private ImageView gotoCurrentLocation, backPress;
     private LinearLayout viewDetails;
     ArrayList<LatLng> pointer = new ArrayList<>();
+    private List<ServiceProvider> serviceProviderList;
+    private String TAG = "LocationSelectorAct";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +84,8 @@ public class LocationSelectorActivity extends FragmentActivity
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
 
-        pointer.add(new LatLng(23.320366, 85.290410));
-        pointer.add(new LatLng(23.321213, 85.293244));
-        pointer.add(new LatLng(23.319321, 85.292643));
-        pointer.add(new LatLng(23.322415, 85.294876));
+        serviceProviderList = new ArrayList<>();
+
 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), getString(R.string.place_api_key));
@@ -123,18 +133,6 @@ public class LocationSelectorActivity extends FragmentActivity
 
         initLocation();
 
-        //BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.app_logo);
-        for (int i = 0; i < pointer.size(); i++) {
-
-            mMap.addMarker(new MarkerOptions().position(pointer.get(i)).title("Marker"));
-
-            // below lin is use to zoom our camera on map.
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
-
-            // below line is use to move our camera to the specific location.
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(pointer.get(i)));
-
-        }
     }
 
     private void initLocation() {
@@ -142,7 +140,6 @@ public class LocationSelectorActivity extends FragmentActivity
             @Override
             public void onLocationFound(double latitide, double longitude) {
                 animateMarker(new LatLng(latitide, longitude));
-                getServiceProvider(String.valueOf(latitide), String.valueOf(longitude));
             }
 
             @Override
@@ -158,6 +155,55 @@ public class LocationSelectorActivity extends FragmentActivity
     }
 
     private void getServiceProvider(String valueOf, String valueOf1) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("service_id", "7");
+            data.put("latitude", "25.6203");
+            data.put("longitude", "85.1394");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(getApplicationContext(), ServiceNames.SERVICE_PROVIDER_LIST,data, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray jsonarray = null;
+            try {
+
+                jsonarray = response.getJSONArray("data");
+
+                if (jsonarray.length()>1){
+                        // no service provider bottom sheet
+                }else {
+                    // no bottom sheet until user click on any marker
+                }
+
+                // after marker click - header info in bottom sheet
+                // click to expand bottom sheet
+
+                for (int i = 0; i < jsonarray.length(); i++) {
+
+                    try {
+
+                        ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
+                        LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
+                        mMap.addMarker(new MarkerOptions().position(latLng).title("Provider"));
+                        serviceProviderList.add(serviceProvider);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        });
 
     }
 
@@ -179,7 +225,8 @@ public class LocationSelectorActivity extends FragmentActivity
         this.mSelectedLatLng = location;
 
         edtAddress.setText("");
-      //  mMap.clear();
+        mMap.clear();
+        getServiceProvider(String.valueOf(location.latitude), String.valueOf(location.longitude));
         if (mapRipple == null) {
             mapRipple = new MapRipple(mMap, location, getApplicationContext());
         }
@@ -195,10 +242,7 @@ public class LocationSelectorActivity extends FragmentActivity
         mapRipple.withRippleDuration(5000);    //12000ms
         mapRipple.withTransparency(0.5f);
         mapRipple.startRippleMapAnimation();
-//        mMap.addMarker(new MarkerOptions().position(location).title("Current Location").
-//                draggable(true).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)));
-//        //resizing Bitmap image and setting to add marker
-        /*  image to bitmap compressed */
+
         BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_marker);
         Bitmap b = bitmapdraw.getBitmap();
         Bitmap smallMarker = Bitmap.createScaledBitmap(b, 90, 150, true);
@@ -210,11 +254,10 @@ public class LocationSelectorActivity extends FragmentActivity
                 .draggable(true)
                 .icon(bitmapDescriptorFromVector(this)));
 
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         final CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(location)      // Sets the center of the map to Mountain View
                 .zoom(16)                   // Sets the zoom
-                .bearing(90)                // Sets the orientation of the camera to east
+                .bearing(0)                // Sets the orientation of the camera to east
                 .tilt(20)                   // Sets the tilt of the camera to 30 degrees
                 .build();                   // Creates a CameraPosition from the builder
 
