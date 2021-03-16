@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
@@ -27,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtEmail, edtPass;
     private String TAG = "LoginAct";
     private static PrefManager prf;
-    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         prf = new PrefManager(this);
-
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
-        gson = gsonBuilder.create();
 
         edtEmail = findViewById(R.id.edt_email);
         edtPass = findViewById(R.id.edt_pass);
@@ -77,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
 
-                Login login = gson.fromJson(response.getJSONObject("data").toString(), Login.class);
+                Login login = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), Login.class);
 
                 prf.setString(Global.user_id, login.getId().toString());
                 prf.setString(Global.token, login.getToken());

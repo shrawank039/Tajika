@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
@@ -28,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     String name, phone, email, pass, Cpass;
     private String TAG = "RegisterAct";
     private static PrefManager prf;
-    private Gson gson;
     private CheckBox termsAndPolicy;
 
     @Override
@@ -37,10 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         prf = new PrefManager(this);
-
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
-        gson = gsonBuilder.create();
 
         edtName = findViewById(R.id.edt_name);
         edtPhone = findViewById(R.id.edt_phone);
@@ -78,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     try {
 
-                        Register register = gson.fromJson(response.getJSONObject("data").toString(), Register.class);
+                        Register register = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), Register.class);
 
                         prf.setString(Global.user_id, register.getId().toString());
                         prf.setString(Global.token, register.getToken());

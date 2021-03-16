@@ -30,6 +30,7 @@ import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
@@ -51,7 +52,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private String TAG = "HomeAct";
     SliderLayout homeSlider;
     private List<ServiceList> serviceLists;
-    private Gson gson;
     private NavigationView navigationView;
     private LinearLayout coinsWallet,compareList,referFriends;
     private TextView viewAllService;
@@ -71,10 +71,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         referFriends=findViewById(R.id.ll_referFriends);
         viewAllService=findViewById(R.id.txt_viewAllService);
         recyclerView = findViewById(R.id.recyclerView);
-
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
-        gson = gsonBuilder.create();
 
         serviceLists = new ArrayList<>();
         mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists);
@@ -218,7 +214,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                     try {
 
-                        ServiceList serviceList = gson.fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
+                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
 
                         serviceLists.add(serviceList);
 

@@ -8,6 +8,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class MySingleton {
     private static MySingleton mInstance;
@@ -48,6 +50,14 @@ public class MySingleton {
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
         }
         return mRequestQueue;
+    }
+
+    public static Gson getGson(){
+        Gson gson;
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
+        gson = gsonBuilder.create();
+        return gson;
     }
 
     public <T> void addToRequestQueue(Request<T> req) {

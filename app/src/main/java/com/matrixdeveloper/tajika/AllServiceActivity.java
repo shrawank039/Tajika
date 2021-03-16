@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
 import com.matrixdeveloper.tajika.utils.Utils;
@@ -28,7 +29,6 @@ import java.util.List;
 public class AllServiceActivity extends AppCompatActivity {
 
     private String TAG = "AllServiceAct";
-    private Gson gson;
     private List<ServiceList> serviceLists;
     private ServiceAdapter mAdapter;
     private RecyclerView recyclerView;
@@ -39,10 +39,6 @@ public class AllServiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_service);
 
         recyclerView = findViewById(R.id.rv_viewAllService);
-
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
-        gson = gsonBuilder.create();
 
         serviceLists = new ArrayList<>();
         mAdapter = new ServiceAdapter(AllServiceActivity.this, serviceLists);
@@ -87,7 +83,7 @@ public class AllServiceActivity extends AppCompatActivity {
 
                     try {
 
-                        ServiceList serviceList = gson.fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
+                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
 
                         serviceLists.add(serviceList);
 

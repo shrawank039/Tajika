@@ -72,10 +72,10 @@ public class LocationSelectorActivity extends FragmentActivity
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
 
-        pointer.add(new LatLng(27.0180798, 85.8893507));
-        pointer.add(new LatLng(28.0180710, 86.8893503));
-        pointer.add(new LatLng(29.0180720, 84.8893507));
-        pointer.add(new LatLng(30.0180730, 83.8893501));
+        pointer.add(new LatLng(23.320366, 85.290410));
+        pointer.add(new LatLng(23.321213, 85.293244));
+        pointer.add(new LatLng(23.319321, 85.292643));
+        pointer.add(new LatLng(23.322415, 85.294876));
 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), getString(R.string.place_api_key));
@@ -142,6 +142,7 @@ public class LocationSelectorActivity extends FragmentActivity
             @Override
             public void onLocationFound(double latitide, double longitude) {
                 animateMarker(new LatLng(latitide, longitude));
+                getServiceProvider(String.valueOf(latitide), String.valueOf(longitude));
             }
 
             @Override
@@ -154,6 +155,10 @@ public class LocationSelectorActivity extends FragmentActivity
                 Toast.makeText(LocationSelectorActivity.this, "Please enable location permissions", Toast.LENGTH_SHORT).show();
             }
         }).initLocationUpdate();
+    }
+
+    private void getServiceProvider(String valueOf, String valueOf1) {
+
     }
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context) {
@@ -174,7 +179,7 @@ public class LocationSelectorActivity extends FragmentActivity
         this.mSelectedLatLng = location;
 
         edtAddress.setText("");
-        mMap.clear();
+      //  mMap.clear();
         if (mapRipple == null) {
             mapRipple = new MapRipple(mMap, location, getApplicationContext());
         }
