@@ -69,7 +69,7 @@ public class LocationSelectorActivity extends FragmentActivity
     String cityName, areaName, countryName, stateName, postalCode, fullAddress;
     PlaceBean placeBean;
     private Location location;
-    private String lati, longi;
+    private String selected_id;
     private ImageView gotoCurrentLocation, backPress;
     private LinearLayout viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService;
     private View view;
@@ -134,7 +134,10 @@ public class LocationSelectorActivity extends FragmentActivity
         requestService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class));
+                startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class)
+                        .putExtra("provider_id", selected_id)
+                        .putExtra("service_name", "Plumber")
+                        .putExtra("service_id", "2"));
             }
         });
 
@@ -175,7 +178,6 @@ public class LocationSelectorActivity extends FragmentActivity
             @Override
             public void onLocationFound(double latitide, double longitude) {
                 animateMarker(new LatLng(latitide, longitude));
-                getServiceProvider(String.valueOf(latitide), String.valueOf(longitude));
             }
 
             @Override
@@ -211,9 +213,9 @@ public class LocationSelectorActivity extends FragmentActivity
                 jsonarray = response.getJSONArray("data");
 
                 if (jsonarray.length() < 1) {
-                    // no service provider bottom sheet
                     behavior.setPeekHeight(toPixels(235));
                 } else {
+
                     behavior.setPeekHeight(toPixels(0));
                     for (int i = 0; i < jsonarray.length(); i++) {
 
@@ -229,6 +231,7 @@ public class LocationSelectorActivity extends FragmentActivity
                                 @Override
                                 public boolean onMarkerClick(Marker m) {
                                     Toast.makeText(LocationSelectorActivity.this, "" + m.getTag(), Toast.LENGTH_SHORT).show();
+                                    selected_id = String.valueOf(m.getTag());
                                     behavior.setPeekHeight(toPixels(168));
                                     viewDetails.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -276,7 +279,8 @@ public class LocationSelectorActivity extends FragmentActivity
         this.mSelectedLatLng = location;
 
         edtAddress.setText("");
-        //  mMap.clear();
+        mMap.clear();
+        getServiceProvider(String.valueOf(location.latitude), String.valueOf(location.longitude));
         if (mapRipple == null) {
             mapRipple = new MapRipple(mMap, location, getApplicationContext());
         }
@@ -311,7 +315,7 @@ public class LocationSelectorActivity extends FragmentActivity
         final CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(location)      // Sets the center of the map to Mountain View
                 .zoom(16)                   // Sets the zoom
-                .bearing(90)                // Sets the orientation of the camera to east
+                .bearing(0)                // Sets the orientation of the camera to east
                 .tilt(20)                   // Sets the tilt of the camera to 30 degrees
                 .build();                   // Creates a CameraPosition from the builder
 
@@ -361,8 +365,6 @@ public class LocationSelectorActivity extends FragmentActivity
                 placeBean.setAddress(String.valueOf(mSelectedAddress.getAddress_1()));
                 placeBean.setLatitude(String.valueOf(location.latitude));
                 placeBean.setLongitude(String.valueOf(location.longitude));
-                lati = String.valueOf(location.latitude);
-                longi = String.valueOf(location.longitude);
                 placeBean.setName(fullAddress);
 
             }
