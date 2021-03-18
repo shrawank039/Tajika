@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,14 +6,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/light_blue"
-        tools:context=".RegisterActivity">
+        tools:context=".SPindividual.SpiRegisterActivity">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:background="@drawable/layout_top_design"
             android:gravity="center"
             android:orientation="vertical"
@@ -28,7 +27,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Welcome to Tajika"
-                android:textColor="@color/orange"
+                android:textColor="@color/white"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -38,8 +37,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Create New Account"
-                android:textColor="@color/orange"
+                android:text="Register your business"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -176,7 +175,6 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="20dp"
-                    android:onClick="onPasswordClick"
                     android:src="@drawable/eye_2x" />
             </LinearLayout>
 
@@ -213,31 +211,20 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="20dp"
-                    android:onClick="onPasswordClick"
                     android:src="@drawable/eye_2x" />
             </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/checkboxTermsandPolicy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:checked="true"
-                android:text="I agree with terms and policy of Tajika"
-                android:textColor="@color/dark_blue" />
-
             <Button
+                android:id="@+id/btn_nextToBusinessDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/layout_input_outline"
-                android:onClick="onSubmitClick"
                 android:paddingHorizontal="50dp"
                 android:shadowColor="@color/grey_700"
-                android:text="Submit"
+                android:text="Next"
                 android:textAllCaps="false"
                 android:textColor="@color/dark_blue" />
 

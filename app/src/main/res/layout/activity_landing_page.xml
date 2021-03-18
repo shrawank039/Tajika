@@ -44,6 +44,7 @@
                 android:paddingHorizontal="20dp">
 
                 <Button
+                    android:id="@+id/btn_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -51,19 +52,18 @@
                     android:backgroundTint="@color/orange"
                     android:drawableTop="@drawable/happy_1x"
                     android:padding="10dp"
-                    android:onClick="onUserClick"
                     android:text="User"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <Button
+                    android:id="@+id/btn_serviceProviderIndividual"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:backgroundTint="@color/orange"
                     android:drawableTop="@drawable/run_1x"
-                    android:onClick="onIndividualClick"
                     android:paddingVertical="10dp"
                     android:text="Service Provider Individual"
                     android:textAllCaps="false"
