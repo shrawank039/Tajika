@@ -20,7 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
-        <activity android:name=".AllServiceActivity"></activity>
+        <activity android:name=".SPindividual.SpiMoreActivity"></activity>
+        <activity android:name=".SPindividual.SpiRegisterActivity" />
+        <activity android:name=".AllServiceActivity" />
         <activity android:name=".LandingPage" />
         <activity
             android:name=".LocationSelectorActivity"
@@ -44,7 +46,7 @@
         <activity android:name=".VouchersActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SPindividual.SpiHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +65,6 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_navigation_drawer" />
-
     </application>
 
 </manifest>

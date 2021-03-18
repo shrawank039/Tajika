@@ -129,7 +129,6 @@ public class RequestServiceActivity extends AppCompatActivity implements
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
-
                             edtTime.setText(hourOfDay + ":" + minute);
                         }
                     }, mHour, mMinute, false);
