@@ -355,11 +355,11 @@ public class LocationSelectorActivity extends FragmentActivity
                 //  ((LogisticsApplication) getApplicationContext()).saveSelectedAddress(mAddress);
                 edtAddress.setText(mSelectedAddress.getAddress_1());
 
-                AppConstants.address = mSelectedAddress.getAddress_1();
-                AppConstants.country = countryName;
-                AppConstants.zip = postalCode;
-                AppConstants.state = stateName;
-                AppConstants.city = cityName;
+//                AppConstants.address = mSelectedAddress.getAddress_1();
+//                AppConstants.country = countryName;
+//                AppConstants.zip = postalCode;
+//                AppConstants.state = stateName;
+//                AppConstants.city = cityName;
 
 
                 placeBean.setAddress(String.valueOf(mSelectedAddress.getAddress_1()));

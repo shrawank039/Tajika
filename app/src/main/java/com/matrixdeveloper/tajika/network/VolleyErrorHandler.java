@@ -2,7 +2,7 @@ package com.matrixdeveloper.tajika.network;
 
 import android.content.Context;
 import com.android.volley.VolleyError;
-import com.matrixdeveloper.tajika.utils.App;
+import com.matrixdeveloper.tajika.app.App;
 
 public class VolleyErrorHandler {
     private static String TAG = VolleyErrorHandler.class.getSimpleName();

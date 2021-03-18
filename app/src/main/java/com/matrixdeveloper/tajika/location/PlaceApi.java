@@ -1,7 +1,7 @@
 package com.matrixdeveloper.tajika.location;
 
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.utils.App;
+import com.matrixdeveloper.tajika.app.App;
 
 import org.json.JSONArray;
 import org.json.JSONException;

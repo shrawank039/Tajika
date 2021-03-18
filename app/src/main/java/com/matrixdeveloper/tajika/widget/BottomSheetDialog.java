@@ -44,12 +44,12 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
         country=v.findViewById(R.id.txtcountry);
         v.findViewById(R.id.edt).setFocusable(false);
 
-        firstName.setText(AppConstants.phone);
-        fullAdd.setText(AppConstants.address);
-        city.setText(AppConstants.city);
-        zip.setText(AppConstants.zip);
-        state.setText(AppConstants.state);
-        country.setText(AppConstants.country);
+        firstName.setText("AppConstants.phone");
+        fullAdd.setText("AppConstants.address");
+        city.setText("AppConstants.city");
+        zip.setText("AppConstants.zip");
+        state.setText("AppConstants.state");
+        country.setText("AppConstants.country");
 
         Button button1 = v.findViewById(R.id.btn_add_address);
 
@@ -65,9 +65,9 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 State=state.getText().toString();
                 Country=country.getText().toString();
 
-                address= "https://www.google.com/maps/search/?api=1&query=Google&query_place_id="+AppConstants.locationId;
+                address= "https://www.google.com/maps/search/?api=1&query=Google&query_place_id="+"AppConstants.locationId";
 
-                message = "PHONE -" +Phone + " \nADDRESS -" + FullAdd + " \nSERVICES -" + AppConstants.serviceInstant
+                message = "PHONE -" +Phone + " \nADDRESS -" + FullAdd + " \nSERVICES -" + "AppConstants.serviceInstant"
                         + " \nMAP_URL -" + address;
 
                 if (TextUtils.isEmpty(Phone) || Phone.length() < 10) {
@@ -91,7 +91,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                     country.requestFocus();
                 }
                 else {
-                    Toast.makeText(getContext(), AppConstants.locationId, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "AppConstants.locationId", Toast.LENGTH_SHORT).show();
                  //   sendEmail();
 //                    Intent intent = new Intent(getContext(), ThankYou.class);
 //                  //  intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
