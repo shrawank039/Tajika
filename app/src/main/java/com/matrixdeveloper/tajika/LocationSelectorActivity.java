@@ -12,6 +12,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -78,6 +79,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private String TAG = "LocationSelectorAct";
     BottomSheetBehavior behavior;
     int height;
+    private ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,7 +225,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
                             ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
                             LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
-                            Marker m = mMap.addMarker(new MarkerOptions().position(latLng));
+                            Marker m = mMap.addMarker(new MarkerOptions().position(latLng).icon(providerImage(this)));
                             serviceProviderList.add(serviceProvider);
                             m.setTag(serviceProvider.getUserId());
 
@@ -263,6 +265,21 @@ public class LocationSelectorActivity extends FragmentActivity
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context) {
         Drawable background = ContextCompat.getDrawable(context, R.drawable.ic_location_on_black);
+        assert background != null;
+        background.setBounds(0, 0, background.getIntrinsicWidth(), background.getIntrinsicHeight());
+        //  Drawable vectorDrawable = ContextCompat.getDrawable(context, R.drawable.ic_location_on_black);
+        //  assert vectorDrawable != null;
+        //vectorDrawable.setBounds(40, 20, vectorDrawable.getIntrinsicWidth() + 40, vectorDrawable.getIntrinsicHeight() + 20);
+        Bitmap bitmap = Bitmap.createBitmap(background.getIntrinsicWidth(), background.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        background.draw(canvas);
+        //  vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    private BitmapDescriptor providerImage(Context ctx) {
+
+        Drawable background = ContextCompat.getDrawable(ctx, R.drawable.provider_image_1x);
         assert background != null;
         background.setBounds(0, 0, background.getIntrinsicWidth(), background.getIntrinsicHeight());
         //  Drawable vectorDrawable = ContextCompat.getDrawable(context, R.drawable.ic_location_on_black);
@@ -421,4 +438,10 @@ public class LocationSelectorActivity extends FragmentActivity
         return height;
 
     }
+
+    private int toDP(int sheetHeight) {
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        return Math.round(sheetHeight / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
 }

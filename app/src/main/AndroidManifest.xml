@@ -20,7 +20,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
-        <activity android:name=".AllServiceActivity"></activity>
+        <activity android:name=".AllServiceActivity" />
         <activity android:name=".LandingPage" />
         <activity
             android:name=".LocationSelectorActivity"
@@ -63,7 +63,6 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_navigation_drawer" />
-
     </application>
 
 </manifest>
