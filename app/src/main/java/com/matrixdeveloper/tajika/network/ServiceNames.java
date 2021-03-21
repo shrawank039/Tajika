@@ -25,6 +25,7 @@ public class ServiceNames {
     public static final String SERVICE_DETAILS =  API + "";
     public static final String SERVICE_PROVIDER_LIST = API + "/getAllServiceProviderByService";
     public static final String SUBMIT_SERVICE_REQUEST = API + "/submitServiceRequest";
+    public static final String SAVE_FCM_TOKEN = API+ "/save_fcmtoken";
 
 
     public static boolean is = true;

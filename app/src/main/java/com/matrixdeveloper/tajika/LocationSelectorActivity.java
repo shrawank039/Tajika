@@ -139,7 +139,7 @@ public class LocationSelectorActivity extends FragmentActivity
                 startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class)
                         .putExtra("provider_id", selected_id)
                         .putExtra("service_name", "Plumber")
-                        .putExtra("service_id", "2"));
+                        .putExtra("service_id", "7"));
             }
         });
 

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -32,9 +33,10 @@ import java.util.Calendar;
 public class RequestServiceActivity extends AppCompatActivity implements
         View.OnClickListener{
 
-    private String provider_id, service_name, service_id, amount, description;
+    private String provider_id, service_name, service_id;
     private String TAG = "RequestServiceAct";
     private static PrefManager prf;
+    private Button submitRequest;
     private EditText edtDate, edtTime, edtAmount, edtService, edtDescription;
 
     @Override
@@ -51,22 +53,19 @@ public class RequestServiceActivity extends AppCompatActivity implements
         edtAmount = findViewById(R.id.edt_amount);
         edtService = findViewById(R.id.edt_service);
         edtDescription = findViewById(R.id.edt_description);
+        submitRequest = findViewById(R.id.btn_submit);
 
         edtService.setText(service_name);
         prf = new PrefManager(this);
 
         edtDate.setOnClickListener(this);
         edtTime.setOnClickListener(this);
+        submitRequest.setOnClickListener(this);
 
     }
 
+    public void submitClick() {
 
-    public void dateClick(View view) {
-    }
-    public void timeClick(View view) {
-    }
-
-    public void submitClick(View view) {
         JSONObject data = new JSONObject();
         try {
             data.put("service_provider_id", provider_id);
@@ -83,7 +82,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
         ApiCall.postMethod(getApplicationContext(), ServiceNames.SUBMIT_SERVICE_REQUEST, data, response -> {
 
             Utils.log(TAG, response.toString());
-
+            Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
 
         });
     }
@@ -133,6 +132,10 @@ public class RequestServiceActivity extends AppCompatActivity implements
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
+        }
+
+        if (v==submitRequest){
+            submitClick();
         }
     }
 }

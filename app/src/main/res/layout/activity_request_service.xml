@@ -70,7 +70,6 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:focusable="false"
-                    android:onClick="dateClick"
                     android:hint="Select service date"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
@@ -101,7 +100,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:onClick="timeClick"
                     android:focusable="false"
                     android:hint="Select service time"
                     android:paddingVertical="5dp"
@@ -204,7 +202,7 @@
             </LinearLayout>
 
             <Button
-                android:onClick="submitClick"
+                android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

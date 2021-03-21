@@ -24,7 +24,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.glide.slider.library.SliderLayout;
 import com.glide.slider.library.slidertypes.BaseSliderView;
 import com.glide.slider.library.slidertypes.TextSliderView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
@@ -113,8 +117,43 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         handleClickListener();
 
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        updateToken(token);
+
+                        Log.d(TAG, "fcm token : "+token);
+
+                    }
+                });
+
         getServiceList();
         getBannerImage();
+    }
+
+    private void updateToken(String token) {
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", prf.getString("id"));
+            data.put("fcm_token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(getApplicationContext(), ServiceNames.SAVE_FCM_TOKEN, data, response -> {
+
+            Utils.log(TAG, "SAVE TOKEN RESPONSE : "+response.toString());
+
+
+        });
     }
 
     private void handleClickListener() {

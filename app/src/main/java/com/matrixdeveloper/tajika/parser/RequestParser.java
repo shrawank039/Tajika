@@ -80,11 +80,11 @@ public class RequestParser {
                         if (dataObj.has("id")) {
                             basicBean.setRequestID(dataObj.optString("id"));
                         }
-                        if (dataObj.has("trip_id")) {
-                            basicBean.setTripID(dataObj.optString("trip_id"));
+                        if (dataObj.has("service_id")) {
+                            basicBean.setServiceID(dataObj.optString("trip_id"));
                         }
-                        if (dataObj.has("trip_status")) {
-                            basicBean.setTripStatus(dataObj.optInt("trip_status"));
+                        if (dataObj.has("service_status")) {
+                            basicBean.setServiceStatus(dataObj.optInt("trip_status"));
                         }
 
 

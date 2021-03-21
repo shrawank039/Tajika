@@ -15,8 +15,8 @@ open class BasicBean : BaseBean() {
     private ArrayList<CourtBean> courts;*/
 
     var requestID: String= ""
-    var tripID: String= ""
-    var tripStatus: Int = 0
+    var serviceID: String= ""
+    var serviceStatus: Int = 0
     var otpCode: String= ""
     var phone: String= ""
 
@@ -27,36 +27,5 @@ open class BasicBean : BaseBean() {
     var isDriverOnline: Boolean = false
     var isPhoneAvailable: Boolean = false
     var statusCode: String =""
-    /*
-    public ArrayList<CourtBean> getCourts() {
-        return courts;
-    }
 
-    public void setCourts(List<CourtBean> courts) {
-        this.courts = courts;
-    }
-
-    public ArrayList<CountryBean> getCountries() {
-        return countries;
-    }
-
-    public void setCountries(List<CountryBean> countries) {
-        this.countries = countries;
-    }
-
-    public ArrayList<StateBean> getStates() {
-        return states;
-    }
-
-    public void setStates(List<StateBean> states) {
-        this.states = states;
-    }
-
-    public ArrayList<DistrictBean> getDistricts() {
-        return cities;
-    }
-
-    public void setDistricts(List<DistrictBean> cities) {
-        this.cities = cities;
-    }*/
 }

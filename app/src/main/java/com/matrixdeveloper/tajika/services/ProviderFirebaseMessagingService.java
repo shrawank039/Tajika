@@ -1,7 +1,9 @@
 package com.matrixdeveloper.tajika.services;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -12,6 +14,12 @@ import com.matrixdeveloper.tajika.parser.RequestParser;
 public class ProviderFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "LFMService";
+
+    @Override
+    public void onNewToken(String token) {
+        super.onNewToken(token);
+        Log.d(TAG, token);
+    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -34,16 +42,16 @@ public class ProviderFirebaseMessagingService extends FirebaseMessagingService {
             if (basicBean == null)
                 stopSelf();
             else {
-                if (basicBean.getStatus().equalsIgnoreCase("Success")) {
- //                   initiateDriverRatingService(basicBean.getId());
+                if (basicBean.getStatus().equalsIgnoreCase("success")) {
                     basicBean.getRequestID();
                     if (!basicBean.getRequestID().equalsIgnoreCase("")) {
                         initiateDriverRatingService(basicBean.getRequestID());
                     } else {
-                        basicBean.getTripID();
-                        if (!basicBean.getTripID().equalsIgnoreCase("")){
+                        basicBean.getServiceID();
+                        if (!basicBean.getServiceID().equalsIgnoreCase("")){
+
                             startActivity(new Intent(this, BookingDetailsActivity.class)
-                                    .putExtra("trip_id", basicBean.getTripID())
+                                    .putExtra("request_id", basicBean.getServiceID())
                                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                         }else{
                             stopSelf();
@@ -79,7 +87,6 @@ public class ProviderFirebaseMessagingService extends FirebaseMessagingService {
                 stopSelf();
             else {
                 if (basicBean.getStatus().equalsIgnoreCase("Success")) {
-//                    initiateDriverRatingService(basicBean.getId());
                     initiateDriverRatingService(basicBean.getRequestID());
                 } else if (basicBean.getStatus().equalsIgnoreCase("Error")) {
                     stopSelf();
@@ -98,7 +105,7 @@ public class ProviderFirebaseMessagingService extends FirebaseMessagingService {
 
     public void initiateDriverRatingService(String requestID) {
 
-        Log.i(TAG, "initiateDriverRatingService: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SERVICE STARTED>>>>>>>>>>>>>>>>>>>>>");
+        Log.i(TAG, "initiateDriverRatingService: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SERVICE STARTED>>>>>>>>>>>>>>>>>>>>>"+requestID);
 
         Intent intent = new Intent(this, BookingDetailsActivity.class);
         intent.putExtra("request_id", requestID);
