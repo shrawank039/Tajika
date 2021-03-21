@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private RecyclerView recyclerView;
     private ServiceAdapter mAdapter;
-    private static PrefManager prf;
+    private PrefManager prf;
     private String TAG = "HomeAct";
     SliderLayout homeSlider;
     private List<ServiceList> serviceLists;
