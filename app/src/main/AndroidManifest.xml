@@ -21,9 +21,8 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
-
-        <activity android:name=".SPindividual.SpiMoreActivity">
-        </activity>
+        <activity android:name=".SPindividual.SpiAllBookingsActivity"></activity>
+        <activity android:name=".SPindividual.SpiMoreActivity" />
         <activity android:name=".SPindividual.SpiRegisterActivity" />
         <activity android:name=".AllServiceActivity" />
         <activity android:name=".LandingPage" />
@@ -57,6 +56,11 @@
         <activity android:name=".NotificationActivity" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".SPindividual.SpiHomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".RequestServiceActivity" />

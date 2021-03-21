@@ -9,14 +9,12 @@ import android.widget.TextView;
 
 import com.matrixdeveloper.tajika.R;
 
-public class SPMoreOptionsBaseAdapter extends BaseAdapter {
+public class SPIMoreOptionsBaseAdapter extends BaseAdapter {
     String moreOptionsList[];
-    int flags[];
     LayoutInflater inflter;
 
-    public SPMoreOptionsBaseAdapter(Context applicationContext, String[] moreOptionsList) {
+    public SPIMoreOptionsBaseAdapter(Context applicationContext, String[] moreOptionsList) {
         this.moreOptionsList = moreOptionsList;
-        this.flags = flags;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
@@ -40,6 +38,7 @@ public class SPMoreOptionsBaseAdapter extends BaseAdapter {
         view = inflter.inflate(R.layout.item_more_options, null);
         TextView options = view.findViewById(R.id.txt_options);
         options.setText(moreOptionsList[i]);
+
         return view;
     }
 }
