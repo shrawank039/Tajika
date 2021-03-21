@@ -15,7 +15,7 @@ import com.matrixdeveloper.tajika.model.SPIAllBookingsModel;
 public class SpiAllBookingsActivity extends AppCompatActivity {
 
     private RecyclerView allBookingsRecyclerView;
-    private SPIAllBookingsAdapter faqAdapter;
+    private SPIAllBookingsAdapter allBookingsAdapter;
     TextView upcoming, completed;
 
     @Override
@@ -36,10 +36,10 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
 
         };
 
-        faqAdapter = new SPIAllBookingsAdapter(this, myListData);
+        allBookingsAdapter = new SPIAllBookingsAdapter(this, myListData);
         allBookingsRecyclerView.setHasFixedSize(true);
         allBookingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        allBookingsRecyclerView.setAdapter(faqAdapter);
+        allBookingsRecyclerView.setAdapter(allBookingsAdapter);
 
         upcoming.setOnClickListener(new View.OnClickListener() {
             @Override

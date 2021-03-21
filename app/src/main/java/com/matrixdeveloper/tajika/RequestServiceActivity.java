@@ -7,37 +7,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.matrixdeveloper.tajika.model.ServiceProvider;
 import com.matrixdeveloper.tajika.network.ApiCall;
-import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
 
 public class RequestServiceActivity extends AppCompatActivity implements
-        View.OnClickListener{
+        View.OnClickListener {
 
     private String provider_id, service_name, service_id;
     private String TAG = "RequestServiceAct";
     private static PrefManager prf;
     private Button submitRequest;
     private EditText edtDate, edtTime, edtAmount, edtService, edtDescription;
+    private ImageView backPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +48,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
         edtService = findViewById(R.id.edt_service);
         edtDescription = findViewById(R.id.edt_description);
         submitRequest = findViewById(R.id.btn_submit);
+        backPress = findViewById(R.id.iv_backPress);
 
         edtService.setText(service_name);
         prf = new PrefManager(this);
@@ -134,8 +129,11 @@ public class RequestServiceActivity extends AppCompatActivity implements
             timePickerDialog.show();
         }
 
-        if (v==submitRequest){
+        if (v == submitRequest) {
             submitClick();
+        }
+        if (v == backPress) {
+            super.onBackPressed();
         }
     }
 }

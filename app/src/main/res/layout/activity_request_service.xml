@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/iv_backPress"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -161,6 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:inputType="number"
                     android:hint="Amount willing to pay"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"

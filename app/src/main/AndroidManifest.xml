@@ -21,7 +21,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
-        <activity android:name=".SPindividual.SpiAllBookingsActivity"></activity>
+        <activity android:name=".SPindividual.SpiAddCreditActivity"></activity>
+        <activity android:name=".SPindividual.SpiCreditWalletActivity" />
+        <activity android:name=".SPindividual.SpiAllBookingsActivity" />
         <activity android:name=".SPindividual.SpiMoreActivity" />
         <activity android:name=".SPindividual.SpiRegisterActivity" />
         <activity android:name=".AllServiceActivity" />
@@ -36,7 +38,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SPindividual.SpiHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,7 +57,7 @@
         <activity android:name=".VouchersActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".SPindividual.SpiHomeActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,13 +77,11 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_navigation_drawer" />
 
-        <service
-            android:name=".services.ProviderFirebaseMessagingService">
+        <service android:name=".services.ProviderFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
