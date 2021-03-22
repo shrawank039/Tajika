@@ -3,15 +3,13 @@ package com.matrixdeveloper.tajika;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -32,11 +30,14 @@ public class AllServiceActivity extends AppCompatActivity {
     private List<ServiceList> serviceLists;
     private ServiceAdapter mAdapter;
     private RecyclerView recyclerView;
+    private ImageView backPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_service);
+        backPress = findViewById(R.id.iv_backPress);
+        backPress.setOnClickListener(view -> AllServiceActivity.super.onBackPressed());
 
         recyclerView = findViewById(R.id.rv_viewAllService);
 
@@ -55,8 +56,8 @@ public class AllServiceActivity extends AppCompatActivity {
                 ServiceList serviceList = serviceLists.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                        .putExtra("service_name",serviceList.getServiceName())
-                        .putExtra("service_id",String.valueOf(serviceList.getId())));
+                        .putExtra("service_name", serviceList.getServiceName())
+                        .putExtra("service_id", String.valueOf(serviceList.getId())));
 
             }
 

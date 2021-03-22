@@ -1,6 +1,7 @@
 package com.matrixdeveloper.tajika;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,13 +12,16 @@ import com.matrixdeveloper.tajika.model.RedeemCoinModel;
 
 public class RedeemCoinActivity extends AppCompatActivity {
 
-    RecyclerView redeemCoinRecView;
-    RedeemCoinAdapter redeemCoinAdapter;
+    private RecyclerView redeemCoinRecView;
+    private RedeemCoinAdapter redeemCoinAdapter;
+    private ImageView backPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_redeem_coin);
+        backPress = findViewById(R.id.iv_backPress);
+        backPress.setOnClickListener(view -> RedeemCoinActivity.super.onBackPressed());
 
         RedeemCoinModel[] redeemCoinModels = new RedeemCoinModel[]{
                 new RedeemCoinModel(1, 0, "10% flat on all order above 500", "1000", "Valid till 22 December 2020"),

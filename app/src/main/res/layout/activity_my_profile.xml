@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/iv_backPress"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/arrow_back"
@@ -65,20 +66,13 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="15dp"
-                    app:cardCornerRadius="150dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:backgroundTint="@color/orange"
-                        android:src="@drawable/app_logo" />
-                </androidx.cardview.widget.CardView>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="@color/orange"
+                    android:src="@drawable/app_logo"
+                    app:civ_border_width="2dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -87,6 +81,7 @@
                     android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="John Doe"
+                    android:textColor="@color/orange"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>

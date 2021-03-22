@@ -25,14 +25,14 @@ public class ApiCall {
 
     public static void postMethod(final Context context, final String url, final JSONObject jsonObject, final VolleyCallback volleyCallback) {
         Utils.log(TAG, "getMethod:" + ", url: " + url);
-//        Utils.show(context);
+        Utils.show(context);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                 url, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "onResponse: " + url + ",response:" + response);
-                  //      Utils.dismiss();
+                        Utils.dismiss();
                         if (response.has("error")) {
                             if (response.optString("error").equalsIgnoreCase("false")) {
                                 volleyCallback.onSuccess(response);
@@ -47,7 +47,7 @@ public class ApiCall {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "onResponse: " + url + ",onErrorResponse:" + error);
-             //   Utils.dismiss();
+                Utils.dismiss();
                 VolleyErrorHandler.handle(url, error);
             }
         }) {

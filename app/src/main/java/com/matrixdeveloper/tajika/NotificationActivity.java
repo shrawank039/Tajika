@@ -3,15 +3,14 @@ package com.matrixdeveloper.tajika;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.NotificationAdapter;
-import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.model.NotificationModel;
-import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -33,6 +32,7 @@ public class NotificationActivity extends AppCompatActivity {
     private List<NotificationModel> notificationModelList;
     private PrefManager prf;
     private String TAG = "AllServiceAct";
+    private ImageView backPress;
 
 
     @Override
@@ -48,6 +48,8 @@ public class NotificationActivity extends AppCompatActivity {
         notificationRecyclerview.setHasFixedSize(true);
         notificationRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         notificationRecyclerview.setAdapter(notificationAdapter);
+        backPress = findViewById(R.id.iv_backPress);
+        backPress.setOnClickListener(view -> NotificationActivity.super.onBackPressed());
 
         notificationRecyclerview.addOnItemTouchListener(new RecyclerTouchListener(this, notificationRecyclerview, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -56,7 +58,7 @@ public class NotificationActivity extends AppCompatActivity {
                 NotificationModel notificationModel = notificationModelList.get(position);
 
                 startActivity(new Intent(getApplicationContext(), BookingDetailsActivity.class)
-                        .putExtra("id",String.valueOf(notificationModel.getId())));
+                        .putExtra("id", String.valueOf(notificationModel.getId())));
 
             }
 

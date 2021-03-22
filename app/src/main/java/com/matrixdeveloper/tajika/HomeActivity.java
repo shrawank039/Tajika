@@ -26,11 +26,9 @@ import com.glide.slider.library.slidertypes.BaseSliderView;
 import com.glide.slider.library.slidertypes.TextSliderView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -57,25 +55,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     SliderLayout homeSlider;
     private List<ServiceList> serviceLists;
     private NavigationView navigationView;
-    private LinearLayout coinsWallet,compareList,referFriends,llSearch;
+    private LinearLayout coinsWallet, compareList, referFriends, llSearch;
     private TextView viewAllService;
+    private FloatingActionButton chatting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        drawer = findViewById(R.id.drawer_layout);
-        homeSlider = findViewById(R.id.slider);
-        prf = new PrefManager(this);
-        compareList=findViewById(R.id.ll_compareList);
-        coinsWallet=findViewById(R.id.ll_coinsWallet);
-        referFriends=findViewById(R.id.ll_referFriends);
-        viewAllService=findViewById(R.id.txt_viewAllService);
-        recyclerView = findViewById(R.id.recyclerView);
-        llSearch = findViewById(R.id.ll_search);
+        initViews();
 
         serviceLists = new ArrayList<>();
         mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists);
@@ -92,8 +81,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 ServiceList serviceList = serviceLists.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                .putExtra("service_name",serviceList.getServiceName())
-                .putExtra("service_id",String.valueOf(serviceList.getId())));
+                        .putExtra("service_name", serviceList.getServiceName())
+                        .putExtra("service_id", String.valueOf(serviceList.getId())));
 
             }
 
@@ -133,13 +122,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                         updateToken(token);
 
-                        Log.d(TAG, "fcm token : "+token);
+                        Log.d(TAG, "fcm token : " + token);
 
                     }
                 });
 
         getServiceList();
         getBannerImage();
+
+        chatting.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ConversationListActivity.class)));
+    }
+
+    private void initViews() {
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        drawer = findViewById(R.id.drawer_layout);
+        homeSlider = findViewById(R.id.slider);
+        prf = new PrefManager(this);
+        compareList = findViewById(R.id.ll_compareList);
+        coinsWallet = findViewById(R.id.ll_coinsWallet);
+        referFriends = findViewById(R.id.ll_referFriends);
+        viewAllService = findViewById(R.id.txt_viewAllService);
+        recyclerView = findViewById(R.id.recyclerView);
+        llSearch = findViewById(R.id.ll_search);
+        chatting = findViewById(R.id.fab_chatting);
     }
 
     private void updateToken(String token) {
@@ -153,7 +159,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         ApiCall.postMethod(getApplicationContext(), ServiceNames.SAVE_FCM_TOKEN, data, response -> {
 
-            Utils.log(TAG, "SAVE TOKEN RESPONSE : "+response.toString());
+            Utils.log(TAG, "SAVE TOKEN RESPONSE : " + response.toString());
 
 
         });
@@ -161,15 +167,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void handleClickListener() {
 
-        compareList.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),CompareListActivity.class)));
-        coinsWallet.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),CoinsWalletActivity.class)));
+        compareList.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), CompareListActivity.class)));
+        coinsWallet.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), CoinsWalletActivity.class)));
 
-        referFriends.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),ReferralActivity.class)));
+        referFriends.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), ReferralActivity.class)));
 
-        viewAllService.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),AllServiceActivity.class)));
+        viewAllService.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AllServiceActivity.class)));
 
         llSearch.setOnClickListener(v -> {
-         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+            startActivity(new Intent(getApplicationContext(), SearchActivity.class));
         });
 
 
@@ -309,7 +315,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             case R.id.nav_logout:
                 drawer.closeDrawer(Gravity.LEFT);
-                prf.setString("id","");
+                prf.setString("id", "");
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

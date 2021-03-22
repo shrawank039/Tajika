@@ -6,8 +6,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.matrixdeveloper.tajika.helpers.CustomDialog;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.helpers.CustomDialog;
 
 public class Utils {
 

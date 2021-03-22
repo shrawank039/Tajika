@@ -15,7 +15,7 @@ import com.matrixdeveloper.tajika.model.ServiceList;
 
 import java.util.List;
 
-import static com.matrixdeveloper.tajika.network.ServiceNames.IMAGE_BASEURL;
+import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
 
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHolder> {
 
@@ -46,7 +46,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_service, parent, false);
+                .inflate(R.layout.item_all_service, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -58,7 +58,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         holder.title.setText(serviceList.getServiceName());
         holder.message.setText(serviceList.getServiceDescription());
         Glide.with(ctx)
-                .load(IMAGE_BASEURL + serviceList.getServiceImage())
+                .load(PRODUCTION_API  + serviceList.getServiceImage())
                 .placeholder(R.drawable.plumbing)
                 .into(holder.imageView);
     }

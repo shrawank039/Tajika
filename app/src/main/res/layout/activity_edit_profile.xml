@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/iv_backPress"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/arrow_back"
@@ -72,12 +73,13 @@
                         android:layout_height="100dp">
 
 
-                        <ImageView
-                            android:id="@+id/iv"
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_profileImage"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:backgroundTint="@color/orange"
-                            android:src="@drawable/smiley_2x" />
+                            android:src="@drawable/app_logo"
+                            app:civ_border_width="2dp" />
 
                         <ImageView
                             android:layout_width="30dp"
@@ -98,6 +100,7 @@
                     android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="John Doe"
+                    android:textColor="@color/orange"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -156,6 +159,8 @@
                         android:layout_weight="1"
                         android:background="@null"
                         android:hint="Enter mobile number"
+                        android:inputType="number"
+                        android:maxLength="10"
                         android:paddingVertical="5dp"
                         android:paddingStart="20dp"
                         android:textColor="@color/black"
@@ -184,6 +189,7 @@
                         android:layout_weight="1"
                         android:background="@null"
                         android:hint="Enter e-mail"
+                        android:inputType="textEmailAddress"
                         android:paddingVertical="5dp"
                         android:paddingStart="20dp"
                         android:textColor="@color/black"

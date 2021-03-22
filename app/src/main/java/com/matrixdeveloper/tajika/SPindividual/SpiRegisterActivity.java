@@ -1,9 +1,8 @@
 package com.matrixdeveloper.tajika.SPindividual;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,16 +29,17 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private void initListeners() {
         nextToBusinessDetails.setOnClickListener(view -> regViewFlipper.showNext());
         nextToDocumentUpload.setOnClickListener(view -> regViewFlipper.showNext());
-        submit.setOnClickListener(view -> Toast.makeText(SpiRegisterActivity.this, "Submit Clicked !!", Toast.LENGTH_SHORT).show());
+        submit.setOnClickListener(view -> {
+            startActivity(new Intent(this, SpiHomeActivity.class));
+        });
     }
 
     @Override
     public void onBackPressed() {
         int displayedChild = regViewFlipper.getDisplayedChild();
-        if (displayedChild>0) {
-            regViewFlipper.setDisplayedChild(displayedChild-1);
-        }
-        else{
+        if (displayedChild > 0) {
+            regViewFlipper.setDisplayedChild(displayedChild - 1);
+        } else {
             super.onBackPressed();
         }
     }
