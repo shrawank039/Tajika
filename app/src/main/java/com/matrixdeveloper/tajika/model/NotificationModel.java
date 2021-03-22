@@ -1,57 +1,122 @@
 package com.matrixdeveloper.tajika.model;
 
-public class NotificationModel {
-    private int id;
-    private int notificationImage;
-    private String notificationHeader;
-    private String notificationContent;
-    private String notificationFooter;
+import java.io.Serializable;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public NotificationModel(int id, int notificationImage, String notificationHeader, String notificationContent, String notificationFooter) {
-        this.id = id;
-        this.notificationImage = notificationImage;
-        this.notificationHeader = notificationHeader;
-        this.notificationContent = notificationContent;
-        this.notificationFooter = notificationFooter;
-    }
+public class NotificationModel implements Serializable
+{
 
-    public int getId() {
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("from_user_id")
+    @Expose
+    private Integer fromUserId;
+    @SerializedName("to_user_id")
+    @Expose
+    private Integer toUserId;
+    @SerializedName("notificationtext")
+    @Expose
+    private String notificationtext;
+    @SerializedName("submit_date")
+    @Expose
+    private String submitDate;
+    @SerializedName("read_status")
+    @Expose
+    private Integer readStatus;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("actiontext")
+    @Expose
+    private String actiontext;
+    private final static long serialVersionUID = 8693141791740510328L;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getNotificationImage() {
-        return notificationImage;
+    public Integer getFromUserId() {
+        return fromUserId;
     }
 
-    public void setNotificationImage(int notificationImage) {
-        this.notificationImage = notificationImage;
+    public void setFromUserId(Integer fromUserId) {
+        this.fromUserId = fromUserId;
     }
 
-    public String getNotificationHeader() {
-        return notificationHeader;
+    public Integer getToUserId() {
+        return toUserId;
     }
 
-    public void setNotificationHeader(String notificationHeader) {
-        this.notificationHeader = notificationHeader;
+    public void setToUserId(Integer toUserId) {
+        this.toUserId = toUserId;
     }
 
-    public String getNotificationContent() {
-        return notificationContent;
+    public String getNotificationtext() {
+        return notificationtext;
     }
 
-    public void setNotificationContent(String notificationContent) {
-        this.notificationContent = notificationContent;
+    public void setNotificationtext(String notificationtext) {
+        this.notificationtext = notificationtext;
     }
 
-    public String getNotificationFooter() {
-        return notificationFooter;
+    public String getSubmitDate() {
+        return submitDate;
     }
 
-    public void setNotificationFooter(String notificationFooter) {
-        this.notificationFooter = notificationFooter;
+    public void setSubmitDate(String submitDate) {
+        this.submitDate = submitDate;
     }
+
+    public Integer getReadStatus() {
+        return readStatus;
+    }
+
+    public void setReadStatus(Integer readStatus) {
+        this.readStatus = readStatus;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getActiontext() {
+        return actiontext;
+    }
+
+    public void setActiontext(String actiontext) {
+        this.actiontext = actiontext;
+    }
+
 }

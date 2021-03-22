@@ -16,6 +16,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,8 +42,10 @@ import com.google.android.libraries.places.api.Places;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.AddressBean;
+import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.model.PlaceBean;
 import com.matrixdeveloper.tajika.model.ServiceProvider;
+import com.matrixdeveloper.tajika.model.ServiceProviderDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -78,14 +81,18 @@ public class LocationSelectorActivity extends FragmentActivity
     private List<ServiceProvider> serviceProviderList;
     private String TAG = "LocationSelectorAct";
     BottomSheetBehavior behavior;
+    private String service_name, service_id;
     int height;
     private ImageView img;
+    private EditText edtSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_selector);
 
+        service_name = getIntent().getStringExtra("service_name");
+        service_id = getIntent().getStringExtra("service_id");
         edtAddress = findViewById(R.id.edt_location);
         gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
         backPress = findViewById(R.id.iv_backPress);
@@ -96,7 +103,9 @@ public class LocationSelectorActivity extends FragmentActivity
         providerDetails = findViewById(R.id.ll_providerDetails);
         moreDetails = findViewById(R.id.ll_moreDetails);
         recommendedService = findViewById(R.id.ll_recommendedService);
+        edtSearch = findViewById(R.id.edt_search);
 
+        edtSearch.setText(service_name);
 
         serviceProviderList = new ArrayList<>();
 
@@ -138,8 +147,8 @@ public class LocationSelectorActivity extends FragmentActivity
             public void onClick(View view) {
                 startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class)
                         .putExtra("provider_id", selected_id)
-                        .putExtra("service_name", "Plumber")
-                        .putExtra("service_id", "7"));
+                        .putExtra("service_name", service_name)
+                        .putExtra("service_id", service_id));
             }
         });
 
@@ -194,13 +203,13 @@ public class LocationSelectorActivity extends FragmentActivity
         }).initLocationUpdate();
     }
 
-    private void getServiceProvider(String valueOf, String valueOf1) {
+    private void getServiceProvider(String lat, String longi) {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("service_id", 7);
-            data.put("latitude", "25.6203");
-            data.put("longitude", "85.1394");
+            data.put("service_id", service_id);
+            data.put("latitude", lat);
+            data.put("longitude", longi);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -233,6 +242,7 @@ public class LocationSelectorActivity extends FragmentActivity
                                 @Override
                                 public boolean onMarkerClick(Marker m) {
                                     Toast.makeText(LocationSelectorActivity.this, "" + m.getTag(), Toast.LENGTH_SHORT).show();
+                                    getServiceProviderDetails(String.valueOf(m.getTag()));
                                     selected_id = String.valueOf(m.getTag());
                                     behavior.setPeekHeight(toPixels(168));
                                     viewDetails.setOnClickListener(new View.OnClickListener() {
@@ -261,6 +271,28 @@ public class LocationSelectorActivity extends FragmentActivity
 
         });
 
+    }
+    private void getServiceProviderDetails(String providerID) {
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", providerID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(getApplicationContext(), ServiceNames.SERVICE_PROVIDER_DETAILS, data, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            try {
+
+                ServiceProviderDetails serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
     }
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context) {
@@ -444,4 +476,6 @@ public class LocationSelectorActivity extends FragmentActivity
         return Math.round(sheetHeight / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
+    public void llClick(View view) {
+    }
 }

@@ -57,8 +57,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     SliderLayout homeSlider;
     private List<ServiceList> serviceLists;
     private NavigationView navigationView;
-    private LinearLayout coinsWallet,compareList,referFriends;
+    private LinearLayout coinsWallet,compareList,referFriends,llSearch;
     private TextView viewAllService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +75,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         referFriends=findViewById(R.id.ll_referFriends);
         viewAllService=findViewById(R.id.txt_viewAllService);
         recyclerView = findViewById(R.id.recyclerView);
+        llSearch = findViewById(R.id.ll_search);
 
         serviceLists = new ArrayList<>();
         mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists);
@@ -89,8 +91,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view, int position) {
                 ServiceList serviceList = serviceLists.get(position);
 
-                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class));
-                Toast.makeText(HomeActivity.this, serviceList.getServiceName(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
+                .putExtra("service_name",serviceList.getServiceName())
+                .putExtra("service_id",String.valueOf(serviceList.getId())));
 
             }
 
@@ -157,31 +160,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void handleClickListener() {
-        compareList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),CompareListActivity.class));
-            }
-        });
-        coinsWallet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),CoinsWalletActivity.class));
-            }
-        });
 
-        referFriends.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),ReferralActivity.class));
-            }
-        });
+        compareList.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),CompareListActivity.class)));
+        coinsWallet.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),CoinsWalletActivity.class)));
 
-        viewAllService.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),AllServiceActivity.class));
-            }
+        referFriends.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),ReferralActivity.class)));
+
+        viewAllService.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),AllServiceActivity.class)));
+
+        llSearch.setOnClickListener(v -> {
+         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
         });
 
 
