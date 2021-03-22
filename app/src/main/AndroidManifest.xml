@@ -21,7 +21,8 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
-        <activity android:name=".SPindividual.SpiAddCreditActivity"></activity>
+        <activity android:name=".SPindividual.SpiMyServicesActivity"></activity>
+        <activity android:name=".SPindividual.SpiAddCreditActivity" />
         <activity android:name=".SPindividual.SpiCreditWalletActivity" />
         <activity android:name=".SPindividual.SpiAllBookingsActivity" />
         <activity android:name=".SPindividual.SpiMoreActivity" />

@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="RatingBar" parent="Theme.AppCompat">
+    <style name="RatingBar" parent="Theme.MaterialComponents.Light">
         <item name="colorControlNormal">@color/grey_700</item>
         <item name="colorControlActivated">@color/orange</item>
     </style>
@@ -22,6 +22,12 @@
     <style name="Theme.Tajika.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="switchTheme" parent="Theme.MaterialComponents.Light">
+
+        <item name="colorButtonNormal">@color/orange</item>
+        <item name="colorAccent">@color/orange</item>
     </style>
 
     <style name="Theme.Tajika.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
