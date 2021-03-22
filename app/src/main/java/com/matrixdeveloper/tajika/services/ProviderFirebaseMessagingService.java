@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.matrixdeveloper.tajika.BookingDetailsActivity;
+import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.model.BasicBean;
 import com.matrixdeveloper.tajika.parser.RequestParser;
 
@@ -50,7 +51,7 @@ public class ProviderFirebaseMessagingService extends FirebaseMessagingService {
                         basicBean.getServiceID();
                         if (!basicBean.getServiceID().equalsIgnoreCase("")){
 
-                            startActivity(new Intent(this, BookingDetailsActivity.class)
+                            startActivity(new Intent(this, NotificationActivity.class)
                                     .putExtra("request_id", basicBean.getServiceID())
                                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                         }else{
@@ -107,7 +108,7 @@ public class ProviderFirebaseMessagingService extends FirebaseMessagingService {
 
         Log.i(TAG, "initiateDriverRatingService: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SERVICE STARTED>>>>>>>>>>>>>>>>>>>>>"+requestID);
 
-        Intent intent = new Intent(this, BookingDetailsActivity.class);
+        Intent intent = new Intent(this, NotificationActivity.class);
         intent.putExtra("request_id", requestID);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

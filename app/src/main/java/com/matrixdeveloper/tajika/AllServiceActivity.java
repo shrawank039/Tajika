@@ -54,8 +54,9 @@ public class AllServiceActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 ServiceList serviceList = serviceLists.get(position);
 
-                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class));
-                Toast.makeText(AllServiceActivity.this, serviceList.getServiceName(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
+                        .putExtra("service_name",serviceList.getServiceName())
+                        .putExtra("service_id",String.valueOf(serviceList.getId())));
 
             }
 

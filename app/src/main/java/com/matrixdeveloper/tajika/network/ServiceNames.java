@@ -22,10 +22,12 @@ public class ServiceNames {
     public static final String FILTER_SERVICE_LIST =  API + "/filterServiceList";
     public static final String BANNER =  API + "/getbanner";
     public static final String SERVICE_LIST =  API + "/getServiceList";
-    public static final String SERVICE_DETAILS =  API + "";
+    public static final String SERVICE_PROVIDER_DETAILS =  API + "/getServiceProviderInfo";
     public static final String SERVICE_PROVIDER_LIST = API + "/getAllServiceProviderByService";
     public static final String SUBMIT_SERVICE_REQUEST = API + "/submitServiceRequest";
     public static final String SAVE_FCM_TOKEN = API+ "/save_fcmtoken";
+    public static final String NOTIFICATION_LIST = API+ "/notificationList";
+    public static final String BOOKING_DETAILS = API+ "/servicebookingDetails";
 
 
     public static boolean is = true;

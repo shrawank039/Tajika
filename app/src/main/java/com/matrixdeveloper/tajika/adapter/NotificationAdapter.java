@@ -14,14 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matrixdeveloper.tajika.model.NotificationModel;
 import com.matrixdeveloper.tajika.R;
 
+import java.util.List;
+
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.viewHolder> {
 
     private Context ctx;
-    NotificationModel[] notificationDetails;
+    List<NotificationModel> notificationModelList;
 
-    public NotificationAdapter(Context ctx, NotificationModel[] notificationDetails) {
+    public NotificationAdapter(Context ctx, List<NotificationModel> notificationModelList) {
         this.ctx = ctx;
-        this.notificationDetails = notificationDetails;
+        this.notificationModelList = notificationModelList;
     }
 
     @NonNull
@@ -33,10 +35,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull NotificationAdapter.viewHolder holder, int position) {
-        final NotificationModel notificationModel = notificationDetails[position];
-        holder.notificationHeader.setText(notificationModel.getNotificationHeader());
-        holder.notificationContent.setText(notificationModel.getNotificationContent());
-        holder.notificationFooter.setText(notificationModel.getNotificationFooter());
+
+        final NotificationModel notificationModel = notificationModelList.get(position);
+        holder.notificationHeader.setText(notificationModel.getTitle());
+        holder.notificationContent.setText(notificationModel.getMessage());
+        holder.notificationFooter.setText(notificationModel.getActiontext());
 
         holder.clearNotification.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,15 +51,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public int getItemCount() {
-        return notificationDetails.length;
+        return notificationModelList.size();
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        private ImageView notificationImage,clearNotification;
+        private ImageView clearNotification;
         private TextView notificationHeader,notificationContent,notificationFooter;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            notificationImage=itemView.findViewById(R.id.iv_notiImage);
+
             clearNotification=itemView.findViewById(R.id.iv_clearNotification);
             notificationHeader=itemView.findViewById(R.id.txt_notiHeader);
             notificationContent=itemView.findViewById(R.id.txt_notiContent);

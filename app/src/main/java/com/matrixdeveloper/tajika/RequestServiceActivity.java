@@ -77,7 +77,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
         ApiCall.postMethod(getApplicationContext(), ServiceNames.SUBMIT_SERVICE_REQUEST, data, response -> {
 
             Utils.log(TAG, response.toString());
-            Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();
 
         });
     }
