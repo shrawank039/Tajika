@@ -85,6 +85,7 @@ public class LocationSelectorActivity extends FragmentActivity
     int height;
     private ImageView img;
     private EditText edtSearch;
+    private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,14 +99,24 @@ public class LocationSelectorActivity extends FragmentActivity
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
         view = findViewById(R.id.view_viewDetails);
-        viewDetails = findViewById(R.id.ll_viewDetails);
-        noProviderFound = findViewById(R.id.ll_noProviderFound);
-        providerDetails = findViewById(R.id.ll_providerDetails);
         moreDetails = findViewById(R.id.ll_moreDetails);
         recommendedService = findViewById(R.id.ll_recommendedService);
         edtSearch = findViewById(R.id.edt_search);
-
         edtSearch.setText(service_name);
+
+        //bottom sheet
+        viewDetails = findViewById(R.id.ll_viewDetails);
+        noProviderFound = findViewById(R.id.ll_noProviderFound);
+        providerDetails = findViewById(R.id.ll_providerDetails);
+        txtProviderName = findViewById(R.id.txt_provider_name);
+        txtRating = findViewById(R.id.txt_rating);
+        txtServiceName = findViewById(R.id.txt_service_name);
+        txtDistance = findViewById(R.id.txt_distance);
+        txtAbout = findViewById(R.id.txt_about);
+        txtJobComp = findViewById(R.id.txt_jobs_completed);
+        txtEdu = findViewById(R.id.txt_education);
+        txtAdd = findViewById(R.id.txt_address);
+        txtSkill = findViewById(R.id.txt_skill);
 
         serviceProviderList = new ArrayList<>();
 
@@ -241,7 +252,7 @@ public class LocationSelectorActivity extends FragmentActivity
                             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override
                                 public boolean onMarkerClick(Marker m) {
-                                    Toast.makeText(LocationSelectorActivity.this, "" + m.getTag(), Toast.LENGTH_SHORT).show();
+                              //      Toast.makeText(LocationSelectorActivity.this, "" + m.getTag(), Toast.LENGTH_SHORT).show();
                                     getServiceProviderDetails(String.valueOf(m.getTag()));
                                     selected_id = String.valueOf(m.getTag());
                                     behavior.setPeekHeight(toPixels(168));
@@ -287,6 +298,16 @@ public class LocationSelectorActivity extends FragmentActivity
             try {
 
                 ServiceProviderDetails serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
+
+                txtProviderName.setText(serviceProviderDetails.getName());
+                txtRating.setText(serviceProviderDetails.getRating()+" ratings");
+                txtServiceName.setText(serviceProviderDetails.getBusinessCategories());
+                txtDistance.setText(serviceProviderDetails.getDistance());
+                txtAbout.setText(serviceProviderDetails.getAbout());
+                txtJobComp.setText(String.valueOf(serviceProviderDetails.getJobCompleted()));
+                txtEdu.setText(serviceProviderDetails.getEducationLevel());
+                txtAdd.setText(serviceProviderDetails.getServiceArea());
+                txtSkill.setText(serviceProviderDetails.getServiceDescription());
 
             } catch (JSONException e) {
                 e.printStackTrace();

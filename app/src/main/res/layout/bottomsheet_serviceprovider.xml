@@ -164,6 +164,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Paul Doe"
+                            android:maxLines="1"
                             android:textColor="@color/dark_blue"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -174,6 +175,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
                             android:text="Plumber"
+                            android:maxLines="1"
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -183,6 +185,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
+                            android:maxLines="1"
                             android:text="2.5 Km Away"
                             android:textColor="@color/dark_blue" />
                     </LinearLayout>
@@ -194,6 +197,7 @@
                         android:drawableStart="@drawable/star_half_icon"
                         android:drawablePadding="10dp"
                         android:gravity="center"
+                        android:maxLines="1"
                         android:text="4.5 ratings"
                         android:textColor="@color/dark_blue" />
                 </LinearLayout>
@@ -379,31 +383,15 @@
 
 
                         <TextView
+                            android:id="@+id/txt_skill"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:text="Servicing"
+                            android:text=""
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="1"
-                            android:text="Repairing"
-                            android:textColor="@color/dark_blue"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="1"
-                            android:text="Engineering"
-                            android:textColor="@color/dark_blue"
-                            android:textSize="16sp" />
 
                     </LinearLayout>
 
