@@ -16,6 +16,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -75,7 +76,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private Location location;
     private String selected_id;
     private ImageView gotoCurrentLocation, backPress;
-    private LinearLayout viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService;
+    private LinearLayout viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService, inner;
     private View view;
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
@@ -85,6 +86,7 @@ public class LocationSelectorActivity extends FragmentActivity
     int height;
     private ImageView img;
     private EditText edtSearch;
+    private int peekHeight =0;
     private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill;
 
     @Override
@@ -95,6 +97,7 @@ public class LocationSelectorActivity extends FragmentActivity
         service_name = getIntent().getStringExtra("service_name");
         service_id = getIntent().getStringExtra("service_id");
         edtAddress = findViewById(R.id.edt_location);
+        inner = findViewById(R.id.inner);
         gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
@@ -136,6 +139,31 @@ public class LocationSelectorActivity extends FragmentActivity
 
         initListeners();
 
+        final LinearLayout parent = (LinearLayout) findViewById(R.id.ll_one);
+        parent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int availableHeight = parent.getMeasuredHeight();
+                if(availableHeight>0) {
+                    parent.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    peekHeight = availableHeight;
+                    //save height here and do whatever you want with it
+                }
+            }
+        });
+        final LinearLayout parentTwo = (LinearLayout) findViewById(R.id.ll_two);
+        parentTwo.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int availableHeight = parentTwo.getMeasuredHeight();
+                if(availableHeight>0) {
+                    parentTwo.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    peekHeight += availableHeight;
+                    //save height here and do whatever you want with it
+                }
+            }
+        });
+
     }
 
     private void initListeners() {
@@ -166,6 +194,7 @@ public class LocationSelectorActivity extends FragmentActivity
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
                 if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                     viewDetails.setVisibility(View.GONE);
                     moreDetails.setVisibility(View.VISIBLE);
@@ -235,10 +264,18 @@ public class LocationSelectorActivity extends FragmentActivity
                 jsonarray = response.getJSONArray("data");
 
                 if (jsonarray.length() < 1) {
-                    behavior.setPeekHeight(toPixels(235));
+                    noProviderFound.setVisibility(View.VISIBLE);
+                    inner.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            inner.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            providerDetails.setVisibility(View.GONE);
+                            View hidden = inner.getChildAt(1);
+                            behavior.setPeekHeight(hidden.getTop());
+                        }
+                    });
                 } else {
 
-                    behavior.setPeekHeight(toPixels(0));
                     for (int i = 0; i < jsonarray.length(); i++) {
 
                         try {
@@ -252,10 +289,15 @@ public class LocationSelectorActivity extends FragmentActivity
                             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override
                                 public boolean onMarkerClick(Marker m) {
-                              //      Toast.makeText(LocationSelectorActivity.this, "" + m.getTag(), Toast.LENGTH_SHORT).show();
-                                    getServiceProviderDetails(String.valueOf(m.getTag()));
+
                                     selected_id = String.valueOf(m.getTag());
-                                    behavior.setPeekHeight(toPixels(168));
+
+                                    providerDetails.setVisibility(View.VISIBLE);
+
+                                    getServiceProviderDetails(selected_id);
+
+                                    behavior.setPeekHeight(peekHeight);
+
                                     viewDetails.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {

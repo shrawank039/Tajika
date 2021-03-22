@@ -27,8 +27,10 @@ public class LandingPage extends AppCompatActivity {
 
         if (prf.getString("id").equals(""))
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        else
+        else {
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            finish();
+        }
     }
 
     private void initView() {

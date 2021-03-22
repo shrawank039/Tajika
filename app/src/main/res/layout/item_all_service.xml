@@ -27,6 +27,8 @@
                 android:src="@drawable/catering" />
 
             <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/txt_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,10 +40,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/txt_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:maxLines="2"
                 android:minLines="2"
                 android:text="@string/dummy_text"
