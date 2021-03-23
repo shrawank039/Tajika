@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.LOGIN, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.LOGIN, data, response -> {
 
             Utils.log(TAG, response.toString());
             Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();

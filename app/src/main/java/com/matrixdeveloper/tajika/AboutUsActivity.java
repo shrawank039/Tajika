@@ -34,7 +34,7 @@ public class AboutUsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.getMethod(getApplicationContext(), ServiceNames.ABOUT_US, response -> {
+        ApiCall.getMethod(this, ServiceNames.ABOUT_US, response -> {
 
             Utils.log("aboutus: ", response.toString());
 

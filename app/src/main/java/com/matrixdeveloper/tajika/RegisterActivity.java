@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
@@ -67,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                ApiCall.postMethod(getApplicationContext(), ServiceNames.USER_REGISTRATION, data, response -> {
+                ApiCall.postMethod(this, ServiceNames.USER_REGISTRATION, data, response -> {
 
                     Utils.log(TAG, response.toString());
                     Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();

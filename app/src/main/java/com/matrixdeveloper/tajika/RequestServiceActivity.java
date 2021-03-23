@@ -74,7 +74,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.SUBMIT_SERVICE_REQUEST, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.SUBMIT_SERVICE_REQUEST, data, response -> {
 
             Utils.log(TAG, response.toString());
             Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();

@@ -75,7 +75,7 @@
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_callSupport"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +90,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/iv_callSupport"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:src="@drawable/support_2x"
@@ -112,7 +112,7 @@
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                            app:layout_constraintEnd_toStartOf="@+id/ive_mailSupport"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,7 +127,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
                         <ImageView
-                            android:id="@+id/imageView5"
+                            android:id="@+id/ive_mailSupport"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:src="@drawable/email_2x"

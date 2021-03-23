@@ -1,7 +1,10 @@
 package com.matrixdeveloper.tajika.helpers;
 
+import android.app.ProgressDialog;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+
+import com.matrixdeveloper.tajika.app.App;
 
 class Util {
 

@@ -80,7 +80,7 @@ public class NotificationActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.NOTIFICATION_LIST, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.NOTIFICATION_LIST, data, response -> {
 
             Utils.log(TAG, response.toString());
 

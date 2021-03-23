@@ -157,7 +157,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.SAVE_FCM_TOKEN, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.SAVE_FCM_TOKEN, data, response -> {
 
             Utils.log(TAG, "SAVE TOKEN RESPONSE : " + response.toString());
 
@@ -183,7 +183,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void getBannerImage() {
 
-        ApiCall.getMethod(getApplicationContext(), ServiceNames.BANNER, response -> {
+        ApiCall.getMethod(this, ServiceNames.BANNER, response -> {
 
             Utils.log(TAG, response.toString());
 
@@ -233,7 +233,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void getServiceList() {
 
-        ApiCall.getMethod(getApplicationContext(), ServiceNames.SERVICE_LIST, response -> {
+        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
 
             Utils.log(TAG, response.toString());
 

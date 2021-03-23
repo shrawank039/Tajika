@@ -1,5 +1,6 @@
 package com.matrixdeveloper.tajika;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,12 +33,15 @@ public class AllServiceActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ImageView backPress;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_service);
         backPress = findViewById(R.id.iv_backPress);
         backPress.setOnClickListener(view -> AllServiceActivity.super.onBackPressed());
+
+
 
         recyclerView = findViewById(R.id.rv_viewAllService);
 
@@ -73,7 +77,7 @@ public class AllServiceActivity extends AppCompatActivity {
 
     private void getAllService() {
 
-        ApiCall.getMethod(getApplicationContext(), ServiceNames.SERVICE_LIST, response -> {
+        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
 
             Utils.log(TAG, response.toString());
 

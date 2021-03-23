@@ -24,7 +24,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         backPress = findViewById(R.id.iv_backPress);
         backPress.setOnClickListener(view -> PrivacyPolicyActivity.super.onBackPressed());
 
-        ApiCall.getMethod(getApplicationContext(), ServiceNames.PRIVACY_POLICY, response -> {
+        ApiCall.getMethod(this, ServiceNames.PRIVACY_POLICY, response -> {
 
             Utils.log("aboutus: ", response.toString());
 

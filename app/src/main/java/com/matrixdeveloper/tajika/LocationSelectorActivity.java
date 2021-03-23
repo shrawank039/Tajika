@@ -254,7 +254,7 @@ public class LocationSelectorActivity extends FragmentActivity
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.SERVICE_PROVIDER_LIST, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.SERVICE_PROVIDER_LIST, data, response -> {
 
             Utils.log(TAG, response.toString());
 
@@ -333,7 +333,7 @@ public class LocationSelectorActivity extends FragmentActivity
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.SERVICE_PROVIDER_DETAILS, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.SERVICE_PROVIDER_DETAILS, data, response -> {
 
             Utils.log(TAG, response.toString());
 

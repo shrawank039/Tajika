@@ -103,7 +103,7 @@ public class SearchActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.FILTER_SERVICE_LIST, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.FILTER_SERVICE_LIST, data, response -> {
 
 
             JSONArray jsonarray = null;

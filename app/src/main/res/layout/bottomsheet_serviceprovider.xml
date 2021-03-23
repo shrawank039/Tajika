@@ -206,7 +206,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/ll_moreDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -391,7 +391,27 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:text=""
+                            android:text="Engineering"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/txt_skillEngineering"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:text="Servicing"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/txt_skillServicing"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:text="Repairing"
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp" />
 

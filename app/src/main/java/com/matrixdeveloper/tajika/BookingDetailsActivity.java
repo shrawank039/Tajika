@@ -39,7 +39,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(getApplicationContext(), ServiceNames.SERVICE_PROVIDER_DETAILS, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.SERVICE_PROVIDER_DETAILS, data, response -> {
 
             Utils.log(TAG, response.toString());
 
