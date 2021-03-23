@@ -3,54 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@color/lightest_blue"
+    android:orientation="vertical"
     tools:context=".SearchActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Tajika.AppBarOverlay">
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingHorizontal="20dp">
 
-        <LinearLayout
-            android:gravity="center_vertical"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:onClick="backPress"
+            android:src="@drawable/arrow_back"
+            app:tint="@color/dark_blue" />
+
+        <EditText
+            android:id="@+id/inputSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:onClick="backPress"
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="16dp"
-                android:src="@drawable/ic_baseline_arrow_back_24" />
+            android:layout_marginStart="10dp"
+            android:background="@drawable/white_button"
+            android:focusable="true"
+            android:hint="@string/home_search_keyword"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/home_search_hint"
+            android:textSize="15sp" />
 
-            <EditText
-                android:id="@+id/inputSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/white_button"
-                android:hint="@string/home_search_keyword"
-                android:focusable="true"
-                android:imeOptions="actionSearch"
-                android:paddingStart="10dp"
-                android:drawablePadding="5dp"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="@color/home_search_hint"
-                android:textSize="15sp" />
-
-
-        </LinearLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="10dp"
         android:id="@+id/rv_viewSearchService"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        tools:listitem="@layout/item_all_service" />
 
 </LinearLayout>

@@ -43,14 +43,12 @@ import com.google.android.libraries.places.api.Places;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.AddressBean;
-import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.model.PlaceBean;
 import com.matrixdeveloper.tajika.model.ServiceProvider;
 import com.matrixdeveloper.tajika.model.ServiceProviderDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
-import com.matrixdeveloper.tajika.utils.AppConstants;
 import com.matrixdeveloper.tajika.utils.Utils;
 import com.matrixdeveloper.tajika.widget.BottomSheetDialog;
 
@@ -86,7 +84,7 @@ public class LocationSelectorActivity extends FragmentActivity
     int height;
     private ImageView img;
     private EditText edtSearch;
-    private int peekHeight =0;
+    private int peekHeight = 0;
     private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill;
 
     @Override
@@ -144,7 +142,7 @@ public class LocationSelectorActivity extends FragmentActivity
             @Override
             public void onGlobalLayout() {
                 int availableHeight = parent.getMeasuredHeight();
-                if(availableHeight>0) {
+                if (availableHeight > 0) {
                     parent.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     peekHeight = availableHeight;
                     //save height here and do whatever you want with it
@@ -156,7 +154,7 @@ public class LocationSelectorActivity extends FragmentActivity
             @Override
             public void onGlobalLayout() {
                 int availableHeight = parentTwo.getMeasuredHeight();
-                if(availableHeight>0) {
+                if (availableHeight > 0) {
                     parentTwo.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     peekHeight += availableHeight;
                     //save height here and do whatever you want with it
@@ -255,14 +253,10 @@ public class LocationSelectorActivity extends FragmentActivity
         }
 
         ApiCall.postMethod(this, ServiceNames.SERVICE_PROVIDER_LIST, data, response -> {
-
             Utils.log(TAG, response.toString());
-
             JSONArray jsonarray = null;
             try {
-
                 jsonarray = response.getJSONArray("data");
-
                 if (jsonarray.length() < 1) {
                     noProviderFound.setVisibility(View.VISIBLE);
                     inner.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -275,11 +269,8 @@ public class LocationSelectorActivity extends FragmentActivity
                         }
                     });
                 } else {
-
                     for (int i = 0; i < jsonarray.length(); i++) {
-
                         try {
-
                             ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
                             LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
                             Marker m = mMap.addMarker(new MarkerOptions().position(latLng).icon(providerImage(this)));
@@ -316,15 +307,12 @@ public class LocationSelectorActivity extends FragmentActivity
                         }
                     }
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
-
             }
-
         });
-
     }
+
     private void getServiceProviderDetails(String providerID) {
         JSONObject data = new JSONObject();
         try {
@@ -342,7 +330,7 @@ public class LocationSelectorActivity extends FragmentActivity
                 ServiceProviderDetails serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
 
                 txtProviderName.setText(serviceProviderDetails.getName());
-                txtRating.setText(serviceProviderDetails.getRating()+" ratings");
+                txtRating.setText(serviceProviderDetails.getRating() + " ratings");
                 txtServiceName.setText(serviceProviderDetails.getBusinessCategories());
                 txtDistance.setText(serviceProviderDetails.getDistance());
                 txtAbout.setText(serviceProviderDetails.getAbout());

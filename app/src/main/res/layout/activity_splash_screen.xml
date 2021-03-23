@@ -7,21 +7,15 @@
     android:background="@color/light_blue"
     tools:context=".SplashScreenActivity">
 
-    <androidx.cardview.widget.CardView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:elevation="5dp"
-        app:cardCornerRadius="100dp"
-        app:cardElevation="5dp"
+        android:src="@drawable/app_logo"
+        app:civ_border_width="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/app_logo" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

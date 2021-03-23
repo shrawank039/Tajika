@@ -33,6 +33,9 @@ public class SpiMoreActivity extends AppCompatActivity {
 
         moreOptions.setOnItemClickListener((adapterView, view, i, l) -> {
             switch (i) {
+                case 0:
+                    startActivity(new Intent(getApplicationContext(), SpiProfileActivity.class));
+                    break;
                 case 1:
                     startActivity(new Intent(getApplicationContext(), SpiMyServicesActivity.class));
                     break;

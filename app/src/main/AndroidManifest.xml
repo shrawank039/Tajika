@@ -22,15 +22,19 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
-
-        <activity android:name=".SPindividual.SpiAddCreditActivity"/>
+        <activity android:name=".SPindividual.SpiServiceCompletedStatusActivity"></activity>
+        <activity android:name=".SPindividual.SpiServiceAcceptActivity" />
+        <activity android:name=".SplashScreenActivity" />
+        <activity android:name=".SPindividual.SpiProfileEditActivity" />
+        <activity android:name=".SPindividual.SpiMyServicesActivity" />
+        <activity android:name=".SPindividual.SpiProfileActivity" />
+        <activity android:name=".SPindividual.SpiAddCreditActivity" />
         <activity android:name=".SPindividual.SpiCreditWalletActivity" />
         <activity android:name=".SPindividual.SpiAllBookingsActivity" />
         <activity android:name=".SPindividual.SpiMoreActivity" />
         <activity android:name=".SPindividual.SpiRegisterActivity" />
         <activity android:name=".AllServiceActivity" />
         <activity android:name=".LandingPage" />
-
         <activity
             android:name=".LocationSelectorActivity"
             android:screenOrientation="portrait"
@@ -41,14 +45,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SPindividual.SpiServiceRequestDetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".BookServiceActivity" />
         <activity android:name=".ConversationListActivity" />
         <activity android:name=".AboutUsActivity" />
@@ -61,10 +64,7 @@
         <activity android:name=".VouchersActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".HelpActivity" />
-
-        <activity android:name=".SPindividual.SpiHomeActivity">
-        </activity>
-
+        <activity android:name=".SPindividual.SpiHomeActivity" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".RequestServiceActivity" />
         <activity android:name=".LoginActivity" />
@@ -74,18 +74,15 @@
         <activity android:name=".CreateNewPasswordActivity" />
         <activity android:name=".LoginThroughOTPActivity" />
         <activity android:name=".EditProfileActivity" />
-
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_navigation_drawer" />
 
-        <service
-            android:name=".services.ProviderFirebaseMessagingService">
+        <service android:name=".services.ProviderFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
