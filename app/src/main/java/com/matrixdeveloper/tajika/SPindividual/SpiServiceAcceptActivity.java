@@ -31,7 +31,10 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
                 TextView yes = dialog.findViewById(R.id.txt_yes);
                 TextView no = dialog.findViewById(R.id.txt_no);
                 dialogButton.setOnClickListener(v -> dialog.dismiss());
-                yes.setOnClickListener(v -> startActivity(new Intent(SpiServiceAcceptActivity.this, SpiServiceCompletedStatusActivity.class)));
+                yes.setOnClickListener(v -> {
+                    startActivity(new Intent(SpiServiceAcceptActivity.this, SpiServiceCompletedStatusActivity.class));
+                    dialog.dismiss();
+                });
                 no.setOnClickListener(v -> dialog.dismiss());
                 dialog.show();
             }

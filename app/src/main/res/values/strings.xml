@@ -43,6 +43,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="other_details"><u>Other details</u></string>
     <string name="subscription"><u>Subscription</u></string>
     <string name="description"><u>Description</u></string>
+    <string name="your_business_analytics"><u>Your business analytics</u></string>
 
 
 </resources>
