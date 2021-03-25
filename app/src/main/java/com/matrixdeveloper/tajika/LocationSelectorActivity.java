@@ -159,7 +159,6 @@ public class LocationSelectorActivity extends FragmentActivity
                 if(availableHeight>0) {
                     parentTwo.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     peekHeight += availableHeight;
-                    //save height here and do whatever you want with it
                 }
             }
         });
