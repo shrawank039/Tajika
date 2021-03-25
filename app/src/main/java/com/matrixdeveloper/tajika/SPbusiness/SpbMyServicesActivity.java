@@ -1,17 +1,18 @@
-package com.matrixdeveloper.tajika.SPindividual;
-
-import android.os.Bundle;
-import android.widget.ImageView;
+package com.matrixdeveloper.tajika.SPbusiness;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
+import android.widget.ImageView;
+
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPindividual.SpiMyServicesActivity;
 import com.matrixdeveloper.tajika.adapter.SPIMyServicesAdapter;
 import com.matrixdeveloper.tajika.model.SPIMyServicesModel;
 
-public class SpiMyServicesActivity extends AppCompatActivity {
+public class SpbMyServicesActivity extends AppCompatActivity {
 
     private ImageView backPress;
     private RecyclerView myServicesRecView;
@@ -20,7 +21,8 @@ public class SpiMyServicesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spi_my_services);
+        setContentView(R.layout.activity_spb_my_services);
+
         backPress = findViewById(R.id.iv_backPress);
         myServicesRecView = findViewById(R.id.rv_myServices);
 
@@ -34,6 +36,6 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         myServicesRecView.setLayoutManager(new LinearLayoutManager(this));
         myServicesRecView.setAdapter(servicesAdapter);
 
-        backPress.setOnClickListener(view -> SpiMyServicesActivity.super.onBackPressed());
+        backPress.setOnClickListener(view -> SpbMyServicesActivity.super.onBackPressed());
     }
 }

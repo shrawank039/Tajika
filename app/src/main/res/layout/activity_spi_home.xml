@@ -185,6 +185,7 @@
                         android:gravity="end">
 
                         <TextView
+                            android:id="@+id/txt_newServiceRequestInfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/layout_input_outline"

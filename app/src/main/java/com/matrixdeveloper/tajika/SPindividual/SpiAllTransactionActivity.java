@@ -1,10 +1,7 @@
 package com.matrixdeveloper.tajika.SPindividual;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,28 +11,25 @@ import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIRecentTransactionAdapter;
 import com.matrixdeveloper.tajika.model.SPIRecentTransactionModel;
 
-public class SpiCreditWalletActivity extends AppCompatActivity implements View.OnClickListener {
+public class SpiAllTransactionActivity extends AppCompatActivity {
 
     private RecyclerView recentTransactionRecyclerView;
     private SPIRecentTransactionAdapter recentTransactionAdapter;
     private ImageView backPress;
-    private TextView allCredit, allTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spi_credit_wallet);
+        setContentView(R.layout.activity_spi_all_transaction);
         backPress = findViewById(R.id.iv_backPress);
+
+        backPress.setOnClickListener(view -> SpiAllTransactionActivity.super.onBackPressed());
+
         recentTransactionRecyclerView = findViewById(R.id.recView_recentTransations);
-        allCredit = findViewById(R.id.txt_allCredit);
-        allTransaction = findViewById(R.id.txt_allTransaction);
-
-        allCredit.setOnClickListener(this);
-        backPress.setOnClickListener(this);
-        allTransaction.setOnClickListener(this);
-
-
         SPIRecentTransactionModel[] myListData = new SPIRecentTransactionModel[]{
+                new SPIRecentTransactionModel(1, "TJD5611", "Peter Lawrence", "04 Feb 2021"),
+                new SPIRecentTransactionModel(2, "TJD5611", "Peter Lawrence", "04 Feb 2021"),
+                new SPIRecentTransactionModel(3, "TJD5611", "Peter Lawrence", "04 Feb 2021"),
                 new SPIRecentTransactionModel(1, "TJD5611", "Peter Lawrence", "04 Feb 2021"),
                 new SPIRecentTransactionModel(2, "TJD5611", "Peter Lawrence", "04 Feb 2021"),
                 new SPIRecentTransactionModel(3, "TJD5611", "Peter Lawrence", "04 Feb 2021"),
@@ -46,18 +40,5 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
         recentTransactionRecyclerView.setHasFixedSize(true);
         recentTransactionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         recentTransactionRecyclerView.setAdapter(recentTransactionAdapter);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view == backPress) {
-            super.onBackPressed();
-        }
-        if (view == allCredit) {
-            startActivity(new Intent(SpiCreditWalletActivity.this, SpiAddCreditActivity.class));
-        }
-        if (view == allTransaction) {
-            startActivity(new Intent(SpiCreditWalletActivity.this, SpiAllTransactionActivity.class));
-        }
     }
 }

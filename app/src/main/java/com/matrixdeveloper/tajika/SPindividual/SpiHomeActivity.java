@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -18,11 +19,13 @@ public class SpiHomeActivity extends AppCompatActivity {
     ImageView moreSettings, notifications, indicator;
     private SwitchMaterial onlineOffline;
     private LinearLayout newServiceRequest, newServiceRequestNotFound, upcomingJobs, upcomingJobsNotFound;
+    private TextView newServiceRequestInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_home);
+
         moreSettings = findViewById(R.id.iv_moreSettings);
         notifications = findViewById(R.id.iv_notifications);
         onlineOffline = findViewById(R.id.switch_onlineOffline);
@@ -31,6 +34,7 @@ public class SpiHomeActivity extends AppCompatActivity {
         newServiceRequestNotFound = findViewById(R.id.ll_newServiceRequestNotFound);
         upcomingJobs = findViewById(R.id.ll_upComingJobs);
         upcomingJobsNotFound = findViewById(R.id.ll_upComingJobsRequestNotFound);
+        newServiceRequestInfo=findViewById(R.id.txt_newServiceRequestInfo);
 
         moreSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +49,12 @@ public class SpiHomeActivity extends AppCompatActivity {
             }
         });
 
+        newServiceRequestInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SpiHomeActivity.this, SpiServiceRequestDetailsActivity.class));
+            }
+        });
 
         onlineOffline.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,6 +64,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         initViews();
+        handleClickListener();
 
         serviceLists = new ArrayList<>();
         mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists);
@@ -107,8 +107,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, prf.getInt("banner_height"));
         llbanner.setLayoutParams(parms);
 
-        handleClickListener();
-
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
@@ -130,7 +128,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getServiceList();
         getBannerImage();
 
-        chatting.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ConversationListActivity.class)));
     }
 
     private void initViews() {
@@ -169,10 +166,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         compareList.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), CompareListActivity.class)));
         coinsWallet.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), CoinsWalletActivity.class)));
-
         referFriends.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), ReferralActivity.class)));
-
         viewAllService.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AllServiceActivity.class)));
+        chatting.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ConversationListActivity.class)));
 
         llSearch.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), SearchActivity.class));
@@ -276,6 +272,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), MyProfileActivity.class));
                 return true;
+            case R.id.nav_offers:
+                drawer.closeDrawer(Gravity.LEFT);
+                startActivity(new Intent(getApplicationContext(), VouchersActivity.class));
+                return true;
             case R.id.nav_my_bookings:
                 drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), BookServiceActivity.class));
@@ -284,11 +284,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
                 return true;
-            case R.id.nav_offers:
-                drawer.closeDrawer(Gravity.LEFT);
-                Toast.makeText(this, "MyOffer", Toast.LENGTH_SHORT).show();
-                return true;
-
             case R.id.nav_help:
                 drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), HelpActivity.class));
