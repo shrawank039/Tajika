@@ -27,6 +27,9 @@ public class ServiceNames {
     public static final String NOTIFICATION_LIST = API + "/notificationList";
     public static final String BOOKING_DETAILS = API + "/servicebookingDetails";
 
+    // SP
+    public static final String HOME_SCREEN_DATA = API + "/getServiceProviderHomeScreen";
+
 
     public static boolean is = true;
 

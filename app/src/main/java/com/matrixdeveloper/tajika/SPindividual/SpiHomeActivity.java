@@ -8,11 +8,27 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.adapter.NotificationAdapter;
+import com.matrixdeveloper.tajika.model.NotificationModel;
+import com.matrixdeveloper.tajika.model.ServiceRequestList;
+import com.matrixdeveloper.tajika.model.UpcomingJob;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpiHomeActivity extends AppCompatActivity {
 
@@ -21,10 +37,21 @@ public class SpiHomeActivity extends AppCompatActivity {
     private LinearLayout newServiceRequest, newServiceRequestNotFound, upcomingJobs, upcomingJobsNotFound;
     private TextView newServiceRequestInfo;
 
+    RecyclerView requestRecycler, upcomingJobRecycler;
+    private List<ServiceRequestList> serviceRequestLists;
+    private List<UpcomingJob> upcomingJobList;
+    private PrefManager prf;
+    private String TAG = "SPHomeAct";
+    private ImageView backPress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_home);
+
+        prf = new PrefManager(this);
+        serviceRequestLists = new ArrayList<>();
+        upcomingJobList = new ArrayList<>();
 
         moreSettings = findViewById(R.id.iv_moreSettings);
         notifications = findViewById(R.id.iv_notifications);
@@ -77,6 +104,66 @@ public class SpiHomeActivity extends AppCompatActivity {
                     indicator.setColorFilter(getResources().getColor(R.color.grey_300));
                 }
             }
+        });
+
+        getHomeData();
+
+    }
+
+
+    private void getHomeData() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", "30");//prf.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.HOME_SCREEN_DATA, data, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray requestArray, upcominJobArray;
+
+            try {
+
+                JSONObject jsonObject = response.optJSONObject("data");
+
+                requestArray = jsonObject.getJSONArray("tajikaServiceRequest");
+                upcominJobArray = jsonObject.getJSONArray("upcomingjob");
+
+                // request list
+                for (int i = 0; i < requestArray.length(); i++) {
+
+                    try {
+
+                        ServiceRequestList serviceList = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), ServiceRequestList.class);
+                        serviceRequestLists.add(serviceList);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // upcoming job list
+                for (int i = 0; i < upcominJobArray.length(); i++) {
+
+                    try {
+
+                        UpcomingJob upcomingJob = MySingleton.getGson().fromJson(upcominJobArray.getJSONObject(i).toString(), UpcomingJob.class);
+                        upcomingJobList.add(upcomingJob);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
         });
     }
 }

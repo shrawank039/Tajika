@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ServiceRequestLIst implements Serializable
+public class ServiceRequestList implements Serializable
 {
 
     @SerializedName("id")
