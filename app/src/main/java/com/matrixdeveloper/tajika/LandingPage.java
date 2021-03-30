@@ -25,9 +25,7 @@ public class LandingPage extends AppCompatActivity {
 
         prf = new PrefManager(LandingPage.this);
 
-        if (prf.getString("id").equals(""))
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        else {
+        if (!prf.getString("id").equals("")){
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             finish();
         }

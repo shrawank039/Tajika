@@ -11,14 +11,14 @@ import com.matrixdeveloper.tajika.R;
 
 public class SpbRegisterActivity extends AppCompatActivity {
 
-    ViewFlipper regViewFlipper;
+    private ViewFlipper regViewFlipper;
     Button nextToBusinessDetails, submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spb_register);
 
-        regViewFlipper = findViewById(R.id.vf_regViewFlipper);
+        regViewFlipper = findViewById(R.id.vf_regBViewFlipper);
         nextToBusinessDetails = regViewFlipper.findViewById(R.id.btn_nextToBusinessDetails);
         submit = regViewFlipper.findViewById(R.id.btn_submit);
 

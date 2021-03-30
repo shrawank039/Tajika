@@ -19,25 +19,9 @@ public class AppConstants {
     public static final int DRIVER_TYPE_DRIVER_CUM_OWNER = 0;
     public static final int DRIVER_TYPE_NON_DRIVING_PARTNER = 1;
 
-    public static final int DOCUMENT_TYPE_VEHICLE_REGISTRATION_BACK = 1; //Vehicle Reg (Back)
+    public static final int DOCUMENT_TYPE_ID = 1; //Vehicle Reg (Back)
     public static int VERSION_CODE = 0;
-    public static final int DOCUMENT_TYPE_POLICE_CLEARANCE_CERTIFICATE = 2;
-    public static final int DOCUMENT_TYPE_FITNESS_CERTIFICATE = 3;
-    public static final int DOCUMENT_TYPE_VEHICLE_REGISTRATION_FRONT = 4;
-    public static final int DOCUMENT_TYPE_VEHICLE_PERMIT = 5;
-    public static final int DOCUMENT_TYPE_COMMERCIAL_INSURANCE = 6;
-    public static final int DOCUMENT_TYPE_TAX_RECEIPT = 7;
-    public static final int DOCUMENT_TYPE_PASS_BOOK = 8;
-    public static final int DOCUMENT_TYPE_DRIVER_LICENCE_WITH_BADGE_NUMBER = 9;
-    public static final int DOCUMENT_TYPE_BACKGROUND_CHECK_CONSENT_FORM = 10;
-    public static final int DOCUMENT_TYPE_PAN_CARD = 11;
-    public static final int DOCUMENT_TYPE_NO_OBJECTION_CERTIFICATE = 12;
-    public static final int DOCUMENT_TYPE_DRIVER_AADHAR_FRONT = 13;
-    public static final int DOCUMENT_TYPE_DRIVER_AADHAR_BACK = 14;
-    public static final int DOCUMENT_TYPE_OWNER_AADHAR_FRONT = 15;
-    public static final int DOCUMENT_TYPE_OWNER_AADHAR_BACK = 16;
-    public static final int DOCUMENT_TYPE_POLLUTION_CERTIFICATE = 17;
-    public static final int DOCUMENT_TYPE_NUMBER_PLATE = 18;
+    public static final int DOCUMENT_TYPE_PROFESSIONAL_CERTIFICATE = 2;
 
     public static final int DOCUMENT_STATUS_NOT_UPLOADED = 0;
     public static final int DOCUMENT_STATUS_PENDING_APPROVAL = 1;

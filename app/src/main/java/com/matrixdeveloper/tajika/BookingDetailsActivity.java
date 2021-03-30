@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.matrixdeveloper.tajika.model.BookingDetails;
+import com.matrixdeveloper.tajika.model.UserBookingDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -45,7 +45,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
             try {
 
-                BookingDetails bookingDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), BookingDetails.class);
+                UserBookingDetails userBookingDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), UserBookingDetails.class);
 
             } catch (JSONException e) {
                 e.printStackTrace();

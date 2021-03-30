@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ViewFlipper
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vf_regViewFlipper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SPindividual.SpiRegisterActivity">
 
-    <ViewFlipper
-        android:id="@+id/vf_regViewFlipper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <include layout="@layout/spi_personal_info" />
 
-        <include layout="@layout/spi_personal_info" />
+    <include layout="@layout/spi_business_details" />
 
-        <include layout="@layout/spi_business_details" />
+    <include layout="@layout/spi_document_details" />
 
-        <include layout="@layout/spi_document_details" />
-    </ViewFlipper>
-</LinearLayout>
+    <include layout="@layout/layout_document_preview" />
+
+</ViewFlipper>

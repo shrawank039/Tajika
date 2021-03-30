@@ -1,3 +1,5 @@
+
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -6,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/light_blue">
 
         <LinearLayout
@@ -98,6 +100,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_id_upload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -106,6 +109,7 @@
                 android:padding="10dp">
 
                 <EditText
+                    android:focusable="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -153,6 +157,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_certificate_upload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -160,6 +165,7 @@
                 android:padding="10dp">
 
                 <EditText
+                    android:focusable="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -197,6 +203,10 @@
                 android:textColor="@color/dark_blue" />
 
         </LinearLayout>
+
+        <include
+            layout="@layout/layout_document_preview"
+            android:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

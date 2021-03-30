@@ -6,7 +6,7 @@
     tools:context=".SPbusiness.SpbRegisterActivity">
 
     <ViewFlipper
-        android:id="@+id/vf_regViewFlipper"
+        android:id="@+id/vf_regBViewFlipper"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
