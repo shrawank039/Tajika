@@ -113,6 +113,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_resendOtp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -137,6 +138,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txt_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

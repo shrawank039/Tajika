@@ -42,11 +42,11 @@ public class SpiMoreActivity extends AppCompatActivity {
                 case 3:
                     startActivity(new Intent(getApplicationContext(), SpiAllBookingsActivity.class));
                     break;
-                case 6:
-                    startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
-                    break;
                 case 4:
                     startActivity(new Intent(getApplicationContext(), SpiCreditWalletActivity.class));
+                    break;
+                case 6:
+                    startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
                     break;
                 case 7:
                     prf.setString("id", "");

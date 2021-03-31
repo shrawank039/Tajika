@@ -10,9 +10,9 @@ public class ServiceNames {
 
     public static final String LOGIN = API + "/login";
     public static final String USER_REGISTRATION = API + "/createAccount";
-    public static final String SEND_OTP = API + "/sendotp";
     public static final String ABOUT_US = API + "/getaboutus";
     public static final String PRIVACY_POLICY = API + "/getprivacypolicy";
+    public static final String SEND_OTP = API + "/sendotp";
     public static final String VALIDATE_OTP = API + "/validateotp";
     public static final String SET_PASSWORD = API + "/setPassword";
     public static final String PROFILE = API + "";
