@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/iv_backPress"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/arrow_back"
@@ -36,12 +37,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:onClick="onEditClick"
-            android:src="@drawable/edit_icon"
-            app:tint="@color/white" />
     </LinearLayout>
 
     <ScrollView
@@ -478,7 +473,7 @@
                 android:layout_margin="20dp">
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/txt_contactUs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/call_icon"
@@ -492,6 +487,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/txt_help"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"

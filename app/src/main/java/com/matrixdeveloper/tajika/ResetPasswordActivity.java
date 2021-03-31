@@ -62,9 +62,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
             JSONObject data = new JSONObject();
             try {
-                if(regNumber.equals("")) {
+                if (regNumber.equals("") && !regMail.equals("")) {
                     data.put("email", regMail);
-                }else if(regMail.equals("")){
+                } else if (regMail.equals("") && regNumber.length() == 10) {
                     data.put("email", regNumber);
                 }
             } catch (JSONException e) {

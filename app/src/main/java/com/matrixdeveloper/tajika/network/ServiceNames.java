@@ -25,6 +25,7 @@ public class ServiceNames {
     public static final String SUBMIT_SERVICE_REQUEST = API + "/submitServiceRequest";
     public static final String SAVE_FCM_TOKEN = API + "/save_fcmtoken";
     public static final String NOTIFICATION_LIST = API + "/notificationList";
+    public static final String DELETE_NOTIFICATION = API + "/removeNotification";
     public static final String BOOKING_DETAILS = API + "/servicebookingDetails";
 
     // SP

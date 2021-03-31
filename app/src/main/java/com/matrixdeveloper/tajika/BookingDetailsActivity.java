@@ -1,9 +1,11 @@
 package com.matrixdeveloper.tajika;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,15 +22,26 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
     private String TAG = "BookingDetailsAct";
     private String id;
+    private ImageView backPress;
+    private TextView help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_details);
+        backPress = findViewById(R.id.iv_backPress);
+        help = findViewById(R.id.txt_help);
+
+        initListeners();
 
         id = getIntent().getStringExtra("id");
 
         getBookingDetails(id);
+    }
+
+    private void initListeners() {
+        backPress.setOnClickListener(view -> BookingDetailsActivity.super.onBackPressed());
+        help.setOnClickListener(view -> startActivity(new Intent(BookingDetailsActivity.this, HelpActivity.class)));
     }
 
     private void getBookingDetails(String bookingID) {

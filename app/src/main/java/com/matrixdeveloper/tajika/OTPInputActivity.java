@@ -77,8 +77,8 @@ public class OTPInputActivity extends AppCompatActivity {
                 inputFour = otp_textbox_four.getText().toString(),
                 inputFive = otp_textbox_five.getText().toString(),
                 inputSix = otp_textbox_six.getText().toString();
-        String mergePassword = inputOne + inputTwo + inputThree + inputFour + inputFive + inputSix;
 
+        String mergePassword = inputOne + inputTwo + inputThree + inputFour + inputFive + inputSix;
 
         JSONObject data = new JSONObject();
         try {

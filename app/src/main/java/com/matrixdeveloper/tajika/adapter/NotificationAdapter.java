@@ -1,18 +1,21 @@
 package com.matrixdeveloper.tajika.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.model.NotificationModel;
+import com.matrixdeveloper.tajika.BookingDetailsActivity;
+import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.model.NotificationModel;
 
 import java.util.List;
 
@@ -41,12 +44,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.notificationContent.setText(notificationModel.getMessage());
         holder.notificationFooter.setText(notificationModel.getActiontext());
 
-        holder.clearNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(ctx, "Deleted !!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.clearNotification.setOnClickListener(view -> ((NotificationActivity) ctx).deleteNotification(notificationModel.getId()));
+        holder.notificationBody.setOnClickListener(view -> ctx.startActivity(new Intent(ctx, BookingDetailsActivity.class)
+                .putExtra("id", String.valueOf(notificationModel.getId()))));
     }
 
     @Override
@@ -56,14 +56,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public static class viewHolder extends RecyclerView.ViewHolder {
         private ImageView clearNotification;
-        private TextView notificationHeader,notificationContent,notificationFooter;
+        private TextView notificationHeader, notificationContent, notificationFooter;
+        private LinearLayout notificationBody;
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 
-            clearNotification=itemView.findViewById(R.id.iv_clearNotification);
-            notificationHeader=itemView.findViewById(R.id.txt_notiHeader);
-            notificationContent=itemView.findViewById(R.id.txt_notiContent);
-            notificationFooter=itemView.findViewById(R.id.txt_notiFooter);
+            clearNotification = itemView.findViewById(R.id.iv_clearNotification);
+            notificationHeader = itemView.findViewById(R.id.txt_notiHeader);
+            notificationContent = itemView.findViewById(R.id.txt_notiContent);
+            notificationFooter = itemView.findViewById(R.id.txt_notiFooter);
+            notificationBody = itemView.findViewById(R.id.ll_notification);
 
         }
     }

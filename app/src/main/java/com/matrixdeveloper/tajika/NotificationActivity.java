@@ -2,20 +2,21 @@ package com.matrixdeveloper.tajika;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.NotificationAdapter;
+import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.model.NotificationModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
-import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
@@ -50,23 +51,6 @@ public class NotificationActivity extends AppCompatActivity {
         notificationRecyclerview.setAdapter(notificationAdapter);
         backPress = findViewById(R.id.iv_backPress);
         backPress.setOnClickListener(view -> NotificationActivity.super.onBackPressed());
-
-        notificationRecyclerview.addOnItemTouchListener(new RecyclerTouchListener(this, notificationRecyclerview, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-
-                NotificationModel notificationModel = notificationModelList.get(position);
-
-                startActivity(new Intent(getApplicationContext(), BookingDetailsActivity.class)
-                        .putExtra("id", String.valueOf(notificationModel.getId())));
-
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
 
         getNotificationList();
     }
@@ -115,4 +99,21 @@ public class NotificationActivity extends AppCompatActivity {
         });
     }
 
+    public void deleteNotification(int notificationId) {
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", notificationId);
+            data.put("user_id", prf.getString("id"));
+            data.put("type", "individual");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.DELETE_NOTIFICATION, data, response -> {
+
+            Utils.log(TAG, response.toString());
+            Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();
+
+        });
+    }
 }
