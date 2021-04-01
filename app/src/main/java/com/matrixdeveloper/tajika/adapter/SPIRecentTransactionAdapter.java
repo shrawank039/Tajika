@@ -13,11 +13,13 @@ import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.SPIAllBookingsModel;
 import com.matrixdeveloper.tajika.model.SPIRecentTransactionModel;
 
+import java.util.List;
+
 public class SPIRecentTransactionAdapter extends RecyclerView.Adapter<SPIRecentTransactionAdapter.viewHolder> {
     private Context ctx;
-    private SPIRecentTransactionModel[] listdata;
+    private List<SPIRecentTransactionModel> listdata;
 
-    public SPIRecentTransactionAdapter(Context ctx, SPIRecentTransactionModel[] listdata) {
+    public SPIRecentTransactionAdapter(Context ctx, List<SPIRecentTransactionModel> listdata) {
         this.ctx = ctx;
         this.listdata = listdata;
     }
@@ -31,15 +33,15 @@ public class SPIRecentTransactionAdapter extends RecyclerView.Adapter<SPIRecentT
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        final SPIRecentTransactionModel myListData = listdata[position];
+        final SPIRecentTransactionModel myListData = listdata.get(position);
         holder.transactionID.setText(myListData.getTransactionId());
         holder.transactionDate.setText(myListData.getTransactionDate());
-        holder.debitAmount.setText(myListData.getDebitAmount());
+        holder.debitAmount.setText("Ksh "+myListData.getDebitAmount());
     }
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {

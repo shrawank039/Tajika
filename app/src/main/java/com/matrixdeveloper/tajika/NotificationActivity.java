@@ -1,8 +1,8 @@
 package com.matrixdeveloper.tajika;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.NotificationAdapter;
-import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.model.NotificationModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
-import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
@@ -33,7 +31,7 @@ public class NotificationActivity extends AppCompatActivity {
     private List<NotificationModel> notificationModelList;
     private PrefManager prf;
     private String TAG = "AllServiceAct";
-    private ImageView backPress;
+    private ImageView backPress, clearAllNotification;
 
 
     @Override
@@ -45,14 +43,30 @@ public class NotificationActivity extends AppCompatActivity {
         notificationModelList = new ArrayList<>();
 
         notificationRecyclerview = findViewById(R.id.recView_notifications);
+        clearAllNotification = findViewById(R.id.iv_refreshNotification);
+
         notificationAdapter = new NotificationAdapter(this, notificationModelList);
         notificationRecyclerview.setHasFixedSize(true);
         notificationRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         notificationRecyclerview.setAdapter(notificationAdapter);
         backPress = findViewById(R.id.iv_backPress);
         backPress.setOnClickListener(view -> NotificationActivity.super.onBackPressed());
+        clearAllNotification.setOnClickListener(view -> refreshPopup());
 
         getNotificationList();
+    }
+
+    private void refreshPopup() {
+        PopupMenu popup = new PopupMenu(NotificationActivity.this, clearAllNotification);
+        popup.getMenuInflater().inflate(R.menu.clear_all_notification_menu, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.clearAll) {
+                Toast.makeText(this, "Hit Api to delete all notification", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        });
+        popup.show();
     }
 
     private void getNotificationList() {

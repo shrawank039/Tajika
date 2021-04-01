@@ -1,23 +1,23 @@
 package com.matrixdeveloper.tajika.model;
 
 public class SPIRecentTransactionModel {
-    int id;
+    String id;
     String transactionId;
     String transactionDate;
     String debitAmount;
 
-    public SPIRecentTransactionModel(int id, String transactionId, String transactionDate, String debitAmount) {
+    public SPIRecentTransactionModel(String id, String transactionId, String transactionDate, String debitAmount) {
         this.id = id;
         this.transactionId = transactionId;
         this.transactionDate = transactionDate;
         this.debitAmount = debitAmount;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

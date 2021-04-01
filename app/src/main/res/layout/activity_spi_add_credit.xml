@@ -58,6 +58,7 @@
         android:paddingVertical="40dp">
 
         <EditText
+            android:id="@+id/edt_creditAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Amount"
@@ -68,6 +69,7 @@
 
 
     <Button
+        android:id="@+id/btn_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -15,7 +15,8 @@ public class ServiceNames {
     public static final String SEND_OTP = API + "/sendotp";
     public static final String VALIDATE_OTP = API + "/validateotp";
     public static final String SET_PASSWORD = API + "/setPassword";
-    public static final String PROFILE = API + "";
+    public static final String GET_USER_PROFILE = API + "/getProfile";
+    public static final String UPDATE_PROFILE = API + "/updateProfile";
     public static final String CATEGORY = API + "/getCategoryList";
     public static final String FILTER_SERVICE_LIST = API + "/filterServiceList";
     public static final String BANNER = API + "/getbanner";
@@ -30,6 +31,9 @@ public class ServiceNames {
 
     // SP
     public static final String HOME_SCREEN_DATA = API + "/getServiceProviderHomeScreen";
+    public static final String WALLET_DETAILS = API + "/getWalletDetails";
+    public static final String ALL_TRANSACTIONS = API + "/allTranscationList";
+    public static final String ADD_CREDIT = API + "/addCreditWallet";
 
 
     public static boolean is = true;
