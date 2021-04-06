@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightest_blue"
     android:orientation="vertical"
     tools:context=".SPindividual.SpiAddCreditActivity">
 
@@ -53,7 +52,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/layout_input_outline"
         android:paddingHorizontal="15dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/grey_100"
         android:layout_margin="20dp"
         android:paddingVertical="40dp">
 
@@ -63,6 +62,9 @@
             android:layout_height="wrap_content"
             android:hint="Enter Amount"
             android:inputType="number"
+            android:paddingVertical="15dp"
+            android:gravity="center"
+            android:background="@color/white"
             android:textColorHint="@color/dark_blue" />
     </LinearLayout>
 

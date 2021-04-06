@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 prf.setString(Global.token, login.getToken());
                 prf.setString(Global.role, login.getRoles().toString());
                 prf.setString(Global.email, login.getEmail());
+                prf.setString(Global.name, login.getName());
 
                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
 

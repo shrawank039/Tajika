@@ -46,7 +46,7 @@ public class AllServiceActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_viewAllService);
 
         serviceLists = new ArrayList<>();
-        mAdapter = new ServiceAdapter(AllServiceActivity.this, serviceLists);
+        mAdapter = new ServiceAdapter(AllServiceActivity.this, serviceLists,1);
 
         recyclerView.setHasFixedSize(true);
 

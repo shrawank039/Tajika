@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
     tools:context=".HelpActivity">
 
     <LinearLayout
@@ -52,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:background="@drawable/layout_input_outline"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/grey_100"
                 android:orientation="horizontal"
                 android:paddingVertical="20dp"
                 android:paddingStart="20dp">

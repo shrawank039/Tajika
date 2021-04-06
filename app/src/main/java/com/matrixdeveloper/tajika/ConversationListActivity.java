@@ -1,6 +1,8 @@
-package com.matrixdeveloper.tajika;
+ package com.matrixdeveloper.tajika;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,17 +15,20 @@ public class ConversationListActivity extends AppCompatActivity {
 
     private RecyclerView conversationListRec;
     private ConversationListAdapter myAdapter;
+    private ImageView backPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation_list);
 
+        backPress = findViewById(R.id.iv_backPress);
+        backPress.setOnClickListener(view -> ConversationListActivity.super.onBackPressed());
 
         ConversationListModel[] convModel = new ConversationListModel[]{
-                new ConversationListModel(1,R.drawable.app_logo, "Super Catering", "Yesterday"),
-                new ConversationListModel(2,R.drawable.app_logo, "E sewa", "Today"),
-                new ConversationListModel(3,R.drawable.app_logo, "Plumbing", "Tomorrow"),
+                new ConversationListModel(1, R.drawable.app_logo, "Super Catering", "Yesterday"),
+                new ConversationListModel(2, R.drawable.app_logo, "E sewa", "Today"),
+                new ConversationListModel(3, R.drawable.app_logo, "Plumbing", "Tomorrow"),
 
         };
 

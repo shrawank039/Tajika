@@ -1,17 +1,16 @@
 package com.matrixdeveloper.tajika;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.model.ServiceList;
@@ -19,7 +18,6 @@ import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
-import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +44,7 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_viewSearchService);
 
         serviceLists = new ArrayList<>();
-        mAdapter = new ServiceAdapter(SearchActivity.this, serviceLists);
+        mAdapter = new ServiceAdapter(SearchActivity.this, serviceLists, 1);
 
         recyclerView.setHasFixedSize(true);
 
@@ -60,8 +58,8 @@ public class SearchActivity extends AppCompatActivity {
                 ServiceList serviceList = serviceLists.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                        .putExtra("service_name",serviceList.getServiceName())
-                        .putExtra("service_id",String.valueOf(serviceList.getId())));
+                        .putExtra("service_name", serviceList.getServiceName())
+                        .putExtra("service_id", String.valueOf(serviceList.getId())));
 
             }
 

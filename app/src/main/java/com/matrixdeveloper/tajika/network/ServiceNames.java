@@ -35,7 +35,6 @@ public class ServiceNames {
     public static final String ALL_TRANSACTIONS = API + "/allTranscationList";
     public static final String ADD_CREDIT = API + "/addCreditWallet";
 
-
     public static boolean is = true;
 
 }

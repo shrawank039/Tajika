@@ -6,5 +6,6 @@ public class Global {
     public static String email = "email";
     public static String token = "token";
     public static String role = "role";
+    public static String name = "name";
 
 }
