@@ -62,7 +62,7 @@ public class NotificationActivity extends AppCompatActivity {
 
         popup.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.clearAll) {
-                Toast.makeText(this, "Hit Api to delete all notification", Toast.LENGTH_SHORT).show();
+                deleteNotification("all");
             }
             return true;
         });
@@ -113,7 +113,7 @@ public class NotificationActivity extends AppCompatActivity {
         });
     }
 
-    public void deleteNotification(int notificationId) {
+    public void deleteNotification(String notificationId) {
         JSONObject data = new JSONObject();
         try {
             data.put("id", notificationId);

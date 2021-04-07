@@ -44,7 +44,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.notificationContent.setText(notificationModel.getMessage());
         holder.notificationFooter.setText(notificationModel.getActiontext());
 
-        holder.clearNotification.setOnClickListener(view -> ((NotificationActivity) ctx).deleteNotification(notificationModel.getId()));
+        holder.clearNotification.setOnClickListener(view -> ((NotificationActivity) ctx).deleteNotification(String.valueOf(notificationModel.getId())));
         holder.notificationBody.setOnClickListener(view -> ctx.startActivity(new Intent(ctx, BookingDetailsActivity.class)
                 .putExtra("id", String.valueOf(notificationModel.getId()))));
     }
