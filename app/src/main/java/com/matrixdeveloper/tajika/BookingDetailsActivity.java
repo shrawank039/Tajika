@@ -2,9 +2,11 @@ package com.matrixdeveloper.tajika;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private String id;
     private ImageView backPress;
     private TextView help;
+    private LinearLayout bookingMessage, bookingCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_booking_details);
         backPress = findViewById(R.id.iv_backPress);
         help = findViewById(R.id.txt_help);
+        bookingMessage=findViewById(R.id.ll_bookingMessage);
+        bookingCall=findViewById(R.id.ll_bookingCall);
 
         initListeners();
 
@@ -42,6 +47,23 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private void initListeners() {
         backPress.setOnClickListener(view -> BookingDetailsActivity.super.onBackPressed());
         help.setOnClickListener(view -> startActivity(new Intent(BookingDetailsActivity.this, HelpActivity.class)));
+        bookingMessage.setOnClickListener(view ->initiateBookingCall());
+        bookingMessage.setOnClickListener(view ->initiateBookingMessage());
+
+    }
+
+    private void initiateBookingCall() {
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        String temp = "tel:1234567890";
+        callIntent.setData(Uri.parse(temp));
+        startActivity(callIntent);
+    }
+
+    private void initiateBookingMessage() {
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.putExtra("sms_body", "");
+        sendIntent.setType("vnd.android-dir/mms-sms");
+        startActivity(sendIntent);
     }
 
     private void getBookingDetails(String bookingID) {

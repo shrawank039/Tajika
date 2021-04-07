@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.ServiceList;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
@@ -21,6 +23,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
 
     private final Context ctx;
     private final List<ServiceList> serviceLists;
+    int type = 0;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -38,16 +41,23 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
     }
 
 
-    public ServiceAdapter(Context context, List<ServiceList> serviceLists) {
+    public ServiceAdapter(Context context, List<ServiceList> serviceLists, int type) {
         ctx = context;
+        this.type = type;
         this.serviceLists = serviceLists;
     }
 
+    @NotNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_all_service, parent, false);
-
+        View itemView = null;
+        if (type == 0) {
+            itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.recomended_services, parent, false);
+        } else if (type == 1) {
+            itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.all_services, parent, false);
+        }
         return new MyViewHolder(itemView);
     }
 
@@ -58,7 +68,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         holder.title.setText(serviceList.getServiceName());
         holder.message.setText(serviceList.getServiceDescription());
         Glide.with(ctx)
-                .load(PRODUCTION_API  + serviceList.getServiceImage())
+                .load(PRODUCTION_API + serviceList.getServiceImage())
                 .placeholder(R.drawable.plumbing)
                 .into(holder.imageView);
     }

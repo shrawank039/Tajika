@@ -6,7 +6,7 @@
     android:layout_marginHorizontal="20dp"
     android:layout_marginVertical="10dp"
     android:background="@drawable/layout_input_outline"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="@color/grey_100"
     android:padding="20dp">
 
     <TextView

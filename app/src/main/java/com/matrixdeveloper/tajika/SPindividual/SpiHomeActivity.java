@@ -8,13 +8,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.matrixdeveloper.tajika.ConversationListActivity;
 import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.adapter.NotificationAdapter;
-import com.matrixdeveloper.tajika.model.NotificationModel;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.model.UpcomingJob;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -42,7 +42,8 @@ public class SpiHomeActivity extends AppCompatActivity {
     private List<UpcomingJob> upcomingJobList;
     private PrefManager prf;
     private String TAG = "SPHomeAct";
-    private ImageView backPress;
+    private ImageView allBookings;
+    private CardView cvMessageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,24 @@ public class SpiHomeActivity extends AppCompatActivity {
         newServiceRequestNotFound = findViewById(R.id.ll_newServiceRequestNotFound);
         upcomingJobs = findViewById(R.id.ll_upComingJobs);
         upcomingJobsNotFound = findViewById(R.id.ll_upComingJobsRequestNotFound);
-        newServiceRequestInfo=findViewById(R.id.txt_newServiceRequestInfo);
+        newServiceRequestInfo = findViewById(R.id.txt_newServiceRequestInfo);
+        cvMessageButton = findViewById(R.id.cv_conversation);
+        allBookings = findViewById(R.id.iv_allBookings);
+
+        cvMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SpiHomeActivity.this, ConversationListActivity.class));
+
+            }
+        });
+        allBookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SpiHomeActivity.this, SpiAllBookingsActivity.class));
+
+            }
+        });
 
         moreSettings.setOnClickListener(new View.OnClickListener() {
             @Override

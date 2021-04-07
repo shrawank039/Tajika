@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,8 +56,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private List<ServiceList> serviceLists;
     private NavigationView navigationView;
     private LinearLayout coinsWallet, compareList, referFriends, llSearch;
-    private TextView viewAllService;
-    private FloatingActionButton chatting;
+    private TextView viewAllService,greeting;
+    private CardView chatting;
+    private int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +68,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         initViews();
         handleClickListener();
 
+        greeting.setText("Good Morning "+prf.getString("name")+", What can we help you with?");
+
         serviceLists = new ArrayList<>();
-        mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists);
+        mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists, 0);
 
         recyclerView.setHasFixedSize(true);
 
@@ -142,7 +146,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         viewAllService = findViewById(R.id.txt_viewAllService);
         recyclerView = findViewById(R.id.recyclerView);
         llSearch = findViewById(R.id.ll_search);
-        chatting = findViewById(R.id.fab_chatting);
+        chatting = findViewById(R.id.cv_conversation);
+        greeting=findViewById(R.id.txt_homeGreeting);
     }
 
     private void updateToken(String token) {

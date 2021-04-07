@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightest_blue"
     tools:context=".SPindividual.SpiProfileEditActivity">
 
     <LinearLayout
@@ -83,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:background="@drawable/layout_input_outline"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/grey_100"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -194,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/layout_input_outline"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/grey_100"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -364,7 +363,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/layout_input_outline"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/grey_100"
                 android:orientation="vertical"
                 android:padding="20dp">
 

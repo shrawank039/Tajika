@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightest_blue"
     android:orientation="vertical"
     tools:context=".SearchActivity">
 
@@ -30,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:background="@drawable/white_button"
+            android:backgroundTint="@color/grey_100"
             android:focusable="true"
             android:hint="@string/home_search_keyword"
             android:imeOptions="actionSearch"
@@ -45,8 +45,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_viewSearchService"
         android:layout_width="match_parent"
+        android:paddingHorizontal="10dp"
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"
-        tools:listitem="@layout/item_all_service" />
+        tools:listitem="@layout/recomended_services" />
 
 </LinearLayout>
