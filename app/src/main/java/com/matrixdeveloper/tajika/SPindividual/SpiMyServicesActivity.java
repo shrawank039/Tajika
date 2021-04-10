@@ -10,17 +10,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIMyServicesAdapter;
 import com.matrixdeveloper.tajika.model.SPIMyServicesModel;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SpiMyServicesActivity extends AppCompatActivity {
 
     private ImageView backPress;
     private RecyclerView myServicesRecView;
     private SPIMyServicesAdapter servicesAdapter;
+    private final String TAG = "SpiMyServicesAct";
+    private PrefManager pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_my_services);
+
+        pref = new PrefManager(this);
         backPress = findViewById(R.id.iv_backPress);
         myServicesRecView = findViewById(R.id.rv_myServices);
 
@@ -35,5 +46,39 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         myServicesRecView.setAdapter(servicesAdapter);
 
         backPress.setOnClickListener(view -> SpiMyServicesActivity.super.onBackPressed());
+
+        myServiceList();
+    }
+
+    private void myServiceList() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.PROVIDER_SERVICE_LIST, data, response -> {
+            Utils.log(TAG, response.toString());
+
+
+        });
+
+    }
+
+    private void addNewService() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.ADD_NEW_SERVICE, data, response -> {
+            Utils.log(TAG, response.toString());
+
+
+        });
+
     }
 }

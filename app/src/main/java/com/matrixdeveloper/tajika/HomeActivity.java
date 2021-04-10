@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     SliderLayout homeSlider;
     private List<ServiceList> serviceLists;
     private NavigationView navigationView;
-    private LinearLayout coinsWallet, compareList, referFriends, llSearch;
+    private LinearLayout coinsWallet, notificationList, referFriends, llSearch;
     private TextView viewAllService,greeting;
     private CardView chatting;
     private int type = 0;
@@ -140,7 +140,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         homeSlider = findViewById(R.id.slider);
         prf = new PrefManager(this);
-        compareList = findViewById(R.id.ll_compareList);
+        notificationList = findViewById(R.id.ll_notificationList);
         coinsWallet = findViewById(R.id.ll_coinsWallet);
         referFriends = findViewById(R.id.ll_referFriends);
         viewAllService = findViewById(R.id.txt_viewAllService);
@@ -169,7 +169,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void handleClickListener() {
 
-        compareList.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), CompareListActivity.class)));
+        notificationList.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), NotificationActivity.class)));
         coinsWallet.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), CoinsWalletActivity.class)));
         referFriends.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), ReferralActivity.class)));
         viewAllService.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AllServiceActivity.class)));

@@ -11,12 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIAllBookingsAdapter;
 import com.matrixdeveloper.tajika.model.SPIAllBookingsModel;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SpiAllBookingsActivity extends AppCompatActivity {
 
     private RecyclerView allBookingsRecyclerView;
     private SPIAllBookingsAdapter allBookingsAdapter;
     TextView upcoming, completed;
+    private String TAG = "SpiAllBookingsAct";
+    private PrefManager pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +71,23 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
 
             }
         });
+
+        getAllBooking();
+    }
+
+    private void getAllBooking() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.PROVIDER_ALL_BOOKING, data, response -> {
+            Utils.log(TAG, response.toString());
+
+
+        });
+
     }
 }

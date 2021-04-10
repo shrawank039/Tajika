@@ -19,10 +19,11 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Tajika"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic"
         tools:targetApi="m">
+
         <activity android:name=".SPbusiness.SpbProfileActivity" />
         <activity android:name=".SPbusiness.SpbEditProfileActivity" />
         <activity android:name=".SPbusiness.SpbRegisterActivity" />
@@ -83,6 +84,7 @@
         <activity android:name=".CreateNewPasswordActivity" />
         <activity android:name=".LoginThroughOTPActivity" />
         <activity android:name=".EditProfileActivity" />
+        <activity android:name=".OnboardingActivity"/>
 
         <activity
             android:name=".HomeActivity"

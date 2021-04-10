@@ -23,8 +23,8 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText edtName, edtPhone, edtEmail, edtPass, edtCPass;
-    String name, phone, email, pass, Cpass;
+    private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass;
+    private String name, phone, email, pass, Cpass;
     private String TAG = "RegisterAct";
     private static PrefManager prf;
     private CheckBox termsAndPolicy;

@@ -9,12 +9,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.matrixdeveloper.tajika.ConversationListActivity;
+import com.matrixdeveloper.tajika.HomeActivity;
 import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.adapter.NewRequestAdapter;
+import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
+import com.matrixdeveloper.tajika.adapter.UpcomingJobAdapter;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.model.UpcomingJob;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -34,11 +40,13 @@ public class SpiHomeActivity extends AppCompatActivity {
 
     ImageView moreSettings, notifications, indicator;
     private SwitchMaterial onlineOffline;
-    private LinearLayout newServiceRequest, newServiceRequestNotFound, upcomingJobs, upcomingJobsNotFound;
+    private LinearLayout newServiceRequestNotFound, upcomingJobsNotFound;
     private TextView newServiceRequestInfo;
 
     RecyclerView requestRecycler, upcomingJobRecycler;
-    private List<ServiceRequestList> serviceRequestLists;
+    private NewRequestAdapter requestAdapter;
+    private UpcomingJobAdapter upcomingJobAdapter;
+    private List<ServiceRequestList> requestLists;
     private List<UpcomingJob> upcomingJobList;
     private PrefManager prf;
     private String TAG = "SPHomeAct";
@@ -51,16 +59,29 @@ public class SpiHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spi_home);
 
         prf = new PrefManager(this);
-        serviceRequestLists = new ArrayList<>();
+        requestLists = new ArrayList<>();
         upcomingJobList = new ArrayList<>();
+        requestAdapter = new NewRequestAdapter(SpiHomeActivity.this, requestLists, 0);
+        upcomingJobAdapter = new UpcomingJobAdapter(SpiHomeActivity.this, upcomingJobList, 0);
+
+        requestRecycler = findViewById(R.id.rv_new_request);
+        upcomingJobRecycler = findViewById(R.id.rv_upcoming_job);
+
+        requestRecycler.setHasFixedSize(true);
+        requestRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        requestRecycler.setItemAnimator(new DefaultItemAnimator());
+        requestRecycler.setAdapter(requestAdapter);
+
+        upcomingJobRecycler.setHasFixedSize(true);
+        upcomingJobRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        upcomingJobRecycler.setItemAnimator(new DefaultItemAnimator());
+        upcomingJobRecycler.setAdapter(upcomingJobAdapter);
 
         moreSettings = findViewById(R.id.iv_moreSettings);
         notifications = findViewById(R.id.iv_notifications);
         onlineOffline = findViewById(R.id.switch_onlineOffline);
         indicator = findViewById(R.id.iv_indicator);
-        newServiceRequest = findViewById(R.id.ll_newServiceRequest);
         newServiceRequestNotFound = findViewById(R.id.ll_newServiceRequestNotFound);
-        upcomingJobs = findViewById(R.id.ll_upComingJobs);
         upcomingJobsNotFound = findViewById(R.id.ll_upComingJobsRequestNotFound);
         newServiceRequestInfo = findViewById(R.id.txt_newServiceRequestInfo);
         cvMessageButton = findViewById(R.id.cv_conversation);
@@ -105,8 +126,6 @@ public class SpiHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (onlineOffline.isChecked()) {
-                    newServiceRequest.setVisibility(View.VISIBLE);
-                    upcomingJobs.setVisibility(View.VISIBLE);
                     newServiceRequestNotFound.setVisibility(View.GONE);
                     upcomingJobsNotFound.setVisibility(View.GONE);
                     onlineOffline.setText("You are Online");
@@ -114,8 +133,6 @@ public class SpiHomeActivity extends AppCompatActivity {
 
 
                 } else {
-                    newServiceRequest.setVisibility(View.GONE);
-                    upcomingJobs.setVisibility(View.GONE);
                     newServiceRequestNotFound.setVisibility(View.VISIBLE);
                     upcomingJobsNotFound.setVisibility(View.VISIBLE);
                     onlineOffline.setText("You are Offline");
@@ -138,7 +155,7 @@ public class SpiHomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(this, ServiceNames.HOME_SCREEN_DATA, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.HOME_SCREEN_DATA_INDI, data, response -> {
 
             Utils.log(TAG, response.toString());
 
@@ -152,12 +169,16 @@ public class SpiHomeActivity extends AppCompatActivity {
                 upcominJobArray = jsonObject.getJSONArray("upcomingjob");
 
                 // request list
+                if (requestArray.length()<1){
+                    newServiceRequestNotFound.setVisibility(View.VISIBLE);
+                }
                 for (int i = 0; i < requestArray.length(); i++) {
 
                     try {
 
                         ServiceRequestList serviceList = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), ServiceRequestList.class);
-                        serviceRequestLists.add(serviceList);
+                        requestLists.add(serviceList);
+                        requestAdapter.notifyDataSetChanged();
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -165,12 +186,16 @@ public class SpiHomeActivity extends AppCompatActivity {
                 }
 
                 // upcoming job list
+                if (requestArray.length()<1){
+                    upcomingJobsNotFound.setVisibility(View.VISIBLE);
+                }
                 for (int i = 0; i < upcominJobArray.length(); i++) {
 
                     try {
 
                         UpcomingJob upcomingJob = MySingleton.getGson().fromJson(upcominJobArray.getJSONObject(i).toString(), UpcomingJob.class);
                         upcomingJobList.add(upcomingJob);
+                        upcomingJobAdapter.notifyDataSetChanged();
 
                     } catch (JSONException e) {
                         e.printStackTrace();

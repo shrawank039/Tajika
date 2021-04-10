@@ -25,7 +25,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Welcome to Tajika"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_grey"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Register your business"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_grey"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>

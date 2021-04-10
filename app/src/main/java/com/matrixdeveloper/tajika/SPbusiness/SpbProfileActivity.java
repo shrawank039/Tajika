@@ -13,18 +13,28 @@ import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.SPindividual.SpiProfileEditActivity;
 import com.matrixdeveloper.tajika.adapter.SPBbusinessPhotosVideoAdapter;
 import com.matrixdeveloper.tajika.model.SPBbusinessPhotosVideosModel;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SpbProfileActivity extends AppCompatActivity {
     private TextView profileEdit;
     private ImageView backPress;
     private RecyclerView recViewPhotosVideos;
     private SPBbusinessPhotosVideoAdapter mAdapter;
+    private final String TAG = "SpbProfileAct";
+    private PrefManager pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spb_profile);
 
+        pref = new PrefManager(this);
         profileEdit = findViewById(R.id.txt_profileEdit);
         backPress = findViewById(R.id.iv_backPress);
         recViewPhotosVideos = findViewById(R.id.recView_SPBusinessPhotos);
@@ -48,5 +58,23 @@ public class SpbProfileActivity extends AppCompatActivity {
                 LinearLayoutManager.HORIZONTAL,
                 false));
         recViewPhotosVideos.setAdapter(mAdapter);
+
+        getProfile();
+    }
+
+    private void getProfile() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.GET_PROVIDER_PROFILE_BUSI, data, response -> {
+            Utils.log(TAG, response.toString());
+
+
+        });
+
     }
 }

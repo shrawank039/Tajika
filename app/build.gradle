@@ -5,6 +5,7 @@ plugins {
     id 'com.google.firebase.crashlytics'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -119,5 +120,10 @@ dependencies {
     implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
     implementation 'com.github.aarsy.googlemapsrippleeffect:googlemapsrippleeffect:1.0.2'
+
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.2@aar'
+    implementation 'com.airbnb.android:lottie:3.3.1'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
 
 }

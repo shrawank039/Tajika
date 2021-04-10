@@ -30,10 +30,31 @@ public class ServiceNames {
     public static final String BOOKING_DETAILS = API + "/servicebookingDetails";
 
     // SP
-    public static final String HOME_SCREEN_DATA = API + "/getServiceProviderHomeScreen";
+    public static final String REGISTER_SERVICE_PROVIDER_INDI = API + "/createServiceProviderAccount";
+    public static final String BUSINESS_SERVICE_PROVIDER_DETAILS = API + "/getServiceBusinessInfo";
+    public static final String GET_SERVICE_REQUEST = API + "/getAllServiceRequest";
+    public static final String GET_SERVICE_REQUEST_DETAILS = API + "/getParticularServiceRequestDetails";
+    public static final String CHANGE_SERVICE_REQUEST_STATUS = API + "/changeServiceRequestStatus";
+    public static final String UPDATE_SERVICE_BOOKING_DETAILS = API + "/updateservicebookingdetails";
+    public static final String CANCEL_SERVICE_REQUEST = API + "/cancelservicebooking";
+    public static final String ADD_SERVICE_RATING = API + "/addservicerating";
+    public static final String PROVIDER_ALL_BOOKING = API + "/serviceProviderAllBooking";
+    public static final String PROVIDER_SERVICE_LIST = API + "/myServiceList";
+    public static final String ADD_NEW_SERVICE = API + "/saveService";
+    public static final String UPDATE_SERVICE = API + "/updateService";
+    public static final String DELETE_SERVICE = API + "/deleteService";
+    public static final String GET_PROVIDER_PROFILE_IND = API + "/getServiceProfileDetails";
+    public static final String UPDATE_PROVIDER_PROFILE_IND = API + "/updateServiceProviderDetails";
+    public static final String UPDATE_LIVE_STATUS = API + "/updateOnline";
+    public static final String HOME_SCREEN_DATA_INDI = API + "/getServiceProviderHomeScreen";
     public static final String WALLET_DETAILS = API + "/getWalletDetails";
     public static final String ALL_TRANSACTIONS = API + "/allTranscationList";
     public static final String ADD_CREDIT = API + "/addCreditWallet";
+
+    public static final String REGISTER_SERVICE_PROVIDER_BUSI = API + "/createServiceBusinessAccount";
+    public static final String HOME_SCREEN_DATA_BUSI = API + "/getServiceBusinessHomeScreen";
+    public static final String GET_PROVIDER_PROFILE_BUSI = API + "/getServiceBusinessProfileDetails";
+    public static final String UPDATE_PROVIDER_PROFILE_BUSI = API + "/updateServiceBuisnessDetails";
 
     public static boolean is = true;
 
