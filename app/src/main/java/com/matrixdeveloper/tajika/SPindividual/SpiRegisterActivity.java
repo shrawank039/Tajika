@@ -77,7 +77,8 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
             bussiness_link, minimum_charge, education_level, passportnumber, upload_passportid, professional_qualification,
             qualification_certification, latitude, longitude;
-    private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass;
+    private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass,edtServiceArea,edtBusinessCategories,edtYourExperience,
+            edtBusinessLink,edtServiceCharge,edtSkillDescription,edtHighestEducation,edtPassportNumber,edtProQualification;
     private static PrefManager prf;
 
     private Bitmap bitmap;
@@ -104,6 +105,23 @@ public class SpiRegisterActivity extends AppCompatActivity {
         idOrPassword = regViewFlipper.findViewById(R.id.edt_IDorPassword);
         professionalCertificate = regViewFlipper.findViewById(R.id.edt_professionalCertificate);
         ivPassDocument = regViewFlipper.findViewById(R.id.iv_idPass);
+
+        edtName = regViewFlipper.findViewById(R.id.edt_name);
+        edtPhone = regViewFlipper.findViewById(R.id.edt_phone);
+        edtEmail = regViewFlipper.findViewById(R.id.edt_email);
+        edtPass = regViewFlipper.findViewById(R.id.edt_pass);
+        edtCPass = regViewFlipper.findViewById(R.id.edt_cpass);
+
+        edtServiceArea = regViewFlipper.findViewById(R.id.edt_serviceArea);
+        edtBusinessCategories = regViewFlipper.findViewById(R.id.edt_businessCategory);
+        edtBusinessLink = regViewFlipper.findViewById(R.id.edt_businessLink);
+        edtYourExperience = regViewFlipper.findViewById(R.id.edt_yourExperience);
+        edtServiceCharge = regViewFlipper.findViewById(R.id.edt_serviceCharge);
+        edtSkillDescription = regViewFlipper.findViewById(R.id.edt_skillDescription);
+
+        edtHighestEducation = regViewFlipper.findViewById(R.id.edt_highestEducation);
+        edtPassportNumber = regViewFlipper.findViewById(R.id.edt_idPassNumber);
+        edtProQualification = regViewFlipper.findViewById(R.id.edt_proQualification);
 
         ivDocumentPreview = regViewFlipper.findViewById(R.id.iv_preview);
         btnRetake = regViewFlipper.findViewById(R.id.document_retake);
@@ -143,6 +161,17 @@ public class SpiRegisterActivity extends AppCompatActivity {
         email = edtEmail.getText().toString();
         pass = edtPass.getText().toString();
         Cpass = edtCPass.getText().toString();
+        service_area = edtServiceArea.getText().toString();
+        business_categories = edtBusinessCategories.getText().toString();
+        year_of_experience = edtYourExperience.getText().toString();
+        bussiness_link = edtBusinessLink.getText().toString();
+        minimum_charge = edtServiceCharge.getText().toString();
+        service_description = edtSkillDescription.getText().toString();
+        education_level = edtHighestEducation.getText().toString();
+        passportnumber = edtPassportNumber.getText().toString();
+        professional_qualification = edtProQualification.getText().toString();
+
+
 
         if (pass.equals(Cpass)) {
             JSONObject data = new JSONObject();
