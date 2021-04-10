@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +23,8 @@ import org.json.JSONObject;
 public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
 
     private ImageView backPress;
-    private TextView serviceAccept, serviceDeclined;
+    private TextView serviceAccept, serviceDeclined, requestId,jobDate,jobTime,jobType,
+            address,description,amtWillingToPay,contactName,contactNumber;
     private String id;
     private String TAG = "SpiServiceRequestDetailsAct";
     private PrefManager pref;
@@ -35,9 +37,8 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
 
         pref = new PrefManager(this);
         id = getIntent().getStringExtra("id");
-        backPress = findViewById(R.id.iv_backPress);
-        serviceAccept = findViewById(R.id.txt_acceptService);
-        serviceDeclined = findViewById(R.id.txt_declineService);
+
+        initViews();
 
         backPress.setOnClickListener(view -> SpiServiceRequestDetailsActivity.super.onBackPressed());
 
@@ -51,6 +52,21 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
         });
 
         getServiceDetails(id);
+    }
+
+    private void initViews() {
+        backPress = findViewById(R.id.iv_backPress);
+        serviceAccept = findViewById(R.id.txt_acceptService);
+        serviceDeclined = findViewById(R.id.txt_declineService);
+        requestId = findViewById(R.id.txt_jobId);
+        jobDate = findViewById(R.id.txt_jobDate);
+        jobTime = findViewById(R.id.txt_jobTime);
+        jobType = findViewById(R.id.txt_jobType);
+        address = findViewById(R.id.txt_serviceAddress);
+        description = findViewById(R.id.txt_serviceDescription);
+        amtWillingToPay = findViewById(R.id.txt_amtWillingToPay);
+        contactName = findViewById(R.id.txt_custName);
+        contactNumber = findViewById(R.id.txt_custNumber);
     }
 
     private void changeServiceStatus(String id, String status) {
@@ -74,16 +90,28 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
 
             JSONObject data = new JSONObject();
             try {
-                data.put("id", id);
+                data.put("id", 3);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            ApiCall.postMethod(this, ServiceNames.UPDATE_LIVE_STATUS, data, response -> {
+            ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
                 Utils.log(TAG, response.toString());
                 try {
 
                     requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+                    JSONObject jsonObject=response.getJSONObject("data");
+
+                    requestId.setText(jsonObject.optString("request_id"));
+                    jobDate.setText(jsonObject.optString("service_date"));
+                    jobTime.setText(jsonObject.optString("service_time"));
+                    jobType.setText(jsonObject.optString("service_type"));
+                    address.setText(jsonObject.optString("address"));
+                    description.setText(jsonObject.optString("work_description"));
+                    contactNumber.setText(jsonObject.optString("customerphone"));
+                    contactName.setText(jsonObject.optString("customername"));
+                    amtWillingToPay.setText(jsonObject.optString("currency")+" "+jsonObject.optString("willing_amount_pay"));
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();

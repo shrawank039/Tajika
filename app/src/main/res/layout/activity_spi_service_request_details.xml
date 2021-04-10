@@ -283,6 +283,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txt_amtWillingToPay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ksh 2,000"

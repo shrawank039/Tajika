@@ -23,7 +23,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
 
     private TextView completeJob;
     private String id;
-    private String TAG = "SpiServiceRequestDetailsAct";
+    private String TAG = "SpiServiceAcceptAct";
     private PrefManager pref;
     RequestDetails requestDetails;
 
@@ -59,7 +59,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
     private void changeServiceStatus(String id, String status) {
         JSONObject data = new JSONObject();
         try {
-            data.put("id", id);
+            data.put("id", 4);
             data.put("status", status);
             data.put("service_provider_id", pref.getString("id"));
 
@@ -69,6 +69,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
 
         ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
+
             startActivity(new Intent(SpiServiceAcceptActivity.this, SpiServiceCompletedStatusActivity.class));
 
         });
