@@ -225,7 +225,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
 
     private void setDocumentImage(String imagePath) {
 
-        Glide.with(SpiRegisterActivity.this)
+        Glide.with(getApplicationContext())
                 .load(imagePath)
                 .apply(new RequestOptions()
                         .signature(new ObjectKey(String.valueOf(System.currentTimeMillis())))
