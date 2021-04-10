@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -117,15 +118,9 @@ public class SpiRegisterActivity extends AppCompatActivity {
         nextToBusinessDetails.setOnClickListener(view -> regViewFlipper.showNext());
         nextToDocumentUpload.setOnClickListener(view -> regViewFlipper.showNext());
 
-        btnRetake.setOnClickListener(view -> {
-            Toast.makeText(this, "Retake", Toast.LENGTH_SHORT).show();
-            //onDocumentUploadChoosePhoto();
-        });
-        btnSave.setOnClickListener(view -> {
-            Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show();
-            //getFileList();
-        });
+
         ll_id_upload.setOnClickListener(view -> {
+            type =1;
             initiatePhotoSelection();
         });
         ll_certificate_upload.setOnClickListener(view -> {
@@ -166,6 +161,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 data.put("qualification_certification", qualification_certification);
                 data.put("latitude", latitude);
                 data.put("longitude", longitude);
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -243,6 +239,14 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
 
+                byte[] b = bytes.toByteArray();
+                String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+                if (type ==1)
+                    upload_passportid = encImage;
+                else
+                    qualification_certification = encImage;
+
                 Log.e("Activity", "Pick from Camera::>>> ");
 
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
@@ -273,6 +277,15 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
+
+                byte[] b = bytes.toByteArray();
+                String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+                if (type ==1)
+                    upload_passportid = encImage;
+                else
+                    qualification_certification = encImage;
+
                 Log.e("Activity", "Pick from Gallery::>>> ");
 
                 imgPath = getRealPathFromURI(selectedImage);
