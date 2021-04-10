@@ -55,7 +55,6 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Select highest education"
-                    android:inputType="number"
                     android:maxLength="10"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
@@ -105,22 +104,23 @@
                 android:padding="10dp">
 
                 <EditText
-                    android:focusable="false"
+                    android:id="@+id/edt_IDorPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:hint="Upload ID/Passport"
-                    android:inputType="number"
-                    android:maxLength="10"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:id="@+id/iv_idPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginEnd="20dp"
                     android:src="@drawable/ic_menu_camera"
@@ -144,7 +144,6 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="Enter professional qualification"
-                    android:inputType="textPassword"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
                     android:textColor="@color/black"
@@ -161,14 +160,13 @@
                 android:padding="10dp">
 
                 <EditText
-                    android:focusable="false"
+                    android:id="@+id/edt_professionalCertificate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:focusable="false"
                     android:hint="Upload professional Certificate"
-                    android:inputType="number"
-                    android:maxLength="10"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"
                     android:textColor="@color/black"
@@ -185,7 +183,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_submit"
+                android:id="@+id/btn_spiSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -202,7 +200,7 @@
 
         <include
             layout="@layout/layout_document_preview"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
