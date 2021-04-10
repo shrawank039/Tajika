@@ -7,14 +7,14 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.matrixdeveloper.tajika.SPindividual.SpiLoginActivity;
+import com.matrixdeveloper.tajika.SPbusiness.SpbRegisterActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiRegisterActivity;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
 public class LandingPage extends AppCompatActivity {
 
     private static PrefManager prf;
-    private Button serviceProIndividual, user;
+    private Button serviceProIndividual, user, serviceProBusiness,help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,15 @@ public class LandingPage extends AppCompatActivity {
     private void initView() {
         serviceProIndividual = findViewById(R.id.btn_serviceProviderIndividual);
         user = findViewById(R.id.btn_user);
+        serviceProBusiness=findViewById(R.id.btn_serviceProviderBusiness);
+        help=findViewById(R.id.btn_help);
     }
 
     private void initListeners() {
         user.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, LoginActivity.class)));
-        serviceProIndividual.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, SpiLoginActivity.class)));
+        serviceProIndividual.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, SpiRegisterActivity.class)));
+        serviceProBusiness.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, SpbRegisterActivity.class)));
+        help.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, HelpActivity.class)));
     }
 
 }
