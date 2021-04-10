@@ -42,7 +42,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
         backPress.setOnClickListener(view -> SpiServiceRequestDetailsActivity.super.onBackPressed());
 
         serviceAccept.setOnClickListener(view -> {
-                changeServiceStatus(id,"Accept");
+                changeServiceStatus(id,"Accepted");
 
                     });
 
