@@ -78,6 +78,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spi_register);
 
         prf = new PrefManager(this);
+
         regViewFlipper = findViewById(R.id.vf_regViewFlipper);
         nextToBusinessDetails = regViewFlipper.findViewById(R.id.btn_nextToBusinessDetails);
         nextToDocumentUpload = regViewFlipper.findViewById(R.id.btn_nexttoDocumentDetails);
@@ -85,9 +86,9 @@ public class SpiRegisterActivity extends AppCompatActivity {
         ll_id_upload = regViewFlipper.findViewById(R.id.ll_id_upload);
         galleryLayout = regViewFlipper.findViewById(R.id.galleryLayout);
         ll_certificate_upload = regViewFlipper.findViewById(R.id.ll_certificate_upload);
-        ivDocumentPreview = regViewFlipper.findViewById(R.id.iv_document_upload_preview);
-        btnRetake = regViewFlipper.findViewById(R.id.btn_document_retake);
-        btnSave = regViewFlipper.findViewById(R.id.btn_document_save);
+        ivDocumentPreview = regViewFlipper.findViewById(R.id.iv_preview);
+        btnRetake = regViewFlipper.findViewById(R.id.document_retake);
+        btnSave = regViewFlipper.findViewById(R.id.document_save);
 
         initListeners();
     }
@@ -107,11 +108,13 @@ public class SpiRegisterActivity extends AppCompatActivity {
             onDocumentUploadChoosePhoto();
         });
         submit.setOnClickListener(view -> {
-            registerSubmit();
+            startActivity(new Intent(this, SpiHomeActivity.class));
+           // registerSubmit();
         });
     }
 
     private void registerSubmit() {
+
         name = edtName.getText().toString();
         phone = edtPhone.getText().toString();
         email = edtEmail.getText().toString();
@@ -297,14 +300,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
     }
 
 
-    public void onDocumentUploadRetakeClick(View view) {
-        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-        //mVibrator.vibrate(25);
-
-        onDocumentUploadTakePhotoClick(view);
-    }
-
-
     private ArrayList<String> getFileList() {
         ArrayList<String> fileList = new ArrayList<>();
 
@@ -331,31 +326,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
         }
-    }
-
-    public void datePicker(final int a) {
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
-                new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-
-                        month = month + 1;
-                        //  Log.d("datePicker","date : "+ String.valueOf(month));
-                        dateSelected = String.valueOf(year + "-" + month + "-" + day);
-                        if (a == 1)
-                            fromDate.setText(dateSelected);
-                        else
-                            toDate.setText(dateSelected);
-                    }
-                }, year, month, day);
-        datePickerDialog.show();
     }
 
     @Override

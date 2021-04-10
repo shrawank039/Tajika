@@ -41,7 +41,6 @@ public class SpiHomeActivity extends AppCompatActivity {
     ImageView moreSettings, notifications, indicator;
     private SwitchMaterial onlineOffline;
     private LinearLayout newServiceRequestNotFound, upcomingJobsNotFound;
-    private TextView newServiceRequestInfo;
 
     RecyclerView requestRecycler, upcomingJobRecycler;
     private NewRequestAdapter requestAdapter;
@@ -83,7 +82,6 @@ public class SpiHomeActivity extends AppCompatActivity {
         indicator = findViewById(R.id.iv_indicator);
         newServiceRequestNotFound = findViewById(R.id.ll_newServiceRequestNotFound);
         upcomingJobsNotFound = findViewById(R.id.ll_upComingJobsRequestNotFound);
-        newServiceRequestInfo = findViewById(R.id.txt_newServiceRequestInfo);
         cvMessageButton = findViewById(R.id.cv_conversation);
         allBookings = findViewById(R.id.iv_allBookings);
 
@@ -115,26 +113,15 @@ public class SpiHomeActivity extends AppCompatActivity {
             }
         });
 
-        newServiceRequestInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SpiHomeActivity.this, SpiServiceRequestDetailsActivity.class));
-            }
-        });
-
         onlineOffline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onlineOffline.isChecked()) {
-                    newServiceRequestNotFound.setVisibility(View.GONE);
-                    upcomingJobsNotFound.setVisibility(View.GONE);
                     onlineOffline.setText("You are Online");
                     indicator.setColorFilter(getResources().getColor(R.color.light_green));
 
 
                 } else {
-                    newServiceRequestNotFound.setVisibility(View.VISIBLE);
-                    upcomingJobsNotFound.setVisibility(View.VISIBLE);
                     onlineOffline.setText("You are Offline");
                     indicator.setColorFilter(getResources().getColor(R.color.grey_300));
                 }

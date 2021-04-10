@@ -1,6 +1,7 @@
 package com.matrixdeveloper.tajika.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
+import com.matrixdeveloper.tajika.SPindividual.SpiServiceRequestDetailsActivity;
 import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 
@@ -67,7 +70,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
 
         });
         holder.viewInfo.setOnClickListener(v -> {
-
+            ctx.startActivity(new Intent(ctx, SpiServiceRequestDetailsActivity.class));
         });
 
     }
