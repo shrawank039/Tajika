@@ -109,8 +109,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:clickable="false"
-                    android:focusable="false"
                     android:hint="Upload ID/Passport"
                     android:paddingVertical="5dp"
                     android:paddingStart="20dp"

@@ -82,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                 prf.setString(Global.name, login.getName());
 
                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                finish();
 
             } catch (JSONException e) {
                 e.printStackTrace();

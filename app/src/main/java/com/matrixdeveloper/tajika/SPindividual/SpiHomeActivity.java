@@ -146,7 +146,6 @@ public class SpiHomeActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.UPDATE_LIVE_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
 
-
         });
 
     }

@@ -79,7 +79,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            ApiCall.postMethod(this, ServiceNames.UPDATE_LIVE_STATUS, data, response -> {
+            ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
                 Utils.log(TAG, response.toString());
                 try {
 
