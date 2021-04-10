@@ -59,7 +59,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
     private void changeServiceStatus(String id, String status) {
         JSONObject data = new JSONObject();
         try {
-            data.put("id", 4);
+            data.put("id", id);
             data.put("status", status);
             data.put("service_provider_id", pref.getString("id"));
 

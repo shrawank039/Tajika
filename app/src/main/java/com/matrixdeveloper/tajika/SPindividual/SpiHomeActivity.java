@@ -155,7 +155,7 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("user_id", "30");//prf.getString("id"));
+            data.put("user_id", pref.getString("id"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

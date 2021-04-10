@@ -43,7 +43,7 @@ public class SpiAddCreditActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("user_id", "30" /*pref.getString("id")*/);
+            data.put("user_id", pref.getString("id"));
             data.put("amount", creditAmount);
 
         } catch (JSONException e) {
