@@ -69,8 +69,10 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         holder.accept.setOnClickListener(v -> {
 
         });
+
         holder.viewInfo.setOnClickListener(v -> {
-            ctx.startActivity(new Intent(ctx, SpiServiceRequestDetailsActivity.class));
+            ctx.startActivity(new Intent(ctx, SpiServiceRequestDetailsActivity.class)
+            .putExtra("id", serviceList.getId()));
         });
 
     }

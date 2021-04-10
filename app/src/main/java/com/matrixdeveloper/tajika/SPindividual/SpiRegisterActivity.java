@@ -64,7 +64,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private int type = AppConstants.DOCUMENT_TYPE_ID;
     private String imagePath = "";
     private String documentPath;
-    private TextView txtTitle, toDate, fromDate;
+    private TextView toDate, fromDate;
     ImageView ivDocumentPreview, ivPassDocument;
     Button btnRetake;
     Button btnSave;

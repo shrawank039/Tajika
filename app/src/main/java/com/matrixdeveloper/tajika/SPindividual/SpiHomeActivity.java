@@ -47,7 +47,7 @@ public class SpiHomeActivity extends AppCompatActivity {
     private UpcomingJobAdapter upcomingJobAdapter;
     private List<ServiceRequestList> requestLists;
     private List<UpcomingJob> upcomingJobList;
-    private PrefManager prf;
+    private PrefManager pref;
     private String TAG = "SPHomeAct";
     private ImageView allBookings;
     private CardView cvMessageButton;
@@ -57,7 +57,7 @@ public class SpiHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_home);
 
-        prf = new PrefManager(this);
+        pref = new PrefManager(this);
         requestLists = new ArrayList<>();
         upcomingJobList = new ArrayList<>();
         requestAdapter = new NewRequestAdapter(SpiHomeActivity.this, requestLists, 0);
@@ -119,16 +119,35 @@ public class SpiHomeActivity extends AppCompatActivity {
                 if (onlineOffline.isChecked()) {
                     onlineOffline.setText("You are Online");
                     indicator.setColorFilter(getResources().getColor(R.color.light_green));
-
+                    changeStatus("1");
 
                 } else {
                     onlineOffline.setText("You are Offline");
                     indicator.setColorFilter(getResources().getColor(R.color.grey_300));
+                    changeStatus("0");
                 }
             }
         });
 
         getHomeData();
+
+    }
+
+    private void changeStatus(String status) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("provider_id", pref.getString("id"));
+            data.put("type", "I");
+            data.put("status", status);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.UPDATE_LIVE_STATUS, data, response -> {
+            Utils.log(TAG, response.toString());
+
+
+        });
 
     }
 
