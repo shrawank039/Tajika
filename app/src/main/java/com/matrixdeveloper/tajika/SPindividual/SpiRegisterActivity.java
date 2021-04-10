@@ -2,14 +2,17 @@ package com.matrixdeveloper.tajika.SPindividual;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
-import android.view.HapticFeedbackConstants;
-import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,35 +22,40 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.signature.ObjectKey;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.config.Config;
 import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.AppConstants;
-import com.matrixdeveloper.tajika.utils.FileOp;
 import com.matrixdeveloper.tajika.utils.Global;
-import com.matrixdeveloper.tajika.utils.ImageFilePath;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class SpiRegisterActivity extends AppCompatActivity {
 
     ViewFlipper regViewFlipper;
     Button nextToBusinessDetails, nextToDocumentUpload, submit;
+    EditText idOrPassword, professionalCertificate;
     private LinearLayout ll_id_upload, ll_certificate_upload, galleryLayout;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int IMAGE_PICKER_SELECT = 2;
@@ -57,7 +65,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private String imagePath = "";
     private String documentPath;
     private TextView txtTitle, toDate, fromDate;
-    ImageView ivDocumentPreview;
+    ImageView ivDocumentPreview, ivPassDocument;
     Button btnRetake;
     Button btnSave;
     private int PICK_IMAGE_REQUEST = 2;
@@ -66,26 +74,37 @@ public class SpiRegisterActivity extends AppCompatActivity {
     String dateSelected;
     protected boolean hasReadWritePermissions;
     protected static final int REQUEST_PERMISSIONS_READ_WRITE = 4;
-    private String name, phone, email, pass, Cpass,service_area,business_categories,service_description,year_of_experience,
-            bussiness_link,minimum_charge,education_level,passportnumber,upload_passportid,professional_qualification,
-            qualification_certification,latitude,longitude;
+    private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
+            bussiness_link, minimum_charge, education_level, passportnumber, upload_passportid, professional_qualification,
+            qualification_certification, latitude, longitude;
     private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass;
     private static PrefManager prf;
 
+    private Bitmap bitmap;
+    private File destination;
+    private InputStream inputStreamImg;
+    private String imgPath = null;
+    private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
+    private int MY_CAMERA_REQUEST_CODE = 100;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_register);
 
         prf = new PrefManager(this);
-
         regViewFlipper = findViewById(R.id.vf_regViewFlipper);
         nextToBusinessDetails = regViewFlipper.findViewById(R.id.btn_nextToBusinessDetails);
         nextToDocumentUpload = regViewFlipper.findViewById(R.id.btn_nexttoDocumentDetails);
-        submit = regViewFlipper.findViewById(R.id.btn_submit);
+        submit = regViewFlipper.findViewById(R.id.btn_spiSubmit);
         ll_id_upload = regViewFlipper.findViewById(R.id.ll_id_upload);
         galleryLayout = regViewFlipper.findViewById(R.id.galleryLayout);
         ll_certificate_upload = regViewFlipper.findViewById(R.id.ll_certificate_upload);
+        idOrPassword = regViewFlipper.findViewById(R.id.edt_IDorPassword);
+        professionalCertificate = regViewFlipper.findViewById(R.id.edt_professionalCertificate);
+        ivPassDocument = regViewFlipper.findViewById(R.id.iv_idPass);
+
         ivDocumentPreview = regViewFlipper.findViewById(R.id.iv_preview);
         btnRetake = regViewFlipper.findViewById(R.id.document_retake);
         btnSave = regViewFlipper.findViewById(R.id.document_save);
@@ -93,28 +112,32 @@ public class SpiRegisterActivity extends AppCompatActivity {
         initListeners();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void initListeners() {
         nextToBusinessDetails.setOnClickListener(view -> regViewFlipper.showNext());
         nextToDocumentUpload.setOnClickListener(view -> regViewFlipper.showNext());
 
-        btnRetake.setOnClickListener(view -> onDocumentUploadChoosePhoto());
-        btnSave.setOnClickListener(view -> getFileList());
+        btnRetake.setOnClickListener(view -> {
+            Toast.makeText(this, "Retake", Toast.LENGTH_SHORT).show();
+            //onDocumentUploadChoosePhoto();
+        });
+        btnSave.setOnClickListener(view -> {
+            Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show();
+            //getFileList();
+        });
         ll_id_upload.setOnClickListener(view -> {
-            type = 1;
-            onDocumentUploadChoosePhoto();
+            initiatePhotoSelection();
         });
         ll_certificate_upload.setOnClickListener(view -> {
             type = 2;
-            onDocumentUploadChoosePhoto();
+            initiatePhotoSelection();
         });
         submit.setOnClickListener(view -> {
-            startActivity(new Intent(this, SpiHomeActivity.class));
-           // registerSubmit();
+            registerSubmit();
         });
     }
 
     private void registerSubmit() {
-
         name = edtName.getText().toString();
         phone = edtPhone.getText().toString();
         email = edtEmail.getText().toString();
@@ -167,8 +190,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             });
 
         } else {
@@ -176,156 +197,141 @@ public class SpiRegisterActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void initiatePhotoSelection() {
+        try {
+            final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Select Option");
+            builder.setItems(options, new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+
+                    if (options[item].equals("Take Photo")) {
+                        dialog.dismiss();
+                        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
+                        } else {
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent, PICK_IMAGE_CAMERA);
+                        }
+                    } else if (options[item].equals("Choose From Gallery")) {
+                        dialog.dismiss();
+                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(pickPhoto, PICK_IMAGE_GALLERY);
+                    } else if (options[item].equals("Cancel")) {
+                        dialog.dismiss();
+                    }
+                }
+            });
+            builder.show();
+        } catch (Exception e) {
+            Toast.makeText(this, "Camera Permission error", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        inputStreamImg = null;
+        if (requestCode == PICK_IMAGE_CAMERA) {
+            try {
+                Uri selectedImage = data.getData();
+                bitmap = (Bitmap) data.getExtras().get("data");
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+                Log.e("Activity", "Pick from Camera::>>> ");
 
-            filePath = data.getData();
+                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+                destination = new File(Environment.getExternalStorageDirectory() + "/" +
+                        getString(R.string.app_name), "IMG_" + timeStamp + ".jpg");
+                FileOutputStream fo;
+                try {
+                    destination.createNewFile();
+                    fo = new FileOutputStream(destination);
+                    fo.write(bytes.toByteArray());
+                    fo.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-            picturePath = ImageFilePath.getPath(SpiRegisterActivity.this, data.getData());
-            String tempPath = FileOp.getDocumentPhotoPath(getDocumentTitle(type));
-            FileOp.writeBitmapToFile(picturePath, tempPath);
+                imgPath = destination.getAbsolutePath();
+                professionalCertificate.setText("img_" + timeStamp);
 
-            regViewFlipper.showNext();
-            galleryLayout.setVisibility(View.VISIBLE);
-            setDocumentImage(tempPath);
-            Log.i(TAG, "onActivityResult: IMAGE GALLERY PATH : " + tempPath);
 
-        }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (requestCode == PICK_IMAGE_GALLERY) {
+            Uri selectedImage = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
+                Log.e("Activity", "Pick from Gallery::>>> ");
 
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data == null) {
-            documentPath = imagePath;
-            galleryLayout.setVisibility(View.GONE);
-            regViewFlipper.showNext();
-            setDocumentImage(imagePath);
-            Log.i(TAG, "onActivityResult: IMAGE CAMERA PATH : " + imagePath);
+                imgPath = getRealPathFromURI(selectedImage);
+                destination = new File(imgPath);
 
+                //ivPassDocument.setImageBitmap(bitmap);
+
+                idOrPassword.setText(destination.getName());
+                Toast.makeText(this, "Selected File: \n"+destination.getName(), Toast.LENGTH_SHORT).show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private String getDocumentTitle(int type) {
-
-        switch (type) {
-
-            case AppConstants.DOCUMENT_TYPE_ID:
-                return "1";
-
-            case AppConstants.DOCUMENT_TYPE_PROFESSIONAL_CERTIFICATE:
-                return "2";
-
-            default:
-                return "0";
-        }
-
+    public String getRealPathFromURI(Uri contentUri) {
+        String[] proj = {MediaStore.Audio.Media.DATA};
+        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
-
-    private void setDocumentImage(String imagePath) {
-
-        Glide.with(getApplicationContext())
-                .load(imagePath)
-                .apply(new RequestOptions()
-                        .signature(new ObjectKey(String.valueOf(System.currentTimeMillis())))
-                        .fitCenter())
-                .into(ivDocumentPreview);
-    }
-
-    protected boolean checkForReadWritePermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                    || ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                /*String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                ActivityCompat.requestPermissions(this, permissions, REQUEST_PERMISSIONS_READ_WRITE);*/
-                return hasReadWritePermissions = false;
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_CAMERA_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
             } else {
-                return hasReadWritePermissions = true;
-            }
-        } else {
-            return hasReadWritePermissions = true;
-        }
-    }
-
-    protected void getReadWritePermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                    || ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                ActivityCompat.requestPermissions(this, permissions, REQUEST_PERMISSIONS_READ_WRITE);
+                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    public void onDocumentUploadTakePhotoClick(View view) {
-        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-        //mVibrator.vibrate(25);
-        if (!checkForReadWritePermissions()) {
-            getReadWritePermissions();
-        }
-//        else {
-//            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//            // Ensure that there's a camera activity to handle the intent
-//            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//                // Create the File where the photo should go
-//                File photoFile = null;
-//                try {
-////                    imagePath = image.getAbsolutePath();
-//                    photoFile = App.createImageFile(App.getFileName(type)).getAbsoluteFile();
-//                    imagePath = photoFile.getAbsolutePath();
-//                } catch (IOException ex) {
-//                    System.out.println(ex);
-//                }
-//                if (photoFile != null) {
-//                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
-//                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-//                                Uri.fromFile(photoFile));
-//                    } else {
-//                        Uri photoURI = FileProvider.getUriForFile(getApplicationContext(),
-//                                getApplicationContext().getPackageName() + ".provider", photoFile);
-//                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-//                    }
-//
-//                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//                }
-//            }
-//        }
-    }
+    public void datePicker(final int a) {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
 
 
-    private ArrayList<String> getFileList() {
-        ArrayList<String> fileList = new ArrayList<>();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
+                new DatePickerDialog.OnDateSetListener() {
 
-        if (picturePath != null && !picturePath.equals("")) {
-            String tempPath = FileOp.getDocumentPhotoPath(getDocumentTitle(type));
-            FileOp.writeBitmapToFile(picturePath, tempPath);
-            fileList.add(tempPath);
-            Log.i(TAG, "getFileList: Temp : " + tempPath);
-            Log.i(TAG, "getFileList: Original " + documentPath);
-        }
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
 
-        return fileList;
-    }
-
-    public void onDocumentUploadChoosePhoto() {
-        Log.i(TAG, "onDocumentUploadChoosePhoto: : " + "clicked");
-
-        if (!checkForReadWritePermissions()) {
-            getReadWritePermissions();
-        } else {
-
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-        }
+                        month = month + 1;
+                        //  Log.d("datePicker","date : "+ String.valueOf(month));
+                        dateSelected = String.valueOf(year + "-" + month + "-" + day);
+                        if (a == 1)
+                            fromDate.setText(dateSelected);
+                        else
+                            toDate.setText(dateSelected);
+                    }
+                }, year, month, day);
+        datePickerDialog.show();
     }
 
     @Override
