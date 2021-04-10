@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.matrixdeveloper.tajika.SPindividual.SpiLoginActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiRegisterActivity;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
@@ -38,7 +39,7 @@ public class LandingPage extends AppCompatActivity {
 
     private void initListeners() {
         user.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, LoginActivity.class)));
-        serviceProIndividual.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, SpiRegisterActivity.class)));
+        serviceProIndividual.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, SpiLoginActivity.class)));
     }
 
 }

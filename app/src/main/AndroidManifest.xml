@@ -85,6 +85,7 @@
         <activity android:name=".LoginThroughOTPActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".OnboardingActivity"/>
+        <activity android:name=".SPindividual.SpiLoginActivity"/>
 
         <activity
             android:name=".HomeActivity"
