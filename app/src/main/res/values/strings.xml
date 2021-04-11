@@ -65,5 +65,6 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="back">back</string>
     <string name="enter_few_more_information">Enter few more information and\nyour business will be ready</string>
     <string name="select_business_category">Select Business Category</string>
+    <string name="some_thing_went_wrong">Something went wrong</string>
 
 </resources>
