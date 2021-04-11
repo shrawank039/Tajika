@@ -151,8 +151,8 @@ public class SpiRegisterActivity extends AppCompatActivity {
             initiatePhotoSelection();
         });
         submit.setOnClickListener(view -> {
-            //registerSubmit();
-            startActivity(new Intent(this, SpiHomeActivity.class));
+            registerSubmit();
+            //startActivity(new Intent(this, SpiHomeActivity.class));
         });
     }
 
