@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.RequestDetails;
-import com.matrixdeveloper.tajika.model.UserBookingDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -23,8 +21,8 @@ import org.json.JSONObject;
 public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
 
     private ImageView backPress;
-    private TextView serviceAccept, serviceDeclined, requestId,jobDate,jobTime,jobType,
-            address,description,amtWillingToPay,contactName,contactNumber;
+    private TextView serviceAccept, serviceDeclined, requestId, jobDate, jobTime, jobType,
+            address, description, amtWillingToPay, contactName, contactNumber;
     private String id;
     private String TAG = "SpiServiceRequestDetailsAct";
     private PrefManager pref;
@@ -43,12 +41,12 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
         backPress.setOnClickListener(view -> SpiServiceRequestDetailsActivity.super.onBackPressed());
 
         serviceAccept.setOnClickListener(view -> {
-                changeServiceStatus(id,"Accept");
+            changeServiceStatus(id, "Accept");
 
-                    });
+        });
 
         serviceDeclined.setOnClickListener(view -> {
-            changeServiceStatus(id,"Declined");
+            changeServiceStatus(id, "Declined");
         });
 
         getServiceDetails(id);
@@ -82,42 +80,41 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
             startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
-            .putExtra("requestDetails", requestDetails));
+                    .putExtra("requestDetails", requestDetails));
         });
     }
 
     private void getServiceDetails(String id) {
 
-            JSONObject data = new JSONObject();
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", 3);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
+            Utils.log(TAG, response.toString());
             try {
-                data.put("id", 3);
+
+                requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+
+                requestId.setText(requestDetails.getId().toString());
+                jobDate.setText(requestDetails.getServiceDate());
+                jobTime.setText(requestDetails.getServiceTime());
+                jobType.setText(requestDetails.getServiceType());
+                address.setText(requestDetails.getAddress());
+                description.setText(requestDetails.getWorkDescription());
+                contactNumber.setText(requestDetails.getContactPersonPhone());
+                contactName.setText(requestDetails.getContactPersonName());
+                amtWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay().toString());
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
-                Utils.log(TAG, response.toString());
-                try {
 
-                    requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
-                    JSONObject jsonObject=response.getJSONObject("data");
-
-                    requestId.setText(jsonObject.optString("request_id"));
-                    jobDate.setText(jsonObject.optString("service_date"));
-                    jobTime.setText(jsonObject.optString("service_time"));
-                    jobType.setText(jsonObject.optString("service_type"));
-                    address.setText(jsonObject.optString("address"));
-                    description.setText(jsonObject.optString("work_description"));
-                    contactNumber.setText(jsonObject.optString("customerphone"));
-                    contactName.setText(jsonObject.optString("customername"));
-                    amtWillingToPay.setText(jsonObject.optString("currency")+" "+jsonObject.optString("willing_amount_pay"));
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            });
+        });
 
     }
 }

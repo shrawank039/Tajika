@@ -1,64 +1,70 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".SPindividual.SpiRegisterActivity">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="260dp"
             android:background="@drawable/layout_top_design"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Welcome to Tajika"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+            <ImageView
+                style="@style/register_top_imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="Register your business"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                style="@style/register_top_layout"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Welcome to Tajika"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="Register your business"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/layout_input_outline"
-                android:padding="10dp">
+            <LinearLayout style="@style/register_input_container">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -69,25 +75,12 @@
 
                 <EditText
                     android:id="@+id/edt_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Enter Name"
-                    android:paddingVertical="5dp"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    style="@style/register_editText_container"
+                    android:hint="Enter Name" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/layout_input_outline"
-                android:padding="10dp">
+            <LinearLayout style="@style/register_input_container">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -98,26 +91,14 @@
 
                 <EditText
                     android:id="@+id/edt_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
+                    style="@style/register_editText_container"
                     android:hint="Enter mobile number"
                     android:inputType="number"
-                    android:maxLength="10"
-                    android:paddingVertical="5dp"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:maxLength="10" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/layout_input_outline"
-                android:padding="10dp">
+            <LinearLayout style="@style/register_input_container">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -128,26 +109,13 @@
 
                 <EditText
                     android:id="@+id/edt_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
+                    style="@style/register_editText_container"
                     android:hint="Enter e-mail (optional)"
-                    android:inputType="textEmailAddress"
-                    android:paddingVertical="5dp"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:inputType="textEmailAddress" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/layout_input_outline"
-                android:padding="10dp">
+            <LinearLayout style="@style/register_input_container">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -158,16 +126,9 @@
 
                 <EditText
                     android:id="@+id/edt_pass"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
+                    style="@style/register_editText_container"
                     android:hint="Enter Password"
-                    android:inputType="textPassword"
-                    android:paddingVertical="5dp"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:inputType="textPassword" />
 
                 <ImageView
                     android:id="@+id/showPass"
@@ -178,12 +139,7 @@
                     android:src="@drawable/eye_2x" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/layout_input_outline"
-                android:padding="10dp">
+            <LinearLayout style="@style/register_input_container">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -194,16 +150,9 @@
 
                 <EditText
                     android:id="@+id/edt_cpass"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
+                    style="@style/register_editText_container"
                     android:hint="Confirm Password"
-                    android:inputType="textPassword"
-                    android:paddingVertical="5dp"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:inputType="textPassword" />
 
                 <ImageView
                     android:id="@+id/showCPass"

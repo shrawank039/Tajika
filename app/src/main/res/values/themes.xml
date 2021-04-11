@@ -37,4 +37,5 @@
     <style name="Theme.Tajika.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Tajika.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
