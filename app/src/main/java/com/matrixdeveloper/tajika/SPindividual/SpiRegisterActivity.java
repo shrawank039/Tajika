@@ -211,6 +211,8 @@ public class SpiRegisterActivity extends AppCompatActivity {
                     prf.setString(Global.role, register.getRoles().toString());
                     prf.setString(Global.email, register.getEmail());
 
+                    startActivity(new Intent(this, SpiHomeActivity.class));
+                    finish();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -221,8 +223,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Password did't match", Toast.LENGTH_SHORT).show();
         }
 
-        startActivity(new Intent(this, SpiHomeActivity.class));
-        finish();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

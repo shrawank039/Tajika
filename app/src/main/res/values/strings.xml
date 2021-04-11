@@ -63,5 +63,6 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="finish">finish</string>
     <string name="next">next</string>
     <string name="back">back</string>
+    <string name="some_thing_went_wrong">Something Went Wrong!</string>
 
 </resources>

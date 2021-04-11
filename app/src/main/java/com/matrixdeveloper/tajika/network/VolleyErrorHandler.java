@@ -2,7 +2,9 @@ package com.matrixdeveloper.tajika.network;
 
 import android.content.Context;
 import com.android.volley.VolleyError;
+import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.app.App;
+import com.matrixdeveloper.tajika.utils.Utils;
 
 public class VolleyErrorHandler {
     private static String TAG = VolleyErrorHandler.class.getSimpleName();
@@ -10,11 +12,12 @@ public class VolleyErrorHandler {
     public static void handle(String url, VolleyError volleyError) {
         Context context = App.getContext();
 
-       /* try {
+        try {
             Utils.log(TAG, "handle:url " + volleyError.networkResponse.statusCode);
 
             switch (volleyError.networkResponse.statusCode) {
-                case 500:
+                case 400:
+                    Utils.toast(context, url);
                 case 401:
                     Utils.toast(context, context.getResources().getString(R.string.some_thing_went_wrong));
                     break;
@@ -25,7 +28,7 @@ public class VolleyErrorHandler {
         } catch (Exception e) {
             Utils.toast(context, context.getResources().getString(R.string.some_thing_went_wrong));
             e.printStackTrace();
-        }*/
+        }
     }
 
 }

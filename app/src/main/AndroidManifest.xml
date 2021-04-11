@@ -29,18 +29,18 @@
         <activity android:name=".SPbusiness.SpbRegisterActivity" />
         <activity android:name=".SPbusiness.SpbMyServicesActivity" />
         
-        <activity android:name=".SPindividual.SpiHomeActivity">
+        <activity android:name=".SPindividual.SpiHomeActivity"/>
+
+        <activity android:name=".SPindividual.SpiAllTransactionActivity" />
+        <activity android:name=".SPindividual.SpiServiceCompletedStatusActivity" />
+        <activity android:name=".SPindividual.SpiServiceAcceptActivity" />
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SPindividual.SpiAllTransactionActivity" />
-        <activity android:name=".SPindividual.SpiServiceCompletedStatusActivity" />
-        <activity android:name=".SPindividual.SpiServiceAcceptActivity" />
-        <activity android:name=".SplashScreenActivity" />
         <activity android:name=".SPindividual.SpiProfileEditActivity" />
         <activity android:name=".SPindividual.SpiMyServicesActivity" />
         <activity android:name=".SPindividual.SpiProfileActivity" />
