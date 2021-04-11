@@ -8,6 +8,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.SPbusiness.SpbRegisterActivity;
+import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
+import com.matrixdeveloper.tajika.SPindividual.SpiLoginActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiRegisterActivity;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
@@ -27,7 +29,14 @@ public class LandingPage extends AppCompatActivity {
         prf = new PrefManager(LandingPage.this);
 
         if (!prf.getString("id").equals("")){
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+
+            if (prf.getString("role").equals("3"))
+            startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class));
+            else if (prf.getString("role").equals("4"))
+                startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class));
+            else
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+
             finish();
         }
     }
@@ -41,7 +50,7 @@ public class LandingPage extends AppCompatActivity {
 
     private void initListeners() {
         user.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, LoginActivity.class)));
-        serviceProIndividual.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, SpiRegisterActivity.class)));
+        serviceProIndividual.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, SpiLoginActivity.class)));
         serviceProBusiness.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, SpbRegisterActivity.class)));
         help.setOnClickListener(view -> startActivity(new Intent(LandingPage.this, HelpActivity.class)));
     }

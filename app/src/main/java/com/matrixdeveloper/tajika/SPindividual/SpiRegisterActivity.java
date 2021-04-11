@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -75,7 +76,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
     protected boolean hasReadWritePermissions;
     protected static final int REQUEST_PERMISSIONS_READ_WRITE = 4;
     private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
-            bussiness_link, minimum_charge, education_level, passportnumber, upload_passportid, professional_qualification,
+            bussiness_link, minimum_charge, education_level, passportnumber, upload_passportid="", professional_qualification,
             qualification_certification, latitude, longitude;
     private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass,edtServiceArea,edtBusinessCategories,edtYourExperience,
             edtBusinessLink,edtServiceCharge,edtSkillDescription,edtHighestEducation,edtPassportNumber,edtProQualification;
@@ -135,15 +136,9 @@ public class SpiRegisterActivity extends AppCompatActivity {
         nextToBusinessDetails.setOnClickListener(view -> regViewFlipper.showNext());
         nextToDocumentUpload.setOnClickListener(view -> regViewFlipper.showNext());
 
-        btnRetake.setOnClickListener(view -> {
-            Toast.makeText(this, "Retake", Toast.LENGTH_SHORT).show();
-            //onDocumentUploadChoosePhoto();
-        });
-        btnSave.setOnClickListener(view -> {
-            Toast.makeText(this, "Save", Toast.LENGTH_SHORT).show();
-            //getFileList();
-        });
+
         ll_id_upload.setOnClickListener(view -> {
+            type =1;
             initiatePhotoSelection();
         });
         ll_certificate_upload.setOnClickListener(view -> {
@@ -172,7 +167,8 @@ public class SpiRegisterActivity extends AppCompatActivity {
         passportnumber = edtPassportNumber.getText().toString();
         professional_qualification = edtProQualification.getText().toString();
 
-
+        if (upload_passportid.equals(""))
+            upload_passportid = idOrPassword.getText().toString();
 
         if (pass.equals(Cpass)) {
             JSONObject data = new JSONObject();
@@ -194,8 +190,9 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 data.put("upload_passportid", upload_passportid);
                 data.put("professional_qualification", professional_qualification);
                 data.put("qualification_certification", qualification_certification);
-                data.put("latitude", latitude);
-                data.put("longitude", longitude);
+                data.put("latitude", "22.22222");
+                data.put("longitude", "28.75000");
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -216,6 +213,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
                     prf.setString(Global.email, register.getEmail());
 
                     startActivity(new Intent(this, SpiHomeActivity.class));
+                    finish();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -225,6 +223,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Password did't match", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -273,6 +272,9 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
 
+                byte[] b = bytes.toByteArray();
+                String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+
                 Log.e("Activity", "Pick from Camera::>>> ");
 
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
@@ -291,7 +293,15 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 }
 
                 imgPath = destination.getAbsolutePath();
-                professionalCertificate.setText("img_" + timeStamp);
+
+                if (type ==1) {
+                    upload_passportid = encImage;
+                    idOrPassword.setText("img_" + timeStamp);
+                }
+                else{
+                    qualification_certification = encImage;
+                    professionalCertificate.setText("img_" + timeStamp);
+                }
 
 
             } catch (Exception e) {
@@ -303,6 +313,12 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
+
+                byte[] b = bytes.toByteArray();
+                String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+
                 Log.e("Activity", "Pick from Gallery::>>> ");
 
                 imgPath = getRealPathFromURI(selectedImage);
@@ -310,8 +326,14 @@ public class SpiRegisterActivity extends AppCompatActivity {
 
                 //ivPassDocument.setImageBitmap(bitmap);
 
-                idOrPassword.setText(destination.getName());
-                Toast.makeText(this, "Selected File: \n"+destination.getName(), Toast.LENGTH_SHORT).show();
+                if (type ==1) {
+                    upload_passportid = encImage;
+                    idOrPassword.setText("img_" + timeStamp);
+                }
+                else{
+                    qualification_certification = encImage;
+                    professionalCertificate.setText("img_" + timeStamp);
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();

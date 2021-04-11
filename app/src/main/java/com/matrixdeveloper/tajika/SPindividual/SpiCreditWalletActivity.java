@@ -61,7 +61,7 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
     private void getWalletDetails() {
         JSONObject data = new JSONObject();
         try {
-            data.put("user_id", "30" /*prf.getString("id")*/);
+            data.put("user_id", prf.getString("id"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

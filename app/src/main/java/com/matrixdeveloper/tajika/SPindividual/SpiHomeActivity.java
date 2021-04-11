@@ -146,7 +146,6 @@ public class SpiHomeActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.UPDATE_LIVE_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
 
-
         });
 
     }
@@ -156,7 +155,7 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("user_id", "30");//prf.getString("id"));
+            data.put("user_id", pref.getString("id"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
