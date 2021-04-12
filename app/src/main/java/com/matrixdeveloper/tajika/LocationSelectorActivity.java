@@ -59,9 +59,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
+import static com.matrixdeveloper.tajika.utils.Global.compareAddOne;
+import static com.matrixdeveloper.tajika.utils.Global.compareAddOneID;
+import static com.matrixdeveloper.tajika.utils.Global.compareAddTwo;
+import static com.matrixdeveloper.tajika.utils.Global.compareAddTwoID;
 
 public class LocationSelectorActivity extends FragmentActivity
         implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMarkerDragListener,
@@ -87,9 +91,8 @@ public class LocationSelectorActivity extends FragmentActivity
     private ImageView img;
     private EditText edtSearch;
     private int peekHeight = 0;
-    private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill;
-
-    HashMap<String, Integer> hashMap;
+    private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill, compare;
+    ServiceProviderDetails serviceProviderDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +118,7 @@ public class LocationSelectorActivity extends FragmentActivity
         providerDetails = findViewById(R.id.ll_providerDetails);
         txtProviderName = findViewById(R.id.txt_provider_name);
         txtRating = findViewById(R.id.txt_rating);
+        compare = findViewById(R.id.txt_addToCompare);
         txtServiceName = findViewById(R.id.txt_service_name);
         txtDistance = findViewById(R.id.txt_distance);
         txtAbout = findViewById(R.id.txt_about);
@@ -124,7 +128,6 @@ public class LocationSelectorActivity extends FragmentActivity
         txtSkill = findViewById(R.id.txt_skill);
 
         serviceProviderList = new ArrayList<>();
-        hashMap = new HashMap<String, Integer>();
 
 
         View bottomSheet = findViewById(R.id.bottom_sheet);
@@ -169,6 +172,14 @@ public class LocationSelectorActivity extends FragmentActivity
     }
 
     private void initListeners() {
+        compare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                initiatePopUp();
+            }
+        });
+
         gotoCurrentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -280,19 +291,8 @@ public class LocationSelectorActivity extends FragmentActivity
                             Marker m = mMap.addMarker(new MarkerOptions().position(latLng).icon(providerImage(this)));
                             serviceProviderList.add(serviceProvider);
 
-                            hashMap.put(m.getId(), serviceProvider.getUserId());
-                            //Toast.makeText(this, ""+m.getId(), Toast.LENGTH_SHORT).show();
+                            m.setTag(serviceProvider.getUserId());
 
-                            //m.setTag(serviceProvider.getUserId());
-
-                            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-                                @Override
-                                public void onMapLongClick(LatLng latLng) {
-
-                                    Toast.makeText(LocationSelectorActivity.this, "" + hashMap.get(m.getId()), Toast.LENGTH_SHORT).show();
-                                    //initiatePopUp();
-                                }
-                            });
                             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override
                                 public boolean onMarkerClick(Marker m) {
@@ -336,22 +336,33 @@ public class LocationSelectorActivity extends FragmentActivity
         TextView addOne = dialog.findViewById(R.id.txt_addOne);
         TextView addTwo = dialog.findViewById(R.id.txt_addTwo);
         TextView compareProviders = dialog.findViewById(R.id.txt_compareProviders);
-        ImageView closeDialog = dialog.findViewById(R.id.txt_compareProviders);
+        ImageView closeDialog = dialog.findViewById(R.id.iv_closeDialog);
+
+
+
+        addOne.setText(compareAddOne);
+        addTwo.setText(compareAddTwo);
 
         addOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                compareAddOne = serviceProviderDetails.getName();
+                compareAddOneID=serviceProviderDetails.getId().toString();
+                addOne.setText(compareAddOne);
             }
         });
-        addOne.setOnClickListener(new View.OnClickListener() {
+        addTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                compareAddTwo = serviceProviderDetails.getName();
+                compareAddTwoID=serviceProviderDetails.getId().toString();
+                addTwo.setText(compareAddTwo);
             }
         });
-        addOne.setOnClickListener(new View.OnClickListener() {
+        compareProviders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(LocationSelectorActivity.this, CompareListActivity.class));
             }
         });
         closeDialog.setOnClickListener(new View.OnClickListener() {
@@ -378,7 +389,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
             try {
 
-                ServiceProviderDetails serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
+                serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
 
                 txtProviderName.setText(serviceProviderDetails.getName());
                 txtRating.setText(serviceProviderDetails.getRating() + " ratings");
