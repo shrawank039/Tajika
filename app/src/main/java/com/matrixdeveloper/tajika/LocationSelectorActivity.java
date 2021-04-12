@@ -285,14 +285,6 @@ public class LocationSelectorActivity extends FragmentActivity
 
                             //m.setTag(serviceProvider.getUserId());
 
-                            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-                                @Override
-                                public void onMapLongClick(LatLng latLng) {
-
-                                    Toast.makeText(LocationSelectorActivity.this, "" + hashMap.get(m.getId()), Toast.LENGTH_SHORT).show();
-                                    //initiatePopUp();
-                                }
-                            });
                             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override
                                 public boolean onMarkerClick(Marker m) {
