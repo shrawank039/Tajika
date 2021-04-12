@@ -301,6 +301,7 @@ public class LocationSelectorActivity extends FragmentActivity
                                     return true;
                                 }
                             });
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
