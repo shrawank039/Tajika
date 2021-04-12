@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            android:text="Add two service providers to compare"
+            android:textColor="@color/dark_blue"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_closeDialog"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/circle_cancel"
+            app:tint="@color/light_red" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_addOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/layout_input_outline"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Add 1" />
+
+    <TextView
+        android:id="@+id/txt_addTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/layout_input_outline"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Add 2" />
+
+    <TextView
+        android:id="@+id/txt_compareProviders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/layout_input_outline"
+        android:backgroundTint="@color/orange"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Compare Providers"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>
