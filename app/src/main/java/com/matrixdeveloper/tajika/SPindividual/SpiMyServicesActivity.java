@@ -60,8 +60,6 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         }
         ApiCall.postMethod(this, ServiceNames.PROVIDER_SERVICE_LIST, data, response -> {
             Utils.log(TAG, response.toString());
-
-
         });
 
     }

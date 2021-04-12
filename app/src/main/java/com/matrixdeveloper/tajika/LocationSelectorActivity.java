@@ -1,5 +1,6 @@
 package com.matrixdeveloper.tajika;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -58,6 +59,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -75,7 +77,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private String selected_id;
     private ImageView gotoCurrentLocation, backPress;
     private LinearLayout viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService, inner;
-    private View view;
+    private View view, view1;
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
     private String TAG = "LocationSelectorAct";
@@ -86,6 +88,8 @@ public class LocationSelectorActivity extends FragmentActivity
     private EditText edtSearch;
     private int peekHeight = 0;
     private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill;
+
+    HashMap<String, Integer> hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +124,7 @@ public class LocationSelectorActivity extends FragmentActivity
         txtSkill = findViewById(R.id.txt_skill);
 
         serviceProviderList = new ArrayList<>();
+        hashMap = new HashMap<String, Integer>();
 
 
         View bottomSheet = findViewById(R.id.bottom_sheet);
@@ -274,8 +279,20 @@ public class LocationSelectorActivity extends FragmentActivity
                             LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
                             Marker m = mMap.addMarker(new MarkerOptions().position(latLng).icon(providerImage(this)));
                             serviceProviderList.add(serviceProvider);
-                            m.setTag(serviceProvider.getUserId());
 
+                            hashMap.put(m.getId(), serviceProvider.getUserId());
+                            //Toast.makeText(this, ""+m.getId(), Toast.LENGTH_SHORT).show();
+
+                            //m.setTag(serviceProvider.getUserId());
+
+                            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                                @Override
+                                public void onMapLongClick(LatLng latLng) {
+
+                                    Toast.makeText(LocationSelectorActivity.this, "" + hashMap.get(m.getId()), Toast.LENGTH_SHORT).show();
+                                    //initiatePopUp();
+                                }
+                            });
                             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override
                                 public boolean onMarkerClick(Marker m) {
@@ -311,6 +328,41 @@ public class LocationSelectorActivity extends FragmentActivity
                 e.printStackTrace();
             }
         });
+    }
+
+    private void initiatePopUp() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_provider_compare_list);
+
+        TextView addOne = dialog.findViewById(R.id.txt_addOne);
+        TextView addTwo = dialog.findViewById(R.id.txt_addTwo);
+        TextView compareProviders = dialog.findViewById(R.id.txt_compareProviders);
+        ImageView closeDialog = dialog.findViewById(R.id.txt_compareProviders);
+
+        addOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        addOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        addOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        closeDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     private void getServiceProviderDetails(String providerID) {

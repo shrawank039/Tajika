@@ -29,7 +29,7 @@
         <activity android:name=".SPbusiness.SpbRegisterActivity" />
         <activity android:name=".SPbusiness.SpbMyServicesActivity" />
         
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -88,7 +88,7 @@
         <activity android:name=".SPindividual.SpiLoginActivity"/>
 
         <activity
-            android:name=".HomeActivity"
+            android:name=".SplashScreenActivity"
             android:label="@string/title_activity_navigation_drawer" />
 
         <service android:name=".services.ProviderFirebaseMessagingService">
