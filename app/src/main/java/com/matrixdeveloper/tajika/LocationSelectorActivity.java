@@ -80,7 +80,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private Location location;
     private String selected_id;
     private ImageView gotoCurrentLocation, backPress;
-    private LinearLayout viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService, inner;
+    private LinearLayout searchProviderCategory, viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService, inner;
     private View view, view1;
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
@@ -111,6 +111,7 @@ public class LocationSelectorActivity extends FragmentActivity
         recommendedService = findViewById(R.id.ll_recommendedService);
         edtSearch = findViewById(R.id.edt_search);
         edtSearch.setText(service_name);
+        searchProviderCategory = findViewById(R.id.ll_searchProviderCategory);
 
         //bottom sheet
         viewDetails = findViewById(R.id.ll_viewDetails);
@@ -172,37 +173,20 @@ public class LocationSelectorActivity extends FragmentActivity
     }
 
     private void initListeners() {
-        compare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                initiatePopUp();
-            }
+        searchProviderCategory.setOnClickListener(view -> startActivity(new Intent(LocationSelectorActivity.this,SearchActivity.class)));
+        compare.setOnClickListener(view -> {
+            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            initiatePopUp();
         });
 
-        gotoCurrentLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initLocation();
-            }
-        });
+        gotoCurrentLocation.setOnClickListener(view -> initLocation());
 
-        backPress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        backPress.setOnClickListener(view -> onBackPressed());
 
-        requestService.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class)
-                        .putExtra("provider_id", selected_id)
-                        .putExtra("service_name", service_name)
-                        .putExtra("service_id", service_id));
-            }
-        });
+        requestService.setOnClickListener(view -> startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class)
+                .putExtra("provider_id", selected_id)
+                .putExtra("service_name", service_name)
+                .putExtra("service_id", service_id)));
 
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -339,7 +323,6 @@ public class LocationSelectorActivity extends FragmentActivity
         ImageView closeDialog = dialog.findViewById(R.id.iv_closeDialog);
 
 
-
         addOne.setText(compareAddOne);
         addTwo.setText(compareAddTwo);
 
@@ -347,7 +330,7 @@ public class LocationSelectorActivity extends FragmentActivity
             @Override
             public void onClick(View v) {
                 compareAddOne = serviceProviderDetails.getName();
-                compareAddOneID=serviceProviderDetails.getId().toString();
+                compareAddOneID = serviceProviderDetails.getId().toString();
                 addOne.setText(compareAddOne);
             }
         });
@@ -355,7 +338,7 @@ public class LocationSelectorActivity extends FragmentActivity
             @Override
             public void onClick(View v) {
                 compareAddTwo = serviceProviderDetails.getName();
-                compareAddTwoID=serviceProviderDetails.getId().toString();
+                compareAddTwoID = serviceProviderDetails.getId().toString();
                 addTwo.setText(compareAddTwo);
             }
         });
