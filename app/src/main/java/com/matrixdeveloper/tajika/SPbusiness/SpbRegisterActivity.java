@@ -95,7 +95,8 @@ public class SpbRegisterActivity extends AppCompatActivity {
                     prf.setString(Global.role, register.getRoles().toString());
                     prf.setString(Global.email, register.getEmail());
 
-                    startActivity(new Intent(this, SpiHomeActivity.class));
+                    startActivity(new Intent(this, SpiHomeActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 
                 } catch (JSONException e) {
                     e.printStackTrace();

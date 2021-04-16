@@ -77,10 +77,12 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
             startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
                     .putExtra("requestDetails", requestDetails));
+            finish();
         });
     }
 
@@ -88,11 +90,12 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("id", 3);
+            data.put("id", id);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
             Utils.log(TAG, response.toString());
             try {

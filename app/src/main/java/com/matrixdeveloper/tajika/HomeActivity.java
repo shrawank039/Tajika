@@ -316,7 +316,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logout:
                 drawer.closeDrawer(Gravity.LEFT);
                 prf.setString("id", "");
-                Intent intent = new Intent(this, LoginActivity.class);
+                Intent intent = new Intent(this, LandingPage.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;

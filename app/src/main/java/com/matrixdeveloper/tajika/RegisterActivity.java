@@ -1,5 +1,6 @@
 package com.matrixdeveloper.tajika;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -78,6 +79,10 @@ public class RegisterActivity extends AppCompatActivity {
                         prf.setString(Global.token, register.getToken());
                         prf.setString(Global.role, register.getRoles().toString());
                         prf.setString(Global.email, register.getEmail());
+
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        finish();
 
                     } catch (JSONException e) {
                         e.printStackTrace();

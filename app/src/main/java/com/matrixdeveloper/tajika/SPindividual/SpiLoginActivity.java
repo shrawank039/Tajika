@@ -84,7 +84,8 @@ public class SpiLoginActivity extends AppCompatActivity {
                 prf.setString(Global.email, login.getEmail());
                 prf.setString(Global.name, login.getName());
 
-                startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
 
             } catch (JSONException e) {

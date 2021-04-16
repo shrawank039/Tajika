@@ -71,6 +71,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
             Utils.log(TAG, response.toString());
 
             startActivity(new Intent(SpiServiceAcceptActivity.this, SpiServiceCompletedStatusActivity.class));
+            finish();
 
         });
     }
