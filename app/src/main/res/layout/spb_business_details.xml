@@ -42,9 +42,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,16 +75,7 @@
                     android:id="@+id/edt_phone"
                     style="@style/register_editText_container"
                     android:hint="@string/select_business_category"
-                    android:inputType="number"
                     android:maxLength="10" />
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/keyboard_arrow_down_icon"
-                    app:tint="@color/black" />
 
             </LinearLayout>
 

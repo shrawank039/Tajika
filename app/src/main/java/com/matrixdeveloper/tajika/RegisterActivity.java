@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                         prf.setString(Global.role, register.getRoles().toString());
                         prf.setString(Global.email, register.getEmail());
 
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class)
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                         finish();
 

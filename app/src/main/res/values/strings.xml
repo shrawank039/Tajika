@@ -45,7 +45,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="description"><u>Description</u></string>
     <string name="your_business_analytics"><u>Your business analytics</u></string>
     <string name="clear_all"><b>Clear All</b></string>
-    <string name="good_morning_peter_what_can_we_help_you_with">Good Morning Peter, What can we help you with?</string>
+    <string name="good_morning_peter_what_can_we_help_you_with">Good Morning, What can we help you with?</string>
 
     <string name="title_onboarding_1">Find Service Provider Near You</string>
     <string name="description_onboarding_1">Have a problem you can\'t solve? Are you looking for a service provider?</string>

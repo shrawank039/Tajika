@@ -43,31 +43,19 @@
                 android:paddingHorizontal="20dp">
 
                 <Button
+                    style="@style/landingPage_button_style"
                     android:id="@+id/btn_user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/orange"
                     android:drawableTop="@drawable/happy_1x"
-                    android:padding="10dp"
-                    android:text="User"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:text="User" />
 
                 <Button
+                    style="@style/landingPage_button_style"
                     android:id="@+id/btn_serviceProviderIndividual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:backgroundTint="@color/orange"
                     android:drawableTop="@drawable/run_1x"
-                    android:paddingVertical="10dp"
-                    android:text="Service Provider Individual"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:text="Service Provider Individual" />
 
             </LinearLayout>
 
@@ -80,31 +68,19 @@
                 android:paddingBottom="20dp">
 
                 <Button
+                    style="@style/landingPage_button_style"
                     android:id="@+id/btn_serviceProviderBusiness"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_weight="3"
-                    android:backgroundTint="@color/orange"
+                    android:layout_marginRight="10dp"
                     android:drawableTop="@drawable/store_1x"
-                    android:padding="8dp"
-                    android:text="Service Provider Business"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:text="Service Provider Business"/>
 
                 <Button
+                    style="@style/landingPage_button_style"
                     android:id="@+id/btn_help"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/orange"
                     android:drawableTop="@drawable/help_1x"
-                    android:paddingVertical="10dp"
-                    android:text="Help"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:text="Help"/>
 
             </LinearLayout>
         </LinearLayout>

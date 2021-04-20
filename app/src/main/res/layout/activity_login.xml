@@ -41,7 +41,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Welcome back to \nTajika"
-                android:textColor="@color/dark_grey"
+                android:textColor="@color/grey_700"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -141,7 +141,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:onClick="onSignUPClick"
                 android:text="Sign Up"
                 android:textColor="@color/orange"

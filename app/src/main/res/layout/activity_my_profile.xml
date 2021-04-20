@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/dark_blue"
+        android:background="@color/orange"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="15dp"
@@ -47,9 +47,11 @@
     <ScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
+        android:layout_height="0dp"
         android:scrollbarSize="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <LinearLayout
@@ -57,35 +59,49 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="170dp"
                 android:background="@drawable/layout_top_design"
-                android:gravity="center"
-                android:orientation="vertical">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_userImage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/app_logo"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="2dp" />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    style="@style/register_top_imageView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/txt_userName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:gravity="center"
-                    android:text="John Doe"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    style="@style/register_top_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_userImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/app_logo"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="2dp" />
+
+                    <TextView
+                        android:id="@+id/txt_userName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="100dp"
+                        android:gravity="center"
+                        android:text="John Doe"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,12 +109,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
+                <LinearLayout style="@style/register_input_container">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -109,24 +120,12 @@
 
                     <TextView
                         android:id="@+id/txt_userNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingVertical="5dp"
-                        android:paddingStart="20dp"
-                        android:text="+91 1111 111111"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        style="@style/register_editText_container"
+                        android:text="+91 1111 111111" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="10dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
+                <LinearLayout style="@style/register_input_container">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -137,23 +136,14 @@
 
                     <TextView
                         android:id="@+id/txt_userMail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingVertical="5dp"
-                        android:paddingStart="20dp"
-                        android:text="john@doe.com"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        style="@style/register_editText_container"
+                        android:text="john@doe.com" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
+
+                    style="@style/register_input_container">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -164,14 +154,8 @@
 
                     <TextView
                         android:id="@+id/txt_userGender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingVertical="5dp"
-                        android:paddingStart="20dp"
-                        android:text="Female"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        style="@style/register_editText_container"
+                        android:text="Female" />
 
                 </LinearLayout>
 
@@ -192,25 +176,13 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
+                <LinearLayout style="@style/register_input_container">
 
                     <EditText
                         android:id="@+id/edt_currentPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
+                        style="@style/register_editText_container"
                         android:hint="Current password"
-                        android:inputType="textPassword"
-                        android:paddingVertical="2dp"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        android:inputType="textPassword" />
 
                 </LinearLayout>
 
@@ -226,50 +198,24 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
+                <LinearLayout style="@style/register_input_container">
 
                     <EditText
                         android:id="@+id/edt_newPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
+                        style="@style/register_editText_container"
                         android:hint="New password"
-                        android:inputType="textPassword"
-                        android:paddingVertical="2dp"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        android:inputType="textPassword" />
 
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
+                <LinearLayout style="@style/register_input_container">
 
                     <EditText
                         android:id="@+id/edt_confirmNewPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
+                        style="@style/register_editText_container"
                         android:hint="Confirm new password"
-                        android:inputType="textPassword"
-                        android:paddingVertical="2dp"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        android:inputType="textPassword" />
 
 
                 </LinearLayout>
@@ -288,6 +234,7 @@
                     android:textColor="@color/dark_blue" />
 
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

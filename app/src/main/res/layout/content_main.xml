@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ImageView
@@ -60,7 +60,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="20dp"
                 android:background="@drawable/layout_input_outline"
-                android:backgroundTint="@color/grey_100"
+                android:backgroundTint="@color/md_grey_100"
                 android:gravity="center"
                 android:padding="10dp">
 
@@ -198,12 +198,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:paddingEnd="10dp"
-                tools:listitem="@layout/recomended_services"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:scrollbarSize="0dp" />
+                android:paddingEnd="10dp"
+                android:scrollbarSize="0dp"
+                tools:listitem="@layout/recomended_services" />
 
             <LinearLayout
                 android:id="@+id/ll_banner"
@@ -355,16 +355,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/userHome_bottomNav_style"
                     android:layout_marginEnd="15dp"
                     android:drawableStart="@drawable/compare_list_1x"
-                    android:drawablePadding="10dp"
-                    android:text="Notification"
-                    android:drawableTint="@color/black"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:text="Notification" />
             </LinearLayout>
 
             <LinearLayout
@@ -377,16 +371,10 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/userHome_bottomNav_style"
                     android:layout_marginStart="15dp"
                     android:drawableStart="@drawable/coins_1x"
-                    android:drawablePadding="10dp"
-                    android:text="Coins Wallet"
-                    android:drawableTint="@color/black"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:text="Coins Wallet" />
             </LinearLayout>
         </LinearLayout>
 

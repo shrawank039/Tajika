@@ -18,7 +18,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +25,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -50,6 +50,7 @@ import com.matrixdeveloper.tajika.model.ServiceProviderDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 import com.matrixdeveloper.tajika.widget.BottomSheetDialog;
 
@@ -89,15 +90,19 @@ public class LocationSelectorActivity extends FragmentActivity
     private String service_name, service_id;
     int height;
     private ImageView img;
-    private EditText edtSearch;
+    private TextView edtSearch;
     private int peekHeight = 0;
     private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill, compare;
     ServiceProviderDetails serviceProviderDetails;
+    private CardView jointToProvideService, referToProvideService;
+    PrefManager pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_selector);
+
+        pref = new PrefManager(this);
 
         service_name = getIntent().getStringExtra("service_name");
         service_id = getIntent().getStringExtra("service_id");
@@ -127,6 +132,8 @@ public class LocationSelectorActivity extends FragmentActivity
         txtEdu = findViewById(R.id.txt_education);
         txtAdd = findViewById(R.id.txt_address);
         txtSkill = findViewById(R.id.txt_skill);
+        jointToProvideService = findViewById(R.id.cv_joinToProvideService);
+        referToProvideService = findViewById(R.id.cv_referToProvideService);
 
         serviceProviderList = new ArrayList<>();
 
@@ -173,7 +180,7 @@ public class LocationSelectorActivity extends FragmentActivity
     }
 
     private void initListeners() {
-        searchProviderCategory.setOnClickListener(view -> startActivity(new Intent(LocationSelectorActivity.this,SearchActivity.class)));
+        searchProviderCategory.setOnClickListener(view -> startActivity(new Intent(LocationSelectorActivity.this, SearchActivity.class)));
         compare.setOnClickListener(view -> {
             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             initiatePopUp();
@@ -208,6 +215,28 @@ public class LocationSelectorActivity extends FragmentActivity
                 // React to dragging events
             }
         });
+
+
+        jointToProvideService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pref.setString("id", "");
+                Intent intent = new Intent(LocationSelectorActivity.this, LandingPage.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+        referToProvideService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "App Link will be pasted here");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Refer service provider via");
+                startActivity(Intent.createChooser(shareIntent, "App Link will be pasted here"));
+            }
+        });
+
     }
 
     @Override

@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/dark_blue"
+        android:background="@color/orange"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="15dp"
@@ -39,26 +39,38 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/nestedScrollView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:scrollbarSize="0dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="170dp"
+            android:background="@drawable/layout_top_design"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                style="@style/register_top_imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/layout_top_design"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <RelativeLayout
                     android:layout_width="100dp"
@@ -97,144 +109,99 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="vertical">
+                style="@style/register_input_container">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:src="@drawable/profile_2x" />
-
-                    <EditText
-                        android:id="@+id/edt_userName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:hint="Enter Name"
-                        android:paddingVertical="5dp"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:src="@drawable/mobile_2x" />
-
-                    <EditText
-                        android:id="@+id/edt_userMobile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:hint="Enter mobile number"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:paddingVertical="5dp"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="15dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:src="@drawable/email_2x" />
-
-                    <EditText
-                        android:id="@+id/edt_userMail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:hint="Enter e-mail"
-                        android:inputType="textEmailAddress"
-                        android:paddingVertical="5dp"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:src="@drawable/group_profile_2x" />
-
-                    <TextView
-                        android:id="@+id/txt_selectGender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingVertical="8dp"
-                        android:paddingStart="20dp"
-                        android:text="Select gender"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_submit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:paddingHorizontal="50dp"
-                    android:shadowColor="@color/grey_700"
-                    android:text="Save"
-                    android:textAllCaps="false"
-                    android:textColor="@color/dark_blue" />
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/profile_2x" />
+
+                <EditText
+                    android:id="@+id/edt_userName"
+                    android:hint="Enter Name"
+                   style="@style/register_editText_container" />
 
             </LinearLayout>
+
+            <LinearLayout
+                style="@style/register_input_container">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/mobile_2x" />
+
+                <EditText
+                    android:id="@+id/edt_userMobile"
+                    android:hint="Enter mobile number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    style="@style/register_editText_container" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/register_input_container">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/email_2x" />
+
+                <EditText
+                    android:id="@+id/edt_userMail"
+                    android:hint="Enter e-mail"
+                    android:inputType="textEmailAddress"
+                    style="@style/register_editText_container"  />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/register_input_container">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/group_profile_2x" />
+
+                <TextView
+                    android:id="@+id/txt_selectGender"
+                    style="@style/register_editText_container"
+                    android:paddingVertical="8dp"
+                    android:text="Select gender" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:background="@drawable/layout_input_outline"
+                android:paddingHorizontal="50dp"
+                android:shadowColor="@color/grey_700"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue" />
+
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

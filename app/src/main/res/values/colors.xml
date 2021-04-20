@@ -12,8 +12,10 @@
     <color name="gray">#5F5F5F</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey_700">#555353</color>
+    <color name="grey_800">#424242</color>
     <color name="grey_500">#939292</color>
     <color name="grey_300">#DAD8D8</color>
+    <color name="grey_200">#EEEEEE</color>
     <color name="grey_100">#F4F2F2</color>
     <color name="light_green">#6FCF97</color>
     <color name="light_red">#EB5757</color>
@@ -26,6 +28,9 @@
 
     <color name="home_search_hint">#888888</color>
 
+    <color name="gold">#E3A81E</color>
+    <color name="hgold">#C9A348</color>
+    <color name="golden">#F5BD02</color>
 
     <color name="colorPrimary">#6FB6F4</color>
     <color name="colorPrimaryDark">#3E97F0</color>
