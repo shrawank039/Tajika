@@ -67,4 +67,15 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="select_business_category">Select Business Category</string>
     <string name="some_thing_went_wrong">Something went wrong</string>
 
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
 </resources>

@@ -60,7 +60,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class SpiRegisterActivity extends AppCompatActivity{
+public class SpiRegisterActivity extends AppCompatActivity {
 
     ViewFlipper regViewFlipper;
     Button nextToBusinessDetails, nextToDocumentUpload, submit;
@@ -84,12 +84,15 @@ public class SpiRegisterActivity extends AppCompatActivity{
     protected boolean hasReadWritePermissions;
     protected static final int REQUEST_PERMISSIONS_READ_WRITE = 4;
     private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
-            bussiness_link, minimum_charge, education_level, passportnumber, upload_passportid="", professional_qualification,
+            bussiness_link, minimum_charge, education_level, passportnumber, upload_passportid = "", professional_qualification,
             qualification_certification, latitude, longitude;
-    private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass,edtServiceArea,edtYourExperience,
-            edtBusinessLink,edtServiceCharge,edtSkillDescription,edtHighestEducation,edtPassportNumber,edtProQualification;
+    private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass, edtServiceArea, edtYourExperience,
+            edtBusinessLink, edtServiceCharge, edtSkillDescription, edtHighestEducation, edtPassportNumber, edtProQualification;
     private static PrefManager prf;
-    List<String> spinnerArray;
+
+    List<String> spinnerArray = new ArrayList<>();
+    String[] simpleArray = {"Select Business Category"};
+    Spinner spinner;
 
     private Bitmap bitmap;
     private File destination;
@@ -105,7 +108,6 @@ public class SpiRegisterActivity extends AppCompatActivity{
         setContentView(R.layout.activity_spi_register);
 
         prf = new PrefManager(this);
-        spinnerArray = new ArrayList<>();
 
         regViewFlipper = findViewById(R.id.vf_regViewFlipper);
         nextToBusinessDetails = regViewFlipper.findViewById(R.id.btn_nextToBusinessDetails);
@@ -126,7 +128,7 @@ public class SpiRegisterActivity extends AppCompatActivity{
 
         edtServiceArea = regViewFlipper.findViewById(R.id.edt_serviceArea);
 
-      //  edtBusinessCategories = regViewFlipper.findViewById(R.id.edt_businessCategory);
+        //  edtBusinessCategories = regViewFlipper.findViewById(R.id.edt_businessCategory);
 
         edtBusinessLink = regViewFlipper.findViewById(R.id.edt_businessLink);
         edtYourExperience = regViewFlipper.findViewById(R.id.edt_yourExperience);
@@ -144,20 +146,16 @@ public class SpiRegisterActivity extends AppCompatActivity{
         initListeners();
         getServiceList();
 
-        Spinner spinner = (Spinner) regViewFlipper.findViewById(R.id.spinner);
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(arrayAdapter);
+        spinner = (Spinner) regViewFlipper.findViewById(R.id.spinner);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 business_categories = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(), "Selected: " + business_categories, Toast.LENGTH_LONG).show();
             }
+
             @Override
-            public void onNothingSelected(AdapterView <?> parent) {
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
@@ -170,7 +168,7 @@ public class SpiRegisterActivity extends AppCompatActivity{
 
 
         ll_id_upload.setOnClickListener(view -> {
-            type =1;
+            type = 1;
             initiatePhotoSelection();
         });
         ll_certificate_upload.setOnClickListener(view -> {
@@ -281,6 +279,12 @@ public class SpiRegisterActivity extends AppCompatActivity{
                     }
                 }
 
+                simpleArray = new String[ spinnerArray.size() ];
+                spinnerArray.toArray( simpleArray );
+                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, simpleArray);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -357,11 +361,10 @@ public class SpiRegisterActivity extends AppCompatActivity{
 
                 imgPath = destination.getAbsolutePath();
 
-                if (type ==1) {
+                if (type == 1) {
                     upload_passportid = encImage;
                     idOrPassword.setText("img_" + timeStamp);
-                }
-                else{
+                } else {
                     qualification_certification = encImage;
                     professionalCertificate.setText("img_" + timeStamp);
                 }
@@ -389,11 +392,10 @@ public class SpiRegisterActivity extends AppCompatActivity{
 
                 //ivPassDocument.setImageBitmap(bitmap);
 
-                if (type ==1) {
+                if (type == 1) {
                     upload_passportid = encImage;
                     idOrPassword.setText("img_" + timeStamp);
-                }
-                else{
+                } else {
                     qualification_certification = encImage;
                     professionalCertificate.setText("img_" + timeStamp);
                 }
