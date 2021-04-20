@@ -14,11 +14,15 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -30,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.Register;
+import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -38,6 +43,7 @@ import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,11 +54,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-public class SpiRegisterActivity extends AppCompatActivity {
+public class SpiRegisterActivity extends AppCompatActivity{
 
     ViewFlipper regViewFlipper;
     Button nextToBusinessDetails, nextToDocumentUpload, submit;
@@ -78,9 +86,10 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
             bussiness_link, minimum_charge, education_level, passportnumber, upload_passportid="", professional_qualification,
             qualification_certification, latitude, longitude;
-    private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass,edtServiceArea,edtBusinessCategories,edtYourExperience,
+    private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass,edtServiceArea,edtYourExperience,
             edtBusinessLink,edtServiceCharge,edtSkillDescription,edtHighestEducation,edtPassportNumber,edtProQualification;
     private static PrefManager prf;
+    List<String> spinnerArray;
 
     private Bitmap bitmap;
     private File destination;
@@ -96,6 +105,8 @@ public class SpiRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spi_register);
 
         prf = new PrefManager(this);
+        spinnerArray = new ArrayList<>();
+
         regViewFlipper = findViewById(R.id.vf_regViewFlipper);
         nextToBusinessDetails = regViewFlipper.findViewById(R.id.btn_nextToBusinessDetails);
         nextToDocumentUpload = regViewFlipper.findViewById(R.id.btn_nexttoDocumentDetails);
@@ -114,7 +125,9 @@ public class SpiRegisterActivity extends AppCompatActivity {
         edtCPass = regViewFlipper.findViewById(R.id.edt_cpass);
 
         edtServiceArea = regViewFlipper.findViewById(R.id.edt_serviceArea);
-        edtBusinessCategories = regViewFlipper.findViewById(R.id.edt_businessCategory);
+
+      //  edtBusinessCategories = regViewFlipper.findViewById(R.id.edt_businessCategory);
+
         edtBusinessLink = regViewFlipper.findViewById(R.id.edt_businessLink);
         edtYourExperience = regViewFlipper.findViewById(R.id.edt_yourExperience);
         edtServiceCharge = regViewFlipper.findViewById(R.id.edt_serviceCharge);
@@ -129,6 +142,25 @@ public class SpiRegisterActivity extends AppCompatActivity {
         btnSave = regViewFlipper.findViewById(R.id.document_save);
 
         initListeners();
+        getServiceList();
+
+        Spinner spinner = (Spinner) regViewFlipper.findViewById(R.id.spinner);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                business_categories = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), "Selected: " + business_categories, Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView <?> parent) {
+            }
+        });
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -158,7 +190,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
         pass = edtPass.getText().toString();
         Cpass = edtCPass.getText().toString();
         service_area = edtServiceArea.getText().toString();
-        business_categories = edtBusinessCategories.getText().toString();
         year_of_experience = edtYourExperience.getText().toString();
         bussiness_link = edtBusinessLink.getText().toString();
         minimum_charge = edtServiceCharge.getText().toString();
@@ -225,6 +256,37 @@ public class SpiRegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Password did't match", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void getServiceList() {
+
+        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray jsonarray = null;
+            try {
+
+                jsonarray = response.getJSONArray("data");
+
+                for (int i = 0; i < jsonarray.length(); i++) {
+
+                    try {
+
+                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
+                        spinnerArray.add(serviceList.getServiceName());
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -396,4 +458,5 @@ public class SpiRegisterActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
 }

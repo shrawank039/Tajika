@@ -63,20 +63,26 @@
 
             <LinearLayout style="@style/register_input_container">
 
-                <EditText
-                    android:id="@+id/edt_businessCategory"
-                    style="@style/register_editText_container"
-                    android:hint="Select Business Category"
-                    android:inputType="number"
-                    android:maxLength="10" />
+<!--                <EditText-->
+<!--                    android:id="@+id/edt_businessCategory"-->
+<!--                    style="@style/register_editText_container"-->
+<!--                    android:hint="Select Business Category"-->
+<!--                    android:inputType="number"-->
+<!--                    android:maxLength="10" />-->
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/keyboard_arrow_down_icon"
-                    app:tint="@color/black" />
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp" />
+
+<!--                <ImageView-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginEnd="20dp"-->
+<!--                    android:src="@drawable/keyboard_arrow_down_icon"-->
+<!--                    app:tint="@color/black" />-->
 
             </LinearLayout>
 
