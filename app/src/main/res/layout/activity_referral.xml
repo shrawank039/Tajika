@@ -42,7 +42,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/arrow_back"
-                    app:tint="@color/white" />
+                    app:tint="@color/yellow_header_text_color" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -50,7 +50,8 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="Referrals"
-                    android:textColor="@color/white"
+                    android:fontFamily="@font/lato_black"
+                    android:textColor="@color/yellow_header_text_color"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -76,8 +77,9 @@
                         android:layout_height="match_parent"
                         android:layout_margin="20dp"
                         android:gravity="center_vertical"
+                        android:fontFamily="@font/lato_black"
                         android:text="Get\nrewarded for every refer"
-                        android:textColor="@color/white"
+                        android:textColor="@color/yellow_header_text_color"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -134,15 +136,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Refer more to earn more\npoints"
-                        android:textColor="@color/white" />
+                        android:fontFamily="@font/lato"
+                        android:textColor="@color/yellow_header_text_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:text="@string/check_points_history"
-                        android:textColor="@color/white"
+                        android:textColor="@color/yellow_header_text_color"
                         android:textSize="14sp"
+                        android:fontFamily="@font/lato"
                         android:textStyle="bold" />
 
                 </LinearLayout>

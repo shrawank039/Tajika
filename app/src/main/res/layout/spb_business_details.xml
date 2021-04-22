@@ -33,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:fontFamily="@font/lato"
                     android:text="Provide your business details"
                     android:textColor="@color/yellow_header_text_color"
                     android:textSize="20sp"
