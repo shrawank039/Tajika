@@ -30,8 +30,8 @@
 
     <style name="switchTheme" parent="Theme.MaterialComponents.Light">
 
-        <item name="colorButtonNormal">@color/golden</item>
-        <item name="colorAccent">@color/golden</item>
+        <item name="colorButtonNormal">@color/md_green_700</item>
+        <item name="colorAccent">@color/md_green_700</item>
     </style>
 
     <style name="Theme.Tajika.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

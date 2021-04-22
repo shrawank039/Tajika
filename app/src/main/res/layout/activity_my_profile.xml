@@ -8,40 +8,25 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/golden"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp"
+        style="@style/appBar_container"
         app:layout_constraintEnd_toStartOf="@+id/nestedScrollView"
         app:layout_constraintStart_toEndOf="@+id/nestedScrollView"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_backPress"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/arrow_back"
-            app:tint="@color/white" />
+            style="@style/appBar_imageView" />
 
         <TextView
+            style="@style/appBar_textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:text="My Profile"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:text="My Profile" />
 
         <ImageView
             android:id="@+id/iv_editProfile"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/edit_icon"
-            app:tint="@color/white" />
+            android:src="@drawable/edit_icon" />
     </LinearLayout>
 
     <ScrollView
@@ -97,9 +82,8 @@
                         android:layout_marginBottom="100dp"
                         android:gravity="center"
                         android:text="John Doe"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        style="@style/topDesign_textView_bold"
+                        android:textSize="20sp" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,17 +205,11 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_submit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:paddingHorizontal="50dp"
-                    android:shadowColor="@color/grey_700"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/btn_submit"
                     android:text="Submit"
-                    android:textAllCaps="false"
-                    android:textColor="@color/dark_blue" />
+                    style="@style/submit_buttons"/>
 
             </LinearLayout>
 

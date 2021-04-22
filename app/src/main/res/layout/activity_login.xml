@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/imageView6"
-           style="@style/register_top_imageView"
+            style="@style/register_top_imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,14 +36,13 @@
 
             <TextView
                 android:id="@+id/textView"
+                style="@style/topDesign_textView_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Welcome back to \nTajika"
-                android:textColor="@color/grey_700"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="25sp" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -102,6 +101,7 @@
         </LinearLayout>
 
         <TextView
+            style="@style/topDesign_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -112,17 +112,10 @@
             android:textSize="16sp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            style="@style/submit_buttons"
             android:layout_marginTop="30dp"
-            android:background="@drawable/layout_input_outline"
             android:onClick="onLoginCLick"
-            android:paddingHorizontal="50dp"
-            android:shadowColor="@color/grey_700"
-            android:text="Submit"
-            android:textAllCaps="false"
-            android:textColor="@color/dark_blue" />
+            android:text="Submit" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,6 +125,7 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/topDesign_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -140,6 +134,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                style="@style/topDesign_textView_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:onClick="onSignUPClick"
@@ -150,6 +145,7 @@
         </LinearLayout>
 
         <TextView
+            style="@style/topDesign_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

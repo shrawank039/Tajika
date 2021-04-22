@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:text="@string/how_can_i_change_my_password"
             android:textColor="@color/black"
-            android:textStyle="bold" />
+            style="@style/topDesign_textView_bold" />
 
         <ImageView
             android:id="@+id/iv_expandMore"
@@ -39,6 +39,7 @@
         android:justificationMode="inter_word"
         android:text="@string/dummy_text"
         android:textColor="@color/dark_blue"
+        style="@style/topDesign_textView"
         android:visibility="gone" />
 
     <View

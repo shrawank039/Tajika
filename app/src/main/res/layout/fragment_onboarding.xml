@@ -29,8 +29,7 @@
         android:text="@string/title_onboarding_1"
         android:textSize="19sp"
         android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/dark_blue"/>
+        style="@style/topDesign_textView_bold"/>
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -41,7 +40,7 @@
         android:text="@string/description_onboarding_1"
         android:textSize="14sp"
         android:layout_margin="30dp"
-        android:textColor="@color/dark_blue"
+        style="@style/topDesign_textView"
         android:gravity="center"/>
 
 </RelativeLayout>

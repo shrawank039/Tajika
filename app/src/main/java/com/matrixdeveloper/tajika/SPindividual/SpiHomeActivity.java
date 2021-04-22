@@ -118,7 +118,7 @@ public class SpiHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (onlineOffline.isChecked()) {
                     onlineOffline.setText("You are Online");
-                    indicator.setColorFilter(getResources().getColor(R.color.light_green));
+                    indicator.setColorFilter(getResources().getColor(R.color.md_green_700));
                     changeStatus("1");
 
                 } else {

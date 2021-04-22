@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -33,6 +34,7 @@ public class SearchActivity extends AppCompatActivity {
     private List<ServiceList> serviceLists;
     private ServiceAdapter mAdapter;
     private RecyclerView recyclerView;
+    private ImageView backPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         inputSearch = findViewById(R.id.inputSearch);
-
+        backPress = findViewById(R.id.iv_backPress);
         recyclerView = findViewById(R.id.rv_viewSearchService);
 
         serviceLists = new ArrayList<>();
@@ -87,6 +89,14 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
+            }
+        });
+
+        backPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchActivity.super.onBackPressed();
+
             }
         });
 

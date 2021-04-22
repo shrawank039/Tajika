@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,25 +7,18 @@
     tools:context=".SearchActivity">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:paddingHorizontal="20dp">
+    <LinearLayout style="@style/appBar_container">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:onClick="backPress"
-            android:src="@drawable/arrow_back"
-            app:tint="@color/dark_blue" />
+            android:id="@+id/iv_backPress"
+            style="@style/appBar_imageView" />
 
         <EditText
             android:id="@+id/inputSearch"
+            style="@style/topDesign_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/white_button"
             android:backgroundTint="@color/grey_100"
@@ -34,7 +26,7 @@
             android:hint="@string/home_search_keyword"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:paddingHorizontal="15dp"
+            android:paddingHorizontal="20dp"
             android:paddingVertical="12dp"
             android:textColor="@color/black"
             android:textColorHint="@color/home_search_hint"
@@ -45,9 +37,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_viewSearchService"
         android:layout_width="match_parent"
-        android:paddingHorizontal="10dp"
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"
+        android:paddingHorizontal="10dp"
         tools:listitem="@layout/recomended_services" />
 
 </LinearLayout>

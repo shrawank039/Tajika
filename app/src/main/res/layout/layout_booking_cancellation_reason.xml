@@ -29,7 +29,7 @@
                     android:text="Want to cancel your booking?"
                     android:textColor="@color/dark_blue"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView_bold" />
 
                 <ImageView
                     android:id="@+id/iv_dialogCancel"
@@ -98,16 +98,10 @@
                 android:textColorHint="@color/black" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+               style="@style/submit_buttons"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
-                android:background="@drawable/layout_input_outline"
-                android:paddingHorizontal="50dp"
-                android:shadowColor="@color/grey_700"
-                android:text="Submit"
-                android:textAllCaps="false"
-                android:textColor="@color/dark_blue" />
+                android:text="Submit" />
 
         </LinearLayout>
     </RelativeLayout>

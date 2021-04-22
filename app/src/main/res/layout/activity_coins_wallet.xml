@@ -26,42 +26,24 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/golden"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="10dp"
+            style="@style/appBar_container"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/iv_backPress"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/arrow_back"
-                app:tint="@color/white" />
+                style="@style/appBar_imageView" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:paddingStart="10dp"
-                android:text="Coins Wallet"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                style="@style/appBar_textView"
+                android:text="Coins Wallet" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="30dp"
-            android:paddingBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,14 +58,48 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="500"
-                    android:textColor="@color/white"
-                    android:textSize="26sp"
-                    android:textStyle="bold" />
+                    android:text="00"
+                    android:textSize="26sp" />
+
+                <TextView
+                    style="@style/topDesign_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Coins earned\ntill date" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="15dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/topDesign_textView_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="00"
+                    android:textSize="26sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -91,8 +107,9 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Coins earned till date"
-                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    style="@style/topDesign_textView"
+                    android:text="Coins are\navailable"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -111,14 +128,13 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="300"
-                    android:textColor="@color/white"
-                    android:textSize="26sp"
-                    android:textStyle="bold" />
+                    android:text="00"
+                    android:textSize="26sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -126,44 +142,10 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Coins are available"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="15dp"
-                android:background="@color/white" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="200"
-                    android:textColor="@color/white"
-                    android:textSize="26sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="Coins used"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Coins\nUsed" />
             </LinearLayout>
 
         </LinearLayout>

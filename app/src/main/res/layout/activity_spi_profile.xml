@@ -8,52 +8,37 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="15dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        style="@style/appBar_container"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_backPress"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:src="@drawable/arrow_back"
-            app:tint="@color/dark_blue" />
+            style="@style/appBar_imageView" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Profile"
-            android:textColor="@color/dark_blue"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            style="@style/appBar_textView"
+            android:text="Profile" />
 
         <TextView
             android:id="@+id/txt_profileEdit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
-            android:text="Edit"
             android:gravity="center"
+            android:text="Edit"
             android:textColor="@color/dark_blue"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
 
     <ScrollView
-        android:paddingTop="15dp"
-        android:scrollbarSize="0dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:scrollbarSize="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,13 +96,13 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/your_details"
                     android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -223,13 +208,13 @@
 
                 <TextView
                     android:id="@+id/txt_serviceNumber"
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/business_details"
                     android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -392,13 +377,13 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/other_details"
                     android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -566,13 +551,13 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/subscription"
                     android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -655,18 +640,11 @@
 
                 <Button
                     android:id="@+id/btn_renew"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/submit_buttons"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
-                    android:background="@drawable/layout_input_outline"
-                    android:paddingHorizontal="50dp"
-                    android:shadowColor="@color/grey_700"
-                    android:text="Renew"
-                    android:textAllCaps="false"
-                    android:textColor="@color/dark_blue"
-                    android:textStyle="bold" />
+                    android:text="Renew" />
 
             </LinearLayout>
 

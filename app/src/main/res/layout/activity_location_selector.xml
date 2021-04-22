@@ -22,32 +22,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="20dp">
+            style="@style/appBar_container">
 
             <ImageView
                 android:id="@+id/iv_backPress"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/arrow_back"
-                app:tint="@color/dark_blue" />
+               style="@style/appBar_imageView"/>
 
             <TextView
                 android:id="@+id/edt_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:singleLine="true"
-                android:text="Mayur Vihar, New Dehli"
-                android:textColor="@color/dark_blue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="Dummy Text"
+                style="@style/appBar_textView"/>
 
             <ImageView
                 android:id="@+id/iv_gotoCurrentLocation"
@@ -63,9 +48,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginVertical="20dp"
             android:background="@drawable/layout_input_outline"
-            android:backgroundTint="@color/md_grey_100"
+            android:backgroundTint="@color/md_grey_200"
             android:gravity="center"
             android:padding="10dp">
 
@@ -76,8 +61,8 @@
                 android:clickable="false"
                 android:drawableStart="@drawable/search_icon"
                 android:drawablePadding="7dp"
-                android:hint="Plumbing"
-                android:textColor="@color/black"
+                android:hint="Search service"
+                style="@style/topDesign_textView"
                 android:textSize="16sp" />
 
         </LinearLayout>

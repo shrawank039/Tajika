@@ -36,9 +36,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:gravity="center"
                 android:text="Enter OTP receive on your Email and Phone number"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                style="@style/topDesign_textView_bold"
+                android:textSize="20sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -135,23 +134,15 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="Resend OTP"
+            style="@style/topDesign_textView"
             android:textColor="@color/grey_700"
             android:textSize="16sp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/layout_input_outline"
             android:onClick="onLoginCLick"
-            android:paddingHorizontal="50dp"
-            android:shadowColor="@color/grey_700"
             android:text="Login"
-            android:textAllCaps="false"
-            android:textColor="@color/dark_blue"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+           style="@style/submit_buttons"/>
 
         <TextView
             android:id="@+id/txt_back"
@@ -160,6 +151,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:text="Back"
+            style="@style/topDesign_textView_bold"
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>

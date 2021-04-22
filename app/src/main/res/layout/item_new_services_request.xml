@@ -94,16 +94,11 @@
 
             <TextView
                 android:id="@+id/txt_accept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/layout_input_outline"
                 android:backgroundTint="@color/golden"
-                android:paddingHorizontal="40dp"
-                android:paddingVertical="15dp"
                 android:text="Accept"
-                android:textAllCaps="false"
-                android:textColor="@color/dark_blue"
-                android:textStyle="bold" />
+                android:paddingVertical="15dp"
+                android:paddingHorizontal="40dp"
+               style="@style/submit_buttons" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,17 +107,13 @@
 
                 <TextView
                     android:id="@+id/txt_view_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/layout_input_outline"
                     android:backgroundTint="@color/dark_blue"
                     android:gravity="end"
                     android:paddingHorizontal="40dp"
                     android:paddingVertical="15dp"
                     android:text="View info"
-                    android:textAllCaps="false"
-                    android:textColor="@color/golden"
-                    android:textStyle="bold" />
+                    style="@style/submit_buttons"
+                    android:textColor="@color/golden"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

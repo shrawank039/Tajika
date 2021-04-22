@@ -30,30 +30,15 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/golden"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="15dp"
-                android:paddingVertical="10dp">
+                style="@style/appBar_container">
 
                 <ImageView
                     android:id="@+id/iv_backPress"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/arrow_back"
-                    app:tint="@color/white" />
+                   style="@style/appBar_imageView" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:text="Redeem coin"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    style="@style/appBar_textView"
+                    android:text="Redeem coin" />
 
             </LinearLayout>
 
@@ -81,15 +66,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/convert_coins_to_discount_vouchers"
-                        android:textColor="@color/white"
                         android:textSize="16sp"
+                        style="@style/topDesign_textView_bold"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/gift_2x" />
+                        android:src="@drawable/gift_2x"
+                        app:tint="@color/light_red" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

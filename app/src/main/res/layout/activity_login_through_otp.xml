@@ -29,15 +29,14 @@
             android:layout_height="match_parent">
 
             <TextView
+                style="@style/topDesign_textView_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="20dp"
                 android:gravity="center"
-                android:text="Enter your Mobile number  or Email to receive OTP"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:text="Enter your Mobile number  or\nEmail to receive OTP"
+                android:textSize="21sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -68,17 +67,10 @@
 
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            style="@style/submit_buttons"
             android:layout_marginTop="30dp"
-            android:background="@drawable/layout_input_outline"
             android:onClick="onLoginThroughOTPNEXTCLick"
-            android:paddingHorizontal="50dp"
-            android:shadowColor="@color/grey_700"
-            android:text="Next"
-            android:textAllCaps="false"
-            android:textColor="@color/dark_blue" />
+            android:text="Next" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -88,6 +80,7 @@
             android:onClick="onLoginThroughPasswordCLick"
             android:text="Login through Password"
             android:textColor="@color/black"
+            style="@style/topDesign_textView"
             android:textSize="16sp" />
 
 

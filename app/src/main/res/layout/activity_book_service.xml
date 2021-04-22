@@ -8,33 +8,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        style="@style/appBar_container"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_backPress"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:src="@drawable/arrow_back"
-            app:tint="@color/dark_blue" />
+            style="@style/appBar_imageView" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:text="Book Service"
-            android:textColor="@color/dark_blue"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            style="@style/appBar_textView"
+            android:text="Book Service" />
     </LinearLayout>
 
     <ScrollView
@@ -61,29 +46,13 @@
 
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/layout_input_outline"
-                android:hint="Name*"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="15dp"
-                android:textColor="@color/grey_700"
-                android:textColorHint="@color/black"
-                android:textSize="16sp" />
+                style="@style/register_input_container"
+                android:hint="Name*"/>
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/layout_input_outline"
+                style="@style/register_input_container"
                 android:hint="Contact number*"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="15dp"
-                android:textColor="@color/grey_700"
-                android:textColorHint="@color/black"
-                android:textSize="16sp" />
+                android:paddingStart="30dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -96,54 +65,24 @@
 
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/layout_input_outline"
+                style="@style/register_input_container"
                 android:hint="Flat/Room number/Building*"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="15dp"
-                android:textColor="@color/grey_700"
-                android:textColorHint="@color/black"
-                android:textSize="16sp" />
+                android:paddingStart="30dp" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/layout_input_outline"
+                style="@style/register_input_container"
                 android:hint="Street Address*"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="15dp"
-                android:textColor="@color/grey_700"
-                android:textColorHint="@color/black"
-                android:textSize="16sp" />
+                android:paddingStart="30dp" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/layout_input_outline"
+                style="@style/register_input_container"
                 android:hint="Landmark (Optional)"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="15dp"
-                android:textColor="@color/grey_700"
-                android:textColorHint="@color/black"
-                android:textSize="16sp" />
+                android:paddingStart="30dp" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/layout_input_outline"
+                style="@style/register_input_container"
                 android:hint="Any instruction (Optional)"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="15dp"
-                android:textColorHint="@color/black"
-                android:textSize="16sp" />
+                android:paddingStart="30dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -153,7 +92,7 @@
                 android:text="You will have to make the payment of 3% of amount you are willing to pay for his service"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="16sp" />
+                android:fontFamily="@font/lato" />
 
         </LinearLayout>
     </ScrollView>
@@ -178,6 +117,7 @@
             android:gravity="center"
             android:text="Make Payment"
             android:textColor="@color/black"
+            android:fontFamily="@font/lato_black"
             android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.AboutUsActivity;
+import com.matrixdeveloper.tajika.HelpActivity;
 import com.matrixdeveloper.tajika.LoginActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIMoreOptionsBaseAdapter;
@@ -44,6 +45,9 @@ public class SpiMoreActivity extends AppCompatActivity {
                     break;
                 case 4:
                     startActivity(new Intent(getApplicationContext(), SpiCreditWalletActivity.class));
+                    break;
+                case 5:
+                    startActivity(new Intent(getApplicationContext(), HelpActivity.class));
                     break;
                 case 6:
                     startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));

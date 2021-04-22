@@ -20,15 +20,16 @@
             android:padding="7dp">
 
             <ImageView
-                android:scaleType="centerCrop"
                 android:id="@+id/image"
                 android:layout_width="wrap_content"
                 android:layout_height="110dp"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
                 android:src="@drawable/catering" />
 
             <TextView
                 android:id="@+id/txt_title"
+                style="@style/topDesign_textView_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -37,18 +38,18 @@
                 android:singleLine="true"
                 android:text="Catering"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <TextView
-                android:layout_marginTop="2dp"
                 android:id="@+id/txt_message"
+                style="@style/topDesign_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="@string/dummy_text"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

@@ -49,9 +49,8 @@
                 android:layout_marginVertical="10dp"
                 android:gravity="center"
                 android:text="@string/good_morning_peter_what_can_we_help_you_with"
-                android:textColor="@color/black"
                 android:textSize="22sp"
-                android:textStyle="bold" />
+                style="@style/topDesign_textView_bold" />
 
             <LinearLayout
                 android:id="@+id/ll_search"

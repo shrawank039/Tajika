@@ -8,34 +8,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/golden"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp"
+       style="@style/appBar_container"
         app:layout_constraintEnd_toStartOf="@+id/nestedScrollView"
         app:layout_constraintStart_toEndOf="@+id/nestedScrollView"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_backPress"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/arrow_back"
-            app:tint="@color/white" />
+            style="@style/appBar_imageView"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:paddingStart="10dp"
             android:text="Edit Profile"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+           style="@style/appBar_textView" />
 
     </LinearLayout>
 
@@ -105,9 +89,8 @@
                     android:layout_marginBottom="30dp"
                     android:gravity="center"
                     android:text="John Doe"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView_bold"
+                    android:textSize="20sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

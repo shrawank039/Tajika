@@ -21,6 +21,6 @@
         android:text="Please wait..."
         android:textColor="@color/dark_blue"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        style="@style/topDesign_textView_bold" />
 
 </LinearLayout>

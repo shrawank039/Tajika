@@ -21,6 +21,7 @@ public class VouchersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vouchers);
+        backPress=findViewById(R.id.iv_backPress);
 
         backPress.setOnClickListener(view -> VouchersActivity.super.onBackPressed());
 

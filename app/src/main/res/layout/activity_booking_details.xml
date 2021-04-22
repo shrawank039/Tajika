@@ -8,33 +8,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_blue"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp"
+        style="@style/appBar_container"
         app:layout_constraintEnd_toStartOf="@+id/nestedScrollView"
         app:layout_constraintStart_toEndOf="@+id/nestedScrollView"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_backPress"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/arrow_back"
-            app:tint="@color/white" />
+            style="@style/appBar_imageView" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:text="Booking Details"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            style="@style/appBar_textView"
+            android:text="Booking Details" />
 
     </LinearLayout>
 
@@ -53,147 +38,148 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="260dp"
                 android:background="@drawable/layout_top_design"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="20dp"
-                android:visibility="visible">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    style="@style/register_top_imageView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="20dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content">
 
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:backgroundTint="@color/golden"
-                            android:src="@drawable/app_logo"
-                            app:civ_border_width="2dp" />
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_weight="2"
                             android:gravity="center"
-                            android:text="Status: Booked"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical">
+
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:layout_margin="5dp"
+                                android:backgroundTint="@color/golden"
+                                android:src="@drawable/app_logo"
+                                app:civ_border_width="2dp" />
+
+                            <TextView
+                                style="@style/topDesign_textView_bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:gravity="center"
+                                android:text="Status: Booked" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/layout_top_design"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/topDesign_textView_bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name: Super Plumbing" />
+
+                            <TextView
+                                style="@style/topDesign_textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Address: Phase 1 Mayur Vihar" />
+
+                            <TextView
+                                style="@style/topDesign_textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Service type: cleaning" />
+
+                            <TextView
+                                style="@style/topDesign_textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Booking id: TJKS5256GASU" />
+
+                            <TextView
+                                style="@style/topDesign_textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Booked on: 10 Dec 2020" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1.5"
-                        android:background="@drawable/layout_top_design"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Name: Super Plumbing"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:id="@+id/ll_bookingCall"
+                            style="@style/allButton_llDesigns"
+                            android:backgroundTint="@color/md_green_300">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Address: Phase 1 Mayur Vihar"
-                            android:textColor="@color/white" />
+                            <TextView
+                                style="@style/allButton_txtDesigns"
+                                android:drawableStart="@drawable/call_icon"
+                                android:drawablePadding="10dp"
+                                android:drawableTint="@color/md_green_900"
+                                android:paddingVertical="5dp"
+                                android:text="Make Call"
+                                android:textColor="@color/md_green_900" />
+                        </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Service type: cleaning"
-                            android:textColor="@color/white" />
+                        <LinearLayout
+                            android:id="@+id/ll_bookingMessage"
+                            style="@style/allButton_llDesigns"
+                            android:backgroundTint="@color/md_red_200">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Booking id: TJKS5256GASU"
-                            android:textColor="@color/white" />
+                            <TextView
+                                style="@style/allButton_txtDesigns"
+                                android:drawableStart="@drawable/message_1x"
+                                android:drawablePadding="10dp"
+                                android:drawableTint="@color/md_red_500"
+                                android:text="Message"
+                                android:textColor="@color/md_red_500" />
+                        </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Booked on: 10 Dec 2020"
-                            android:textColor="@color/white" />
 
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:id="@+id/ll_bookingCall"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/layout_input_outline"
-                        android:backgroundTint="@color/golden"
-                        android:gravity="center"
-                        android:paddingVertical="13dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/call_icon"
-                            android:drawablePadding="10dp"
-                            android:text="Make Call"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_bookingMessage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/layout_input_outline"
-                        android:backgroundTint="@color/grey_700"
-                        android:gravity="center"
-                        android:paddingVertical="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/message_1x"
-                            android:drawablePadding="10dp"
-                            android:drawableTint="@color/white"
-                            android:gravity="center"
-                            android:text="Message"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
                     </LinearLayout>
 
 
                 </LinearLayout>
-
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:layout_width="wrap_content"

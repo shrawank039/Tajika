@@ -8,33 +8,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="15dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+      style="@style/appBar_container"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_backPress"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:src="@drawable/arrow_back"
-            app:tint="@color/dark_blue" />
+           style="@style/appBar_imageView"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
             android:text="Service request details"
-            android:textColor="@color/dark_blue"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            style="@style/appBar_textView" />
     </LinearLayout>
 
     <ScrollView
@@ -70,7 +55,7 @@
                     android:text="Service Request"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView_bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -195,7 +180,7 @@
                     android:text="Service Status"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView_bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -277,7 +262,7 @@
                     android:text="Customer info"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView_bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -349,7 +334,7 @@
                     android:text="Service address and description"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView_bold"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -434,7 +419,7 @@
                     android:text="Amount willing to pay"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView_bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -442,7 +427,7 @@
                     android:text="Ksh 2,000"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/topDesign_textView_bold" />
             </LinearLayout>
 
         </LinearLayout>
