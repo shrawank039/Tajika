@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/layout_input_outline"
-                android:backgroundTint="@color/orange"
+                android:backgroundTint="@color/golden"
                 android:paddingHorizontal="40dp"
                 android:paddingVertical="15dp"
                 android:text="Accept"
@@ -117,7 +117,7 @@
                     android:paddingVertical="15dp"
                     android:text="View info"
                     android:textAllCaps="false"
-                    android:textColor="@color/orange"
+                    android:textColor="@color/golden"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

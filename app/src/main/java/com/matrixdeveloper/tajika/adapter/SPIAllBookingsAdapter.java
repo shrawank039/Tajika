@@ -43,7 +43,7 @@ public class SPIAllBookingsAdapter extends RecyclerView.Adapter<SPIAllBookingsAd
             holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.light_red));
         } else if (myListData.getStatus().equals("1")) {
             holder.bookingStatus.setText("Ongoing");
-            holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.orange));
+            holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.golden));
         } else if (myListData.getStatus().equals("2")) {
             holder.bookingStatus.setText("Completed");
             holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.light_green));

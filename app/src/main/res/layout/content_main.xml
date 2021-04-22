@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View All"
-                    android:textColor="@color/orange"
+                    android:textColor="@color/golden"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -358,7 +358,7 @@
                     style="@style/userHome_bottomNav_style"
                     android:layout_marginEnd="15dp"
                     android:drawableStart="@drawable/compare_list_1x"
-                    android:text="Notification" />
+                    android:text="Home" />
             </LinearLayout>
 
             <LinearLayout

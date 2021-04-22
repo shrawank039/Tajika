@@ -28,7 +28,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/orange"
+            android:background="@color/golden"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingHorizontal="15dp"
@@ -180,7 +180,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             android:background="@drawable/layout_input_outline"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/golden"
             android:gravity="center"
             android:paddingVertical="13dp">
 

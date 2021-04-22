@@ -80,6 +80,7 @@
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".OnboardingActivity" />
         <activity android:name=".SPindividual.SpiLoginActivity" />
+        <activity android:name=".SPbusiness.SpbLoginActivity" />
 
         <activity android:name=".SplashScreenActivity">
             <intent-filter>

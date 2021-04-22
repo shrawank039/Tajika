@@ -68,7 +68,7 @@
                                 android:layout_height="80dp"
                                 android:padding="20dp"
                                 android:src="@drawable/add_icon"
-                                app:tint="@color/orange" />
+                                app:tint="@color/golden" />
 
                         </androidx.cardview.widget.CardView>
 
@@ -95,7 +95,7 @@
                             android:id="@+id/cv_referToProvideService"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/orange"
+                            android:backgroundTint="@color/golden"
                             app:cardCornerRadius="100dp">
 
                             <ImageView
@@ -143,7 +143,7 @@
                         android:layout_height="80dp"
                         android:src="@drawable/app_logo"
                         app:civ_border_width="1dp"
-                        app:tint="@color/orange" />
+                        app:tint="@color/golden" />
 
 
                     <LinearLayout
@@ -254,7 +254,7 @@
                         android:layout_marginTop="10dp"
                         android:gravity="end"
                         android:text="Read more"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/golden"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -500,7 +500,7 @@
                         android:gravity="center"
                         android:padding="15dp"
                         android:text="Request Service"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/golden"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -508,7 +508,7 @@
                         android:id="@+id/view_viewDetails"
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
-                        android:background="@color/orange" />
+                        android:background="@color/golden" />
 
                     <LinearLayout
                         android:id="@+id/ll_viewDetails"
@@ -525,7 +525,7 @@
                             android:background="@color/dark_blue"
                             android:text="View Details"
                             android:textAllCaps="false"
-                            android:textColor="@color/orange"
+                            android:textColor="@color/golden"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -534,7 +534,7 @@
                             android:layout_height="20dp"
                             android:layout_marginStart="10dp"
                             android:src="@drawable/arrow_forward"
-                            app:tint="@color/orange" />
+                            app:tint="@color/golden" />
 
                     </LinearLayout>
                 </LinearLayout>

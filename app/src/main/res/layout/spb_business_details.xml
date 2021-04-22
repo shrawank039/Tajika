@@ -34,7 +34,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Provide your business details"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellow_header_text_color"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -51,12 +51,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
-            <LinearLayout style="@style/register_input_container">
+            <LinearLayout
+                android:id="@+id/ll_logo_upload"
+                style="@style/register_input_container">
 
                 <EditText
-                    android:id="@+id/edt_name"
+                    android:id="@+id/edt_logo"
                     style="@style/register_editText_container"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:hint="Upload business logo" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_menu_camera"
+                    app:tint="@color/black" />
 
             </LinearLayout>
 
@@ -65,17 +77,19 @@
                 <EditText
                     android:id="@+id/edt_areaOfService"
                     style="@style/register_editText_container"
-                    android:hint="Select area of service" />
+                    android:hint="Enter area of service" />
 
             </LinearLayout>
 
             <LinearLayout style="@style/register_input_container">
 
-                <EditText
-                    android:id="@+id/edt_phone"
-                    style="@style/register_editText_container"
-                    android:hint="@string/select_business_category"
-                    android:maxLength="10" />
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:paddingStart="20dp"
+                    android:paddingVertical="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -83,7 +97,7 @@
 
 
                 <EditText
-                    android:id="@+id/edt_email"
+                    android:id="@+id/edt_year_of_experience"
                     style="@style/register_editText_container"
                     android:hint="Enter your year experience"
                     android:inputType="number" />
@@ -94,10 +108,9 @@
 
 
                 <EditText
-                    android:id="@+id/edt_pass"
+                    android:id="@+id/edt_business_link"
                     style="@style/register_editText_container"
-                    android:hint="Business link (optional)"
-                    android:inputType="textPassword" />
+                    android:hint="Business link (optional)" />
 
             </LinearLayout>
 
@@ -105,6 +118,7 @@
 
 
                 <EditText
+                    android:id="@+id/edt_min_charges"
                     style="@style/register_editText_container"
                     android:hint="Minimum charge of service"
                     android:inputType="number" />
@@ -123,13 +137,25 @@
 
             </LinearLayout>
 
-            <LinearLayout style="@style/register_input_container">
+            <LinearLayout
+                android:id="@+id/ll_service_photo_upload"
+                style="@style/register_input_container">
 
 
                 <EditText
+                    android:id="@+id/edt_service_photo"
                     style="@style/register_editText_container"
-                    android:hint="Upload photos/videos of service (optional)"
-                    android:inputType="number" />
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:hint="Upload photos of service (optional)" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_menu_camera"
+                    app:tint="@color/black" />
 
             </LinearLayout>
 

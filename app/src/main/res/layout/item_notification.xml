@@ -81,7 +81,7 @@
                 android:layout_height="25dp"
                 android:layout_marginEnd="5dp"
                 android:src="@drawable/circle_cancel"
-                app:tint="@color/orange" />
+                app:tint="@color/golden" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

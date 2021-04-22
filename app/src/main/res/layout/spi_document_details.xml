@@ -55,15 +55,15 @@
                 <EditText
                     android:id="@+id/edt_highestEducation"
                     style="@style/register_editText_container"
-                    android:hint="Select highest education" />
+                    android:hint="Enter highest education" />
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/keyboard_arrow_down_icon"
-                    app:tint="@color/black" />
+<!--                <ImageView-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginEnd="20dp"-->
+<!--                    android:src="@drawable/keyboard_arrow_down_icon"-->
+<!--                    app:tint="@color/black" />-->
 
             </LinearLayout>
 
@@ -90,7 +90,6 @@
                     android:hint="Upload ID/Passport" />
 
                 <ImageView
-                    android:id="@+id/iv_idPass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -117,6 +116,8 @@
                 <EditText
                     android:id="@+id/edt_professionalCertificate"
                     style="@style/register_editText_container"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:hint="Upload professional Certificate" />
 
                 <ImageView

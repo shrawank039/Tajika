@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,7 +32,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.model.ServiceList;
@@ -74,7 +82,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private String imagePath = "";
     private String documentPath;
     private TextView toDate, fromDate;
-    ImageView ivDocumentPreview, ivPassDocument;
     Button btnRetake;
     Button btnSave;
     private int PICK_IMAGE_REQUEST = 2;
@@ -100,6 +107,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private String imgPath = null;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     private int MY_CAMERA_REQUEST_CODE = 100;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -108,6 +116,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spi_register);
 
         prf = new PrefManager(this);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         regViewFlipper = findViewById(R.id.vf_regViewFlipper);
         nextToBusinessDetails = regViewFlipper.findViewById(R.id.btn_nextToBusinessDetails);
@@ -118,7 +127,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
         ll_certificate_upload = regViewFlipper.findViewById(R.id.ll_certificate_upload);
         idOrPassword = regViewFlipper.findViewById(R.id.edt_IDorPassword);
         professionalCertificate = regViewFlipper.findViewById(R.id.edt_professionalCertificate);
-        ivPassDocument = regViewFlipper.findViewById(R.id.iv_idPass);
 
         edtName = regViewFlipper.findViewById(R.id.edt_name);
         edtPhone = regViewFlipper.findViewById(R.id.edt_phone);
@@ -139,7 +147,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
         edtPassportNumber = regViewFlipper.findViewById(R.id.edt_idPassNumber);
         edtProQualification = regViewFlipper.findViewById(R.id.edt_proQualification);
 
-        ivDocumentPreview = regViewFlipper.findViewById(R.id.iv_preview);
         btnRetake = regViewFlipper.findViewById(R.id.document_retake);
         btnSave = regViewFlipper.findViewById(R.id.document_save);
 
@@ -181,7 +188,66 @@ public class SpiRegisterActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LocationRequest mLocationRequest = LocationRequest.create();
+        mLocationRequest.setInterval(60000);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationCallback mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    if (location != null) {
+                        //TODO: UI updates.
+                    }
+                }
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
+    }
+
     private void registerSubmit() {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            latitude = String.valueOf(location.getLatitude());
+                            longitude = String.valueOf(location.getLongitude());
+                        } else {
+                            latitude = "00.000";
+                            longitude = "00.000";
+                        }
+                    }
+                });
+
         name = edtName.getText().toString();
         phone = edtPhone.getText().toString();
         email = edtEmail.getText().toString();
@@ -219,8 +285,8 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 data.put("upload_passportid", upload_passportid);
                 data.put("professional_qualification", professional_qualification);
                 data.put("qualification_certification", qualification_certification);
-                data.put("latitude", "22.22222");
-                data.put("longitude", "28.75000");
+                data.put("latitude", latitude);
+                data.put("longitude", longitude);
 
 
             } catch (JSONException e) {
@@ -293,7 +359,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     private void initiatePhotoSelection() {
         try {
             final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
@@ -301,6 +366,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
             builder.setTitle("Select Option");
             builder.setItems(options, new DialogInterface.OnClickListener() {
 
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(DialogInterface dialog, int item) {
 

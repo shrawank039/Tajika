@@ -108,7 +108,7 @@
             android:layout_marginEnd="25dp"
             android:onClick="onForgotPasswordClick"
             android:text="Forgot Password?"
-            android:textColor="@color/orange"
+            android:textColor="@color/golden"
             android:textSize="16sp" />
 
         <Button
@@ -144,7 +144,7 @@
                 android:layout_height="match_parent"
                 android:onClick="onSignUPClick"
                 android:text="Sign Up"
-                android:textColor="@color/orange"
+                android:textColor="@color/golden"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>

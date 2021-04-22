@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="3.5 star ratings"
-                    android:textColor="@color/orange" />
+                    android:textColor="@color/golden" />
 
             </LinearLayout>
 

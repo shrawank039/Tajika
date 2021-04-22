@@ -162,7 +162,7 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
+        android:background="@color/golden"
         android:gravity="center"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"

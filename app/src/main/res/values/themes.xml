@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Tajika" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/golden</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -15,12 +15,12 @@
     </style>
 
     <style name="DialogTheme" parent="android:Theme.Material.Light.Dialog">
-        <item name="android:colorAccent">@color/purple_500</item>
+        <item name="android:colorAccent">@color/golden</item>
     </style>
 
     <style name="RatingBar" parent="Theme.MaterialComponents.Light">
         <item name="colorControlNormal">@color/grey_700</item>
-        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorControlActivated">@color/golden</item>
     </style>
 
     <style name="Theme.Tajika.NoActionBar">
@@ -30,8 +30,8 @@
 
     <style name="switchTheme" parent="Theme.MaterialComponents.Light">
 
-        <item name="colorButtonNormal">@color/orange</item>
-        <item name="colorAccent">@color/orange</item>
+        <item name="colorButtonNormal">@color/golden</item>
+        <item name="colorAccent">@color/golden</item>
     </style>
 
     <style name="Theme.Tajika.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
