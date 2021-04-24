@@ -64,7 +64,7 @@
                         android:id="@+id/iv_profileImage"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/app_logo"
+                        android:src="@drawable/logo"
                         app:civ_border_color="@color/white"
                         app:civ_border_width="2dp" />
 

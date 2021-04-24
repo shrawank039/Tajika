@@ -141,7 +141,7 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/app_logo"
+                        android:src="@drawable/logo"
                         app:civ_border_width="1dp"
                         app:tint="@color/golden" />
 

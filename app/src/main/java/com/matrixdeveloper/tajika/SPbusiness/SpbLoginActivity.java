@@ -45,7 +45,7 @@ public class SpbLoginActivity extends AppCompatActivity {
 
     public void onSignUPClick(View view) {
         startActivity(new Intent(
-                this, SpiRegisterActivity.class
+                this, SpbRegisterActivity.class
         ));
     }
 

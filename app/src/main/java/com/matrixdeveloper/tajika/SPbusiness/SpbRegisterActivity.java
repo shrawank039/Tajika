@@ -35,9 +35,12 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.matrixdeveloper.tajika.LocationSelectorActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
+import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -72,7 +75,7 @@ public class SpbRegisterActivity extends AppCompatActivity {
     private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
             bussiness_link, minimum_charge, bussiness_logo, service_photo, latitude, longitude;
     private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass, edtLogo, edtServicePhoto, edtServiceArea, edt_description,
-                    edtYearExperience, edtBusinessLink, edtMinCharges;
+            edtYearExperience, edtBusinessLink, edtMinCharges;
     private LinearLayout ll_logo_upload, ll_service_photo_upload;
     private int type = AppConstants.DOCUMENT_TYPE_ID;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
@@ -86,7 +89,6 @@ public class SpbRegisterActivity extends AppCompatActivity {
     String[] simpleArray = {"Select Business Category"};
     Spinner spinner;
     private static PrefManager prf;
-    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +96,6 @@ public class SpbRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spb_register);
 
         prf = new PrefManager(this);
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         regViewFlipper = findViewById(R.id.vf_regBViewFlipper);
         nextToBusinessDetails = regViewFlipper.findViewById(R.id.btn_nextToBusinessDetails);
@@ -116,7 +117,7 @@ public class SpbRegisterActivity extends AppCompatActivity {
         ll_service_photo_upload = regViewFlipper.findViewById(R.id.ll_service_photo_upload);
 
         nextToBusinessDetails.setOnClickListener(view -> regViewFlipper.showNext());
-        submit.setOnClickListener(view -> registerSubmit());
+        submit.setOnClickListener(view -> initLocation());
 
         ll_logo_upload.setOnClickListener(view -> {
             type = 1;
@@ -141,39 +142,6 @@ public class SpbRegisterActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        LocationRequest mLocationRequest = LocationRequest.create();
-        mLocationRequest.setInterval(60000);
-        mLocationRequest.setFastestInterval(5000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        LocationCallback mLocationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                if (locationResult == null) {
-                    return;
-                }
-                for (Location location : locationResult.getLocations()) {
-                    if (location != null) {
-                        //TODO: UI updates.
-                    }
-                }
-            }
-        };
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
     }
 
     private void initiatePhotoSelection() {
@@ -309,32 +277,28 @@ public class SpbRegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void registerSubmit() {
+    private void initLocation() {
+        LiveGpsTracker.getInstance(SpbRegisterActivity.this, new LiveGpsTracker.LocationUpdate() {
+            @Override
+            public void onLocationFound(double latitide, double longi) {
+                latitude = String.valueOf(latitide);
+                longitude = String.valueOf(longi);
+                registerSubmit();
+            }
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            latitude = String.valueOf(location.getLatitude());
-                            longitude = String.valueOf(location.getLongitude());
-                        } else {
-                            latitude = "00.000";
-                            longitude = "00.000";
-                        }
-                    }
-                });
+            @Override
+            public void OnLocationSettingNotFound() {
+                Toast.makeText(SpbRegisterActivity.this, "Please enable location setting and retry", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPopupPermission() {
+                Toast.makeText(SpbRegisterActivity.this, "Please enable location permissions", Toast.LENGTH_SHORT).show();
+            }
+        }).initLocationUpdate();
+    }
+
+    private void registerSubmit() {
 
         name = edtName.getText().toString();
         phone = edtPhone.getText().toString();

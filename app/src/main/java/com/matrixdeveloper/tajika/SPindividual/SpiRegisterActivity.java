@@ -41,6 +41,8 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPbusiness.SpbRegisterActivity;
+import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -183,8 +185,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
             initiatePhotoSelection();
         });
         submit.setOnClickListener(view -> {
-            registerSubmit();
-            //startActivity(new Intent(this, SpiHomeActivity.class));
+            initLocation();
         });
     }
 
@@ -221,32 +222,28 @@ public class SpiRegisterActivity extends AppCompatActivity {
         fusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
     }
 
-    private void registerSubmit() {
+    private void initLocation() {
+        LiveGpsTracker.getInstance(SpiRegisterActivity.this, new LiveGpsTracker.LocationUpdate() {
+            @Override
+            public void onLocationFound(double latitide, double longi) {
+                latitude = String.valueOf(latitide);
+                longitude = String.valueOf(longi);
+                registerSubmit();
+            }
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            latitude = String.valueOf(location.getLatitude());
-                            longitude = String.valueOf(location.getLongitude());
-                        } else {
-                            latitude = "00.000";
-                            longitude = "00.000";
-                        }
-                    }
-                });
+            @Override
+            public void OnLocationSettingNotFound() {
+                Toast.makeText(SpiRegisterActivity.this, "Please enable location setting and retry", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPopupPermission() {
+                Toast.makeText(SpiRegisterActivity.this, "Please enable location permissions", Toast.LENGTH_SHORT).show();
+            }
+        }).initLocationUpdate();
+    }
+
+    private void registerSubmit() {
 
         name = edtName.getText().toString();
         phone = edtPhone.getText().toString();

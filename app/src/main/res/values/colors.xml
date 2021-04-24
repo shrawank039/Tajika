@@ -6,8 +6,8 @@
     <color name="teal_200">#FF000000</color>
     <color name="teal_700">#FF018786</color>
 
-    <color name="yellow_btn_text_color">#313131</color>
-    <color name="yellow_header_text_color">#313131</color>
+    <color name="yellow_btn_text_color">#3A3A3A</color>
+    <color name="yellow_header_text_color">#3A3A3A</color>
     <color name="golden">#ffb300</color>
 
     <color name="gold">#E3A81E</color>
