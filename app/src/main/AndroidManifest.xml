@@ -13,7 +13,6 @@
         android:name=".app.App"
         android:allowBackup="true"
         android:fullBackupContent="false"
-        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -21,16 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="android:label,android:usesCleartextTraffic"
+        tools:replace="android:label,android:usesCleartextTraffic,android:theme"
         tools:targetApi="m">
 
+        <activity android:name=".PaymentActivity"/>
         <activity android:name=".SPbusiness.SpbProfileActivity" />
         <activity android:name=".SPbusiness.SpbEditProfileActivity" />
         <activity android:name=".SPbusiness.SpbRegisterActivity" />
         <activity android:name=".SPbusiness.SpbMyServicesActivity" />
-
         <activity android:name=".HomeActivity" />
-
         <activity android:name=".SPindividual.SpiAllTransactionActivity" />
         <activity android:name=".SPindividual.SpiServiceCompletedStatusActivity" />
         <activity android:name=".SPindividual.SpiServiceAcceptActivity" />
@@ -44,7 +42,6 @@
         <activity android:name=".SPindividual.SpiAllBookingsActivity" />
         <activity android:name=".SPindividual.SpiMoreActivity" />
         <activity android:name=".SPindividual.SpiRegisterActivity" />
-
         <activity
             android:name=".LocationSelectorActivity"
             android:screenOrientation="portrait"
@@ -81,7 +78,6 @@
         <activity android:name=".OnboardingActivity" />
         <activity android:name=".SPindividual.SpiLoginActivity" />
         <activity android:name=".SPbusiness.SpbLoginActivity" />
-
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

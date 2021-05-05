@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,6 +56,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     SliderLayout homeSlider;
     private List<ServiceList> serviceLists;
     private NavigationView navigationView;
+    private GridLayoutManager gridLayoutManager;
     private LinearLayout coinsWallet, notificationList, referFriends, llSearch;
     private TextView viewAllService,greeting;
     private CardView chatting;
@@ -75,7 +77,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        gridLayoutManager = new GridLayoutManager(this, 2);
+        gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 

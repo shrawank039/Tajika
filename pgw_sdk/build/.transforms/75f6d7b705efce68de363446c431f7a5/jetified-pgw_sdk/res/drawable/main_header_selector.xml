@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/shape_id">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="@color/finserve_berry_default"/>
+        <solid android:color="?attr/jengaUIBackground"/>
+        <corners android:radius="5dp"/>
+    </shape>
+</item>
+</layer-list>

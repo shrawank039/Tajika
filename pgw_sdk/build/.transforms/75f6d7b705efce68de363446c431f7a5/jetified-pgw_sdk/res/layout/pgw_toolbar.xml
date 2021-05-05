@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_marginBottom="16sp"
+    android:background="@color/finserve_berry_default"
+    app:theme="@style/ToolbarStyle"
+    app:titleTextColor="@color/ln_info_bg">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:textColor="@color/ln_actionMenuTextColor"
+        android:textSize="@dimen/ln_toolbar_title_size" />
+</androidx.appcompat.widget.Toolbar>

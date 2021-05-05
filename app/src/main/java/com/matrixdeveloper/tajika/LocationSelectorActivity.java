@@ -69,10 +69,10 @@ import static com.matrixdeveloper.tajika.utils.Global.compareAddTwo;
 import static com.matrixdeveloper.tajika.utils.Global.compareAddTwoID;
 
 public class LocationSelectorActivity extends FragmentActivity
-        implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMarkerDragListener,
+        implements OnMapReadyCallback, GoogleMap.OnMapClickListener,
         BottomSheetDialog.BottomSheetListener {
     private GoogleMap mMap;
-    private MapRipple mapRipple;
+ //   private MapRipple mapRipple;
     TextView edtAddress, requestService;
     private LatLng mSelectedLatLng;
     private AddressBean mSelectedAddress = null;
@@ -243,7 +243,6 @@ public class LocationSelectorActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnMapClickListener(this);
-        mMap.setOnMarkerDragListener(this);
         mMap.getUiSettings().setCompassEnabled(false);
 
         initLocation();
@@ -455,7 +454,10 @@ public class LocationSelectorActivity extends FragmentActivity
         edtAddress.setText("");
         mMap.clear();
         getServiceProvider(String.valueOf(location.latitude), String.valueOf(location.longitude));
-        if (mapRipple == null) {
+
+        // mapRipple effect
+    /*
+    if (mapRipple == null) {
             mapRipple = new MapRipple(mMap, location, getApplicationContext());
         }
         if (mapRipple.isAnimationRunning()) {
@@ -470,13 +472,17 @@ public class LocationSelectorActivity extends FragmentActivity
         mapRipple.withRippleDuration(5000);    //12000ms
         mapRipple.withTransparency(0.5f);
         mapRipple.startRippleMapAnimation();
+        */
+
+
 //        mMap.addMarker(new MarkerOptions().position(location).title("Current Location").
 //                draggable(true).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)));
 //        //resizing Bitmap image and setting to add marker
         /*  image to bitmap compressed */
-        BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_marker);
-        Bitmap b = bitmapdraw.getBitmap();
-        Bitmap smallMarker = Bitmap.createScaledBitmap(b, 90, 150, true);
+
+//        BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_marker);
+//        Bitmap b = bitmapdraw.getBitmap();
+//        Bitmap smallMarker = Bitmap.createScaledBitmap(b, 90, 150, true);
 
 
         mMap.addMarker(new MarkerOptions()
@@ -552,23 +558,6 @@ public class LocationSelectorActivity extends FragmentActivity
     @Override
     public void onMapClick(LatLng latLng) {
         animateMarker(latLng);
-    }
-
-    @Override
-    public void onMarkerDragStart(Marker marker) {
-        //animateMarker(marker.getPosition());
-        mapRipple.stopRippleMapAnimation();
-    }
-
-    @Override
-    public void onMarkerDrag(Marker marker) {
-        //animateMarker(marker.getPosition());
-        mapRipple.stopRippleMapAnimation();
-    }
-
-    @Override
-    public void onMarkerDragEnd(Marker marker) {
-        animateMarker(marker.getPosition());
     }
 
 

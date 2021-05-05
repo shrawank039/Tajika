@@ -15,17 +15,18 @@
         android:onClick="onNavDrawerClick"
         android:src="@drawable/hamburger_2x"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
-        android:layout_height="130dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="100dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo" />
 
     <ScrollView
         android:id="@+id/linearLayout6"
@@ -38,7 +39,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -46,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="10dp"
+                android:layout_marginVertical="5dp"
                 android:gravity="center"
                 android:text="@string/good_morning_peter_what_can_we_help_you_with"
                 android:textSize="22sp"
@@ -197,12 +198,14 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:paddingEnd="10dp"
-                android:scrollbarSize="0dp"
-                tools:listitem="@layout/recomended_services" />
+                android:layout_marginHorizontal="5dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                android:scrollbarSize="0dp"/>
 
             <LinearLayout
                 android:id="@+id/ll_banner"

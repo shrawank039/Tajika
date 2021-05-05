@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/golden"
+        android:background="@color/white"
         android:gravity="center"
         android:onClick="llClick"
         android:orientation="vertical"
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="15dp"
             android:background="@drawable/layout_input_outline"
             android:backgroundTint="@color/md_grey_200"
             android:gravity="center"
