@@ -30,21 +30,32 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Provide your business details"
-                    android:textSize="20sp"
-                    style="@style/topDesign_textView_bold" />
+                    android:text="Service provider (Individual) Registration."
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/topDesign_textView_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="30dp"
+                    android:text="Please provide accurate details as you register your skills and experience."
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,11 +75,11 @@
 
                 <Spinner
                     android:id="@+id/spinner"
-                    android:paddingStart="20dp"
-                    android:paddingVertical="5dp"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingVertical="5dp"
+                    android:paddingStart="20dp" />
 
             </LinearLayout>
 
@@ -78,7 +89,7 @@
                 <EditText
                     android:id="@+id/edt_yourExperience"
                     style="@style/register_editText_container"
-                    android:hint="Enter your year experience"
+                    android:hint="Enter years of experience"
                     android:inputType="number" />
 
             </LinearLayout>
@@ -99,7 +110,7 @@
                 <EditText
                     android:id="@+id/edt_serviceCharge"
                     style="@style/register_editText_container"
-                    android:hint="Minimum charge of service"
+                    android:hint="Minimum charge of service in Ksh 0.00"
                     android:inputType="number" />
 
             </LinearLayout>
@@ -111,7 +122,7 @@
                     android:id="@+id/edt_skillDescription"
                     style="@style/register_editText_container"
                     android:gravity="start"
-                    android:hint="Description of skills or service"
+                    android:hint="Describe your professional skills to help you get more work."
                     android:lines="4"
                     android:padding="15dp" />
 
@@ -119,11 +130,11 @@
 
             <Button
                 android:id="@+id/btn_nexttoDocumentDetails"
+                style="@style/submit_buttons"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
-                android:text="Next"
-                style="@style/submit_buttons" />
+                android:text="Continue" />
 
         </LinearLayout>
 

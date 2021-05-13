@@ -57,9 +57,9 @@
                         android:layout_height="match_parent"
                         android:layout_margin="20dp"
                         android:gravity="center_vertical"
-                        android:text="Get\nrewarded for every refer"
+                        android:text="Get\nrewarded for every referrals."
                         android:textColor="@color/yellow_header_text_color"
-                        android:textSize="24sp" />
+                        android:textSize="16sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
@@ -114,7 +114,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Refer more to earn more\npoints" />
+                        android:text="Refer more to earn more\npoints." />
 
                     <TextView
                         style="@style/topDesign_textView_bold"
@@ -136,6 +136,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -145,21 +146,36 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:src="@drawable/business_leader_2x" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:text="Refer business or service provider to join Tajika"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="20sp"
-                    style="@style/topDesign_textView_bold"/>
+                    android:orientation="vertical">
 
+                    <TextView
+                        style="@style/topDesign_textView_bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Invite your friends and Family to use Tajika App:"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Share a better way to connect to service providers and earn upto 10% discount for all services requested for upto 6 months."
+                        android:textColor="@color/dark_blue" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -167,46 +183,62 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="Refer friends and family to join Tajika"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="20sp"
-                    style="@style/topDesign_textView_bold"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/topDesign_textView_bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Invite friends and Businesses to offer services through Tajika App:"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="When they fully signup, you earn upto 5 points for every business/service provider that joins."
+                        android:textColor="@color/dark_blue" />
+
+                </LinearLayout>
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="140dp"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:src="@drawable/giving_high_five_2x" />
 
             </LinearLayout>
 
             <TextView
+                style="@style/topDesign_textView_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20sp"
+                android:layout_margin="20dp"
                 android:text="How it works:"
                 android:textColor="@color/dark_blue"
-                android:textSize="16sp"
-                style="@style/topDesign_textView_bold" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30sp"
-                android:text="1. Share your link\n\n2.Ask them to join using you link\n\n3. Earn coins when they joins"
-                android:textColor="@color/dark_blue"
-                style="@style/topDesign_textView"
                 android:textSize="16sp" />
 
 
             <TextView
+                style="@style/topDesign_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30sp"
+                android:text="@string/how_it_works"
+                android:textColor="@color/dark_blue" />
+
+
+            <TextView
+                style="@style/topDesign_textView_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -216,12 +248,12 @@
                 android:drawableTint="@color/dark_blue"
                 android:text="Share your link"
                 android:textColor="@color/dark_blue"
-                android:textSize="16sp"
-                style="@style/topDesign_textView_bold" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -246,17 +278,25 @@
                     android:src="@drawable/facebook_3x"
                     app:tint="@color/blue" />
 
-                <TextView
-                    android:id="@+id/txt_share"
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:background="@drawable/layout_input_outline"
                     android:backgroundTint="@color/purple_400"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="10dp"
-                    android:text="More"
-                    android:textColor="@color/white" />
+                    android:elevation="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
+
+                    <TextView
+                        android:id="@+id/txt_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:text="More"
+                        android:textColor="@color/white" />
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
 
         </LinearLayout>

@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -19,6 +20,7 @@ import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
+import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,7 +78,11 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 serviceLists.clear();
-                getServiceList(String.valueOf(cs));
+                if (String.valueOf(cs).equals("")) {
+                    getAllService();
+                } else {
+                    getServiceList(String.valueOf(cs));
+                }
             }
 
             @Override
@@ -99,7 +105,44 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
+        serviceLists.clear();
+        getAllService();
+    }
 
+
+    private void getAllService() {
+
+        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray jsonarray = null;
+            try {
+
+                jsonarray = response.getJSONArray("data");
+
+                for (int i = 0; i < jsonarray.length(); i++) {
+
+                    try {
+
+                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
+
+                        serviceLists.add(serviceList);
+
+                        mAdapter.notifyDataSetChanged();
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        });
     }
 
     private void getServiceList(String key) {
@@ -111,7 +154,7 @@ public class SearchActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(this, ServiceNames.FILTER_SERVICE_LIST, data, response -> {
+        ApiCall.postMethodWithoutProgress(this, ServiceNames.FILTER_SERVICE_LIST, data, response -> {
 
 
             JSONArray jsonarray = null;

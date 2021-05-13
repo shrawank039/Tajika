@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cti_card_number_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/ln_colorHint"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/ErrorTextStyle"
+        app:passwordToggleDrawable="@drawable/password_selector"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@null"
+        app:theme="@style/MyTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            fontPath="fonts/RobotoBold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/payment_method_generic_card"
+            android:fontFamily="serif"
+            android:inputType="number"
+            android:textSize="@dimen/ln_input_size"
+            android:hint="Card Number"
+            android:drawableLeft="@drawable/payment_method_generic_card" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

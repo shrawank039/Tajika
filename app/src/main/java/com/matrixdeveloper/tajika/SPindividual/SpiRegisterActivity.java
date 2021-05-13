@@ -21,7 +21,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -39,9 +38,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.SPbusiness.SpbRegisterActivity;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.model.ServiceList;
@@ -101,7 +98,8 @@ public class SpiRegisterActivity extends AppCompatActivity {
 
     List<String> spinnerArray = new ArrayList<>();
     String[] simpleArray = {"Select Business Category"};
-    Spinner spinner;
+    String[] simpleArrayEducation = {"None", "Primary", "Polytechnic", "Secondary/High School", "College/University"};
+    Spinner spinnerServiceCategory, spinnerHighestEducation;
 
     private Bitmap bitmap;
     private File destination;
@@ -145,7 +143,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
         edtServiceCharge = regViewFlipper.findViewById(R.id.edt_serviceCharge);
         edtSkillDescription = regViewFlipper.findViewById(R.id.edt_skillDescription);
 
-        edtHighestEducation = regViewFlipper.findViewById(R.id.edt_highestEducation);
+        //edtHighestEducation = regViewFlipper.findViewById(R.id.edt_highestEducation);
         edtPassportNumber = regViewFlipper.findViewById(R.id.edt_idPassNumber);
         edtProQualification = regViewFlipper.findViewById(R.id.edt_proQualification);
 
@@ -155,12 +153,28 @@ public class SpiRegisterActivity extends AppCompatActivity {
         initListeners();
         getServiceList();
 
-        spinner = (Spinner) regViewFlipper.findViewById(R.id.spinner);
+        spinnerServiceCategory = regViewFlipper.findViewById(R.id.spinner);
+        spinnerHighestEducation = regViewFlipper.findViewById(R.id.spinnerEducation);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ArrayAdapter aa = new ArrayAdapter(SpiRegisterActivity.this, android.R.layout.simple_spinner_item, simpleArrayEducation);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerHighestEducation.setAdapter(aa);
+
+        spinnerServiceCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 business_categories = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        spinnerHighestEducation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                education_level = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -255,7 +269,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
         bussiness_link = edtBusinessLink.getText().toString();
         minimum_charge = edtServiceCharge.getText().toString();
         service_description = edtSkillDescription.getText().toString();
-        education_level = edtHighestEducation.getText().toString();
         passportnumber = edtPassportNumber.getText().toString();
         professional_qualification = edtProQualification.getText().toString();
 
@@ -342,11 +355,11 @@ public class SpiRegisterActivity extends AppCompatActivity {
                     }
                 }
 
-                simpleArray = new String[ spinnerArray.size() ];
-                spinnerArray.toArray( simpleArray );
+                simpleArray = new String[spinnerArray.size()];
+                spinnerArray.toArray(simpleArray);
                 ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, simpleArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setAdapter(adapter);
+                spinnerServiceCategory.setAdapter(adapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();

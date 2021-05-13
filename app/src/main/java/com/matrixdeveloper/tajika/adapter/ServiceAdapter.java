@@ -75,6 +75,14 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return serviceLists.size();
+        if (type == 0) {
+            if (serviceLists.size() > 3) {
+                return 3;
+            } else {
+                return serviceLists.size();
+            }
+        } else {
+            return serviceLists.size();
+        }
     }
 }

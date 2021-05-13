@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -73,7 +72,6 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
             List<SPIRecentTransactionModel> myListData = new ArrayList<>();
             JSONObject jsonObject = response.optJSONObject("data");
 
-            Toast.makeText(this, "" + jsonObject, Toast.LENGTH_LONG).show();
             try {
                 JSONArray jsonArray = jsonObject.getJSONArray("transdetails");
                 walletBalance.setText(jsonObject.optString("walletamount"));

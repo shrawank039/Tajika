@@ -46,13 +46,12 @@
 
 
             <EditText
-                style="@style/register_input_container"
-                android:hint="Name*"/>
+                style="@style/bookService_editText_container"
+                android:hint="Name*" />
 
             <EditText
-                style="@style/register_input_container"
-                android:hint="Contact number*"
-                android:paddingStart="30dp" />
+                style="@style/bookService_editText_container"
+                android:hint="Contact number*"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,34 +64,30 @@
 
 
             <EditText
-                style="@style/register_input_container"
-                android:hint="Flat/Room number/Building*"
-                android:paddingStart="30dp" />
+                style="@style/bookService_editText_container"
+                android:hint="Flat/Room number/Building*" />
 
             <EditText
-                style="@style/register_input_container"
-                android:hint="Street Address*"
-                android:paddingStart="30dp" />
+                style="@style/bookService_editText_container"
+                android:hint="Street Address*" />
 
             <EditText
-                style="@style/register_input_container"
-                android:hint="Landmark (Optional)"
-                android:paddingStart="30dp" />
+                style="@style/bookService_editText_container"
+                android:hint="Landmark (Optional)" />
 
             <EditText
-                style="@style/register_input_container"
-                android:hint="Any instruction (Optional)"
-                android:paddingStart="30dp" />
+                style="@style/bookService_editText_container"
+                android:hint="Any instruction (Optional)" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="20dp"
+                android:fontFamily="@font/lato"
                 android:text="You will have to make the payment of 3% of amount you are willing to pay for his service"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:fontFamily="@font/lato" />
+                android:textColorHint="@color/black" />
 
         </LinearLayout>
     </ScrollView>
@@ -114,10 +109,11 @@
             android:drawableEnd="@drawable/arrow_forward"
             android:drawablePadding="10dp"
             android:drawableTint="@color/black"
+            android:fontFamily="@font/lato_black"
             android:gravity="center"
             android:text="Make Payment"
+            android:textSize="16sp"
             android:textColor="@color/black"
-            android:fontFamily="@font/lato_black"
             android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

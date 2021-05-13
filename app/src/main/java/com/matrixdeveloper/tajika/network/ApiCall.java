@@ -70,6 +70,50 @@ public class ApiCall {
 
     }
 
+    public static void postMethodWithoutProgress(final Context context, final String url, final JSONObject jsonObject, final VolleyCallback volleyCallback) {
+        Utils.log(TAG, "getMethod:" + ", url: " + url);
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                url, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse: " + url + ",response:" + response);
+                        if (response.has("error")) {
+                            if (response.optString("error").equalsIgnoreCase("false")) {
+                                volleyCallback.onSuccess(response);
+                            } else {
+                                Utils.toast(context, response.optString("message"));
+                            }
+                        } else {
+                            volleyCallback.onSuccess(response);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onResponse: " + url + ",onErrorResponse:" + error);
+                VolleyErrorHandler.handle(url, error);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/json");
+                headers.put("Content-Type", "application/json");
+                Log.d(TAG, "url:" + url);
+                return headers;
+            }
+        };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getInstance(context).addToRequestQueue(jsonObjReq);
+
+    }
+
     public static void getMethod(final Context context, final String url, final VolleyCallback volleyCallback) {
         Utils.log(TAG, "getMethod:" + ", url: " + url);
         Utils.show(context);

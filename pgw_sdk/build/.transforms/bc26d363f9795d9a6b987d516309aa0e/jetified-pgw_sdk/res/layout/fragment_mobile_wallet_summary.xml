@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:background="#7E7E7E"
+    android:orientation="vertical">
+    <!--//tools:context="com.example.pgw_sdk_android.PgwMainActivity">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:paddingBottom="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/layout_bg_top"
+        >
+        <include layout="@layout/header"></include>
+
+        <ScrollView android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:orientation="horizontal"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/subTtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="Subtotal amount"
+                android:textColor="#202020"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/subtotal_amount_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/currency"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="250.00"
+                android:textColor="#202020"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:maxLength="5"
+                android:text="KES"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:orientation="horizontal"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/transTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="Transaction Fees"
+                android:textColor="#202020"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/transaction_fee_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/currency_one"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="50.00"
+                android:textColor="#202020"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/currency_one"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="KES"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/amountTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="Amount to pay"
+                android:textColor="#202020"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/total_amount_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/currency_two"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="2,050.00"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/finserve_berry_default"/>
+
+            <TextView
+                android:id="@+id/currency_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="KES"
+                android:layout_marginLeft="10dp"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/finserve_berry_default"/>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/walledId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:paddingBottom="10dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/wallet_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/tigo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/wallet_how_to_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="20dp"
+                android:text="How to pay with Tigo Pesa"
+                android:textColor="#666666"
+                android:paddingBottom="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:visibility="gone"
+            android:id="@+id/one">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:backgroundTint="#CCCCCC"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                tools:ignore="DuplicateIds" />
+            <TextView
+                android:id="@+id/stepOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Open your Tigo Pesa menu,select PayBill"
+                android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:visibility="gone"
+            android:id="@+id/seven">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:backgroundTint="#CCCCCC"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                tools:ignore="DuplicateIds" />
+            <TextView
+                android:id="@+id/stepTwoo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter paybill Number"
+                android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:visibility="gone"
+            android:id="@+id/two">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:backgroundTint="#CCCCCC"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                tools:ignore="DuplicateIds" />
+            <TextView
+                android:id="@+id/stepTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter VPOGHY as the Account Number"
+                android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:visibility="gone"
+            android:id="@+id/three">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:backgroundTint="#CCCCCC"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                tools:ignore="DuplicateIds" />
+            <TextView
+                android:id="@+id/stepThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter amount 2,050.00 KES"
+                android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:visibility="gone"
+            android:id="@+id/four">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:backgroundTint="#CCCCCC"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                tools:ignore="DuplicateIds" />
+            <TextView
+                android:id="@+id/stepFour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your Tigo Pesa PIN"
+                android:paddingBottom="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:visibility="gone"
+            android:id="@+id/five">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:backgroundTint="#CCCCCC"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                tools:ignore="DuplicateIds" />
+            <TextView
+                android:id="@+id/stepFive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm details and complete expiry"
+                android:paddingBottom="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:visibility="gone"
+            android:id="@+id/six">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:backgroundTint="#CCCCCC"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                tools:ignore="DuplicateIds" />
+            <TextView
+                android:id="@+id/stepSix"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Once you receive confirmation sms for Tigo Pesa click the button below"
+                android:paddingBottom="5dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:id="@+id/pushnumberL">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:inputType="number"
+            android:maxLength="12"
+            android:visibility="gone"
+            android:id="@+id/pushnumber"
+            android:hint="Enter Mobile Number"/>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:id="@+id/error_layout"
+            android:visibility="gone">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/arrow_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:backgroundTint="#CCCCCC"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                tools:ignore="DuplicateIds" />
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/ln_colorError"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+>
+            <TextView
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BACK"
+                android:paddingLeft="40dp"
+                android:textSize="12sp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="1dp"
+                android:textColor="#D9D9D9"/>
+            <Button
+                android:id="@+id/confirm_button"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="CONFIRM PAY"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/layout_buttons"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/eazzyconfirmPayment"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="CONFIRM PAY"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/layout_buttons"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
+
+
+            <Button
+                android:id="@+id/submit_details"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="Submit"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/layout_buttons"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
+        </LinearLayout>
+            </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:background="@drawable/bottom_loader_round"
+        android:layout_marginTop="174dp"
+        android:layout_marginBottom="37dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.leo.simplearcloader.SimpleArcLoader
+            android:visibility="visible"
+            android:id="@+id/empty_view_2"
+            android:layout_width="@dimen/icon_height"
+            android:layout_height="@dimen/icon_height"
+            custom:arc_style="complete_arc"
+            custom:arc_speed="medium"
+            custom:arc_margin="6dp"
+            custom:arc_colors="@array/pin_progress"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+
+</FrameLayout>

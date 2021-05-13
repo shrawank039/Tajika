@@ -18,7 +18,7 @@
          style="@style/appBar_imageView" />
 
         <TextView
-            android:text="Credit Wallet"
+            android:text="Credit Counter"
             style="@style/appBar_textView"/>
     </LinearLayout>
 
