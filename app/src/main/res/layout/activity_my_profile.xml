@@ -76,13 +76,13 @@
 
                     <TextView
                         android:id="@+id/txt_userName"
+                        style="@style/topDesign_textView_bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="100dp"
                         android:gravity="center"
                         android:text="John Doe"
-                        style="@style/topDesign_textView_bold"
                         android:textSize="20sp" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -90,7 +90,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <LinearLayout style="@style/register_input_container">
@@ -147,7 +147,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginVertical="20dp"
+                    android:layout_marginVertical="10dp"
                     android:background="@color/golden" />
 
                 <TextView
@@ -174,8 +174,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="15dp"
                     android:gravity="end"
                     android:text="Forgot Password?"
                     android:textColor="@color/golden"
@@ -205,11 +205,11 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btn_submit"
+                    style="@style/submit_buttons"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:id="@+id/btn_submit"
-                    android:text="Submit"
-                    style="@style/submit_buttons"/>
+                    android:text="Submit" />
 
             </LinearLayout>
 

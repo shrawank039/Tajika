@@ -29,20 +29,21 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:gravity="center"
                     android:text="@string/enter_few_more_information"
-                    android:textSize="20sp"
-                    style="@style/topDesign_textView_bold" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,18 +52,21 @@
 
             <LinearLayout style="@style/register_input_container">
 
-                <EditText
-                    android:id="@+id/edt_highestEducation"
-                    style="@style/register_editText_container"
-                    android:hint="Enter highest education" />
+                <Spinner
+                    android:id="@+id/spinnerEducation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingVertical="7dp"
+                    android:paddingStart="20dp" />
 
-<!--                <ImageView-->
-<!--                    android:layout_width="25dp"-->
-<!--                    android:layout_height="25dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginEnd="20dp"-->
-<!--                    android:src="@drawable/keyboard_arrow_down_icon"-->
-<!--                    app:tint="@color/black" />-->
+                <!--                <ImageView-->
+                <!--                    android:layout_width="25dp"-->
+                <!--                    android:layout_height="25dp"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:layout_marginEnd="20dp"-->
+                <!--                    android:src="@drawable/keyboard_arrow_down_icon"-->
+                <!--                    app:tint="@color/black" />-->
 
             </LinearLayout>
 
@@ -86,7 +90,7 @@
                     style="@style/register_editText_container"
                     android:clickable="false"
                     android:focusable="false"
-                    android:hint="Upload ID/Passport" />
+                    android:hint="Upload a clear photo of your ID/Passport" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -131,11 +135,11 @@
 
             <Button
                 android:id="@+id/btn_spiSubmit"
+                style="@style/submit_buttons"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:text="Submit"
-             style="@style/submit_buttons" />
+                android:text="Submit" />
 
         </LinearLayout>
 

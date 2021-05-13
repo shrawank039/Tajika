@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.finserve.pgw_sdk_android"
+    android:versionCode="1"
+    android:versionName="1.1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="28" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@style/PGWAppTheme.NoActionBar"
+        android:windowSoftInputMode="adjustResize" >
+        <activity
+            android:name="com.finserve.pgw_sdk_android.getstarted.PgwMainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.finserve.pgw_sdk_android.cardcheckout.CardActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.finserve.pgw_sdk_android.mobilemoneycheckout.MobileMoneyActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.finserve.pgw_sdk_android.eazzyappcheckout.EazzyAppActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.finserve.pgw_sdk_android.ErrorActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.finserve.pgw_sdk_android.cardcheckout.Gateway3DSecureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

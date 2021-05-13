@@ -95,20 +95,21 @@
 
             <LinearLayout style="@style/register_input_container">
 
-                <EditText
-                    android:id="@+id/edt_amount"
-                    style="@style/register_editText_container"
-                    android:hint="Amount willing to pay"
-                    android:inputType="number" />
-
                 <TextView
                     style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:padding="5dp"
-                    android:text="KSH 700" />
+                    android:layout_marginStart="20dp"
+                    android:text="Ksh" />
+
+                <EditText
+                    android:id="@+id/edt_amount"
+                    style="@style/register_editText_container"
+                    android:paddingStart="5dp"
+                    android:hint="Amount willing to pay in Ksh 0.00"
+                    android:inputType="number" />
+
             </LinearLayout>
 
             <LinearLayout style="@style/register_input_container">
@@ -118,7 +119,7 @@
                     android:id="@+id/edt_description"
                     style="@style/register_editText_container"
                     android:gravity="start"
-                    android:hint="Write work description"
+                    android:hint="Describe task/expectation in brief."
                     android:lines="5" />
 
             </LinearLayout>

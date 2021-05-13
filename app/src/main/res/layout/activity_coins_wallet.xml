@@ -36,7 +36,7 @@
 
             <TextView
                 style="@style/appBar_textView"
-                android:text="Coins Wallet" />
+                android:text="Points Counter" />
 
         </LinearLayout>
 
@@ -73,43 +73,8 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
+                    android:text="Points earned\ntill date"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:text="Coins earned\ntill date" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="15dp"
-                android:background="@color/white" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/topDesign_textView_bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="00"
-                    android:textSize="26sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    style="@style/topDesign_textView"
-                    android:text="Coins are\navailable"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -137,15 +102,50 @@
                     android:textSize="26sp" />
 
                 <TextView
+                    style="@style/topDesign_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    style="@style/topDesign_textView"
+                    android:text="Points are\navailable"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:text="Coins\nUsed" />
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="15dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/topDesign_textView_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="00"
+                    android:textSize="26sp" />
+
+                <TextView
+                    style="@style/topDesign_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Points\nUsed"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
@@ -172,7 +172,7 @@
                 android:drawableEnd="@drawable/shopping_bags_1x"
                 android:drawablePadding="10dp"
                 android:gravity="center"
-                android:text="Redeem coins"
+                android:text="Redeem Points"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
-            android:text="Your coins history"
+            android:text="Your Points history"
             android:textColor="@color/black"
             android:textStyle="bold" />
 

@@ -47,7 +47,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Credit: Ksh 000"
+            android:text="Credit: Ksh 0.00"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -199,7 +199,7 @@
                         android:drawableEnd="@drawable/ic_wallet_icon"
                         android:drawablePadding="10dp"
                         android:drawableTint="@color/dark_blue"
-                        android:text="KSH 000"
+                        android:text="Ksh 0.00"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp"
                         style="@style/topDesign_textView_bold"/>

@@ -3,6 +3,7 @@ package com.matrixdeveloper.tajika
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.matrixdeveloper.tajika.adapter.OnboardingViewPagerAdapter4
@@ -12,8 +13,8 @@ import kotlinx.android.synthetic.main.activity_onboarding.*
 class OnboardingActivity : AppCompatActivity() {
 
     private lateinit var mViewPager: ViewPager
-    private lateinit var btnBack: Button
-    private lateinit var btnNext: Button
+    //private lateinit var btnBack: Button
+    private lateinit var btnNext: TextView
     private var prf: PrefManager? = null
 
 
@@ -25,7 +26,7 @@ class OnboardingActivity : AppCompatActivity() {
         mViewPager = viewPager
         mViewPager.adapter = OnboardingViewPagerAdapter4(supportFragmentManager, this)
         mViewPager.offscreenPageLimit = 1
-        btnBack = btn_previous_step
+        //btnBack = btn_previous_step
         btnNext = btn_next_step
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageSelected(position: Int) {
@@ -50,14 +51,14 @@ class OnboardingActivity : AppCompatActivity() {
             }
         }
 
-            btnBack.setOnClickListener {
+            /*btnBack.setOnClickListener {
             if (getItem(+1) == 1) {
 //                startActivity(Intent(this, LandingPage::class.java))
 //                finish()
             } else {
                 mViewPager.setCurrentItem(getItem(-1), true)
             }
-        }
+        }*/
     }
 
     private fun getItem(i: Int): Int {

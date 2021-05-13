@@ -500,7 +500,7 @@
                         android:gravity="center"
                         android:padding="15dp"
                         android:text="Request Service"
-                        android:textColor="@color/golden"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -525,16 +525,12 @@
                             android:background="@color/dark_blue"
                             android:text="View Details"
                             android:textAllCaps="false"
-                            android:textColor="@color/golden"
+                            android:textColor="@color/white"
                             android:textSize="16sp"
+                            android:drawablePadding="5dp"
+                            android:drawableEnd="@drawable/arrow_forward"
+                            android:drawableTint="@color/white"
                             android:textStyle="bold" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="10dp"
-                            android:src="@drawable/arrow_forward"
-                            app:tint="@color/golden" />
 
                     </LinearLayout>
                 </LinearLayout>

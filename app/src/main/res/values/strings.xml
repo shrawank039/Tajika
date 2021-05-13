@@ -58,15 +58,16 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
     <string name="start_text_advice">Tajika connects you to the best service providers @ the best price.</string>
 
-    <string name="start">start</string>
+    <string name="start">Start</string>
     <string name="skip">Skip</string>
-    <string name="finish">finish</string>
-    <string name="next">next</string>
-    <string name="back">back</string>
-    <string name="enter_few_more_information">Enter few more information and\nyour business will be ready</string>
+    <string name="finish">Let\'s get started</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="enter_few_more_information">"Without hustle, talent will only carry you so far.” \n– Gary Vaynerchu</string>
     <string name="select_business_category">Select Business Category</string>
     <string name="some_thing_went_wrong">Something went wrong</string>
     <string name="todo">TODO</string>
+    <string name="how_it_works"><b>1.</b> Click one any of below options (Message, Whatsapp, Facebook, more)\n\n<b>2.</b> Select contact\n\n<b>3.</b> Earn discount/points as soon as your referral completes the sign up processes</string>
 
     <string-array name="planets_array">
         <item>Mercury</item>

@@ -86,7 +86,6 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.PROVIDER_ALL_BOOKING, data, response -> {
             Utils.log(TAG, response.toString());
 
-
         });
 
     }
