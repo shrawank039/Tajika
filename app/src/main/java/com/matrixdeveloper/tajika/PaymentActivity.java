@@ -26,7 +26,7 @@ public class PaymentActivity extends AppCompatActivity {
     // You will generate outlet code, api key, customer key and customer secret from  merchant portal. Go to the Manage API Key menu to generate a new key
     String outletCode = "0000000000";
     String password= "NoVjXD73cBGgCqLJODU2cdLwiV9j6cgG";
-    String apiKey = "Basic b21MaWIxQXl1a0VMUkxBTWdUQXowY1B2N1V1Z1RtN1I6MEJKWVZ6WEtrR0ZWU2puNQ==";
+    String apiKey = "b21MaWIxQXl1a0VMUkxBTWdUQXowY1B2N1V1Z1RtN1I6MEJKWVZ6WEtrR0ZWU2puNQ==";
     String orderRef = "";
     PgwSdk sdk;
 
