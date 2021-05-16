@@ -31,6 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
+                    android:fontFamily="@font/muli_bold"
                     android:gravity="center"
                     android:text="We are sorry, no result found at your location"
                     android:textColor="@color/dark_blue"
@@ -60,15 +61,17 @@
                             android:id="@+id/cv_joinToProvideService"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@color/dark_blue"
-                            app:cardCornerRadius="100dp">
+                            android:backgroundTint="@color/golden"
+                            android:elevation="3dp"
+                            app:cardCornerRadius="100dp"
+                            app:cardElevation="3dp">
 
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:padding="20dp"
-                                android:src="@drawable/add_icon"
-                                app:tint="@color/golden" />
+                                android:src="@drawable/add_icon" />
 
                         </androidx.cardview.widget.CardView>
 
@@ -77,6 +80,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="20dp"
                             android:layout_marginVertical="10dp"
+                            android:fontFamily="@font/muli_bold"
                             android:gravity="center"
                             android:text="Join to provide this service"
                             android:textColor="@color/dark_blue"
@@ -95,13 +99,15 @@
                             android:id="@+id/cv_referToProvideService"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/golden"
-                            app:cardCornerRadius="100dp">
+                            android:backgroundTint="@color/md_green_500"
+                            android:elevation="3dp"
+                            app:cardCornerRadius="100dp"
+                            app:cardElevation="3dp">
 
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:padding="25dp"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:padding="23dp"
                                 android:src="@drawable/share_icon"
                                 app:tint="@color/white" />
 
@@ -112,6 +118,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="20dp"
                             android:layout_marginVertical="10dp"
+                            android:fontFamily="@font/muli_bold"
                             android:gravity="center"
                             android:text="Refer a service provider to join"
                             android:textColor="@color/dark_blue"
@@ -523,13 +530,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/dark_blue"
+                            android:drawableEnd="@drawable/arrow_forward"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/white"
                             android:text="View Details"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="16sp"
-                            android:drawablePadding="5dp"
-                            android:drawableEnd="@drawable/arrow_forward"
-                            android:drawableTint="@color/white"
                             android:textStyle="bold" />
 
                     </LinearLayout>

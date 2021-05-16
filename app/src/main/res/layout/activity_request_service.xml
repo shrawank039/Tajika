@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="50dp"
+            android:paddingTop="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,9 +106,9 @@
                 <EditText
                     android:id="@+id/edt_amount"
                     style="@style/register_editText_container"
-                    android:paddingStart="5dp"
                     android:hint="Amount willing to pay in Ksh 0.00"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:paddingStart="5dp" />
 
             </LinearLayout>
 
@@ -134,4 +134,64 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/golden"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/txt_goBackHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/muli_semibold"
+            android:gravity="center"
+            android:paddingVertical="15dp"
+            android:text="Goback Home"
+            android:textColor="@color/dark_blue"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:background="@color/dark_blue" />
+
+        <TextView
+            android:id="@+id/txt_addService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/muli_semibold"
+            android:gravity="center"
+            android:paddingVertical="15dp"
+            android:text="Add Service"
+            android:textColor="@color/dark_blue"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:background="@color/dark_blue" />
+
+        <TextView
+            android:id="@+id/txt_manageRequests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/muli_semibold"
+            android:gravity="center"
+            android:paddingVertical="15dp"
+            android:text="Manage Requests"
+            android:textColor="@color/dark_blue"
+            android:textStyle="bold" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

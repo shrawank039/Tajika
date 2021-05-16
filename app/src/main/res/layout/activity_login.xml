@@ -39,10 +39,11 @@
                 style="@style/topDesign_textView_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Welcome back to \nTajika"
-                android:textSize="25sp" />
+                android:text="Welcome back to TajikaApp\nuser account."
+                android:textSize="20sp" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

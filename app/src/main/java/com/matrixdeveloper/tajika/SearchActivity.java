@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -27,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
@@ -131,7 +132,6 @@ public class SearchActivity extends AppCompatActivity {
 
                         mAdapter.notifyDataSetChanged();
 
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -172,7 +172,6 @@ public class SearchActivity extends AppCompatActivity {
 
                         mAdapter.notifyDataSetChanged();
 
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -181,10 +180,7 @@ public class SearchActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
         });
-
     }
 
     public void backPress(View view) {

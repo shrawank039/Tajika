@@ -21,18 +21,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            style="@style/appBar_container">
+        <LinearLayout style="@style/appBar_container">
 
             <ImageView
                 android:id="@+id/iv_backPress"
-               style="@style/appBar_imageView"/>
+                style="@style/appBar_imageView" />
 
             <TextView
                 android:id="@+id/edt_location"
+                style="@style/appBar_textView"
                 android:singleLine="true"
                 android:text="Dummy Text"
-                style="@style/appBar_textView"/>
+                android:textStyle="normal"
+                android:textSize="16sp"/>
 
             <ImageView
                 android:id="@+id/iv_gotoCurrentLocation"
@@ -56,13 +57,13 @@
 
             <TextView
                 android:id="@+id/edt_search"
+                style="@style/topDesign_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 android:drawableStart="@drawable/search_icon"
                 android:drawablePadding="7dp"
                 android:hint="Search service"
-                style="@style/topDesign_textView"
                 android:textSize="16sp" />
 
         </LinearLayout>

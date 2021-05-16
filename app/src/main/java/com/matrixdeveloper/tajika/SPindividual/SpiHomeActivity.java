@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -15,11 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.matrixdeveloper.tajika.ConversationListActivity;
-import com.matrixdeveloper.tajika.HomeActivity;
 import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.NewRequestAdapter;
-import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.adapter.UpcomingJobAdapter;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.model.UpcomingJob;
@@ -117,13 +114,9 @@ public class SpiHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (onlineOffline.isChecked()) {
-                    onlineOffline.setText("You are Online");
-                    indicator.setColorFilter(getResources().getColor(R.color.md_green_700));
                     changeStatus("1");
 
                 } else {
-                    onlineOffline.setText("You are Offline");
-                    indicator.setColorFilter(getResources().getColor(R.color.grey_300));
                     changeStatus("0");
                 }
             }
@@ -134,6 +127,14 @@ public class SpiHomeActivity extends AppCompatActivity {
     }
 
     private void changeStatus(String status) {
+
+        if (status.equals("1")) {
+            onlineOffline.setText("You are Online");
+            indicator.setColorFilter(getResources().getColor(R.color.md_green_700));
+        } else if (status.equals("0")) {
+            onlineOffline.setText("You are Offline");
+            indicator.setColorFilter(getResources().getColor(R.color.grey_300));
+        }
 
         JSONObject data = new JSONObject();
         try {
@@ -149,7 +150,6 @@ public class SpiHomeActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void getHomeData() {
 
@@ -174,7 +174,7 @@ public class SpiHomeActivity extends AppCompatActivity {
                 upcominJobArray = jsonObject.getJSONArray("upcomingjob");
 
                 // request list
-                if (requestArray.length()<1){
+                if (requestArray.length() < 1) {
                     newServiceRequestNotFound.setVisibility(View.VISIBLE);
                 }
                 for (int i = 0; i < requestArray.length(); i++) {
@@ -191,7 +191,7 @@ public class SpiHomeActivity extends AppCompatActivity {
                 }
 
                 // upcoming job list
-                if (requestArray.length()<1){
+                if (requestArray.length() < 1) {
                     upcomingJobsNotFound.setVisibility(View.VISIBLE);
                 }
                 for (int i = 0; i < upcominJobArray.length(); i++) {

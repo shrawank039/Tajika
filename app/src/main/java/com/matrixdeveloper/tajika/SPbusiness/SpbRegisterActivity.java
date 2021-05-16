@@ -18,6 +18,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -76,6 +79,7 @@ public class SpbRegisterActivity extends AppCompatActivity {
             bussiness_link, minimum_charge, bussiness_logo, service_photo, latitude, longitude;
     private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass, edtLogo, edtServicePhoto, edtServiceArea, edt_description,
             edtYearExperience, edtBusinessLink, edtMinCharges;
+    private ImageView showPass, showCPass;
     private LinearLayout ll_logo_upload, ll_service_photo_upload;
     private int type = AppConstants.DOCUMENT_TYPE_ID;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
@@ -112,6 +116,8 @@ public class SpbRegisterActivity extends AppCompatActivity {
         edtYearExperience = regViewFlipper.findViewById(R.id.edt_year_of_experience);
         edtBusinessLink = regViewFlipper.findViewById(R.id.edt_business_link);
         edtMinCharges = regViewFlipper.findViewById(R.id.edt_min_charges);
+        showPass = regViewFlipper.findViewById(R.id.showPass);
+        showCPass = regViewFlipper.findViewById(R.id.showCPass);
 
         ll_logo_upload = regViewFlipper.findViewById(R.id.ll_logo_upload);
         ll_service_photo_upload = regViewFlipper.findViewById(R.id.ll_service_photo_upload);
@@ -412,6 +418,28 @@ public class SpbRegisterActivity extends AppCompatActivity {
             regViewFlipper.setDisplayedChild(displayedChild - 1);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    public void onHideClick(View view) {
+        if (view.getId() == R.id.showPass) {
+            if (edtPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                //Show Password
+                edtPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                //Hide Passsword
+                edtPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+        }
+
+        if (view.getId() == R.id.showCPass) {
+            if (edtCPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                //Show Password
+                edtCPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                //Hide Passsword
+                edtCPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
         }
     }
 }

@@ -488,8 +488,9 @@ public class LocationSelectorActivity extends FragmentActivity
         mMap.addMarker(new MarkerOptions()
                 .position(location)
                 .title("Current Location")
-                .draggable(true)
-                .icon(bitmapDescriptorFromVector(this)));
+                .draggable(true));
+                //.icon(bitmapDescriptorFromVector(this)));
+                //.icon(bitmapDescriptorFromVector(this)));
 
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         final CameraPosition cameraPosition = new CameraPosition.Builder()

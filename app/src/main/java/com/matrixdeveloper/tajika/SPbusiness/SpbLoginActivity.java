@@ -6,6 +6,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class SpbLoginActivity extends AppCompatActivity {
     EditText edtEmail, edtPass;
     private String TAG = "SpiLoginAct";
     private static PrefManager prf;
+    private TextView loginGreetings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class SpbLoginActivity extends AppCompatActivity {
 
         edtEmail = findViewById(R.id.edt_email);
         edtPass = findViewById(R.id.edt_pass);
+        loginGreetings = findViewById(R.id.textView);
+        loginGreetings.setText("Welcome back to TajikaApp Service Provider (Businesss) account.");
     }
 
     public void onSignUPClick(View view) {

@@ -16,12 +16,12 @@
 
         <TextView
             android:id="@+id/textView"
+            style="@style/topDesign_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:justificationMode="inter_word"
-            android:text="@string/splash_info_user_provider"
-            style="@style/topDesign_textView" />
+            android:text="@string/splash_info_user_provider" />
 
         <View
             android:id="@+id/divider"
@@ -43,16 +43,16 @@
                 android:paddingHorizontal="20dp">
 
                 <Button
-                    style="@style/landingPage_button_style"
                     android:id="@+id/btn_user"
+                    style="@style/landingPage_button_style"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/happy_1x"
                     android:text="User" />
 
                 <Button
-                    style="@style/landingPage_button_style"
                     android:id="@+id/btn_serviceProviderIndividual"
+                    style="@style/landingPage_button_style"
                     android:layout_weight="3"
                     android:drawableTop="@drawable/run_1x"
                     android:text="Service Provider Individual" />
@@ -68,19 +68,19 @@
                 android:paddingBottom="20dp">
 
                 <Button
-                    style="@style/landingPage_button_style"
                     android:id="@+id/btn_serviceProviderBusiness"
-                    android:layout_weight="3"
+                    style="@style/landingPage_button_style"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="3"
                     android:drawableTop="@drawable/store_1x"
-                    android:text="Service Provider Business"/>
+                    android:text="Service Provider Business" />
 
                 <Button
-                    style="@style/landingPage_button_style"
                     android:id="@+id/btn_help"
+                    style="@style/landingPage_button_style"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/help_1x"
-                    android:text="Help"/>
+                    android:text="Help" />
 
             </LinearLayout>
         </LinearLayout>
