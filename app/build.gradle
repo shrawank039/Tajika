@@ -115,6 +115,7 @@ dependencies {
 
     // Slider
     implementation "com.github.firdausmaulan:GlideSlider:1.5.1"
+
     // zoom
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
 

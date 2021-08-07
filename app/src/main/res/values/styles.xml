@@ -61,10 +61,11 @@
 
     <style name="register_top_imageView">
         <item name="android:src">@drawable/nav_drawer_background</item>
-        <item name="android:alpha">0.2</item>
+        <item name="android:alpha">0.5</item>
         <item name="android:scaleType">centerCrop</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:gravity">bottom</item>
 
     </style>
 
@@ -74,6 +75,22 @@
         <item name="android:scaleType">centerCrop</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+
+    </style>
+
+    <style name="otp_input_editText">
+        <item name="android:background">@drawable/otp_input_background</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">47dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:elevation">3dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
 
     </style>
 
@@ -87,7 +104,7 @@
         <item name="android:letterSpacing">0.01</item>
         <item name="android:textStyle">bold</item>
         <item name="android:drawableTint" tools:targetApi="m">@color/grey_800</item>
-        <item name="android:paddingVertical" tools:targetApi="o">10dp</item>
+        <item name="android:paddingVertical" tools:targetApi="o">15dp</item>
 
     </style>
 

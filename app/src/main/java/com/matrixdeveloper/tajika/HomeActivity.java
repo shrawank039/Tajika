@@ -46,8 +46,7 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
-
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewService,recyclerViewGoods;
     private ServiceAdapter mAdapter;
     private PrefManager prf;
     private String TAG = "HomeAct";
@@ -73,15 +72,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         serviceLists = new ArrayList<>();
         mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists, 0);
 
-        recyclerView.setHasFixedSize(true);
-
+        // For recommended services
+        recyclerViewService.setHasFixedSize(true);
         gridLayoutManager = new GridLayoutManager(this, 1);
         gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
+        recyclerViewService.setLayoutManager(gridLayoutManager);
+        recyclerViewService.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewService.setAdapter(mAdapter);
 
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
+        recyclerViewService.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewService, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 ServiceList serviceList = serviceLists.get(position);
@@ -97,6 +96,33 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             }
         }));
+
+
+        // For recommended Goods
+        recyclerViewGoods.setHasFixedSize(true);
+        gridLayoutManager = new GridLayoutManager(this, 1);
+        gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerViewGoods.setLayoutManager(gridLayoutManager);
+        recyclerViewGoods.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewGoods.setAdapter(mAdapter);
+
+        recyclerViewGoods.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewGoods, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                ServiceList serviceList = serviceLists.get(position);
+
+                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
+                        .putExtra("service_name", serviceList.getServiceName())
+                        .putExtra("service_id", String.valueOf(serviceList.getId())));
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
 
         // for responsive screen size
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -146,7 +172,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         coinsWallet = findViewById(R.id.ll_coinsWallet);
         referFriends = findViewById(R.id.ll_referFriends);
         viewAllService = findViewById(R.id.txt_viewAllService);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerViewService = findViewById(R.id.rv_recommendedService);
+        recyclerViewGoods = findViewById(R.id.rv_recommendedGoods);
         llSearch = findViewById(R.id.ll_search);
         chatting = findViewById(R.id.cv_conversation);
         greeting = findViewById(R.id.txt_homeGreeting);
@@ -258,7 +285,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                         mAdapter.notifyDataSetChanged();
 
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -267,7 +293,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
         });
     }
