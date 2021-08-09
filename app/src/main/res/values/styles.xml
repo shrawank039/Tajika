@@ -196,4 +196,8 @@
     <style name="topDesign_textView">
         <item name="fontFamily">@font/lato</item>
     </style>
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

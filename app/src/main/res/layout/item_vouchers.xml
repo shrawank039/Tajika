@@ -79,8 +79,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/copy_code"
-                    android:textColor="@color/dark_blue"
-                    style="@style/topDesign_textView"
+                    android:textColor="@color/golden"
+                    style="@style/topDesign_textView_bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

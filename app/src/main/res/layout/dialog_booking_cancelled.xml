@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey_100"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Your booking has been cancelled."
+                android:textColor="@color/dark_blue"
+                android:textSize="18sp"
+                style="@style/topDesign_textView_bold" />
+
+            <ImageView
+                android:id="@+id/iv_dialogCancel"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/circle_cancel"
+                android:contentDescription="@string/close_dialog"
+                app:tint="@color/md_blue_grey_800" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginVertical="30dp"
+            android:src="@drawable/circle_cancel"
+            app:tint="@color/red" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your bookinhg has been cancelled. Your refund will be added to coins wallet. "
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginHorizontal="30dp"
+            style="@style/topDesign_textView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Cancelation charge: Ksh500"
+            android:textColor="@color/dark_blue"
+            android:gravity="center"
+            android:textSize="16sp"
+            style="@style/topDesign_textView_bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Thank you for using Tajika."
+            android:textColor="@color/dark_blue"
+            android:gravity="center"
+            android:textSize="18sp"
+            style="@style/topDesign_textView_bold" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

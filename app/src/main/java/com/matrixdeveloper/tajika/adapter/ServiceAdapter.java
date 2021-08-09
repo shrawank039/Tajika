@@ -54,7 +54,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         View itemView = null;
         if (type == 0 || type == 2) {
             itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recomended_services, parent, false);
+                    .inflate(R.layout.item_recomended_services, parent, false);
         } else if (type == 1) {
             itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.all_services, parent, false);

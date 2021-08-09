@@ -311,7 +311,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(getApplicationContext(), VouchersActivity.class));
                 return true;
             case R.id.nav_my_bookings:
-                startActivity(new Intent(getApplicationContext(), BookServiceActivity.class));
+                startActivity(new Intent(getApplicationContext(), BookingActivity.class));
                 return true;
             case R.id.nav_notification:
                 startActivity(new Intent(getApplicationContext(), NotificationActivity.class));

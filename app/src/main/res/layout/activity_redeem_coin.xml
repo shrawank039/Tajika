@@ -75,7 +75,7 @@
                         android:layout_height="40dp"
                         android:layout_margin="10dp"
                         android:src="@drawable/gift_2x"
-                        app:tint="@color/light_red" />
+                        app:tint="@color/md_blue_grey_800" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

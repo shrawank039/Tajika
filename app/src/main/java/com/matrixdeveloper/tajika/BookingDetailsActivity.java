@@ -92,7 +92,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     public void onCancelRequestClick(View view) {
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.layout_booking_cancellation_reason);
+        dialog.setContentView(R.layout.dialog_booking_cancellation_reason);
 
         ImageView dialogButton = dialog.findViewById(R.id.iv_dialogCancel);
         dialogButton.setOnClickListener(new View.OnClickListener() {

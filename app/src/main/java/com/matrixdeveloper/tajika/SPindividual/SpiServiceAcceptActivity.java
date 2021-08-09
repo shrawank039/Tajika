@@ -40,7 +40,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final Dialog dialog = new Dialog(SpiServiceAcceptActivity.this);
                 dialog.setCancelable(false);
-                dialog.setContentView(R.layout.job_completion_dialog);
+                dialog.setContentView(R.layout.dialog_job_completion);
 
                 ImageView dialogButton = dialog.findViewById(R.id.iv_dialogCancel);
                 TextView yes = dialog.findViewById(R.id.txt_yes);

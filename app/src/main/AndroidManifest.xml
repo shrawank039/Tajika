@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic,android:theme"
         tools:targetApi="m">
-
+        <activity android:name=".BookingActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".SPbusiness.SpbProfileActivity" />
         <activity android:name=".SPbusiness.SpbEditProfileActivity" />
@@ -47,7 +47,6 @@
             android:name=".LocationSelectorActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-
         <activity android:name=".SearchActivity" />
 
         <meta-data
