@@ -44,7 +44,7 @@ public class RedeemCoinAdapter extends RecyclerView.Adapter<RedeemCoinAdapter.vi
             public void onClick(View view) {
                 final Dialog dialog = new Dialog(ctx);
                 dialog.setCancelable(false);
-                dialog.setContentView(R.layout.layout_redeem_dialog);
+                dialog.setContentView(R.layout.dialog_redeem);
 
                 ImageView dialogButton = dialog.findViewById(R.id.iv_dialogCancel);
                 dialogButton.setOnClickListener(new View.OnClickListener() {

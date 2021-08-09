@@ -36,6 +36,7 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="Catering"
+                android:textStyle="bold"
                 style="@style/topDesign_textView_bold"/>
 
             <TextView
@@ -46,6 +47,7 @@
                 android:gravity="center"
                 android:maxLines="2"
                 android:minLines="2"
+                android:textSize="12sp"
                 android:text="@string/dummy_text"
                 android:textColor="@color/black"
                 android:visibility="gone" />

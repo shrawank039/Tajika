@@ -47,7 +47,7 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     private RecyclerView recyclerViewService,recyclerViewGoods;
-    private ServiceAdapter mAdapter;
+    private ServiceAdapter mAdapterType0,mAdapterType1;
     private PrefManager prf;
     private String TAG = "HomeAct";
     SliderLayout homeSlider;
@@ -57,7 +57,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private LinearLayout coinsWallet, notificationList, referFriends, llSearch;
     private TextView viewAllService, greeting;
     private CardView chatting;
-    private int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +69,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         greeting.setText("Good Morning " + prf.getString("name") + ", What can we help you with?");
 
         serviceLists = new ArrayList<>();
-        mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists, 0);
+        mAdapterType0 = new ServiceAdapter(HomeActivity.this, serviceLists, 0);
 
         // For recommended services
         recyclerViewService.setHasFixedSize(true);
@@ -78,7 +77,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewService.setLayoutManager(gridLayoutManager);
         recyclerViewService.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewService.setAdapter(mAdapter);
+        recyclerViewService.setAdapter(mAdapterType0);
 
         recyclerViewService.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewService, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -99,12 +98,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
         // For recommended Goods
+
+        mAdapterType1 = new ServiceAdapter(HomeActivity.this, serviceLists, 2);
         recyclerViewGoods.setHasFixedSize(true);
         gridLayoutManager = new GridLayoutManager(this, 1);
         gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewGoods.setLayoutManager(gridLayoutManager);
         recyclerViewGoods.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewGoods.setAdapter(mAdapter);
+        recyclerViewGoods.setAdapter(mAdapterType1);
 
         recyclerViewGoods.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewGoods, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -283,7 +284,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                         serviceLists.add(serviceList);
 
-                        mAdapter.notifyDataSetChanged();
+                        mAdapterType0.notifyDataSetChanged();
 
                     } catch (JSONException e) {
                         e.printStackTrace();

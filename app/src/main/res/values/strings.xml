@@ -68,6 +68,11 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="some_thing_went_wrong">Something went wrong</string>
     <string name="todo">TODO</string>
     <string name="how_it_works"><b>1.</b> Click one any of below options (Message, Whatsapp, Facebook, more)\n\n<b>2.</b> Select contact\n\n<b>3.</b> Earn discount/points as soon as your referral completes the sign up processes</string>
+    <string name="recommended_by_tajika"><u>Recommended by Tajika</u></string>
+    <string name="payment_valid_for_one_time_and_valid_for_3days">Note: This payment will be valid only for one time and will be valid for 3 days.</string>
+    <string name="pay_one_time_to_get_access_of_provider">Pay one time charge to get the access of provider.</string>
+    <string name="pay_one_time_charge">Pay one time charge</string>
+    <string name="close_dialog">close dialog</string>
 
     <string-array name="planets_array">
         <item>Mercury</item>
