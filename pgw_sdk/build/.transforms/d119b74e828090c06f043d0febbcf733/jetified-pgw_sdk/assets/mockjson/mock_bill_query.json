@@ -1,0 +1,10 @@
+{
+  "billRef": "BIL12345",
+  "amount": "1000.00",
+  "billName": "Test Bill",
+  "billStatus": "true",
+  "customerRef": "CS123456",
+  "documentRef": "DC123456",
+  "paymentMethod": "Cash",
+  "status": "true"
+}

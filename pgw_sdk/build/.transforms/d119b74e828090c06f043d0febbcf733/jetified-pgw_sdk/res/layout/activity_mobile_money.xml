@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="10dp"
+    android:background="#7E7E7E"
+    android:id="@+id/contentView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:paddingBottom="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/layout_bg_top">
+
+       <include layout="@layout/header"></include>
+        <ScrollView android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+            <RelativeLayout
+                android:layout_width="140dp"
+                android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="Subtotal amount"
+                android:textSize="12dp"
+               android:layout_alignParentRight="true"
+                android:textColor="#202020"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/subtotal_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:layout_alignParentRight="true"
+                android:text="2,000.00"
+                android:textColor="#202020"
+                android:layout_marginRight="10dp"/>
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:textSize="12dp"
+                android:text="KES"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/selection_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="Select preferred mobile money operator"
+                android:textColor="#666666"
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="#ffffff"
+            android:id="@+id/operator">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_gravity="center"
+            android:id="@+id/recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            />
+        </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:layout_below="@+id/operator"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/back_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="1dp"
+                        android:paddingLeft="40dp"
+                        android:text="BACK"
+                        android:textColor="#D9D9D9"
+                        android:textSize="15sp"
+                        android:gravity="center"
+
+                        android:layout_weight="0.50"/>
+ </LinearLayout>
+
+            </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</FrameLayout>
