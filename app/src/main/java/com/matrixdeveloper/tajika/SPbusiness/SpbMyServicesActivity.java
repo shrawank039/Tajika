@@ -1,14 +1,17 @@
 package com.matrixdeveloper.tajika.SPbusiness;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.widget.ImageView;
-
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.SPindividual.SpiMyServicesActivity;
+import com.matrixdeveloper.tajika.SPindividual.SpiAddNewServiceActivity;
 import com.matrixdeveloper.tajika.adapter.SPIMyServicesAdapter;
 import com.matrixdeveloper.tajika.model.SPIMyServicesModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -26,6 +29,7 @@ public class SpbMyServicesActivity extends AppCompatActivity {
     private SPIMyServicesAdapter servicesAdapter;
     private final String TAG = "SpbMyServicesAct";
     private PrefManager pref;
+    private Button addNewGoodOrService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         pref = new PrefManager(this);
         backPress = findViewById(R.id.iv_backPress);
         myServicesRecView = findViewById(R.id.rv_myServices);
+        addNewGoodOrService = findViewById(R.id.button2);
 
         SPIMyServicesModel[] myListData = new SPIMyServicesModel[]{
                 new SPIMyServicesModel(1, "Service #1", "Catering", "6.5 Years", "500 Ksh"),
@@ -47,6 +52,12 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         myServicesRecView.setAdapter(servicesAdapter);
 
         backPress.setOnClickListener(view -> SpbMyServicesActivity.super.onBackPressed());
+        addNewGoodOrService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SpbMyServicesActivity.this, SpiAddNewServiceActivity.class));
+            }
+        });
 
         myServiceList();
     }

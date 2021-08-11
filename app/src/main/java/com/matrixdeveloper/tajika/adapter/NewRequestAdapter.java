@@ -5,23 +5,17 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiServiceRequestDetailsActivity;
-import com.matrixdeveloper.tajika.model.ServiceList;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-
-import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
 
 public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.MyViewHolder> {
 

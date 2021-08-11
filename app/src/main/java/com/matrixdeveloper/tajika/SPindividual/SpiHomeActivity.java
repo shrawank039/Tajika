@@ -3,8 +3,10 @@ package com.matrixdeveloper.tajika.SPindividual;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -35,11 +37,10 @@ import java.util.List;
 
 public class SpiHomeActivity extends AppCompatActivity {
 
-    ImageView moreSettings, notifications, indicator;
+    private ImageView moreSettings, notifications, indicator;
     private SwitchMaterial onlineOffline;
     private LinearLayout newServiceRequestNotFound, upcomingJobsNotFound;
-
-    RecyclerView requestRecycler, upcomingJobRecycler;
+    private RecyclerView requestRecycler, upcomingJobRecycler;
     private NewRequestAdapter requestAdapter;
     private UpcomingJobAdapter upcomingJobAdapter;
     private List<ServiceRequestList> requestLists;
@@ -48,6 +49,8 @@ public class SpiHomeActivity extends AppCompatActivity {
     private String TAG = "SPHomeAct";
     private ImageView allBookings;
     private CardView cvMessageButton;
+    private Button checkNewOffers;
+    private ViewFlipper viewFlipper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,8 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         requestRecycler = findViewById(R.id.rv_new_request);
         upcomingJobRecycler = findViewById(R.id.rv_upcoming_job);
+        checkNewOffers = findViewById(R.id.btn_checkNewOrders);
+        viewFlipper = findViewById(R.id.viewflipper);
 
         requestRecycler.setHasFixedSize(true);
         requestRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -81,6 +86,13 @@ public class SpiHomeActivity extends AppCompatActivity {
         upcomingJobsNotFound = findViewById(R.id.ll_upComingJobsRequestNotFound);
         cvMessageButton = findViewById(R.id.cv_conversation);
         allBookings = findViewById(R.id.iv_allBookings);
+
+        checkNewOffers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setDisplayedChild(1);
+            }
+        });
 
         cvMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +145,7 @@ public class SpiHomeActivity extends AppCompatActivity {
             indicator.setColorFilter(getResources().getColor(R.color.md_green_700));
         } else if (status.equals("0")) {
             onlineOffline.setText("You are Offline");
-            indicator.setColorFilter(getResources().getColor(R.color.grey_300));
+            indicator.setColorFilter(getResources().getColor(R.color.md_red_A700));
         }
 
         JSONObject data = new JSONObject();
@@ -213,5 +225,15 @@ public class SpiHomeActivity extends AppCompatActivity {
 
 
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        int displayedChild = viewFlipper.getDisplayedChild();
+        if (displayedChild > 0) {
+            viewFlipper.setDisplayedChild(displayedChild - 1);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

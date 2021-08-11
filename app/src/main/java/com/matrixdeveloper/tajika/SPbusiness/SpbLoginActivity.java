@@ -15,7 +15,6 @@ import com.matrixdeveloper.tajika.LoginThroughOTPActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.ResetPasswordActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
-import com.matrixdeveloper.tajika.SPindividual.SpiRegisterActivity;
 import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;

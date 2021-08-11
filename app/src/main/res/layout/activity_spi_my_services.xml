@@ -35,13 +35,20 @@
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/item_spi_my_services" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button2"
-        style="@style/submit_buttons"
-        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:drawableStart="@drawable/add_icon"
-        android:text="Add new Service"
+        android:drawableLeft="@drawable/add_icon"
+        android:drawableTint="@color/dark_blue"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="10dp"
+        android:text="Add new Services"
+        android:textAllCaps="false"
+        android:textColor="@color/dark_blue"
+        android:textStyle="bold"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

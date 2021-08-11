@@ -86,5 +86,16 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_new_goods">AddNewGoodsActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="add_your_new_service"><u>Add your new service</u></string>
+    <string name="add_your_new_good"><u>Add your new god</u></string>
+    <string name="add_goods_instead"><u>Add goods instead</u></string>
 
 </resources>

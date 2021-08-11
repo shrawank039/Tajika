@@ -2,16 +2,13 @@ package com.matrixdeveloper.tajika;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.SPbusiness.SpbLoginActivity;
-import com.matrixdeveloper.tajika.SPbusiness.SpbRegisterActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiLoginActivity;
-import com.matrixdeveloper.tajika.SPindividual.SpiRegisterActivity;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
 public class LandingPage extends AppCompatActivity {

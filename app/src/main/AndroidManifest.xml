@@ -23,6 +23,12 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:label,android:usesCleartextTraffic,android:theme"
         tools:targetApi="m">
+        <activity
+            android:name=".SPbusiness.SpiAddNewGoodsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SPindividual.SpiAddNewServiceActivity"
+            android:exported="true" />
         <activity android:name=".BookingActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".SPbusiness.SpbProfileActivity" />

@@ -18,7 +18,7 @@
            style="@style/appBar_imageView" />
 
         <TextView
-            android:text="Your Services"
+            android:text="My services and goods"
           style="@style/appBar_textView" />
     </LinearLayout>
 
@@ -35,16 +35,26 @@
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/item_spi_my_services" />
 
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button2"
-        style="@style/submit_buttons"
-        android:layout_gravity="center"
-        android:text="Add new Service"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:drawableLeft="@drawable/add_icon"
+        android:drawableTint="@color/dark_blue"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="10dp"
+        android:text="Add new services and goods"
+        android:textAllCaps="false"
+        android:textColor="@color/dark_blue"
+        android:textStyle="bold"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
+<!--
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -169,5 +179,5 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

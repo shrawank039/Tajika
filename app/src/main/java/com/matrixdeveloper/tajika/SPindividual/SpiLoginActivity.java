@@ -11,10 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.matrixdeveloper.tajika.HomeActivity;
 import com.matrixdeveloper.tajika.LoginThroughOTPActivity;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.RegisterActivity;
 import com.matrixdeveloper.tajika.ResetPasswordActivity;
 import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.network.ApiCall;
