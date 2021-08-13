@@ -1,33 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey_100"
     android:orientation="vertical"
     tools:context=".AllServiceActivity">
+
+    <ImageView
+        android:id="@+id/iv_backPress"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/hamburger_2x" />
+
     <LinearLayout
-        android:id="@+id/linearLayout"
-        style="@style/appBar_container"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/white_button"
+        android:backgroundTint="@color/white"
+        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/iv_backPress"
-            style="@style/appBar_imageView"/>
-
-        <TextView
-            android:text="All Services"
-            style="@style/appBar_textView"/>
-
-
+        <EditText
+            android:id="@+id/inputSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableStart="@drawable/search_icon"
+            android:drawablePadding="10dp"
+            android:focusable="true"
+            android:hint="@string/home_search_keyword"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/home_search_hint"
+            android:textSize="15sp" />
     </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Browse category"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_viewAllService"
-        android:paddingHorizontal="10dp"
-        tools:listitem="@layout/item_recomended_services"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_category" />
 
 </LinearLayout>
