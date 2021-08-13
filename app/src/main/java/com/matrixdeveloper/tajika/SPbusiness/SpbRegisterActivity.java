@@ -35,7 +35,7 @@ import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.Register;
-import com.matrixdeveloper.tajika.model.ServiceList;
+import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -379,8 +379,8 @@ public class SpbRegisterActivity extends AppCompatActivity {
 
                     try {
 
-                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
-                        spinnerArray.add(serviceList.getServiceName());
+                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
+                        spinnerArray.add(subCategory.getServiceName());
 
                     } catch (JSONException e) {
                         e.printStackTrace();

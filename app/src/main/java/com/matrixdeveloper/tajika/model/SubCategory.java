@@ -5,15 +5,12 @@ import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ServiceList implements Serializable
+public class SubCategory implements Serializable
 {
 
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("service_category")
-    @Expose
-    private Integer serviceCategory;
     @SerializedName("service_name")
     @Expose
     private String serviceName;
@@ -40,14 +37,6 @@ public class ServiceList implements Serializable
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getServiceCategory() {
-        return serviceCategory;
-    }
-
-    public void setServiceCategory(Integer serviceCategory) {
-        this.serviceCategory = serviceCategory;
     }
 
     public String getServiceName() {

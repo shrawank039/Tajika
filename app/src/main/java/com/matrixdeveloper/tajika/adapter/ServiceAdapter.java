@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.model.ServiceList;
+import com.matrixdeveloper.tajika.model.SubCategory;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +23,7 @@ import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHolder> {
 
     private final Context ctx;
-    private final List<ServiceList> serviceLists;
+    private final List<SubCategory> subCategories;
     private int type;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -42,10 +42,10 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
     }
 
 
-    public ServiceAdapter(Context context, List<ServiceList> serviceLists, int type) {
+    public ServiceAdapter(Context context, List<SubCategory> subCategories, int type) {
         ctx = context;
         this.type = type;
-        this.serviceLists = serviceLists;
+        this.subCategories = subCategories;
     }
 
     @NotNull
@@ -64,12 +64,12 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final ServiceList serviceList = serviceLists.get(position);
+        final SubCategory subCategory = subCategories.get(position);
 
-        holder.title.setText(serviceList.getServiceName());
-        holder.message.setText(serviceList.getServiceDescription());
+        holder.title.setText(subCategory.getServiceName());
+        holder.message.setText(subCategory.getServiceDescription());
         Glide.with(ctx)
-                .load(PRODUCTION_API + serviceList.getServiceImage())
+                .load(PRODUCTION_API + subCategory.getServiceImage())
                 .placeholder(R.drawable.plumbing)
                 .into(holder.imageView);
 
@@ -81,13 +81,13 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
     @Override
     public int getItemCount() {
         if (type == 0 || type == 2) {
-            if (serviceLists.size() > 3) {
+            if (subCategories.size() > 3) {
                 return 3;
             } else {
-                return serviceLists.size();
+                return subCategories.size();
             }
         } else {
-            return serviceLists.size();
+            return subCategories.size();
         }
     }
 }

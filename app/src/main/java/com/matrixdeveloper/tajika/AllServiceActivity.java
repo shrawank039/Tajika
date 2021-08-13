@@ -1,6 +1,5 @@
 package com.matrixdeveloper.tajika;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
-import com.matrixdeveloper.tajika.model.ServiceList;
+import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -28,7 +27,7 @@ import java.util.List;
 public class AllServiceActivity extends AppCompatActivity {
 
     private String TAG = "AllServiceAct";
-    private List<ServiceList> serviceLists;
+    private List<SubCategory> subCategories;
     private ServiceAdapter mAdapter;
     private RecyclerView recyclerView;
     private ImageView backPress;
@@ -45,8 +44,8 @@ public class AllServiceActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.rv_viewAllService);
 
-        serviceLists = new ArrayList<>();
-        mAdapter = new ServiceAdapter(AllServiceActivity.this, serviceLists,1);
+        subCategories = new ArrayList<>();
+        mAdapter = new ServiceAdapter(AllServiceActivity.this, subCategories,1);
 
         recyclerView.setHasFixedSize(true);
 
@@ -57,11 +56,11 @@ public class AllServiceActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                ServiceList serviceList = serviceLists.get(position);
+                SubCategory subCategory = subCategories.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                        .putExtra("service_name", serviceList.getServiceName())
-                        .putExtra("service_id", String.valueOf(serviceList.getId())));
+                        .putExtra("service_name", subCategory.getServiceName())
+                        .putExtra("service_id", String.valueOf(subCategory.getId())));
 
             }
 
@@ -90,9 +89,9 @@ public class AllServiceActivity extends AppCompatActivity {
 
                     try {
 
-                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
+                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
 
-                        serviceLists.add(serviceList);
+                        subCategories.add(subCategory);
 
                         mAdapter.notifyDataSetChanged();
 

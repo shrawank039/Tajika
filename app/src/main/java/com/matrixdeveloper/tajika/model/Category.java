@@ -1,6 +1,8 @@
 package com.matrixdeveloper.tajika.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -19,6 +21,15 @@ public class Category implements Serializable
     @SerializedName("status")
     @Expose
     private Integer status;
+    @SerializedName("description")
+    @Expose
+    private String serviceDescription;
+    @SerializedName("service_type")
+    @Expose
+    private String serviceType;
+    @SerializedName("sub_category")
+    @Expose
+    private List<SubCategory> subCategory = null;
 
     private final static long serialVersionUID = 3555046175266321640L;
 
@@ -54,4 +65,31 @@ public class Category implements Serializable
         this.status = status;
     }
 
+    public String getServiceDescription() {
+        return serviceDescription;
+    }
+
+    public void setServiceDescription(String serviceDescription) {
+        this.serviceDescription = serviceDescription;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public List<SubCategory> getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(List<SubCategory> subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 }

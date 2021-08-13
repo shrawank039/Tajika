@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
-import com.matrixdeveloper.tajika.model.ServiceList;
+import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -26,15 +26,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
     private EditText inputSearch;
     private String TAG = "SearchServiceAct";
-    private List<ServiceList> serviceLists;
+    private List<SubCategory> subCategories;
     private ServiceAdapter mAdapter;
     private RecyclerView recyclerView;
     private ImageView backPress;
@@ -48,8 +46,8 @@ public class SearchActivity extends AppCompatActivity {
         backPress = findViewById(R.id.iv_backPress);
         recyclerView = findViewById(R.id.rv_viewSearchService);
 
-        serviceLists = new ArrayList<>();
-        mAdapter = new ServiceAdapter(SearchActivity.this, serviceLists, 1);
+        subCategories = new ArrayList<>();
+        mAdapter = new ServiceAdapter(SearchActivity.this, subCategories, 1);
 
         recyclerView.setHasFixedSize(true);
 
@@ -60,11 +58,11 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                ServiceList serviceList = serviceLists.get(position);
+                SubCategory subCategory = subCategories.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                        .putExtra("service_name", serviceList.getServiceName())
-                        .putExtra("service_id", String.valueOf(serviceList.getId())));
+                        .putExtra("service_name", subCategory.getServiceName())
+                        .putExtra("service_id", String.valueOf(subCategory.getId())));
 
             }
 
@@ -78,7 +76,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                serviceLists.clear();
+                subCategories.clear();
                 if (String.valueOf(cs).equals("")) {
                     getAllService();
                 } else {
@@ -106,7 +104,7 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
-        serviceLists.clear();
+        subCategories.clear();
         getAllService();
     }
 
@@ -126,9 +124,9 @@ public class SearchActivity extends AppCompatActivity {
 
                     try {
 
-                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
+                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
 
-                        serviceLists.add(serviceList);
+                        subCategories.add(subCategory);
 
                         mAdapter.notifyDataSetChanged();
 
@@ -166,9 +164,9 @@ public class SearchActivity extends AppCompatActivity {
 
                     try {
 
-                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
+                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
 
-                        serviceLists.add(serviceList);
+                        subCategories.add(subCategory);
 
                         mAdapter.notifyDataSetChanged();
 

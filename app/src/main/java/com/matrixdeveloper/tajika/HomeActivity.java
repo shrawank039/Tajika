@@ -29,7 +29,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
-import com.matrixdeveloper.tajika.model.ServiceList;
+import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private PrefManager prf;
     private String TAG = "HomeAct";
     SliderLayout homeSlider;
-    private List<ServiceList> serviceLists;
+    private List<SubCategory> subCategories;
     private NavigationView navigationView;
     private GridLayoutManager gridLayoutManager;
     private LinearLayout coinsWallet, notificationList, referFriends, llSearch;
@@ -68,8 +68,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         greeting.setText("Good Morning " + prf.getString("name") + ", What can we help you with?");
 
-        serviceLists = new ArrayList<>();
-        mAdapterType0 = new ServiceAdapter(HomeActivity.this, serviceLists, 0);
+        subCategories = new ArrayList<>();
+        mAdapterType0 = new ServiceAdapter(HomeActivity.this, subCategories, 0);
 
         // For recommended services
         recyclerViewService.setHasFixedSize(true);
@@ -82,11 +82,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         recyclerViewService.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewService, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                ServiceList serviceList = serviceLists.get(position);
+                SubCategory subCategory = subCategories.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                        .putExtra("service_name", serviceList.getServiceName())
-                        .putExtra("service_id", String.valueOf(serviceList.getId())));
+                        .putExtra("service_name", subCategory.getServiceName())
+                        .putExtra("service_id", String.valueOf(subCategory.getId())));
 
             }
 
@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // For recommended Goods
 
-        mAdapterType1 = new ServiceAdapter(HomeActivity.this, serviceLists, 2);
+        mAdapterType1 = new ServiceAdapter(HomeActivity.this, subCategories, 2);
         recyclerViewGoods.setHasFixedSize(true);
         gridLayoutManager = new GridLayoutManager(this, 1);
         gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
@@ -110,11 +110,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         recyclerViewGoods.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewGoods, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                ServiceList serviceList = serviceLists.get(position);
+                SubCategory subCategory = subCategories.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                        .putExtra("service_name", serviceList.getServiceName())
-                        .putExtra("service_id", String.valueOf(serviceList.getId())));
+                        .putExtra("service_name", subCategory.getServiceName())
+                        .putExtra("service_id", String.valueOf(subCategory.getId())));
 
             }
 
@@ -280,9 +280,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                     try {
 
-                        ServiceList serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceList.class);
+                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
 
-                        serviceLists.add(serviceList);
+                        subCategories.add(subCategory);
 
                         mAdapterType0.notifyDataSetChanged();
 
