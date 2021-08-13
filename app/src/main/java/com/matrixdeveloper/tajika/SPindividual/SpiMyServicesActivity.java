@@ -40,8 +40,8 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         addNewGoodsOrServices = findViewById(R.id.button2);
 
         SPIMyServicesModel[] myListData = new SPIMyServicesModel[]{
-                new SPIMyServicesModel(1, "Service #1", "Catering", "6.5 Years", "500 Ksh"),
-                new SPIMyServicesModel(2, "Service #2", "Plumbing", "5.5 Years", "550 Ksh")
+                new SPIMyServicesModel(1, "Service #1", "Catering", "4.1 Years", "500 Ksh"),
+                new SPIMyServicesModel(2, "Service #2", "Plumbing", "3.5 Years", "250 Ksh")
         };
 
         servicesAdapter = new SPIMyServicesAdapter(this, myListData);
