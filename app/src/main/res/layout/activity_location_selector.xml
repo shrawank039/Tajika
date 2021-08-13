@@ -69,5 +69,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/bottomsheet_serviceprovider" />
+    <include layout="@layout/bottomsheet_goodsprovider" />
+    <include layout="@layout/bottomsheet_serviceprovider"
+        android:visibility="gone"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

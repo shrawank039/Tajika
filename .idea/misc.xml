@@ -13,6 +13,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_coins_wallet.xml" value="0.15" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_compare_list.xml" value="0.18" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_home.xml" value="0.13223684210526315" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_location_selector.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_login_through_otp.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_redeem_coin.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_referral.xml" value="0.14" />
@@ -25,6 +26,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_my_services.xml" value="0.12" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_request_details.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_vouchers.xml" value="0.21" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsprovider.xml" value="0.16" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsproviders.xml" value="0.14" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.25" />
         <entry key="..\:/Tajika/app/src/main/res/layout/compare_list_top_design.xml" value="0.13223684210526315" />
@@ -46,6 +48,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/item_booked_or_requested.xml" value="0.18" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_category.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_conversation_list.xml" value="0.13223684210526315" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/item_premium_packages.xml" value="0.18" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_redeem_coin.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_spi_my_services.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_subcategory.xml" value="0.13223684210526315" />

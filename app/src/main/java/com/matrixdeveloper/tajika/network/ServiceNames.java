@@ -28,6 +28,7 @@ public class ServiceNames {
     public static final String NOTIFICATION_LIST = API + "/notificationList";
     public static final String DELETE_NOTIFICATION = API + "/removeNotification";
     public static final String BOOKING_DETAILS = API + "/servicebookingDetails";
+    public static final String SUBSCRIPTION_PLAN = API + "/getAllSubscriptionPlan";
 
     // SP
     public static final String REGISTER_SERVICE_PROVIDER_INDI = API + "/createServiceProviderAccount";
