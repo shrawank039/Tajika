@@ -90,7 +90,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private List<ServiceProvider> serviceProviderList;
     private String TAG = "LocationSelectorAct";
     BottomSheetBehavior behavior;
-    private String service_name, service_id;
+    private String service_name, service_id, service_type;
     int height;
     private ImageView img;
     private TextView edtSearch;
@@ -111,6 +111,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
         service_name = getIntent().getStringExtra("service_name");
         service_id = getIntent().getStringExtra("service_id");
+        service_type = getIntent().getStringExtra("service_type");
         edtAddress = findViewById(R.id.edt_location);
         inner = findViewById(R.id.inner);
         gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);

@@ -1,7 +1,5 @@
 package com.matrixdeveloper.tajika.adapter;
 
-import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -87,6 +85,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
                 ctx.startActivity(new Intent(ctx, LocationSelectorActivity.class)
                         .putExtra("service_name", subCategory.getServiceName())
+                        .putExtra("service_type", subCategory.getServiceType())
                         .putExtra("service_id", String.valueOf(subCategory.getId())));
 
              //   Toast.makeText(ctx, subCategory.getServiceName(), Toast.LENGTH_SHORT).show();

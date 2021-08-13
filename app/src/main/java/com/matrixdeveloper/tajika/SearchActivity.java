@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -110,7 +111,7 @@ public class SearchActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("servicename", "plu");
+            data.put("servicename", key);
             data.put("type", "all");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -122,44 +123,46 @@ public class SearchActivity extends AppCompatActivity {
             JSONArray serviceArray = null;
             JSONArray goodsArray = null;
             JSONArray subCategory = null;
-            try {
+            if (Objects.equals(response.opt("status"), 200)) {
+                try {
 
-                jsonObject = response.optJSONObject("data");
-                serviceArray = jsonObject.getJSONArray("service");
-                goodsArray = jsonObject.getJSONArray("goods");
+                    jsonObject = response.optJSONObject("data");
+                    serviceArray = jsonObject.getJSONArray("service");
+                    goodsArray = jsonObject.getJSONArray("goods");
 
-                for (int i = 0; i < serviceArray.length(); i++) {
+                    for (int i = 0; i < serviceArray.length(); i++) {
 
-                    try {
+                        try {
 
-                        Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
+                            Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
 
-                        catService.add(category);
+                            catService.add(category);
 
-                        serviceAdapter.notifyDataSetChanged();
+                            serviceAdapter.notifyDataSetChanged();
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
-                for (int i = 0; i < goodsArray.length(); i++) {
+                    for (int i = 0; i < goodsArray.length(); i++) {
 
-                    try {
+                        try {
 
-                        Category category = MySingleton.getGson().fromJson(goodsArray.getJSONObject(i).toString(), Category.class);
+                            Category category = MySingleton.getGson().fromJson(goodsArray.getJSONObject(i).toString(), Category.class);
 
-                        catGoods.add(category);
+                            catGoods.add(category);
 
-                        goodsAdapter.notifyDataSetChanged();
+                            goodsAdapter.notifyDataSetChanged();
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

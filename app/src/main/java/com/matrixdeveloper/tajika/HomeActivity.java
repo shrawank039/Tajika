@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private GridLayoutManager gridLayoutManager;
     private LinearLayout coinsWallet, notificationList, referFriends, llSearch;
-    private TextView viewAllService, greeting;
+    private TextView viewAllService, viewAllGoods, greeting;
     private CardView chatting;
 
     @Override
@@ -74,8 +74,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // For recommended services
         recyclerViewService.setHasFixedSize(true);
-        gridLayoutManager = new GridLayoutManager(this, 1);
-        gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        gridLayoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL,false);
         recyclerViewService.setLayoutManager(gridLayoutManager);
         recyclerViewService.setItemAnimator(new DefaultItemAnimator());
         recyclerViewService.setAdapter(mAdapterType0);
@@ -87,6 +86,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
                         .putExtra("service_name", subCategory.getServiceName())
+                        .putExtra("service_type", subCategory.getServiceType())
                         .putExtra("service_id", String.valueOf(subCategory.getId())));
 
             }
@@ -102,8 +102,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         mAdapterType1 = new ServiceAdapter(HomeActivity.this, subCatGoods, 2);
         recyclerViewGoods.setHasFixedSize(true);
-        gridLayoutManager = new GridLayoutManager(this, 1);
-        gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        gridLayoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL,false);
         recyclerViewGoods.setLayoutManager(gridLayoutManager);
         recyclerViewGoods.setItemAnimator(new DefaultItemAnimator());
         recyclerViewGoods.setAdapter(mAdapterType1);
@@ -173,6 +172,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         coinsWallet = findViewById(R.id.ll_coinsWallet);
         referFriends = findViewById(R.id.ll_referFriends);
         viewAllService = findViewById(R.id.txt_viewAllService);
+        viewAllGoods = findViewById(R.id.txt_viewAllGoods);
         recyclerViewService = findViewById(R.id.rv_recommendedService);
         recyclerViewGoods = findViewById(R.id.rv_recommendedGoods);
         llSearch = findViewById(R.id.ll_search);
@@ -205,7 +205,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         });
         coinsWallet.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), CoinsWalletActivity.class)));
         referFriends.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), ReferralActivity.class)));
-        viewAllService.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AllServiceActivity.class)));
+        viewAllService.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AllServiceActivity.class).putExtra("type", "service")));
+        viewAllGoods.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AllServiceActivity.class).putExtra("type", "goods")));
         chatting.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, ConversationListActivity.class)));
 
         llSearch.setOnClickListener(v -> {

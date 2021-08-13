@@ -2,15 +2,22 @@ package com.matrixdeveloper.tajika;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.matrixdeveloper.tajika.adapter.SearchAdapter;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
+import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
@@ -20,92 +27,136 @@ import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AllServiceActivity extends AppCompatActivity {
 
     private String TAG = "AllServiceAct";
-    private List<SubCategory> subCategories;
-    private ServiceAdapter mAdapter;
-    private RecyclerView recyclerView;
+    private EditText inputSearch;
+    private List<Category> catService, catGoods;
+    private SearchAdapter serviceAdapter;
+    private RecyclerView rvService;
     private ImageView backPress;
-
+    String type = "service";
+    private TextView titleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_service);
+
+        inputSearch = findViewById(R.id.inputSearch);
         backPress = findViewById(R.id.iv_backPress);
-        backPress.setOnClickListener(view -> AllServiceActivity.super.onBackPressed());
+        rvService = findViewById(R.id.rv_viewAllService);
+        titleView = findViewById(R.id.txt_header);
+        type = getIntent().getStringExtra("type");
+
+        if (type.equals("goods"))
+            titleView.setText("Browse Goods");
+
+        catService = new ArrayList<>();
+        catGoods = new ArrayList<>();
+        serviceAdapter = new SearchAdapter(AllServiceActivity.this, catService);
+
+        rvService.setHasFixedSize(true);
+
+        rvService.setLayoutManager(new LinearLayoutManager(this));
+        rvService.setItemAnimator(new DefaultItemAnimator());
+        rvService.setAdapter(serviceAdapter);
 
 
+        inputSearch.addTextChangedListener(new TextWatcher() {
 
-        recyclerView = findViewById(R.id.rv_viewAllService);
-
-        subCategories = new ArrayList<>();
-        mAdapter = new ServiceAdapter(AllServiceActivity.this, subCategories,1);
-
-        recyclerView.setHasFixedSize(true);
-
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
-
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
-            public void onClick(View view, int position) {
-                SubCategory subCategory = subCategories.get(position);
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                catService.clear();
+                catGoods.clear();
+                if (String.valueOf(cs).equals("")) {
+                    getSearchResult("");
+                } else {
+                    getSearchResult(String.valueOf(cs));
+                }
+            }
 
-                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                        .putExtra("service_name", subCategory.getServiceName())
-                        .putExtra("service_id", String.valueOf(subCategory.getId())));
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                // TODO Auto-generated method stub
 
             }
 
             @Override
-            public void onLongClick(View view, int position) {
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        backPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               AllServiceActivity.super.onBackPressed();
 
             }
-        }));
-
-        getAllService();
-
+        });
+        catService.clear();
+        catGoods.clear();
+        getSearchResult("");
     }
 
-    private void getAllService() {
 
-        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
+    private void getSearchResult(String key) {
 
-            Utils.log(TAG, response.toString());
+        JSONObject data = new JSONObject();
+        try {
+            data.put("servicename", key);
+            data.put("type", type);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-            JSONArray jsonarray = null;
-            try {
+        ApiCall.postMethodWithoutProgress(this, ServiceNames.FILTER_SERVICE_LIST, data, response -> {
 
-                jsonarray = response.getJSONArray("data");
+            JSONObject jsonObject = null;
+            JSONArray serviceArray = null;
+            if (Objects.equals(response.opt("status"), 200)){
+                try {
 
-                for (int i = 0; i < jsonarray.length(); i++) {
+                    jsonObject = response.optJSONObject("data");
+                    serviceArray = jsonObject.getJSONArray(type);
 
-                    try {
+                    for (int i = 0; i < serviceArray.length(); i++) {
 
-                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
+                        try {
 
-                        subCategories.add(subCategory);
+                            Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
 
-                        mAdapter.notifyDataSetChanged();
+                            catService.add(category);
 
+                            serviceAdapter.notifyDataSetChanged();
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
+        }
         });
+    }
+
+    public void backPress(View view) {
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
