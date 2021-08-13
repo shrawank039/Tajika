@@ -1,12 +1,15 @@
 package com.matrixdeveloper.tajika;
 
+import static com.matrixdeveloper.tajika.utils.Global.compareAddOne;
+import static com.matrixdeveloper.tajika.utils.Global.compareAddOneID;
+import static com.matrixdeveloper.tajika.utils.Global.compareAddTwo;
+import static com.matrixdeveloper.tajika.utils.Global.compareAddTwoID;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -18,6 +21,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,8 +32,10 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.arsy.maps_library.MapRipple;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -42,11 +48,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.matrixdeveloper.tajika.adapter.SubscriptionAdapter;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.AddressBean;
 import com.matrixdeveloper.tajika.model.PlaceBean;
 import com.matrixdeveloper.tajika.model.ServiceProvider;
 import com.matrixdeveloper.tajika.model.ServiceProviderDetails;
+import com.matrixdeveloper.tajika.model.SubscriptionModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -63,11 +71,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static com.matrixdeveloper.tajika.utils.Global.compareAddOne;
-import static com.matrixdeveloper.tajika.utils.Global.compareAddOneID;
-import static com.matrixdeveloper.tajika.utils.Global.compareAddTwo;
-import static com.matrixdeveloper.tajika.utils.Global.compareAddTwoID;
-
 public class LocationSelectorActivity extends FragmentActivity
         implements OnMapReadyCallback, GoogleMap.OnMapClickListener,
         BottomSheetDialog.BottomSheetListener {
@@ -81,7 +84,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private Location location;
     private String selected_id;
     private ImageView gotoCurrentLocation, backPress;
-    private LinearLayout searchProviderCategory, viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService, inner;
+    private LinearLayout searchProviderCategory, viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService, inner, llSubscription;
     private View view, view1;
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
@@ -96,6 +99,8 @@ public class LocationSelectorActivity extends FragmentActivity
     ServiceProviderDetails serviceProviderDetails;
     private CardView jointToProvideService, referToProvideService;
     PrefManager pref;
+    Button btnGetDetails, btnChat;
+    private RecyclerView recSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +139,11 @@ public class LocationSelectorActivity extends FragmentActivity
         txtSkill = findViewById(R.id.txt_skill);
         jointToProvideService = findViewById(R.id.cv_joinToProvideService);
         referToProvideService = findViewById(R.id.cv_referToProvideService);
+        btnChat = findViewById(R.id.btn_chat);
+        btnGetDetails = findViewById(R.id.btn_getDetails);
+        recSubscription = findViewById(R.id.rv_subscription);
+        llSubscription = findViewById(R.id.ll_subscription);
+
 
         serviceProviderList = new ArrayList<>();
 
@@ -178,6 +188,40 @@ public class LocationSelectorActivity extends FragmentActivity
             }
         });
 
+        btnGetDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        getSubscriptionDetails();
+
+    }
+
+    private void getSubscriptionDetails() {
+        ApiCall.getMethod(this, ServiceNames.SUBSCRIPTION_PLAN, response -> {
+            Utils.log(TAG, response.toString());
+            JSONArray jsonarray = null;
+            try {
+                jsonarray = response.getJSONArray("data");
+                List<SubscriptionModel> subModel = new ArrayList<>();
+                for (int i = 0; i < jsonarray.length(); i++) {
+                    JSONObject object = jsonarray.getJSONObject(i);
+                    subModel.add(new SubscriptionModel(String.valueOf(i), object.getString("name"), object.getString("amount"), object.getString("no_of_days")));
+                }
+                SubscriptionAdapter subAdapter = new SubscriptionAdapter(LocationSelectorActivity.this, subModel);
+                recSubscription.setHasFixedSize(true);
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
+                gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+                recSubscription.setLayoutManager(gridLayoutManager);
+                recSubscription.setItemAnimator(new DefaultItemAnimator());
+                recSubscription.setAdapter(subAdapter);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void initListeners() {
@@ -204,10 +248,16 @@ public class LocationSelectorActivity extends FragmentActivity
                     viewDetails.setVisibility(View.GONE);
                     moreDetails.setVisibility(View.VISIBLE);
                     recommendedService.setVisibility(View.VISIBLE);
+                    btnGetDetails.setVisibility(View.GONE);
+                    btnChat.setVisibility(View.VISIBLE);
+                    llSubscription.setVisibility(View.VISIBLE);
                 } else {
                     viewDetails.setVisibility(View.VISIBLE);
                     moreDetails.setVisibility(View.GONE);
                     recommendedService.setVisibility(View.GONE);
+                    btnGetDetails.setVisibility(View.VISIBLE);
+                    btnChat.setVisibility(View.GONE);
+                    llSubscription.setVisibility(View.GONE);
                 }
             }
 
