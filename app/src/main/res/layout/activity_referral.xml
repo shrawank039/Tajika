@@ -19,8 +19,8 @@
         <ImageView
             android:id="@+id/imageView2"
             style="@style/register_top_imageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,14 +114,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Refer more to earn more\npoints." />
+                        android:text="Invite friends to earn points." />
 
-                    <TextView
-                        style="@style/topDesign_textView_bold"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:text="@string/check_points_history" />
+                        android:elevation="3dp"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="3dp">
+
+                        <TextView
+                            style="@style/topDesign_textView_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#202A44"
+                            android:padding="10dp"
+                            android:text="@string/check_points_history"
+                            android:textColor="@color/white" />
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
             </LinearLayout>
@@ -136,78 +147,59 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="140dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/business_leader_2x" />
 
-                <LinearLayout
+                <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="Invite your friends and Family to use Tajika App"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        style="@style/topDesign_textView_bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Invite your friends and Family to use Tajika App:"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:text="Share a better way to connect to service providers and earn upto 10% discount for all services requested for upto 6 months."
-                        android:textColor="@color/dark_blue" />
-
-                </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:text="When they fully signup, you earn upto 5 points for every business/service provider that joins."
+                android:textColor="@color/dark_blue" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
+
+                <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/topDesign_textView_bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Invite friends and Businesses to offer services through Tajika App:"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:text="When they fully signup, you earn upto 5 points for every business/service provider that joins."
-                        android:textColor="@color/dark_blue" />
-
-                </LinearLayout>
+                    android:text="Invite friends and Businesses to offer services through Tajika App"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -217,6 +209,14 @@
                     android:src="@drawable/giving_high_five_2x" />
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:text="Share a better way to connect to service providers and earn upto 10% discount for all services requested for upto 6 months."
+                android:textColor="@color/dark_blue" />
 
             <TextView
                 style="@style/topDesign_textView_bold"

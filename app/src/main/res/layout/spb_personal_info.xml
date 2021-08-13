@@ -20,8 +20,8 @@
 
             <ImageView
                 style="@style/register_top_imageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -46,9 +46,9 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="15dp"
                     android:gravity="center"
-                    android:textStyle="bold"
                     android:text="Register your business"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -135,6 +135,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="20dp"
+                    android:onClick="onHideClick"
                     android:src="@drawable/eye_2x" />
             </LinearLayout>
 
@@ -159,16 +160,17 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="20dp"
+                    android:onClick="onHideClick"
                     android:src="@drawable/eye_2x" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/btn_nextToBusinessDetails"
+                style="@style/submit_buttons"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:text="Next"
-                style="@style/submit_buttons" />
+                android:text="Continue" />
 
         </LinearLayout>
 

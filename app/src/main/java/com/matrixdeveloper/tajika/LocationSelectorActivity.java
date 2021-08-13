@@ -72,7 +72,7 @@ public class LocationSelectorActivity extends FragmentActivity
         implements OnMapReadyCallback, GoogleMap.OnMapClickListener,
         BottomSheetDialog.BottomSheetListener {
     private GoogleMap mMap;
- //   private MapRipple mapRipple;
+    //   private MapRipple mapRipple;
     TextView edtAddress, requestService;
     private LatLng mSelectedLatLng;
     private AddressBean mSelectedAddress = null;
@@ -111,7 +111,7 @@ public class LocationSelectorActivity extends FragmentActivity
         gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
-        view = findViewById(R.id.view_viewDetails);
+        //view = findViewById(R.id.view_viewDetails);
         moreDetails = findViewById(R.id.ll_moreDetails);
         recommendedService = findViewById(R.id.ll_recommendedService);
         edtSearch = findViewById(R.id.edt_search);
@@ -166,10 +166,11 @@ public class LocationSelectorActivity extends FragmentActivity
             }
         });
         final LinearLayout parentTwo = (LinearLayout) findViewById(R.id.ll_two);
+        final TextView recommendedByTajika = findViewById(R.id.txt_recommendedByTajika);
         parentTwo.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                int availableHeight = parentTwo.getMeasuredHeight();
+                int availableHeight = parentTwo.getMeasuredHeight() + recommendedByTajika.getMeasuredHeight();
                 if (availableHeight > 0) {
                     parentTwo.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     peekHeight += availableHeight;
@@ -488,8 +489,9 @@ public class LocationSelectorActivity extends FragmentActivity
         mMap.addMarker(new MarkerOptions()
                 .position(location)
                 .title("Current Location")
-                .draggable(true)
-                .icon(bitmapDescriptorFromVector(this)));
+                .draggable(true));
+        //.icon(bitmapDescriptorFromVector(this)));
+        //.icon(bitmapDescriptorFromVector(this)));
 
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         final CameraPosition cameraPosition = new CameraPosition.Builder()

@@ -1,6 +1,8 @@
 package com.matrixdeveloper.tajika.SPindividual;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ public class SpiMyServicesActivity extends AppCompatActivity {
     private SPIMyServicesAdapter servicesAdapter;
     private final String TAG = "SpiMyServicesAct";
     private PrefManager pref;
+    private Button addNewGoodsOrServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         pref = new PrefManager(this);
         backPress = findViewById(R.id.iv_backPress);
         myServicesRecView = findViewById(R.id.rv_myServices);
+        addNewGoodsOrServices = findViewById(R.id.button2);
 
         SPIMyServicesModel[] myListData = new SPIMyServicesModel[]{
                 new SPIMyServicesModel(1, "Service #1", "Catering", "6.5 Years", "500 Ksh"),
@@ -46,6 +50,7 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         myServicesRecView.setAdapter(servicesAdapter);
 
         backPress.setOnClickListener(view -> SpiMyServicesActivity.super.onBackPressed());
+        addNewGoodsOrServices.setOnClickListener(view -> startActivity(new Intent(SpiMyServicesActivity.this,SpiAddNewServiceActivity.class)));
 
         myServiceList();
     }

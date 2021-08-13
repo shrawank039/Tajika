@@ -26,7 +26,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_viewAllService"
         android:paddingHorizontal="10dp"
-        tools:listitem="@layout/recomended_services"
+        tools:listitem="@layout/item_recomended_services"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

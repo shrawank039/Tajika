@@ -18,7 +18,6 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.request.RequestOptions;
@@ -27,7 +26,6 @@ import com.glide.slider.library.slidertypes.BaseSliderView;
 import com.glide.slider.library.slidertypes.TextSliderView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
@@ -48,9 +46,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
-
-    private RecyclerView recyclerView;
-    private ServiceAdapter mAdapter;
+    private RecyclerView recyclerViewService,recyclerViewGoods;
+    private ServiceAdapter mAdapterType0,mAdapterType1;
     private PrefManager prf;
     private String TAG = "HomeAct";
     SliderLayout homeSlider;
@@ -58,9 +55,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private GridLayoutManager gridLayoutManager;
     private LinearLayout coinsWallet, notificationList, referFriends, llSearch;
-    private TextView viewAllService,greeting;
+    private TextView viewAllService, greeting;
     private CardView chatting;
-    private int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,20 +66,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         initViews();
         handleClickListener();
 
-        greeting.setText("Good Morning "+prf.getString("name")+", What can we help you with?");
+        greeting.setText("Good Morning " + prf.getString("name") + ", What can we help you with?");
 
         serviceLists = new ArrayList<>();
-        mAdapter = new ServiceAdapter(HomeActivity.this, serviceLists, 0);
+        mAdapterType0 = new ServiceAdapter(HomeActivity.this, serviceLists, 0);
 
-        recyclerView.setHasFixedSize(true);
-
+        // For recommended services
+        recyclerViewService.setHasFixedSize(true);
         gridLayoutManager = new GridLayoutManager(this, 1);
         gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
+        recyclerViewService.setLayoutManager(gridLayoutManager);
+        recyclerViewService.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewService.setAdapter(mAdapterType0);
 
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
+        recyclerViewService.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewService, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 ServiceList serviceList = serviceLists.get(position);
@@ -99,6 +95,35 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             }
         }));
+
+
+        // For recommended Goods
+
+        mAdapterType1 = new ServiceAdapter(HomeActivity.this, serviceLists, 2);
+        recyclerViewGoods.setHasFixedSize(true);
+        gridLayoutManager = new GridLayoutManager(this, 1);
+        gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerViewGoods.setLayoutManager(gridLayoutManager);
+        recyclerViewGoods.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewGoods.setAdapter(mAdapterType1);
+
+        recyclerViewGoods.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewGoods, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                ServiceList serviceList = serviceLists.get(position);
+
+                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
+                        .putExtra("service_name", serviceList.getServiceName())
+                        .putExtra("service_id", String.valueOf(serviceList.getId())));
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
 
         // for responsive screen size
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -148,10 +173,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         coinsWallet = findViewById(R.id.ll_coinsWallet);
         referFriends = findViewById(R.id.ll_referFriends);
         viewAllService = findViewById(R.id.txt_viewAllService);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerViewService = findViewById(R.id.rv_recommendedService);
+        recyclerViewGoods = findViewById(R.id.rv_recommendedGoods);
         llSearch = findViewById(R.id.ll_search);
         chatting = findViewById(R.id.cv_conversation);
-        greeting=findViewById(R.id.txt_homeGreeting);
+        greeting = findViewById(R.id.txt_homeGreeting);
     }
 
     private void updateToken(String token) {
@@ -258,8 +284,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                         serviceLists.add(serviceList);
 
-                        mAdapter.notifyDataSetChanged();
-
+                        mAdapterType0.notifyDataSetChanged();
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -269,7 +294,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
         });
     }
@@ -281,39 +305,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(Gravity.LEFT);
                 return true;
             case R.id.nav_my_profile:
-                drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), MyProfileActivity.class));
                 return true;
             case R.id.nav_offers:
-                drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), VouchersActivity.class));
                 return true;
             case R.id.nav_my_bookings:
-                drawer.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(getApplicationContext(), BookServiceActivity.class));
+                startActivity(new Intent(getApplicationContext(), BookingActivity.class));
                 return true;
             case R.id.nav_notification:
-                drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
                 return true;
             case R.id.nav_help:
-                drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), HelpActivity.class));
                 return true;
             case R.id.nav_privacy_policy:
-                drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), PrivacyPolicyActivity.class));
                 return true;
             case R.id.nav_about_us:
-                drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
                 return true;
             case R.id.nav_refer_friends:
-                drawer.closeDrawer(Gravity.LEFT);
                 startActivity(new Intent(getApplicationContext(), ReferralActivity.class));
                 return true;
             case R.id.nav_rate_app:
-                drawer.closeDrawer(Gravity.LEFT);
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
                 } catch (ActivityNotFoundException e) {
@@ -321,7 +336,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 }
                 return true;
             case R.id.nav_logout:
-                drawer.closeDrawer(Gravity.LEFT);
                 prf.setString("id", "");
                 Intent intent = new Intent(this, LandingPage.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -334,5 +348,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void onNavDrawerClick(View view) {
         drawer.openDrawer(Gravity.LEFT);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isOpen()) {
+            drawer.closeDrawer(Gravity.LEFT);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

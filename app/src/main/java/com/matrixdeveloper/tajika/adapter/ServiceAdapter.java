@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -23,7 +24,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
 
     private final Context ctx;
     private final List<ServiceList> serviceLists;
-    int type = 0;
+    private int type;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -49,11 +50,11 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
 
     @NotNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = null;
-        if (type == 0) {
+        if (type == 0 || type == 2) {
             itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recomended_services, parent, false);
+                    .inflate(R.layout.item_recomended_services, parent, false);
         } else if (type == 1) {
             itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.all_services, parent, false);
@@ -71,11 +72,15 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
                 .load(PRODUCTION_API + serviceList.getServiceImage())
                 .placeholder(R.drawable.plumbing)
                 .into(holder.imageView);
+
+        if (type == 2) {
+            holder.message.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        if (type == 0) {
+        if (type == 0 || type == 2) {
             if (serviceLists.size() > 3) {
                 return 3;
             } else {

@@ -22,7 +22,7 @@ public class Utils {
             customDialog = new CustomDialog(context);
             customDialog.setCancelable(false);
             customDialog.setCanceledOnTouchOutside(false);
-            customDialog.setContentView(R.layout.loading_dialog);
+            customDialog.setContentView(R.layout.dialog_loading);
             Window window = customDialog.getWindow();
             window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                     WindowManager.LayoutParams.MATCH_PARENT);

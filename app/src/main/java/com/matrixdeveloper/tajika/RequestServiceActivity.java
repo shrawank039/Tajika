@@ -2,12 +2,14 @@ package com.matrixdeveloper.tajika;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
     private Button submitRequest;
     private EditText edtDate, edtTime, edtAmount, edtService, edtDescription;
     private ImageView backPress;
+    private TextView goBackHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
         edtDescription = findViewById(R.id.edt_description);
         submitRequest = findViewById(R.id.btn_submit);
         backPress = findViewById(R.id.iv_backPress);
+        goBackHome = findViewById(R.id.txt_goBackHome);
 
         edtService.setText(service_name);
         prf = new PrefManager(this);
@@ -56,6 +60,8 @@ public class RequestServiceActivity extends AppCompatActivity implements
         edtDate.setOnClickListener(this);
         edtTime.setOnClickListener(this);
         submitRequest.setOnClickListener(this);
+        backPress.setOnClickListener(this);
+        goBackHome.setOnClickListener(this);
 
     }
 
@@ -134,6 +140,12 @@ public class RequestServiceActivity extends AppCompatActivity implements
         }
         if (v == backPress) {
             super.onBackPressed();
+        }
+        if (v == goBackHome) {
+            Intent goBack = new Intent(this, HomeActivity.class);
+            goBack.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(goBack);
+
         }
     }
 }

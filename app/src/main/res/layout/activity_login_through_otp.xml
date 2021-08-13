@@ -20,13 +20,16 @@
         <ImageView
             android:id="@+id/imageView2"
             style="@style/register_top_imageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 style="@style/topDesign_textView_bold"
@@ -64,7 +67,6 @@
                 android:hint="Email / Mobile"
                 android:inputType="textEmailAddress" />
         </LinearLayout>
-
 
         <Button
             style="@style/submit_buttons"

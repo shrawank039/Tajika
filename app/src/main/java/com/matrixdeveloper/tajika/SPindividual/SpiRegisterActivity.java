@@ -13,6 +13,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -94,6 +97,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
             qualification_certification, latitude, longitude;
     private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass, edtServiceArea, edtYourExperience,
             edtBusinessLink, edtServiceCharge, edtSkillDescription, edtHighestEducation, edtPassportNumber, edtProQualification;
+    private ImageView showPass, showCPass;
     private static PrefManager prf;
 
     List<String> spinnerArray = new ArrayList<>();
@@ -133,6 +137,9 @@ public class SpiRegisterActivity extends AppCompatActivity {
         edtEmail = regViewFlipper.findViewById(R.id.edt_email);
         edtPass = regViewFlipper.findViewById(R.id.edt_pass);
         edtCPass = regViewFlipper.findViewById(R.id.edt_cpass);
+        showPass = regViewFlipper.findViewById(R.id.showPass);
+        showCPass = regViewFlipper.findViewById(R.id.showCPass);
+
 
         edtServiceArea = regViewFlipper.findViewById(R.id.edt_serviceArea);
 
@@ -534,6 +541,29 @@ public class SpiRegisterActivity extends AppCompatActivity {
             regViewFlipper.setDisplayedChild(displayedChild - 1);
         } else {
             super.onBackPressed();
+        }
+    }
+
+
+    public void onHideClick(View view) {
+        if (view.getId() == R.id.showPass) {
+            if (edtPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                //Show Password
+                edtPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                //Hide Passsword
+                edtPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+        }
+
+        if (view.getId() == R.id.showCPass) {
+            if (edtCPass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                //Show Password
+                edtCPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                //Hide Passsword
+                edtCPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
         }
     }
 

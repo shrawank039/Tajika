@@ -1,6 +1,8 @@
 package com.matrixdeveloper.tajika.SPindividual;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -9,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.AboutUsActivity;
 import com.matrixdeveloper.tajika.HelpActivity;
+import com.matrixdeveloper.tajika.LandingPage;
 import com.matrixdeveloper.tajika.LoginActivity;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.ReferralActivity;
 import com.matrixdeveloper.tajika.adapter.SPIMoreOptionsBaseAdapter;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
@@ -19,7 +23,7 @@ public class SpiMoreActivity extends AppCompatActivity {
     private ListView moreOptions;
     private PrefManager prf;
     String settingsList[] = {"My Profile", "Services you offer", "All requests", "All bookings",
-            "Credit wallet", "Contact us", "About us", "Logout"};
+            "Credit wallet", "Refer Friends", "Switch to user", "Rate App", "Contact us", "About us", "Logout"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +51,32 @@ public class SpiMoreActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), SpiCreditWalletActivity.class));
                     break;
                 case 5:
-                    startActivity(new Intent(getApplicationContext(), HelpActivity.class));
+                    startActivity(new Intent(getApplicationContext(), ReferralActivity.class));
                     break;
                 case 6:
-                    startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
-                    break;
-                case 7:
                     prf.setString("id", "");
-                    Intent intent = new Intent(this, LoginActivity.class);
+                    Intent intent = new Intent(this, LandingPage.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    break;
+                case 7:
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+                    } catch (ActivityNotFoundException e) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+                    }
+                    break;
+                case 8:
+                    startActivity(new Intent(getApplicationContext(), HelpActivity.class));
+                    break;
+                case 9:
+                    startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
+                    break;
+                case 10:
+                    prf.setString("id", "");
+                    Intent intent2 = new Intent(this, LoginActivity.class);
+                    intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent2);
                     break;
                 default:
                     Toast.makeText(SpiMoreActivity.this, "" + i, Toast.LENGTH_SHORT).show();

@@ -3,9 +3,10 @@ package com.matrixdeveloper.tajika.SPindividual;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -15,11 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.matrixdeveloper.tajika.ConversationListActivity;
-import com.matrixdeveloper.tajika.HomeActivity;
 import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.NewRequestAdapter;
-import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.adapter.UpcomingJobAdapter;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.model.UpcomingJob;
@@ -38,11 +37,10 @@ import java.util.List;
 
 public class SpiHomeActivity extends AppCompatActivity {
 
-    ImageView moreSettings, notifications, indicator;
+    private ImageView moreSettings, notifications, indicator;
     private SwitchMaterial onlineOffline;
     private LinearLayout newServiceRequestNotFound, upcomingJobsNotFound;
-
-    RecyclerView requestRecycler, upcomingJobRecycler;
+    private RecyclerView requestRecycler, upcomingJobRecycler;
     private NewRequestAdapter requestAdapter;
     private UpcomingJobAdapter upcomingJobAdapter;
     private List<ServiceRequestList> requestLists;
@@ -51,6 +49,8 @@ public class SpiHomeActivity extends AppCompatActivity {
     private String TAG = "SPHomeAct";
     private ImageView allBookings;
     private CardView cvMessageButton;
+    private Button checkNewOffers;
+    private ViewFlipper viewFlipper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,8 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         requestRecycler = findViewById(R.id.rv_new_request);
         upcomingJobRecycler = findViewById(R.id.rv_upcoming_job);
+        checkNewOffers = findViewById(R.id.btn_checkNewOrders);
+        viewFlipper = findViewById(R.id.viewflipper);
 
         requestRecycler.setHasFixedSize(true);
         requestRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -84,6 +86,13 @@ public class SpiHomeActivity extends AppCompatActivity {
         upcomingJobsNotFound = findViewById(R.id.ll_upComingJobsRequestNotFound);
         cvMessageButton = findViewById(R.id.cv_conversation);
         allBookings = findViewById(R.id.iv_allBookings);
+
+        checkNewOffers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setDisplayedChild(1);
+            }
+        });
 
         cvMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,13 +126,9 @@ public class SpiHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (onlineOffline.isChecked()) {
-                    onlineOffline.setText("You are Online");
-                    indicator.setColorFilter(getResources().getColor(R.color.md_green_700));
                     changeStatus("1");
 
                 } else {
-                    onlineOffline.setText("You are Offline");
-                    indicator.setColorFilter(getResources().getColor(R.color.grey_300));
                     changeStatus("0");
                 }
             }
@@ -134,6 +139,14 @@ public class SpiHomeActivity extends AppCompatActivity {
     }
 
     private void changeStatus(String status) {
+
+        if (status.equals("1")) {
+            onlineOffline.setText("You are Online");
+            indicator.setColorFilter(getResources().getColor(R.color.md_green_700));
+        } else if (status.equals("0")) {
+            onlineOffline.setText("You are Offline");
+            indicator.setColorFilter(getResources().getColor(R.color.md_red_A700));
+        }
 
         JSONObject data = new JSONObject();
         try {
@@ -149,7 +162,6 @@ public class SpiHomeActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void getHomeData() {
 
@@ -174,7 +186,7 @@ public class SpiHomeActivity extends AppCompatActivity {
                 upcominJobArray = jsonObject.getJSONArray("upcomingjob");
 
                 // request list
-                if (requestArray.length()<1){
+                if (requestArray.length() < 1) {
                     newServiceRequestNotFound.setVisibility(View.VISIBLE);
                 }
                 for (int i = 0; i < requestArray.length(); i++) {
@@ -191,7 +203,7 @@ public class SpiHomeActivity extends AppCompatActivity {
                 }
 
                 // upcoming job list
-                if (requestArray.length()<1){
+                if (requestArray.length() < 1) {
                     upcomingJobsNotFound.setVisibility(View.VISIBLE);
                 }
                 for (int i = 0; i < upcominJobArray.length(); i++) {
@@ -213,5 +225,15 @@ public class SpiHomeActivity extends AppCompatActivity {
 
 
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        int displayedChild = viewFlipper.getDisplayedChild();
+        if (displayedChild > 0) {
+            viewFlipper.setDisplayedChild(displayedChild - 1);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

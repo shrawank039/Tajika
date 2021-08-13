@@ -20,8 +20,8 @@
         <ImageView
             android:id="@+id/imageView2"
             style="@style/register_top_imageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -30,13 +30,13 @@
             android:layout_weight="2">
 
             <TextView
+                style="@style/topDesign_textView_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="20dp"
                 android:gravity="center"
                 android:text="Enter OTP receive on your Email and Phone number"
-                style="@style/topDesign_textView_bold"
                 android:textSize="20sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -53,105 +53,61 @@
             android:id="@+id/root_otp_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginHorizontal="20dp"
             android:orientation="horizontal"
-            android:padding="30dp"
-            android:weightSum="6">
+            android:padding="30dp">
 
             <EditText
                 android:id="@+id/otp_edit_box1"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:textSize="30sp" />
+                style="@style/otp_input_editText" />
 
             <EditText
                 android:id="@+id/otp_edit_box2"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:textSize="30sp" />
+                style="@style/otp_input_editText" />
 
             <EditText
                 android:id="@+id/otp_edit_box3"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:textSize="30sp" />
+                style="@style/otp_input_editText" />
 
             <EditText
                 android:id="@+id/otp_edit_box4"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:textSize="30sp" />
+                style="@style/otp_input_editText" />
 
             <EditText
                 android:id="@+id/otp_edit_box5"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:textSize="30sp" />
+                style="@style/otp_input_editText" />
 
             <EditText
                 android:id="@+id/otp_edit_box6"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:textSize="30sp" />
+                style="@style/otp_input_editText" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/txt_resendOtp"
+            style="@style/topDesign_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="Resend OTP"
-            style="@style/topDesign_textView"
             android:textColor="@color/grey_700"
             android:textSize="16sp" />
 
         <Button
+            style="@style/submit_buttons"
             android:layout_marginTop="30dp"
             android:onClick="onLoginCLick"
-            android:text="Login"
-           style="@style/submit_buttons"/>
+            android:text="Login" />
 
         <TextView
             android:id="@+id/txt_back"
+            style="@style/topDesign_textView_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:text="Back"
-            style="@style/topDesign_textView_bold"
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>

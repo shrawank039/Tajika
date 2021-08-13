@@ -1,0 +1,25 @@
+<com.google.android.material.textfield.TextInputLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ctil_pin_input"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Country"
+    android:textColorHint="@color/ln_colorHint"
+    app:errorEnabled="true"
+    app:errorTextAppearance="@style/ErrorTextStyle"
+    app:passwordToggleDrawable="@drawable/payment_bank_card_info"
+    app:passwordToggleEnabled="true"
+    app:passwordToggleTint="@null"
+    app:theme="@style/MyTextInputLayout">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/tiet_pin_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:inputType="textPassword"
+        android:maxLength="4"
+        android:textSize="@dimen/ln_input_size"
+        app:theme="@style/MyTextInputEdit" />
+</com.google.android.material.textfield.TextInputLayout>
