@@ -25,6 +25,7 @@
         android:background="@color/grey_500" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_subcat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

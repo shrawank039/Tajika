@@ -20,7 +20,8 @@ public class ServiceNames {
     public static final String CATEGORY = API + "/getCategoryList";
     public static final String FILTER_SERVICE_LIST = API + "/filterServiceList";
     public static final String BANNER = API + "/getbanner";
-    public static final String SERVICE_LIST = API + "/getServiceList";
+    public static final String SERVICE_LIST = API + "/allserviceList";
+    public static final String HOME_SCREEN_DATA = API + "/getHomeScreenData";
     public static final String SERVICE_PROVIDER_DETAILS = API + "/getServiceProviderInfo";
     public static final String SERVICE_PROVIDER_LIST = API + "/getAllServiceProviderByService";
     public static final String SUBMIT_SERVICE_REQUEST = API + "/submitServiceRequest";

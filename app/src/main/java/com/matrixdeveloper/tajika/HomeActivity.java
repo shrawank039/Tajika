@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private PrefManager prf;
     private String TAG = "HomeAct";
     SliderLayout homeSlider;
-    private List<SubCategory> subCategories;
+    private List<SubCategory> subCatService, subCatGoods;
     private NavigationView navigationView;
     private GridLayoutManager gridLayoutManager;
     private LinearLayout coinsWallet, notificationList, referFriends, llSearch;
@@ -68,8 +68,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         greeting.setText("Good Morning " + prf.getString("name") + ", What can we help you with?");
 
-        subCategories = new ArrayList<>();
-        mAdapterType0 = new ServiceAdapter(HomeActivity.this, subCategories, 0);
+        subCatService = new ArrayList<>();
+        subCatGoods = new ArrayList<>();
+        mAdapterType0 = new ServiceAdapter(HomeActivity.this, subCatService, 0);
 
         // For recommended services
         recyclerViewService.setHasFixedSize(true);
@@ -82,7 +83,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         recyclerViewService.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewService, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                SubCategory subCategory = subCategories.get(position);
+                SubCategory subCategory = subCatService.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
                         .putExtra("service_name", subCategory.getServiceName())
@@ -99,7 +100,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // For recommended Goods
 
-        mAdapterType1 = new ServiceAdapter(HomeActivity.this, subCategories, 2);
+        mAdapterType1 = new ServiceAdapter(HomeActivity.this, subCatGoods, 2);
         recyclerViewGoods.setHasFixedSize(true);
         gridLayoutManager = new GridLayoutManager(this, 1);
         gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
@@ -110,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         recyclerViewGoods.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewGoods, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                SubCategory subCategory = subCategories.get(position);
+                SubCategory subCategory = subCatGoods.get(position);
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
                         .putExtra("service_name", subCategory.getServiceName())
@@ -158,8 +159,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
-        getServiceList();
-        getBannerImage();
+        getHomeScreenData();
 
     }
 
@@ -215,25 +215,72 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void getBannerImage() {
+    private void getHomeScreenData() {
 
-        ApiCall.getMethod(this, ServiceNames.BANNER, response -> {
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", prf.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.HOME_SCREEN_DATA, data, response -> {
 
             Utils.log(TAG, response.toString());
 
-            JSONArray jsonArray = null;
+            JSONObject jsonObject = null;
+            JSONObject catObj = null;
+            JSONArray bannerArray = null;
+            JSONArray serviceArray = null;
+            JSONArray goodsArray = null;
             try {
 
-                jsonArray = response.getJSONArray("data");
+                jsonObject = response.getJSONObject("data");
+                catObj = jsonObject.getJSONObject("categorylist");
+                bannerArray = jsonObject.getJSONArray("bannerlist");
+                serviceArray = catObj.getJSONArray("service");
+                goodsArray = catObj.getJSONArray("goods");
+
+                for (int i = 0; i < serviceArray.length(); i++) {
+
+                    try {
+
+                        SubCategory subCategory = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), SubCategory.class);
+
+                        subCatService.add(subCategory);
+
+                        mAdapterType0.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+                for (int i = 0; i < goodsArray.length(); i++) {
+
+                    try {
+
+                        SubCategory subCategory = MySingleton.getGson().fromJson(goodsArray.getJSONObject(i).toString(), SubCategory.class);
+
+                        subCatGoods.add(subCategory);
+
+                        mAdapterType1.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 RequestOptions requestOptions = new RequestOptions();
                 requestOptions.centerCrop();
 
-                for (int i = 0; i < jsonArray.length(); i++) {
+                for (int i = 0; i < bannerArray.length(); i++) {
 
                     JSONObject c = null;
                     try {
-                        c = jsonArray.getJSONObject(i);
-                        Log.d("TAG", "image : " + c.optString("url"));
+                        c = bannerArray.getJSONObject(i);
+                        Log.d(TAG, "image : " + c.optString("url"));
                         TextSliderView sliderView = new TextSliderView(this);
                         sliderView
                                 .image(c.optString("url"))
@@ -256,46 +303,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
-
-        });
-
-    }
-
-    private void getServiceList() {
-
-        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
-
-            Utils.log(TAG, response.toString());
-
-            JSONArray jsonarray = null;
-            try {
-
-                jsonarray = response.getJSONArray("data");
-
-                for (int i = 0; i < jsonarray.length(); i++) {
-
-                    try {
-
-                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
-
-                        subCategories.add(subCategory);
-
-                        mAdapterType0.notifyDataSetChanged();
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
         });
+
     }
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

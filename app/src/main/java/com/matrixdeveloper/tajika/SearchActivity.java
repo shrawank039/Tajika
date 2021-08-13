@@ -7,13 +7,17 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.matrixdeveloper.tajika.adapter.SearchAdapter;
 import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
+import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
@@ -32,9 +36,9 @@ public class SearchActivity extends AppCompatActivity {
 
     private EditText inputSearch;
     private String TAG = "SearchServiceAct";
-    private List<SubCategory> subCategories;
-    private ServiceAdapter mAdapter;
-    private RecyclerView recyclerView;
+    private List<Category> catService, catGoods;
+    private SearchAdapter serviceAdapter, goodsAdapter;
+    private RecyclerView rvService, rvGoods;
     private ImageView backPress;
 
     @Override
@@ -44,43 +48,35 @@ public class SearchActivity extends AppCompatActivity {
 
         inputSearch = findViewById(R.id.inputSearch);
         backPress = findViewById(R.id.iv_backPress);
-        recyclerView = findViewById(R.id.rv_viewSearchService);
+        rvService = findViewById(R.id.rv_viewAllService);
+        rvGoods = findViewById(R.id.rv_viewAllGoods);
 
-        subCategories = new ArrayList<>();
-        mAdapter = new ServiceAdapter(SearchActivity.this, subCategories, 1);
+        catService = new ArrayList<>();
+        catGoods = new ArrayList<>();
+        serviceAdapter = new SearchAdapter(SearchActivity.this, catService);
+        goodsAdapter = new SearchAdapter( SearchActivity.this, catGoods);
 
-        recyclerView.setHasFixedSize(true);
+        rvService.setHasFixedSize(true);
+        rvGoods.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
+        rvService.setLayoutManager(new LinearLayoutManager(this));
+        rvService.setItemAnimator(new DefaultItemAnimator());
+        rvService.setAdapter(serviceAdapter);
+        rvGoods.setLayoutManager(new LinearLayoutManager(this));
+        rvGoods.setItemAnimator(new DefaultItemAnimator());
+        rvGoods.setAdapter(goodsAdapter);
 
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                SubCategory subCategory = subCategories.get(position);
-
-                startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
-                        .putExtra("service_name", subCategory.getServiceName())
-                        .putExtra("service_id", String.valueOf(subCategory.getId())));
-
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
 
         inputSearch.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                subCategories.clear();
+                catService.clear();
+                catGoods.clear();
                 if (String.valueOf(cs).equals("")) {
-                    getAllService();
+                    getSearchResult("");
                 } else {
-                    getServiceList(String.valueOf(cs));
+                    getSearchResult(String.valueOf(cs));
                 }
             }
 
@@ -104,71 +100,58 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
-        subCategories.clear();
-        getAllService();
+        catService.clear();
+        catGoods.clear();
+        getSearchResult("");
     }
 
 
-    private void getAllService() {
-
-        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
-
-            Utils.log(TAG, response.toString());
-
-            JSONArray jsonarray = null;
-            try {
-
-                jsonarray = response.getJSONArray("data");
-
-                for (int i = 0; i < jsonarray.length(); i++) {
-
-                    try {
-
-                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
-
-                        subCategories.add(subCategory);
-
-                        mAdapter.notifyDataSetChanged();
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-        });
-    }
-
-    private void getServiceList(String key) {
+    private void getSearchResult(String key) {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("servicename", key);
+            data.put("servicename", "plu");
+            data.put("type", "all");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         ApiCall.postMethodWithoutProgress(this, ServiceNames.FILTER_SERVICE_LIST, data, response -> {
 
-
-            JSONArray jsonarray = null;
+            JSONObject jsonObject = null;
+            JSONArray serviceArray = null;
+            JSONArray goodsArray = null;
+            JSONArray subCategory = null;
             try {
 
-                jsonarray = response.getJSONArray("data");
+                jsonObject = response.optJSONObject("data");
+                serviceArray = jsonObject.getJSONArray("service");
+                goodsArray = jsonObject.getJSONArray("goods");
 
-                for (int i = 0; i < jsonarray.length(); i++) {
+                for (int i = 0; i < serviceArray.length(); i++) {
 
                     try {
 
-                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
+                        Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
 
-                        subCategories.add(subCategory);
+                        catService.add(category);
 
-                        mAdapter.notifyDataSetChanged();
+                        serviceAdapter.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                for (int i = 0; i < goodsArray.length(); i++) {
+
+                    try {
+
+                        Category category = MySingleton.getGson().fromJson(goodsArray.getJSONObject(i).toString(), Category.class);
+
+                        catGoods.add(category);
+
+                        goodsAdapter.notifyDataSetChanged();
 
                     } catch (JSONException e) {
                         e.printStackTrace();

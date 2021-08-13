@@ -1,5 +1,7 @@
 package com.matrixdeveloper.tajika.adapter;
 
+import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.SubCategory;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
-
-public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHolder> {
+public class SubCatAdapter extends RecyclerView.Adapter<SubCatAdapter.MyViewHolder> {
 
     private final Context ctx;
     private final List<SubCategory> subCategories;
-    private int type;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -42,9 +42,8 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
     }
 
 
-    public ServiceAdapter(Context context, List<SubCategory> subCategories, int type) {
+    public SubCatAdapter(Context context, List<SubCategory> subCategories) {
         ctx = context;
-        this.type = type;
         this.subCategories = subCategories;
     }
 
@@ -52,13 +51,8 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = null;
-        if (type == 0 || type == 2) {
             itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_recomended_services, parent, false);
-        } else if (type == 1) {
-            itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.all_services, parent, false);
-        }
+                    .inflate(R.layout.item_subcategory, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -67,15 +61,11 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         final SubCategory subCategory = subCategories.get(position);
 
         holder.title.setText(subCategory.getServiceName());
-        holder.message.setText(subCategory.getServiceDescription());
         Glide.with(ctx)
                 .load(PRODUCTION_API + subCategory.getServiceImage())
                 .placeholder(R.drawable.plumbing)
                 .into(holder.imageView);
 
-        if (type == 2) {
-            holder.message.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
