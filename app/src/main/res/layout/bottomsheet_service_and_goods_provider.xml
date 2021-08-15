@@ -7,7 +7,7 @@
     android:background="@color/md_grey_100"
     android:orientation="vertical"
     app:behavior_peekHeight="0dp"
-    app:layout_behavior="@string/bottom_sheet_behavior">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <include
         android:id="@+id/bottom_sheetGoods"

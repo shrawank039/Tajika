@@ -44,6 +44,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
@@ -89,7 +90,7 @@ public class LocationSelectorActivity extends FragmentActivity
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
     private String TAG = "LocationSelectorAct";
-    private BottomSheetBehavior behavior;
+    private BottomSheetBehavior behavior, behavior2;
     private String service_name, service_id, service_type;
     int height;
     private ImageView img;
@@ -125,8 +126,8 @@ public class LocationSelectorActivity extends FragmentActivity
         edtSearch = findViewById(R.id.edt_search);
         edtSearch.setText(service_name);
         searchProviderCategory = findViewById(R.id.ll_searchProviderCategory);
-        llBsGoodsProvider = findViewById(R.id.bottom_sheetGoods);
-        llBsServiceProvider = findViewById(R.id.bottom_sheetService);
+  //      llBsGoodsProvider = findViewById(R.id.bottom_sheetGoods);
+  //      llBsServiceProvider = findViewById(R.id.bottom_sheetService);
 
         //bottom sheet
         viewDetails = findViewById(R.id.ll_viewDetails);
@@ -152,8 +153,10 @@ public class LocationSelectorActivity extends FragmentActivity
 
         serviceProviderList = new ArrayList<>();
 
-        View bottomSheet = findViewById(R.id.bottom_sheet);
+        View bottomSheet = findViewById(R.id.bottom_sheet_service);
         behavior = BottomSheetBehavior.from(bottomSheet);
+        View bottomSheet2 = findViewById(R.id.bottom_sheet_goods);
+        behavior2 = BottomSheetBehavior.from(bottomSheet2);
 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), getString(R.string.place_api_key));
@@ -168,9 +171,9 @@ public class LocationSelectorActivity extends FragmentActivity
         initListeners();
 
         if (service_type.equals("goods")) {
-            llBsGoodsProvider.setVisibility(View.VISIBLE);
+            bottomSheet.setVisibility(View.GONE);
         } else if (service_type.equals("service")) {
-            llBsServiceProvider.setVisibility(View.VISIBLE);
+            bottomSheet2.setVisibility(View.GONE);
         }
 
         final LinearLayout parent = (LinearLayout) findViewById(R.id.ll_one);
@@ -304,9 +307,19 @@ public class LocationSelectorActivity extends FragmentActivity
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap = googleMap;
         mMap.setOnMapClickListener(this);
         mMap.getUiSettings().setCompassEnabled(false);
+
+        googleMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                        getApplicationContext(), R.raw.gray_map));
+
+        googleMap.getUiSettings().setZoomControlsEnabled(false);
+        googleMap.getUiSettings().setMapToolbarEnabled(false);
+        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+        googleMap.getUiSettings().setRotateGesturesEnabled(false);
 
         initLocation();
 
