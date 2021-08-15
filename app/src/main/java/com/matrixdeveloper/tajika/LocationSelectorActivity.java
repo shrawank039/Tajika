@@ -349,9 +349,11 @@ public class LocationSelectorActivity extends FragmentActivity
                     });
                 } else {
                     for (int i = 0; i < jsonarray.length(); i++) {
+                        /*Double.parseDouble(serviceProvider.getLatitude())*/
+                        /*Double.parseDouble(serviceProvider.getLongitude())*/
                         try {
                             ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
-                            LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
+                            LatLng latLng = new LatLng(27.0449,88.1254 );
                             Marker m = mMap.addMarker(new MarkerOptions().position(latLng).icon(providerImage(this)));
                             serviceProviderList.add(serviceProvider);
 

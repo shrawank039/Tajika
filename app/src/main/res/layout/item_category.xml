@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="7dp"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -11,7 +12,9 @@
         android:id="@+id/txt_itmCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Interior Design"
         android:textColor="@color/grey_500"
         android:textSize="16sp"
@@ -19,16 +22,18 @@
 
 
     <View
-        android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/grey_500" />
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/grey_300" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_subcat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         tools:listitem="@layout/item_subcategory" />
 

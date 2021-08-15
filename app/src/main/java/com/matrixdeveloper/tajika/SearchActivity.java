@@ -1,29 +1,25 @@
 package com.matrixdeveloper.tajika;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.SearchAdapter;
-import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.model.Category;
-import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
-import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
-import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +37,8 @@ public class SearchActivity extends AppCompatActivity {
     private SearchAdapter serviceAdapter, goodsAdapter;
     private RecyclerView rvService, rvGoods;
     private ImageView backPress;
+    private LinearLayout noItemFound;
+    private LinearLayout serviceGoods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +49,13 @@ public class SearchActivity extends AppCompatActivity {
         backPress = findViewById(R.id.iv_backPress);
         rvService = findViewById(R.id.rv_viewAllService);
         rvGoods = findViewById(R.id.rv_viewAllGoods);
+        noItemFound = findViewById(R.id.ll_noItemFound);
+        serviceGoods = findViewById(R.id.ll_serviceGoods);
 
         catService = new ArrayList<>();
         catGoods = new ArrayList<>();
         serviceAdapter = new SearchAdapter(SearchActivity.this, catService);
-        goodsAdapter = new SearchAdapter( SearchActivity.this, catGoods);
+        goodsAdapter = new SearchAdapter(SearchActivity.this, catGoods);
 
         rvService.setHasFixedSize(true);
         rvGoods.setHasFixedSize(true);
@@ -130,34 +130,32 @@ public class SearchActivity extends AppCompatActivity {
                     serviceArray = jsonObject.getJSONArray("service");
                     goodsArray = jsonObject.getJSONArray("goods");
 
-                    for (int i = 0; i < serviceArray.length(); i++) {
+                    if (serviceArray.length() > 0) {
+                        for (int i = 0; i < serviceArray.length(); i++) {
+                            try {
+                                Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
+                                catService.add(category);
+                                serviceAdapter.notifyDataSetChanged();
 
-                        try {
-
-                            Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
-
-                            catService.add(category);
-
-                            serviceAdapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
 
-                    for (int i = 0; i < goodsArray.length(); i++) {
+                        for (int i = 0; i < goodsArray.length(); i++) {
+                            try {
+                                Category category = MySingleton.getGson().fromJson(goodsArray.getJSONObject(i).toString(), Category.class);
+                                catGoods.add(category);
+                                goodsAdapter.notifyDataSetChanged();
 
-                        try {
-
-                            Category category = MySingleton.getGson().fromJson(goodsArray.getJSONObject(i).toString(), Category.class);
-
-                            catGoods.add(category);
-
-                            goodsAdapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
+                    } else {
+                        noItemFound.setVisibility(View.VISIBLE);
+                        serviceGoods.setVisibility(View.GONE);
+
                     }
 
                 } catch (JSONException e) {

@@ -114,6 +114,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 startActivity(new Intent(getApplicationContext(), LocationSelectorActivity.class)
                         .putExtra("service_name", subCategory.getServiceName())
+                        .putExtra("service_type", subCategory.getServiceType())
                         .putExtra("service_id", String.valueOf(subCategory.getId())));
 
             }

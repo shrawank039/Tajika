@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class SubCategory implements Serializable
 {
-
     @SerializedName("id")
     @Expose
     private Integer id;

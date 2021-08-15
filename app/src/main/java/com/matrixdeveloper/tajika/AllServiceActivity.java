@@ -1,28 +1,25 @@
 package com.matrixdeveloper.tajika;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.SearchAdapter;
-import com.matrixdeveloper.tajika.adapter.ServiceAdapter;
 import com.matrixdeveloper.tajika.model.Category;
-import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
-import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
@@ -43,6 +40,7 @@ public class AllServiceActivity extends AppCompatActivity {
     private ImageView backPress;
     String type = "service";
     private TextView titleView;
+    private LinearLayout llnotFount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +51,7 @@ public class AllServiceActivity extends AppCompatActivity {
         backPress = findViewById(R.id.iv_backPress);
         rvService = findViewById(R.id.rv_viewAllService);
         titleView = findViewById(R.id.txt_header);
+        llnotFount = findViewById(R.id.ll_noItemFound);
         type = getIntent().getStringExtra("type");
 
         if (type.equals("goods"))
@@ -98,7 +97,7 @@ public class AllServiceActivity extends AppCompatActivity {
         backPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               AllServiceActivity.super.onBackPressed();
+                AllServiceActivity.super.onBackPressed();
 
             }
         });
@@ -110,6 +109,7 @@ public class AllServiceActivity extends AppCompatActivity {
 
     private void getSearchResult(String key) {
 
+        Toast.makeText(this, "" + key, Toast.LENGTH_SHORT).show();
         JSONObject data = new JSONObject();
         try {
             data.put("servicename", key);
@@ -122,32 +122,30 @@ public class AllServiceActivity extends AppCompatActivity {
 
             JSONObject jsonObject = null;
             JSONArray serviceArray = null;
-            if (Objects.equals(response.opt("status"), 200)){
+            if (Objects.equals(response.opt("status"), 200)) {
                 try {
-
                     jsonObject = response.optJSONObject("data");
                     serviceArray = jsonObject.getJSONArray(type);
+                    Utils.toast(this,serviceArray.toString());
 
-                    for (int i = 0; i < serviceArray.length(); i++) {
-
-                        try {
-
-                            Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
-
-                            catService.add(category);
-
-                            serviceAdapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                    if (serviceArray.length() > 0) {
+                        for (int i = 0; i < serviceArray.length(); i++) {
+                            try {
+                                Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
+                                catService.add(category);
+                                serviceAdapter.notifyDataSetChanged();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
+                    } else {
+                        llnotFount.setVisibility(View.VISIBLE);
+                        rvService.setVisibility(View.GONE);
                     }
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-        }
+            }
         });
     }
 
