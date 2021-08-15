@@ -35,13 +35,13 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         final SubscriptionModel subscriptionModel = subscriptionModels.get(position);
-        holder.subType.setText(subscriptionModel.getSubType());
-        holder.subAmount.setText("Rs " + subscriptionModel.getSubAmount());
-        holder.subDays.setText("Validity: " + subscriptionModel.getSubDays() + " days");
+        holder.subType.setText(subscriptionModel.getName());
+        holder.subAmount.setText("Rs. " + subscriptionModel.getAmount());
+        holder.subDays.setText("Validity: " + subscriptionModel.getNoOfDays() + " days");
         holder.cvSelectPackage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ctx, "Selected Package: " + subscriptionModel.getSubType(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "Selected Package: " + subscriptionModel.getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }

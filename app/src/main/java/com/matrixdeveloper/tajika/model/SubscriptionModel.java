@@ -1,48 +1,45 @@
 package com.matrixdeveloper.tajika.model;
 
-public class SubscriptionModel {
+import java.io.Serializable;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String id;
-    private String subType;
-    private String subAmount;
-    private String subDays;
+public class SubscriptionModel implements Serializable
+{
 
-    public SubscriptionModel(String id, String subType, String subAmount, String subDays) {
-        this.id = id;
-        this.subType = subType;
-        this.subAmount = subAmount;
-        this.subDays = subDays;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("amount")
+    @Expose
+    private Integer amount;
+    @SerializedName("no_of_days")
+    @Expose
+    private Integer noOfDays;
+    private final static long serialVersionUID = -2345764122788519939L;
+
+    public String getName() {
+        return name;
     }
 
-    public String getId() {
-        return id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Integer getAmount() {
+        return amount;
     }
 
-    public String getSubType() {
-        return subType;
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
-    public void setSubType(String subType) {
-        this.subType = subType;
+    public Integer getNoOfDays() {
+        return noOfDays;
     }
 
-    public String getSubAmount() {
-        return subAmount;
+    public void setNoOfDays(Integer noOfDays) {
+        this.noOfDays = noOfDays;
     }
 
-    public void setSubAmount(String subAmount) {
-        this.subAmount = subAmount;
-    }
-
-    public String getSubDays() {
-        return subDays;
-    }
-
-    public void setSubDays(String subDays) {
-        this.subDays = subDays;
-    }
 }
