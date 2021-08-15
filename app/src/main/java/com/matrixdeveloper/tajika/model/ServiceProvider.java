@@ -16,9 +16,9 @@ public class ServiceProvider implements Serializable
     @SerializedName("longitude")
     @Expose
     private String longitude;
-    @SerializedName("business_categories")
+    @SerializedName("sub_cat_id")
     @Expose
-    private String businessCategories;
+    private String subCategoryId;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -70,11 +70,11 @@ public class ServiceProvider implements Serializable
     }
 
     public String getBusinessCategories() {
-        return businessCategories;
+        return subCategoryId;
     }
 
     public void setBusinessCategories(String businessCategories) {
-        this.businessCategories = businessCategories;
+        this.subCategoryId = businessCategories;
     }
 
     public Integer getId() {
