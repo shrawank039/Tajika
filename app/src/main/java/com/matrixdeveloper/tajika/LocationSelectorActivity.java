@@ -85,7 +85,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private Location location;
     private String selected_id;
     private ImageView gotoCurrentLocation, backPress;
-    private LinearLayout searchProviderCategory, viewDetails, noProviderFound, providerDetails, moreDetails, recommendedService, inner, llSubscription;
+    private LinearLayout searchProviderCategory, viewDetails, noProviderFound, providerDetails, moreDetailsGoods, moreDetailsService, recommendedService, inner;
     private View view, view1;
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
@@ -94,15 +94,16 @@ public class LocationSelectorActivity extends FragmentActivity
     private String service_name, service_id, service_type;
     int height;
     private ImageView img;
-    private TextView edtSearch;
+    private TextView edtSearch, recommendedByTajika;
     private int peekHeight = 0;
     private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill, compare;
     ServiceProviderDetails serviceProviderDetails;
     private CardView jointToProvideService, referToProvideService;
     PrefManager pref;
-    Button btnGetDetails, btnChat;
+    Button btnGetDetailsGoods, btnChat, btnRequestService;
     private RecyclerView recSubscription;
-    private LinearLayout llBsGoodsProvider, llBsServiceProvider;
+    private LinearLayout parentTwoService, parentOneService, parentOneGoods;
+    int availableHeight;
 
 
     @Override
@@ -121,13 +122,14 @@ public class LocationSelectorActivity extends FragmentActivity
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
         //view = findViewById(R.id.view_viewDetails);
-        moreDetails = findViewById(R.id.ll_moreDetails);
+        moreDetailsGoods = findViewById(R.id.ll_moreDetailsGoods);
+        moreDetailsService = findViewById(R.id.ll_moreDetailsService);
         recommendedService = findViewById(R.id.ll_recommendedService);
         edtSearch = findViewById(R.id.edt_search);
         edtSearch.setText(service_name);
         searchProviderCategory = findViewById(R.id.ll_searchProviderCategory);
-  //      llBsGoodsProvider = findViewById(R.id.bottom_sheetGoods);
-  //      llBsServiceProvider = findViewById(R.id.bottom_sheetService);
+        //      llBsGoodsProvider = findViewById(R.id.bottom_sheetGoods);
+        //      llBsServiceProvider = findViewById(R.id.bottom_sheetService);
 
         //bottom sheet
         viewDetails = findViewById(R.id.ll_viewDetails);
@@ -146,10 +148,13 @@ public class LocationSelectorActivity extends FragmentActivity
         jointToProvideService = findViewById(R.id.cv_joinToProvideService);
         referToProvideService = findViewById(R.id.cv_referToProvideService);
         btnChat = findViewById(R.id.btn_chat);
-        btnGetDetails = findViewById(R.id.btn_getDetails);
+        btnRequestService = findViewById(R.id.btn_requestService);
+        btnGetDetailsGoods = findViewById(R.id.btn_getDetailsGoods);
         recSubscription = findViewById(R.id.rv_subscription);
-        llSubscription = findViewById(R.id.ll_subscription);
-
+        parentTwoService = findViewById(R.id.ll_twoService);
+        recommendedByTajika = findViewById(R.id.txt_recommendedByTajika);
+        parentOneService = findViewById(R.id.ll_oneService);
+        parentOneGoods = findViewById(R.id.ll_oneGoods);
 
         serviceProviderList = new ArrayList<>();
 
@@ -176,35 +181,57 @@ public class LocationSelectorActivity extends FragmentActivity
             bottomSheet2.setVisibility(View.GONE);
         }
 
-        final LinearLayout parent = (LinearLayout) findViewById(R.id.ll_one);
-        parent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        parentOneService.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                int availableHeight = parent.getMeasuredHeight();
+                availableHeight = parentOneService.getMeasuredHeight();
                 if (availableHeight > 0) {
-                    parent.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    parentOneService.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     peekHeight = availableHeight;
                     //save height here and do whatever you want with it
                 }
             }
         });
-        final LinearLayout parentTwo = (LinearLayout) findViewById(R.id.ll_two);
-        final TextView recommendedByTajika = findViewById(R.id.txt_recommendedByTajika);
-        parentTwo.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        parentTwoService.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                int availableHeight = parentTwo.getMeasuredHeight() + recommendedByTajika.getMeasuredHeight();
+                availableHeight = parentTwoService.getMeasuredHeight() + recommendedByTajika.getMeasuredHeight();
                 if (availableHeight > 0) {
-                    parentTwo.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    parentTwoService.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     peekHeight += availableHeight;
                 }
             }
         });
 
-        btnGetDetails.setOnClickListener(new View.OnClickListener() {
+        parentOneGoods.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //+60 for bottom margin of button
+                availableHeight = parentOneGoods.getMeasuredHeight() + btnGetDetailsGoods.getMeasuredHeight();
+                if (availableHeight > 0) {
+                    parentOneGoods.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    peekHeight = peekHeight + availableHeight + 60;
+                }
+            }
+        });
+
+        viewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                moreDetailsService.setVisibility(View.VISIBLE);
+                recommendedByTajika.setVisibility(View.VISIBLE);
+                parentTwoService.setVisibility(View.GONE);
+            }
+        });
+
+        btnGetDetailsGoods.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                behavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
+                moreDetailsGoods.setVisibility(View.VISIBLE);
+                recSubscription.setVisibility(View.VISIBLE);
+                btnGetDetailsGoods.setVisibility(View.GONE);
             }
         });
 
@@ -255,24 +282,43 @@ public class LocationSelectorActivity extends FragmentActivity
                 .putExtra("service_name", service_name)
                 .putExtra("service_id", service_id)));
 
+        btnRequestService.setOnClickListener(view -> startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class)
+                .putExtra("provider_id", selected_id)
+                .putExtra("service_name", service_name)
+                .putExtra("service_id", service_id)));
+
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
 
                 if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                    viewDetails.setVisibility(View.GONE);
-                    moreDetails.setVisibility(View.VISIBLE);
-                    recommendedService.setVisibility(View.VISIBLE);
-                    btnGetDetails.setVisibility(View.GONE);
-                    btnChat.setVisibility(View.VISIBLE);
-                    llSubscription.setVisibility(View.VISIBLE);
+                    moreDetailsService.setVisibility(View.VISIBLE);
+                    recommendedByTajika.setVisibility(View.VISIBLE);
+                    parentTwoService.setVisibility(View.GONE);
                 } else {
-                    viewDetails.setVisibility(View.VISIBLE);
-                    moreDetails.setVisibility(View.GONE);
-                    recommendedService.setVisibility(View.GONE);
-                    btnGetDetails.setVisibility(View.VISIBLE);
-                    btnChat.setVisibility(View.GONE);
-                    llSubscription.setVisibility(View.GONE);
+                    moreDetailsService.setVisibility(View.GONE);
+                    recommendedByTajika.setVisibility(View.VISIBLE);
+                    parentTwoService.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                // React to dragging events
+            }
+        });
+        behavior2.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+                if (behavior2.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    moreDetailsGoods.setVisibility(View.VISIBLE);
+                    recSubscription.setVisibility(View.VISIBLE);
+                    btnGetDetailsGoods.setVisibility(View.GONE);
+                } else {
+                    moreDetailsGoods.setVisibility(View.GONE);
+                    recSubscription.setVisibility(View.GONE);
+                    btnGetDetailsGoods.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -373,8 +419,6 @@ public class LocationSelectorActivity extends FragmentActivity
                     });
                 } else {
                     for (int i = 0; i < jsonarray.length(); i++) {
-                        /**/
-                        /**/
                         try {
                             ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
                             LatLng latLng = new LatLng(Double.parseDouble(serviceProvider.getLatitude()), Double.parseDouble(serviceProvider.getLongitude()));
@@ -393,15 +437,17 @@ public class LocationSelectorActivity extends FragmentActivity
 
                                     getServiceProviderDetails(selected_id);
 
-                                    behavior.setPeekHeight(peekHeight);
+                                    if (service_type.equals("goods")) {
+                                        behavior2.setPeekHeight(peekHeight);
+                                    } else if (service_type.equals("service")) {
+                                        behavior.setPeekHeight(peekHeight);
+                                    }
 
                                     viewDetails.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
                                             behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                                            viewDetails.setVisibility(View.GONE);
-                                            view.setVisibility(View.GONE);
-                                            moreDetails.setVisibility(View.VISIBLE);
+                                            moreDetailsService.setVisibility(View.VISIBLE);
                                             recommendedService.setVisibility(View.VISIBLE);
                                         }
                                     });

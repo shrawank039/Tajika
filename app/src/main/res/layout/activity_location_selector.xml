@@ -69,8 +69,6 @@
         </LinearLayout>
     </LinearLayout>
 
-<!--    <include layout="@layout/bottomsheet_service_and_goods_provider" />-->
-
     <include
         layout="@layout/bottomsheet_serviceprovider" />
 
