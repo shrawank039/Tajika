@@ -35,7 +35,7 @@
         <activity android:name=".SPbusiness.SpbEditProfileActivity" />
         <activity android:name=".SPbusiness.SpbRegisterActivity" />
         <activity android:name=".SPbusiness.SpbMyServicesActivity" />
-        <activity android:name=".SplashScreenActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".SPindividual.SpiAllTransactionActivity" />
         <activity android:name=".SPindividual.SpiServiceCompletedStatusActivity" />
         <activity android:name=".SPindividual.SpiServiceAcceptActivity" />
@@ -85,7 +85,7 @@
         <activity android:name=".OnboardingActivity" />
         <activity android:name=".SPindividual.SpiLoginActivity" />
         <activity android:name=".SPbusiness.SpbLoginActivity" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -58,5 +58,20 @@
             android:text="@string/payment_valid_for_one_time_and_valid_for_3days"
             android:textColor="@color/dark_blue"
             style="@style/topDesign_textView" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_payNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="60dp"
+            android:paddingVertical="15dp"
+            android:text="Pay Now"
+            android:letterSpacing="0.05"
+            android:textAllCaps="false"
+            android:textColor="@color/md_blue_grey_800"
+            android:textStyle="bold"
+            app:cornerRadius="30dp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

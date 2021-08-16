@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.matrixdeveloper.tajika.LocationSelectorActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.SubscriptionModel;
 
@@ -41,7 +42,9 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
         holder.cvSelectPackage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ctx, "Selected Package: " + subscriptionModel.getName(), Toast.LENGTH_SHORT).show();
+                if (ctx instanceof LocationSelectorActivity) {
+                    ((LocationSelectorActivity)ctx).showSubscriptionAlert();
+                }
             }
         });
     }

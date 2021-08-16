@@ -21,6 +21,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -103,7 +104,7 @@ public class LocationSelectorActivity extends FragmentActivity
     Button btnGetDetailsGoods, btnChat, btnRequestService;
     private RecyclerView recSubscription;
     private LinearLayout parentTwoService, parentOneService, parentOneGoods;
-    int availableHeight;
+    int availableHeight, subscriptionStatus = 1;
 
 
     @Override
@@ -113,55 +114,15 @@ public class LocationSelectorActivity extends FragmentActivity
 
         pref = new PrefManager(this);
 
-        service_name = getIntent().getStringExtra("service_name");
-        service_id = getIntent().getStringExtra("service_id");
-        service_type = getIntent().getStringExtra("service_type");
-        edtAddress = findViewById(R.id.edt_location);
-        inner = findViewById(R.id.inner);
-        gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
-        backPress = findViewById(R.id.iv_backPress);
-        requestService = findViewById(R.id.txt_requestService);
-        //view = findViewById(R.id.view_viewDetails);
-        moreDetailsGoods = findViewById(R.id.ll_moreDetailsGoods);
-        moreDetailsService = findViewById(R.id.ll_moreDetailsService);
-        recommendedService = findViewById(R.id.ll_recommendedService);
-        edtSearch = findViewById(R.id.edt_search);
-        edtSearch.setText(service_name);
-        searchProviderCategory = findViewById(R.id.ll_searchProviderCategory);
-        //      llBsGoodsProvider = findViewById(R.id.bottom_sheetGoods);
-        //      llBsServiceProvider = findViewById(R.id.bottom_sheetService);
-
-        //bottom sheet
-        viewDetails = findViewById(R.id.ll_viewDetails);
-        noProviderFound = findViewById(R.id.ll_noProviderFound);
-        providerDetails = findViewById(R.id.ll_providerDetails);
-        txtProviderName = findViewById(R.id.txt_provider_name);
-        txtRating = findViewById(R.id.txt_rating);
-        compare = findViewById(R.id.txt_addToCompare);
-        txtServiceName = findViewById(R.id.txt_service_name);
-        txtDistance = findViewById(R.id.txt_distance);
-        txtAbout = findViewById(R.id.txt_about);
-        txtJobComp = findViewById(R.id.txt_jobs_completed);
-        txtEdu = findViewById(R.id.txt_education);
-        txtAdd = findViewById(R.id.txt_address);
-        txtSkill = findViewById(R.id.txt_skill);
-        jointToProvideService = findViewById(R.id.cv_joinToProvideService);
-        referToProvideService = findViewById(R.id.cv_referToProvideService);
-        btnChat = findViewById(R.id.btn_chat);
-        btnRequestService = findViewById(R.id.btn_requestService);
-        btnGetDetailsGoods = findViewById(R.id.btn_getDetailsGoods);
-        recSubscription = findViewById(R.id.rv_subscription);
-        parentTwoService = findViewById(R.id.ll_twoService);
-        recommendedByTajika = findViewById(R.id.txt_recommendedByTajika);
-        parentOneService = findViewById(R.id.ll_oneService);
-        parentOneGoods = findViewById(R.id.ll_oneGoods);
-
         serviceProviderList = new ArrayList<>();
 
         View bottomSheet = findViewById(R.id.bottom_sheet_service);
         behavior = BottomSheetBehavior.from(bottomSheet);
         View bottomSheet2 = findViewById(R.id.bottom_sheet_goods);
         behavior2 = BottomSheetBehavior.from(bottomSheet2);
+
+        initViews();
+        initListeners();
 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), getString(R.string.place_api_key));
@@ -173,7 +134,6 @@ public class LocationSelectorActivity extends FragmentActivity
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
-        initListeners();
 
         if (service_type.equals("goods")) {
             bottomSheet.setVisibility(View.GONE);
@@ -228,14 +188,133 @@ public class LocationSelectorActivity extends FragmentActivity
         btnGetDetailsGoods.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                behavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
-                moreDetailsGoods.setVisibility(View.VISIBLE);
-                recSubscription.setVisibility(View.VISIBLE);
-                btnGetDetailsGoods.setVisibility(View.GONE);
+                //for subscribed =0
+                //for UnSubscribed =1
+                //for subscriptionExpired =2
+                checkSubscription(subscriptionStatus);
             }
         });
 
         getSubscriptionDetails();
+
+    }
+
+    private void checkSubscription(int subscriptionStatus) {
+        if (subscriptionStatus == 0) {
+            behavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
+            moreDetailsGoods.setVisibility(View.VISIBLE);
+            recSubscription.setVisibility(View.GONE);
+            btnGetDetailsGoods.setVisibility(View.GONE);
+        } else if (subscriptionStatus == 1) {
+            showSubscriptionPayOneTimeAlert();
+        } else if (subscriptionStatus == 2) {
+            showSubscriptionAlert();
+        }
+    }
+
+    private void showSubscriptionPayOneTimeAlert() {
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_pay_onetime_charge);
+
+        Button payNow = dialog.findViewById(R.id.btn_payNow);
+        ImageView dialogCancel = dialog.findViewById(R.id.iv_dialogCancel);
+
+        payNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                behavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
+                recSubscription.setVisibility(View.VISIBLE);
+                moreDetailsGoods.setVisibility(View.GONE);
+                btnGetDetailsGoods.setVisibility(View.GONE);
+                dialog.dismiss();
+            }
+        });
+        dialogCancel.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+    public void showSubscriptionAlert() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_payment_notice);
+
+        Button makePayment = dialog.findViewById(R.id.btn_makePayment);
+        ImageView dialogCancel = dialog.findViewById(R.id.iv_dialogCancel);
+
+        makePayment.setOnClickListener(v -> {
+            showSubscriptionSuccessAlert();
+            dialog.dismiss();
+        });
+        dialogCancel.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+
+    }
+
+    private void showSubscriptionSuccessAlert() {
+        behavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
+        moreDetailsGoods.setVisibility(View.VISIBLE);
+        recSubscription.setVisibility(View.GONE);
+        btnGetDetailsGoods.setVisibility(View.GONE);
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_payment_successful);
+
+        Button close = dialog.findViewById(R.id.btn_close);
+        ImageView dialogCancel = dialog.findViewById(R.id.iv_dialogCancel);
+
+        dialogCancel.setOnClickListener(v -> dialog.dismiss());
+        close.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+
+    }
+
+    private void initViews() {
+
+        service_name = getIntent().getStringExtra("service_name");
+        service_id = getIntent().getStringExtra("service_id");
+        service_type = getIntent().getStringExtra("service_type");
+        edtAddress = findViewById(R.id.edt_location);
+        inner = findViewById(R.id.inner);
+        gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
+        backPress = findViewById(R.id.iv_backPress);
+        requestService = findViewById(R.id.txt_requestService);
+        moreDetailsGoods = findViewById(R.id.ll_moreDetailsGoods);
+        moreDetailsService = findViewById(R.id.ll_moreDetailsService);
+        recommendedService = findViewById(R.id.ll_recommendedService);
+        edtSearch = findViewById(R.id.edt_search);
+        edtSearch.setText(service_name);
+        searchProviderCategory = findViewById(R.id.ll_searchProviderCategory);
+
+        //bottom sheet
+        viewDetails = findViewById(R.id.ll_viewDetails);
+        noProviderFound = findViewById(R.id.ll_noProviderFound);
+        providerDetails = findViewById(R.id.ll_providerDetails);
+        txtProviderName = findViewById(R.id.txt_provider_name);
+        txtRating = findViewById(R.id.txt_rating);
+        compare = findViewById(R.id.txt_addToCompare);
+        txtServiceName = findViewById(R.id.txt_service_name);
+        txtDistance = findViewById(R.id.txt_distance);
+        txtAbout = findViewById(R.id.txt_about);
+        txtJobComp = findViewById(R.id.txt_jobs_completed);
+        txtEdu = findViewById(R.id.txt_education);
+        txtAdd = findViewById(R.id.txt_address);
+        txtSkill = findViewById(R.id.txt_skill);
+        jointToProvideService = findViewById(R.id.cv_joinToProvideService);
+        referToProvideService = findViewById(R.id.cv_referToProvideService);
+        btnChat = findViewById(R.id.btn_chat);
+        btnRequestService = findViewById(R.id.btn_requestService);
+        btnGetDetailsGoods = findViewById(R.id.btn_getDetailsGoods);
+        recSubscription = findViewById(R.id.rv_subscription);
+        parentTwoService = findViewById(R.id.ll_twoService);
+        recommendedByTajika = findViewById(R.id.txt_recommendedByTajika);
+        parentOneService = findViewById(R.id.ll_oneService);
+        parentOneGoods = findViewById(R.id.ll_oneGoods);
 
     }
 
@@ -312,9 +391,7 @@ public class LocationSelectorActivity extends FragmentActivity
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
 
                 if (behavior2.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                    moreDetailsGoods.setVisibility(View.VISIBLE);
-                    recSubscription.setVisibility(View.VISIBLE);
-                    btnGetDetailsGoods.setVisibility(View.GONE);
+                    checkSubscription(subscriptionStatus);
                 } else {
                     moreDetailsGoods.setVisibility(View.GONE);
                     recSubscription.setVisibility(View.GONE);

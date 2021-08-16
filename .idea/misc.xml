@@ -10,6 +10,9 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsprovider.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsproviders.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.14" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/dialog_pay_onetime_charge.xml" value="0.13094462540716612" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_notice.xml" value="0.22" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_successful.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_category.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_subcategory.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/layout_no_item_found.xml" value="0.22" />

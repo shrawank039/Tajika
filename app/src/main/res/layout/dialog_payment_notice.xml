@@ -48,16 +48,19 @@
             style="@style/topDesign_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sorry your last payment validity on 12 June 2021 has expired, please make payment agaon to view the details."
+            android:gravity="center"
+            android:text="Sorry your last payment validity on 12 June 2021 has expired, please make payment again to view the details."
             android:textColor="@color/dark_blue" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_makePayment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:letterSpacing="0.05"
             android:paddingHorizontal="60dp"
             android:paddingVertical="15dp"
-            android:text="Close"
+            android:text="Make payment"
             android:textAllCaps="false"
             android:textColor="@color/md_blue_grey_800"
             android:textStyle="bold"

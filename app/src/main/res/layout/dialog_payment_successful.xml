@@ -61,12 +61,14 @@
             android:textColor="@color/dark_blue" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:paddingHorizontal="60dp"
             android:paddingVertical="15dp"
             android:text="Close"
+            android:letterSpacing="0.05"
             android:textAllCaps="false"
             android:textColor="@color/md_blue_grey_800"
             android:textStyle="bold"
