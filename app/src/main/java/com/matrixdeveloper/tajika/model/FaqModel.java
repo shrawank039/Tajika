@@ -1,37 +1,34 @@
 package com.matrixdeveloper.tajika.model;
 
-public class FaqModel {
-    private int id;
-    private String faqQue;
-    private String faqAns;
+import java.io.Serializable;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public FaqModel(int id, String faqQue, String faqAns) {
-        this.id = id;
-        this.faqQue = faqQue;
-        this.faqAns = faqAns;
+public class FaqModel implements Serializable
+{
+
+    @SerializedName("question")
+    @Expose
+    private String question;
+    @SerializedName("answer")
+    @Expose
+    private String answer;
+    private final static long serialVersionUID = 8486506678566679419L;
+
+    public String getQuestion() {
+        return question;
     }
 
-    public int getId() {
-        return id;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getAnswer() {
+        return answer;
     }
 
-    public String getFaqQue() {
-        return faqQue;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
-    public void setFaqQue(String faqQue) {
-        this.faqQue = faqQue;
-    }
-
-    public String getFaqAns() {
-        return faqAns;
-    }
-
-    public void setFaqAns(String faqAns) {
-        this.faqAns = faqAns;
-    }
 }

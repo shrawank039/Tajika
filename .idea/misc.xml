@@ -4,18 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_all_service.xml" value="0.13094462540716612" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_booking_details.xml" value="0.13223684210526315" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_help.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_location_selector.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_search.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottom_sheet_address.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsprovider.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsproviders.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.14" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/dialog_booking_cancellation_reason.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_pay_onetime_charge.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_notice.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_successful.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_category.xml" value="0.2" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/item_faq.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_subcategory.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/layout_no_item_found.xml" value="0.22" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/spb_business_details.xml" value="0.13223684210526315" />
         <entry key="app/src/main/res/layout/activity_all_service.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_location_selector.xml" value="0.23425925925925925" />

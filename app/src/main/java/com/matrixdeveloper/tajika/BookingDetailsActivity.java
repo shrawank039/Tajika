@@ -5,9 +5,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,14 +34,17 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private TextView help;
     private LinearLayout bookingMessage, bookingCall;
 
+    private String cancellationReason;
+    private EditText cancellationComment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_details);
         backPress = findViewById(R.id.iv_backPress);
         help = findViewById(R.id.txt_help);
-        bookingMessage=findViewById(R.id.ll_bookingMessage);
-        bookingCall=findViewById(R.id.ll_bookingCall);
+        bookingMessage = findViewById(R.id.ll_bookingMessage);
+        bookingCall = findViewById(R.id.ll_bookingCall);
 
         initListeners();
 
@@ -47,8 +56,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private void initListeners() {
         backPress.setOnClickListener(view -> BookingDetailsActivity.super.onBackPressed());
         help.setOnClickListener(view -> startActivity(new Intent(BookingDetailsActivity.this, HelpActivity.class)));
-        bookingMessage.setOnClickListener(view ->initiateBookingCall());
-        bookingMessage.setOnClickListener(view ->initiateBookingMessage());
+        bookingMessage.setOnClickListener(view -> initiateBookingCall());
+        bookingMessage.setOnClickListener(view -> initiateBookingMessage());
 
     }
 
@@ -92,15 +101,62 @@ public class BookingDetailsActivity extends AppCompatActivity {
     public void onCancelRequestClick(View view) {
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(false);
+
         dialog.setContentView(R.layout.dialog_booking_cancellation_reason);
 
         ImageView dialogButton = dialog.findViewById(R.id.iv_dialogCancel);
-        dialogButton.setOnClickListener(new View.OnClickListener() {
+        Button submitCancellationRequest = dialog.findViewById(R.id.btn_submitCancellationRequest);
+        Spinner spinner = dialog.findViewById(R.id.spinner);
+        cancellationComment = dialog.findViewById(R.id.edt_cancellationComment);
+
+        String[] simpleArrayEducation = {"I no longer need it", "Booked from somewhere else", "i don\'t like your service", "Response is late", "Fixed myself","others"};
+        ArrayAdapter aa = new ArrayAdapter(BookingDetailsActivity.this, android.R.layout.simple_spinner_item, simpleArrayEducation);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(aa);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                cancellationReason = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        dialogButton.setOnClickListener(v -> dialog.dismiss());
+
+        submitCancellationRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                if (!cancellationComment.getText().toString().equals("")) {
+                    initiateRequestCancellation();
+                } else {
+                    Toast.makeText(BookingDetailsActivity.this, "Please provide cancellation Comment", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         dialog.show();
     }
+
+    private void initiateRequestCancellation() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", 3);
+            data.put("cancelation_reason", cancellationReason);
+            data.put("cancelation_comment", cancellationComment.getText().toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.CANCEL_SERVICE_BOOKING, data, response -> {
+
+            Utils.log(TAG, response.toString());
+            if (response.optString("status").equals("200")) {
+                Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

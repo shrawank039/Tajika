@@ -30,6 +30,8 @@ public class ServiceNames {
     public static final String DELETE_NOTIFICATION = API + "/removeNotification";
     public static final String BOOKING_DETAILS = API + "/servicebookingDetails";
     public static final String SUBSCRIPTION_PLAN = API + "/getAllSubscriptionPlan";
+    public static final String HELP_FAQ = API + "/gethelps";
+    public static final String CANCEL_SERVICE_BOOKING = API + "/cancelservicebooking";
 
     // SP
     public static final String REGISTER_SERVICE_PROVIDER_INDI = API + "/createServiceProviderAccount";
