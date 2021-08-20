@@ -10,12 +10,30 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.MyBookingAdapter;
+import com.matrixdeveloper.tajika.adapter.UpcomingJobAdapter;
 import com.matrixdeveloper.tajika.model.BookingModel;
+import com.matrixdeveloper.tajika.model.ServiceRequestList;
+import com.matrixdeveloper.tajika.model.UpcomingJob;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RequestedFragment extends Fragment {
 
     RecyclerView rvRequested;
     MyBookingAdapter bookingAdapter;
+    String TAG = "RequestedFrag";
+    List<ServiceRequestList> requestLists;
+    PrefManager pref;
 
     public RequestedFragment() {
     }
@@ -24,18 +42,61 @@ public class RequestedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_requested, container, false);
+
         rvRequested = view.findViewById(R.id.rv_serviceRequested);
-        BookingModel[] bookingModels = new BookingModel[]{
-                new BookingModel("1", R.drawable.provider_image_2x, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering", "Declined"),
-                new BookingModel("1", R.drawable.flag_central_african_republic, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering", "Accepted"),
-                new BookingModel("1", R.drawable.flag_american_samoa, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering", "Pending"),
-                new BookingModel("1", R.drawable.plumbing, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering", "Accepted"),
-                new BookingModel("1", R.drawable.airtel_money, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering", "Pending"),
-        };
-        bookingAdapter = new MyBookingAdapter(getContext(), bookingModels);
+        pref = new PrefManager(getContext());
+
+        requestLists = new ArrayList<>();
+        bookingAdapter = new MyBookingAdapter(getContext(), requestLists);
         rvRequested.setHasFixedSize(true);
         rvRequested.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvRequested.setAdapter(bookingAdapter);
+
+        getRequestData();
+
         return view;
+    }
+
+    private void getRequestData() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+            data.put("type", "Pending");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(getContext(), ServiceNames.GET_SERVICE_REQUEST, data, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray requestArray;
+
+            try {
+
+                requestArray = response.getJSONArray("data");
+
+
+                for (int i = 0; i < requestArray.length(); i++) {
+
+                    try {
+
+                        ServiceRequestList serviceList = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), ServiceRequestList.class);
+                        requestLists.add(serviceList);
+
+                        bookingAdapter.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        });
     }
 }

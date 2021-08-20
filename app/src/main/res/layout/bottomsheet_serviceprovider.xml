@@ -5,8 +5,8 @@
     android:id="@+id/bottom_sheet_service"
     android:layout_height="match_parent"
     android:background="@color/md_grey_100"
-    android:orientation="vertical"
     app:behavior_peekHeight="0dp"
+    android:orientation="vertical"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <androidx.core.widget.NestedScrollView

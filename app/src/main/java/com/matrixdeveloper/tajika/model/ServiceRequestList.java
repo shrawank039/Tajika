@@ -11,9 +11,6 @@ public class ServiceRequestList implements Serializable
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("user_id")
-    @Expose
-    private Integer userId;
     @SerializedName("service_date")
     @Expose
     private String serviceDate;
@@ -23,6 +20,9 @@ public class ServiceRequestList implements Serializable
     @SerializedName("service_type")
     @Expose
     private String serviceType;
+    @SerializedName("user_id")
+    @Expose
+    private Integer userId;
     @SerializedName("willing_amount_pay")
     @Expose
     private Integer willingAmountPay;
@@ -32,7 +32,24 @@ public class ServiceRequestList implements Serializable
     @SerializedName("status")
     @Expose
     private String status;
-    private final static long serialVersionUID = 8090275338119204053L;
+    @SerializedName("service_name")
+    @Expose
+    private String serviceName;
+    @SerializedName("address")
+    @Expose
+    private String address;
+    @SerializedName("image_url")
+    @Expose
+    private String imageUrl;
+    private final static long serialVersionUID = -5445579775862188749L;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public Integer getId() {
         return id;
@@ -40,14 +57,6 @@ public class ServiceRequestList implements Serializable
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getServiceDate() {
@@ -74,6 +83,14 @@ public class ServiceRequestList implements Serializable
         this.serviceType = serviceType;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public Integer getWillingAmountPay() {
         return willingAmountPay;
     }
@@ -96,6 +113,22 @@ public class ServiceRequestList implements Serializable
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

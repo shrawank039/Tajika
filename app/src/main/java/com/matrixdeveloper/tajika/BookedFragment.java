@@ -15,11 +15,28 @@ import com.matrixdeveloper.tajika.adapter.CoinsWalletAdapter;
 import com.matrixdeveloper.tajika.adapter.MyBookingAdapter;
 import com.matrixdeveloper.tajika.model.BookingModel;
 import com.matrixdeveloper.tajika.model.CoinsWalletModel;
+import com.matrixdeveloper.tajika.model.ServiceRequestList;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookedFragment extends Fragment {
 
     RecyclerView rvBooked;
     MyBookingAdapter bookingAdapter;
+    String TAG = "BookedFrag";
+    List<ServiceRequestList> requestLists;
+    PrefManager pref;
+
     public BookedFragment() {
         // Required empty public constructor
     }
@@ -28,19 +45,60 @@ public class BookedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_booked, container, false);
-        BookingModel[] bookingModels = new BookingModel[]{
-                new BookingModel("1", R.drawable.plumbing, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering","Booked"),
-                new BookingModel("1", R.drawable.airtel_money, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering","cancelled"),
-                new BookingModel("1", R.drawable.provider_image_2x, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering","Completed"),
-                new BookingModel("1", R.drawable.flag_central_african_republic, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering","Booked"),
-                new BookingModel("1", R.drawable.flag_american_samoa, "Danil Lawrenece", "Mayur Bihar, Dehli, India", "Catering","Cancelled"),
-         };
 
+        pref = new PrefManager(getContext());
+
+        requestLists = new ArrayList<>();
         rvBooked=view.findViewById(R.id.rv_serviceBooked);
-        bookingAdapter = new MyBookingAdapter(getContext(), bookingModels);
+        bookingAdapter = new MyBookingAdapter(getContext(), requestLists);
         rvBooked.setHasFixedSize(true);
         rvBooked.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvBooked.setAdapter(bookingAdapter);
+        getRequestData();
+
         return view;
+    }
+
+    private void getRequestData() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+            data.put("type", "Booked");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(getContext(), ServiceNames.GET_SERVICE_REQUEST, data, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray requestArray;
+
+            try {
+
+                requestArray = response.getJSONArray("data");
+
+
+                for (int i = 0; i < requestArray.length(); i++) {
+
+                    try {
+
+                        ServiceRequestList serviceList = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), ServiceRequestList.class);
+                        requestLists.add(serviceList);
+
+                        bookingAdapter.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        });
     }
 }
