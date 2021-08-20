@@ -15,7 +15,7 @@ public class VoucherList implements Serializable
     private String title;
     @SerializedName("min_order")
     @Expose
-    private Integer minOrder;
+    private String minOrder;
     @SerializedName("valid_date")
     @Expose
     private String validDate;
@@ -46,11 +46,11 @@ public class VoucherList implements Serializable
         this.title = title;
     }
 
-    public Integer getMinOrder() {
+    public String getMinOrder() {
         return minOrder;
     }
 
-    public void setMinOrder(Integer minOrder) {
+    public void setMinOrder(String minOrder) {
         this.minOrder = minOrder;
     }
 
