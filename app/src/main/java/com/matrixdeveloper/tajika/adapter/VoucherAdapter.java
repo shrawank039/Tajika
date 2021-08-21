@@ -11,17 +11,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.model.VoucherModel;
+import com.matrixdeveloper.tajika.model.VoucherList;
 import com.matrixdeveloper.tajika.R;
+
+import java.util.List;
 
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHolder> {
 
     private Context ctx;
-    VoucherModel[] voucherModels;
+    List<VoucherList> voucherLists;
 
-    public VoucherAdapter(Context ctx, VoucherModel[] voucherModels) {
+    public VoucherAdapter(Context ctx, List<VoucherList> voucherLists) {
         this.ctx = ctx;
-        this.voucherModels = voucherModels;
+        this.voucherLists = voucherLists;
     }
 
     @NonNull
@@ -33,24 +35,24 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHold
 
     @Override
     public void onBindViewHolder(@NonNull VoucherAdapter.viewHolder holder, int position) {
-        final VoucherModel voucherModel = voucherModels[position];
-        holder.voucherHeader.setText(voucherModel.getVoucherHeader());
-        holder.voucherValidity.setText(voucherModel.getVoucherValidity());
-        holder.voucherMinOrder.setText(voucherModel.getVoucherMinOrder());
-        holder.voucherCode.setText("Code: " + voucherModel.getVoucherCode());
-        holder.voucherRating.setRating(voucherModel.getRating());
+        final VoucherList voucherModel = voucherLists.get(position);
+        holder.voucherHeader.setText(voucherModel.getTitle());
+        holder.voucherValidity.setText(voucherModel.getValidDate());
+        holder.voucherMinOrder.setText(voucherModel.getMinOrder());
+        holder.voucherCode.setText("Code: " + voucherModel.getCode());
+        holder.voucherRating.setRating(3);
 
         holder.voucherCopyCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ctx, voucherModel.getVoucherCode() + " Copied !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, voucherModel.getCode() + " Copied !!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return voucherModels.length;
+        return voucherLists.size();
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {

@@ -506,13 +506,14 @@ public class LocationSelectorActivity extends FragmentActivity
 
                             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override
-                                public boolean onMarkerClick(Marker m) {
+                                public boolean onMarkerClick(@NonNull Marker m) {
 
                                     selected_id = String.valueOf(m.getTag());
 
                                     providerDetails.setVisibility(View.VISIBLE);
 
                                     getServiceProviderDetails(selected_id);
+
 
                                     if (service_type.equals("goods")) {
                                         behavior2.setPeekHeight(peekHeight);

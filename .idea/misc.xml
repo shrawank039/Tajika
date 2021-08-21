@@ -31,7 +31,9 @@
         <entry key="app/src/main/res/layout/bottomsheet_service_and_goods_provider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/fragment_requested.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/item_new_services_request.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_recomended_services.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_subcategory.xml" value="0.2546875" />
       </map>

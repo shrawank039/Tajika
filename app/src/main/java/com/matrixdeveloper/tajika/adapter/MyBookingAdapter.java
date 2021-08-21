@@ -13,14 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.BookingModel;
+import com.matrixdeveloper.tajika.model.ServiceRequestList;
+
+import java.util.List;
 
 public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.viewHolder> {
     private Context ctx;
-    BookingModel[] bookingModels;
+    List<ServiceRequestList> serviceRequestLists;
 
-    public MyBookingAdapter(Context ctx, BookingModel[] bookingModels) {
+    public MyBookingAdapter(Context ctx, List<ServiceRequestList> serviceRequestLists) {
         this.ctx = ctx;
-        this.bookingModels = bookingModels;
+        this.serviceRequestLists = serviceRequestLists;
     }
 
     @NonNull
@@ -32,18 +35,18 @@ public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.view
 
     @Override
     public void onBindViewHolder(@NonNull MyBookingAdapter.viewHolder holder, int position) {
-        final BookingModel bookingModel = bookingModels[position];
-        holder.serviceName.setText("Name: " + bookingModel.getServiceName());
-        holder.serviceAddress.setText("Address: " + bookingModel.getServiceAddress());
-        holder.serviceType.setText("Service type: " + bookingModel.getServiceType());
-        holder.serviceStatus.setText("Status: " + bookingModel.getServiceStatus());
+        ServiceRequestList serviceRequestList = serviceRequestLists.get(position);
+        holder.serviceName.setText("Name: " + serviceRequestList.getServiceName());
+        holder.serviceAddress.setText("Address: " + serviceRequestList.getAddress());
+        holder.serviceType.setText("Service type: " + serviceRequestList.getServiceType());
+        holder.serviceStatus.setText("Status: " + serviceRequestList.getStatus());
 
-        Glide.with(ctx).load(bookingModel.getServiceImage()).into(holder.serviceImage);
+        Glide.with(ctx).load(serviceRequestList.getImageUrl()).into(holder.serviceImage);
     }
 
     @Override
     public int getItemCount() {
-        return bookingModels.length;
+        return serviceRequestLists.size();
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
