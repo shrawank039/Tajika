@@ -92,11 +92,11 @@ public class RequestServiceActivity extends AppCompatActivity implements
     public void onClick(View v) {
 
         int mYear, mMonth, mDay, mHour, mMinute;
+        final Calendar c = Calendar.getInstance();
 
         if (v == edtDate) {
 
             // Get Current Date
-            final Calendar c = Calendar.getInstance();
             mYear = c.get(Calendar.YEAR);
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
@@ -118,7 +118,6 @@ public class RequestServiceActivity extends AppCompatActivity implements
         if (v == edtTime) {
 
             // Get Current Time
-            final Calendar c = Calendar.getInstance();
             mHour = c.get(Calendar.HOUR_OF_DAY);
             mMinute = c.get(Calendar.MINUTE);
 
