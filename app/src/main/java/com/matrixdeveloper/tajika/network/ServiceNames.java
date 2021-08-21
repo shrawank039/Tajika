@@ -32,6 +32,9 @@ public class ServiceNames {
     public static final String SUBSCRIPTION_PLAN = API + "/getAllSubscriptionPlan";
     public static final String HELP_FAQ = API + "/gethelps";
     public static final String CANCEL_SERVICE_BOOKING = API + "/cancelservicebooking";
+    public static final String USER_WALLET_DETAILS = API + "/getPointCounter";
+    public static final String REDEEM_COIN_LIST = API + "/getReedomCoinList";
+    public static final String REDEEM_COIN_TO_USER = API + "/addRedddomCoinToUser";
 
     // SP
     public static final String REGISTER_SERVICE_PROVIDER_INDI = API + "/createServiceProviderAccount";

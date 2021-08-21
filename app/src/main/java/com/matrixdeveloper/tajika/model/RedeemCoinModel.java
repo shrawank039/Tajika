@@ -1,57 +1,78 @@
 package com.matrixdeveloper.tajika.model;
 
-public class RedeemCoinModel {
-    private int id;
-    private int redeemRating;
-    private String redeemHeader;
-    private String redeemReqCoin;
-    private String redeemValidity;
+import java.io.Serializable;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public RedeemCoinModel(int id, int redeemRating, String redeemHeader, String redeemReqCoin, String redeemValidity) {
-        this.id = id;
-        this.redeemRating = redeemRating;
-        this.redeemHeader = redeemHeader;
-        this.redeemReqCoin = redeemReqCoin;
-        this.redeemValidity = redeemValidity;
-    }
+public class RedeemCoinModel implements Serializable
+{
 
-    public int getId() {
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("coin")
+    @Expose
+    private String coin;
+    @SerializedName("valid_date")
+    @Expose
+    private String validDate;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
+    @SerializedName("updated_at")
+    @Expose
+    private String updatedAt;
+    private final static long serialVersionUID = -3831700523043804436L;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getRedeemRating() {
-        return redeemRating;
+    public String getTitle() {
+        return title;
     }
 
-    public void setRedeemRating(int redeemRating) {
-        this.redeemRating = redeemRating;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getRedeemHeader() {
-        return redeemHeader;
+    public String getCoin() {
+        return coin;
     }
 
-    public void setRedeemHeader(String redeemHeader) {
-        this.redeemHeader = redeemHeader;
+    public void setCoin(String coin) {
+        this.coin = coin;
     }
 
-    public String getRedeemReqCoin() {
-        return redeemReqCoin;
+    public String getValidDate() {
+        return validDate;
     }
 
-    public void setRedeemReqCoin(String redeemReqCoin) {
-        this.redeemReqCoin = redeemReqCoin;
+    public void setValidDate(String validDate) {
+        this.validDate = validDate;
     }
 
-    public String getRedeemValidity() {
-        return redeemValidity;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setRedeemValidity(String redeemValidity) {
-        this.redeemValidity = redeemValidity;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
 }

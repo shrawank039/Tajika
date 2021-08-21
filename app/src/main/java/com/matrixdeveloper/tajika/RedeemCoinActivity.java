@@ -2,38 +2,77 @@ package com.matrixdeveloper.tajika;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.matrixdeveloper.tajika.adapter.CoinsWalletAdapter;
 import com.matrixdeveloper.tajika.adapter.RedeemCoinAdapter;
+import com.matrixdeveloper.tajika.model.CoinsWalletModel;
 import com.matrixdeveloper.tajika.model.RedeemCoinModel;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class RedeemCoinActivity extends AppCompatActivity {
 
     private RecyclerView redeemCoinRecView;
     private RedeemCoinAdapter redeemCoinAdapter;
     private ImageView backPress;
+    private String TAG="RedeemCoinAct";
+    private ArrayList<RedeemCoinModel> myListData = new ArrayList<>();
+    public static PrefManager prf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_redeem_coin);
+
+        prf = new PrefManager(this);
         backPress = findViewById(R.id.iv_backPress);
         backPress.setOnClickListener(view -> RedeemCoinActivity.super.onBackPressed());
 
-        RedeemCoinModel[] redeemCoinModels = new RedeemCoinModel[]{
-                new RedeemCoinModel(1, 0, "10% flat on all order above 500", "1000", "Valid till 22 December 2020"),
-                new RedeemCoinModel(2, 1, "20% flat on all order above 1500", "500", "Valid till 22 December 2020"),
-                new RedeemCoinModel(3, 2, "30% flat on all order above 2500", "1100", "Valid till 22 December 2020"),
-                new RedeemCoinModel(4, 3, "40% flat on all order above 3500", "100", "Valid till 22 December 2020"),
-        };
+        getRedeemCoinsList();
 
-        redeemCoinRecView = findViewById(R.id.recView_redeemCoin);
-        redeemCoinAdapter = new RedeemCoinAdapter(this, redeemCoinModels);
-        redeemCoinRecView.setHasFixedSize(true);
-        redeemCoinRecView.setLayoutManager(new LinearLayoutManager(this));
-        redeemCoinRecView.setAdapter(redeemCoinAdapter);
+    }
+
+    private void getRedeemCoinsList() {
+        ApiCall.getMethod(this, ServiceNames.REDEEM_COIN_LIST, response -> {
+            Utils.log(TAG, response.toString());
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = response.getJSONArray("data");
+
+                if (jsonArray.length() > 0) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        RedeemCoinModel coinModel = MySingleton.getGson().fromJson(jsonArray.getJSONObject(i).toString(), RedeemCoinModel.class);
+                        myListData.add(coinModel);
+
+                    }
+                    redeemCoinRecView = findViewById(R.id.recView_redeemCoin);
+                    redeemCoinAdapter = new RedeemCoinAdapter(this, myListData);
+                    redeemCoinRecView.setHasFixedSize(true);
+                    redeemCoinRecView.setLayoutManager(new LinearLayoutManager(this));
+                    redeemCoinRecView.setAdapter(redeemCoinAdapter);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void userId(){
+        prf.getString("id");
     }
 }

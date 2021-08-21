@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matrixdeveloper.tajika.model.CoinsWalletModel;
 import com.matrixdeveloper.tajika.R;
 
+import java.util.ArrayList;
+
 public class CoinsWalletAdapter extends RecyclerView.Adapter<CoinsWalletAdapter.viewHolder> {
 
     private Context ctx;
-    CoinsWalletModel[] coinsWalletModels;
+    ArrayList<CoinsWalletModel> coinsWalletModels;
 
-    public CoinsWalletAdapter(Context ctx, CoinsWalletModel[] coinsWalletModels) {
+    public CoinsWalletAdapter(Context ctx, ArrayList<CoinsWalletModel> coinsWalletModels) {
         this.ctx = ctx;
         this.coinsWalletModels = coinsWalletModels;
     }
@@ -32,12 +34,12 @@ public class CoinsWalletAdapter extends RecyclerView.Adapter<CoinsWalletAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CoinsWalletAdapter.viewHolder holder, int position) {
-        final CoinsWalletModel coinsWalletModel = coinsWalletModels[position];
-        holder.header.setText(coinsWalletModel.getHeader());
-        holder.coins.setText("Coins: " + coinsWalletModel.getCoins());
+        final CoinsWalletModel coinsWalletModel = coinsWalletModels.get(position);
+        holder.header.setText(coinsWalletModel.getUserdFor());
+        holder.coins.setText("Coins: " + coinsWalletModel.getPoint());
         holder.date.setText("Date: " + coinsWalletModel.getDate());
 
-        if (coinsWalletModel.getDcStatus() == 1) {
+        if (coinsWalletModel.getType().equals("debited")) {
             holder.debited.setVisibility(View.VISIBLE);
             holder.credited.setVisibility(View.GONE);
         } else {
@@ -49,7 +51,7 @@ public class CoinsWalletAdapter extends RecyclerView.Adapter<CoinsWalletAdapter.
 
     @Override
     public int getItemCount() {
-        return coinsWalletModels.length;
+        return coinsWalletModels.size();
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {

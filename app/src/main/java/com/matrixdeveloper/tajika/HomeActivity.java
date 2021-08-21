@@ -164,11 +164,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initViews() {
+        prf = new PrefManager(this);
+
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawer = findViewById(R.id.drawer_layout);
         homeSlider = findViewById(R.id.slider);
-        prf = new PrefManager(this);
         notificationList = findViewById(R.id.ll_notificationList);
         coinsWallet = findViewById(R.id.ll_coinsWallet);
         referFriends = findViewById(R.id.ll_referFriends);
