@@ -11,8 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.matrixdeveloper.tajika.model.VoucherList;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.model.VoucherList;
 
 import java.util.List;
 
@@ -37,8 +37,8 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHold
     public void onBindViewHolder(@NonNull VoucherAdapter.viewHolder holder, int position) {
         final VoucherList voucherModel = voucherLists.get(position);
         holder.voucherHeader.setText(voucherModel.getTitle());
-        holder.voucherValidity.setText(voucherModel.getValidDate());
-        holder.voucherMinOrder.setText(voucherModel.getMinOrder());
+        holder.voucherValidity.setText("Valid till: " + voucherModel.getValidDate());
+        holder.voucherMinOrder.setText("Minimum Order: " + voucherModel.getMinOrder());
         holder.voucherCode.setText("Code: " + voucherModel.getCode());
         holder.voucherRating.setRating(3);
 

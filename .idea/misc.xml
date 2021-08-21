@@ -20,6 +20,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/item_category.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_faq.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_subcategory.xml" value="0.22" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/item_vouchers.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/layout_no_item_found.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/spb_business_details.xml" value="0.13223684210526315" />
         <entry key="app/src/main/res/layout/activity_all_service.xml" value="0.2546875" />
@@ -31,9 +32,7 @@
         <entry key="app/src/main/res/layout/bottomsheet_service_and_goods_provider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2546875" />
-        <entry key="app/src/main/res/layout/fragment_requested.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.2546875" />
-        <entry key="app/src/main/res/layout/item_new_services_request.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_recomended_services.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_subcategory.xml" value="0.2546875" />
       </map>
