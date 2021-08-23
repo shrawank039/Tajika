@@ -36,12 +36,12 @@ public class ServiceNames {
     public static final String REDEEM_COIN_LIST = API + "/getReedomCoinList";
     public static final String REDEEM_COIN_TO_USER = API + "/addRedddomCoinToUser";
     public static final String VOUCHER_LIST = API + "/getVouchersList";
+    public static final String GET_SERVICE_REQUEST_DETAILS = API + "/getParticularServiceRequestDetails";
 
     // SP
     public static final String REGISTER_SERVICE_PROVIDER_INDI = API + "/createServiceProviderAccount";
     public static final String BUSINESS_SERVICE_PROVIDER_DETAILS = API + "/getServiceBusinessInfo";
     public static final String GET_SERVICE_REQUEST = API + "/getAllServiceRequest";
-    public static final String GET_SERVICE_REQUEST_DETAILS = API + "/getParticularServiceRequestDetails";
     public static final String CHANGE_SERVICE_REQUEST_STATUS = API + "/changeServiceRequestStatus";
     public static final String UPDATE_SERVICE_BOOKING_DETAILS = API + "/updateservicebookingdetails";
     public static final String CANCEL_SERVICE_REQUEST = API + "/cancelservicebooking";

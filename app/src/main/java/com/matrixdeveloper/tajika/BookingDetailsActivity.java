@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.matrixdeveloper.tajika.model.UserBookingDetails;
+import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -83,13 +83,13 @@ public class BookingDetailsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(this, ServiceNames.SERVICE_PROVIDER_DETAILS, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
 
             Utils.log(TAG, response.toString());
 
             try {
 
-                UserBookingDetails userBookingDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), UserBookingDetails.class);
+                RequestDetails requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
 
             } catch (JSONException e) {
                 e.printStackTrace();

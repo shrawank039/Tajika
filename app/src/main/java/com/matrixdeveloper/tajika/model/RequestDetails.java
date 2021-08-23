@@ -34,7 +34,7 @@ public class RequestDetails implements Serializable
     private String requestId;
     @SerializedName("booking_id")
     @Expose
-    private String bookingId;
+    private Integer bookingId;
     @SerializedName("status")
     @Expose
     private String status;
@@ -98,6 +98,9 @@ public class RequestDetails implements Serializable
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    @SerializedName("service_name")
+    @Expose
+    private String serviceName;
     @SerializedName("customername")
     @Expose
     private String customername;
@@ -113,7 +116,7 @@ public class RequestDetails implements Serializable
     @SerializedName("adminpayableamount")
     @Expose
     private Integer adminpayableamount;
-    private final static long serialVersionUID = -9079304615534082844L;
+    private final static long serialVersionUID = -8915233211173891475L;
 
     public Integer getId() {
         return id;
@@ -179,11 +182,11 @@ public class RequestDetails implements Serializable
         this.requestId = requestId;
     }
 
-    public String getBookingId() {
+    public Integer getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(String bookingId) {
+    public void setBookingId(Integer bookingId) {
         this.bookingId = bookingId;
     }
 
@@ -353,6 +356,14 @@ public class RequestDetails implements Serializable
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     public String getCustomername() {
