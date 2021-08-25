@@ -1,5 +1,6 @@
 package com.matrixdeveloper.tajika;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
@@ -53,6 +55,24 @@ public class RequestedFragment extends Fragment {
         rvRequested.setAdapter(bookingAdapter);
 
         getRequestData();
+
+
+        rvRequested.addOnItemTouchListener(new RecyclerTouchListener(getContext(), rvRequested, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                ServiceRequestList serviceRequestList = requestLists.get(position);
+
+                startActivity(new Intent(getContext(), BookingDetailsActivity.class)
+                        .putExtra("status", serviceRequestList.getStatus())
+                        .putExtra("service_id", String.valueOf(serviceRequestList.getId())));
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         return view;
     }

@@ -38,7 +38,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private String cancellationReason;
     private EditText cancellationComment;
     private ViewFlipper bookingViewFlipper;
-    private String status = "booked";
+    String status;
     private ConstraintLayout upcoming, pending, booked;
 
     @Override
@@ -50,22 +50,23 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
         initListeners();
 
-        id = getIntent().getStringExtra("id");
+        id = getIntent().getStringExtra("service_id");
+        status = getIntent().getStringExtra("status");
 
         switch (status) {
-            case "booked":
-            case "accepted":
-                upcoming.setVisibility(View.GONE);
-                booked.setVisibility(View.VISIBLE);
-                pending.setVisibility(View.GONE);
-                break;
-            case "upcoming":
+            case "Booked":
+            case "Upcoming":
                 upcoming.setVisibility(View.VISIBLE);
                 booked.setVisibility(View.GONE);
                 pending.setVisibility(View.GONE);
                 break;
-            case "declined":
-            case "pending":
+            case "Accepted":
+                upcoming.setVisibility(View.GONE);
+                booked.setVisibility(View.VISIBLE);
+                pending.setVisibility(View.GONE);
+                break;
+            case "Declined":
+            case "Pending":
                 upcoming.setVisibility(View.GONE);
                 booked.setVisibility(View.GONE);
                 pending.setVisibility(View.VISIBLE);
@@ -130,7 +131,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
 
             Utils.log(TAG, response.toString());
-            Utils.toast(this, response.toString());
+
             try {
                 RequestDetails requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
                 serviceName.setText("Name: " + requestDetails.getServiceName());

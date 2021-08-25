@@ -171,7 +171,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLines="1"
-                            android:text="Paul Doe"
+                            android:text=""
                             android:textColor="@color/dark_blue"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -182,7 +182,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
                             android:maxLines="1"
-                            android:text="Plumber"
+                            android:text=""
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -193,7 +193,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
                             android:maxLines="1"
-                            android:text="2.5 Km Away"
+                            android:text=""
                             android:textColor="@color/dark_blue" />
                     </LinearLayout>
 
@@ -212,7 +212,7 @@
                             android:drawableStart="@drawable/star_half_icon"
                             android:drawablePadding="10dp"
                             android:maxLines="1"
-                            android:text="4.5 ratings"
+                            android:text=""
                             android:textColor="@color/dark_blue" />
 
                         <TextView

@@ -1,5 +1,6 @@
 package com.matrixdeveloper.tajika;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,10 +17,12 @@ import com.matrixdeveloper.tajika.adapter.MyBookingAdapter;
 import com.matrixdeveloper.tajika.model.BookingModel;
 import com.matrixdeveloper.tajika.model.CoinsWalletModel;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
+import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
@@ -55,6 +58,23 @@ public class BookedFragment extends Fragment {
         rvBooked.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvBooked.setAdapter(bookingAdapter);
         getRequestData();
+
+        rvBooked.addOnItemTouchListener(new RecyclerTouchListener(getContext(), rvBooked, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                ServiceRequestList serviceRequestList = requestLists.get(position);
+
+                startActivity(new Intent(getContext(), BookingDetailsActivity.class)
+                        .putExtra("status", serviceRequestList.getStatus())
+                        .putExtra("service_id", String.valueOf(serviceRequestList.getId())));
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         return view;
     }

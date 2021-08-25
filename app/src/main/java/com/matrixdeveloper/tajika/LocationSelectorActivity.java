@@ -592,6 +592,7 @@ public class LocationSelectorActivity extends FragmentActivity
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", providerID);
+            data.put("service_type",service_type);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -603,7 +604,6 @@ public class LocationSelectorActivity extends FragmentActivity
             try {
 
                 serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
-
                 txtProviderName.setText(serviceProviderDetails.getName());
                 txtRating.setText(serviceProviderDetails.getRating() + " ratings");
                 txtServiceName.setText(serviceProviderDetails.getBusinessCategories());

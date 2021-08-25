@@ -61,7 +61,13 @@
 
         <activity android:name=".AllServiceActivity" />
         <activity android:name=".LandingPage" />
-        <activity android:name=".SplashScreenActivity" />
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ConversationListActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".PrivacyPolicyActivity" />
@@ -86,11 +92,6 @@
         <activity android:name=".SPindividual.SpiLoginActivity" />
         <activity android:name=".SPbusiness.SpbLoginActivity" />
         <activity android:name=".BookingDetailsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name=".services.ProviderFirebaseMessagingService">
