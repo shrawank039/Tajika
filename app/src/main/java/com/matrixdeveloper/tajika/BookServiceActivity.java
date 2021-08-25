@@ -18,7 +18,7 @@ public class BookServiceActivity extends AppCompatActivity {
 
     private ImageView backPress;
     private String TAG = "BookServiceAct";
-    private String bookingID;
+    String bookingID;
     private EditText name, phoneNUmber, flatNumber, streetAddress, landmark, anyInstruction;
     private LinearLayout llMakePayment;
 
@@ -26,6 +26,8 @@ public class BookServiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_service);
+
+        bookingID = getIntent().getStringExtra("booking_id");
 
         initViews();
         backPress.setOnClickListener(view -> BookServiceActivity.super.onBackPressed());
@@ -50,7 +52,7 @@ public class BookServiceActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("id", 2);
+            data.put("id", bookingID);
             data.put("contact_person_name", name.getText().toString());
             data.put("contact_person_phone", phoneNUmber.getText().toString());
             data.put("serviceaddress_building_no", flatNumber.getText().toString());

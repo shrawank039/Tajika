@@ -64,7 +64,7 @@ public class RequestedFragment extends Fragment {
 
                 startActivity(new Intent(getContext(), BookingDetailsActivity.class)
                         .putExtra("status", serviceRequestList.getStatus())
-                        .putExtra("service_id", String.valueOf(serviceRequestList.getId())));
+                        .putExtra("booking_id", String.valueOf(serviceRequestList.getId())));
 
             }
 
