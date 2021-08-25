@@ -1,6 +1,5 @@
 package com.matrixdeveloper.tajika.model;
 
-
 import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -34,7 +33,7 @@ public class RequestDetails implements Serializable
     private String requestId;
     @SerializedName("booking_id")
     @Expose
-    private Integer bookingId;
+    private String bookingId;
     @SerializedName("status")
     @Expose
     private String status;
@@ -49,13 +48,13 @@ public class RequestDetails implements Serializable
     private String requestTime;
     @SerializedName("request_accept_date")
     @Expose
-    private String requestAcceptDate;
+    private Object requestAcceptDate;
     @SerializedName("request_accept_time")
     @Expose
-    private String requestAcceptTime;
+    private Object requestAcceptTime;
     @SerializedName("request_declined_datetime")
     @Expose
-    private String requestDeclinedDatetime;
+    private Object requestDeclinedDatetime;
     @SerializedName("contact_person_name")
     @Expose
     private String contactPersonName;
@@ -79,19 +78,19 @@ public class RequestDetails implements Serializable
     private String bookingDatetime;
     @SerializedName("cancelation_reason")
     @Expose
-    private String cancelationReason;
+    private Object cancelationReason;
     @SerializedName("cancelation_comment")
     @Expose
-    private String cancelationComment;
+    private Object cancelationComment;
     @SerializedName("cancelation_date")
     @Expose
-    private String cancelationDate;
+    private Object cancelationDate;
     @SerializedName("cancelation_time")
     @Expose
-    private String cancelationTime;
+    private Object cancelationTime;
     @SerializedName("competed_on")
     @Expose
-    private String competedOn;
+    private Object competedOn;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -116,7 +115,7 @@ public class RequestDetails implements Serializable
     @SerializedName("adminpayableamount")
     @Expose
     private Integer adminpayableamount;
-    private final static long serialVersionUID = -8915233211173891475L;
+    private final static long serialVersionUID = 9200144750725155410L;
 
     public Integer getId() {
         return id;
@@ -182,11 +181,11 @@ public class RequestDetails implements Serializable
         this.requestId = requestId;
     }
 
-    public Integer getBookingId() {
+    public String getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(Integer bookingId) {
+    public void setBookingId(String bookingId) {
         this.bookingId = bookingId;
     }
 
@@ -222,27 +221,27 @@ public class RequestDetails implements Serializable
         this.requestTime = requestTime;
     }
 
-    public String getRequestAcceptDate() {
+    public Object getRequestAcceptDate() {
         return requestAcceptDate;
     }
 
-    public void setRequestAcceptDate(String requestAcceptDate) {
+    public void setRequestAcceptDate(Object requestAcceptDate) {
         this.requestAcceptDate = requestAcceptDate;
     }
 
-    public String getRequestAcceptTime() {
+    public Object getRequestAcceptTime() {
         return requestAcceptTime;
     }
 
-    public void setRequestAcceptTime(String requestAcceptTime) {
+    public void setRequestAcceptTime(Object requestAcceptTime) {
         this.requestAcceptTime = requestAcceptTime;
     }
 
-    public String getRequestDeclinedDatetime() {
+    public Object getRequestDeclinedDatetime() {
         return requestDeclinedDatetime;
     }
 
-    public void setRequestDeclinedDatetime(String requestDeclinedDatetime) {
+    public void setRequestDeclinedDatetime(Object requestDeclinedDatetime) {
         this.requestDeclinedDatetime = requestDeclinedDatetime;
     }
 
@@ -302,43 +301,43 @@ public class RequestDetails implements Serializable
         this.bookingDatetime = bookingDatetime;
     }
 
-    public String getCancelationReason() {
+    public Object getCancelationReason() {
         return cancelationReason;
     }
 
-    public void setCancelationReason(String cancelationReason) {
+    public void setCancelationReason(Object cancelationReason) {
         this.cancelationReason = cancelationReason;
     }
 
-    public String getCancelationComment() {
+    public Object getCancelationComment() {
         return cancelationComment;
     }
 
-    public void setCancelationComment(String cancelationComment) {
+    public void setCancelationComment(Object cancelationComment) {
         this.cancelationComment = cancelationComment;
     }
 
-    public String getCancelationDate() {
+    public Object getCancelationDate() {
         return cancelationDate;
     }
 
-    public void setCancelationDate(String cancelationDate) {
+    public void setCancelationDate(Object cancelationDate) {
         this.cancelationDate = cancelationDate;
     }
 
-    public String getCancelationTime() {
+    public Object getCancelationTime() {
         return cancelationTime;
     }
 
-    public void setCancelationTime(String cancelationTime) {
+    public void setCancelationTime(Object cancelationTime) {
         this.cancelationTime = cancelationTime;
     }
 
-    public String getCompetedOn() {
+    public Object getCompetedOn() {
         return competedOn;
     }
 
-    public void setCompetedOn(String competedOn) {
+    public void setCompetedOn(Object competedOn) {
         this.competedOn = competedOn;
     }
 

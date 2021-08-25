@@ -64,6 +64,7 @@
             android:layout_height="match_parent"
             android:paddingHorizontal="15dp"
             tools:listitem="@layout/item_more_options" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

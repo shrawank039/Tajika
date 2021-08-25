@@ -25,7 +25,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintBottom_toTopOf="@+id/ll_makePayment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -46,12 +46,16 @@
 
 
             <EditText
+                android:id="@+id/edt_name"
                 style="@style/bookService_editText_container"
                 android:hint="Name*" />
 
             <EditText
+                android:id="@+id/edt_phoneNUmber"
                 style="@style/bookService_editText_container"
-                android:hint="Contact number*"/>
+                android:hint="Contact number*"
+                android:inputType="number"
+                android:maxLength="10" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -64,18 +68,23 @@
 
 
             <EditText
+                android:id="@+id/edt_flatNumber"
                 style="@style/bookService_editText_container"
-                android:hint="Flat/Room number/Building*" />
+                android:hint="Flat/Room/Building number*"
+                android:inputType="number" />
 
             <EditText
+                android:id="@+id/edt_streetAddress"
                 style="@style/bookService_editText_container"
                 android:hint="Street Address*" />
 
             <EditText
+                android:id="@+id/edt_landmark"
                 style="@style/bookService_editText_container"
                 android:hint="Landmark (Optional)" />
 
             <EditText
+                android:id="@+id/edt_anyInstruction"
                 style="@style/bookService_editText_container"
                 android:hint="Any instruction (Optional)" />
 
@@ -93,7 +102,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/ll_makePayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/golden"
@@ -112,8 +121,8 @@
             android:fontFamily="@font/lato_black"
             android:gravity="center"
             android:text="Make Payment"
-            android:textSize="16sp"
             android:textColor="@color/black"
+            android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,12 +61,12 @@
 
         <activity android:name=".AllServiceActivity" />
         <activity android:name=".LandingPage" />
-        <activity android:name=".BookServiceActivity" />
+        <activity android:name=".SplashScreenActivity" />
         <activity android:name=".ConversationListActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".PrivacyPolicyActivity" />
         <activity android:name=".CoinsWalletActivity" />
-        <activity android:name=".BookingDetailsActivity" />
+        <activity android:name=".BookServiceActivity" />
         <activity android:name=".CompareListActivity" />
         <activity android:name=".ReferralActivity" />
         <activity android:name=".RedeemCoinActivity" />
@@ -85,7 +85,7 @@
         <activity android:name=".OnboardingActivity" />
         <activity android:name=".SPindividual.SpiLoginActivity" />
         <activity android:name=".SPbusiness.SpbLoginActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".BookingDetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -97,5 +97,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="add_your_new_service"><u>Add your new service</u></string>
     <string name="add_your_new_good"><u>Add your new god</u></string>
     <string name="add_goods_instead"><u>Add goods instead</u></string>
+    <string name="request_summery"><u>Request Summery</u></string>
+    <string name="service_summery"><u>Service Summery</u></string>
 
 </resources>
