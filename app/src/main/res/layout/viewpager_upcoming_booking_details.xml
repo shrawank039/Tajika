@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/cl_upcoming"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -86,7 +86,7 @@
                                 app:civ_border_width="2dp" />
 
                             <TextView
-                                android:id="@+id/txt_serviceStatus"
+                                android:id="@+id/txt_upServiceStatus"
                                 style="@style/topDesign_textView_bold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -105,14 +105,14 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/txt_serviceName"
+                                android:id="@+id/txt_upServiceName"
                                 style="@style/topDesign_textView_bold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Name: Super Plumbing" />
 
                             <TextView
-                                android:id="@+id/txt_serviceAddress"
+                                android:id="@+id/txt_upServiceAddress"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                                 android:text="Address: Phase 1 Mayur Vihar" />
 
                             <TextView
-                                android:id="@+id/txt_serviceType"
+                                android:id="@+id/txt_upServiceType"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                                 android:text="Service type: cleaning" />
 
                             <TextView
-                                android:id="@+id/txt_serviceBookingId"
+                                android:id="@+id/txt_upServiceBookingId"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
                                 android:text="Booking id: TJKS5256GASU" />
 
                             <TextView
-                                android:id="@+id/txt_serviceBookingDate"
+                                android:id="@+id/txt_upServiceBookingDate"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -158,20 +158,21 @@
                     android:backgroundTint="@color/dark_blue"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="15dp"
+                    android:paddingHorizontal="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
                     <LinearLayout
+                        android:id="@+id/ll_voiceCall"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:drawableStart="@drawable/call_icon"
                             android:drawablePadding="5dp"
                             android:drawableTint="@color/white"
@@ -185,17 +186,19 @@
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
+                        android:layout_marginVertical="10dp"
                         android:background="@color/white" />
 
                     <LinearLayout
+                        android:id="@+id/ll_videoCall"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:drawableStart="@drawable/ic_videocall_icon"
                             android:drawablePadding="5dp"
                             android:drawableTint="@color/white"
@@ -209,17 +212,19 @@
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
+                        android:layout_marginVertical="10dp"
                         android:background="@color/white" />
 
                     <LinearLayout
+                        android:id="@+id/ll_message"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:drawableStart="@drawable/ic_message_icon"
                             android:drawablePadding="5dp"
                             android:drawableTint="@color/white"
@@ -269,10 +274,11 @@
                     android:textColorHint="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceDate"
+                    android:id="@+id/txt_upServiceDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
+                    android:gravity="end"
                     android:hint="10 December 2020"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
@@ -306,10 +312,11 @@
                     android:textColorHint="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceTime"
+                    android:id="@+id/txt_upServiceTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
+                    android:gravity="end"
                     android:hint="04:00 PM"
                     android:paddingEnd="5dp"
                     android:textColor="@color/black"
@@ -326,7 +333,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txt_serviceWorkDescription"
+                android:id="@+id/txt_upServiceWorkDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -358,7 +365,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txt_serviceUserName"
+                android:id="@+id/txt_upServiceUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -369,7 +376,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/txt_serviceUserContactNumber"
+                android:id="@+id/txt_upServiceUserContactNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -380,7 +387,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/txt_serviceUserAddress"
+                android:id="@+id/txt_upServiceUserAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -391,7 +398,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/txt_serviceUserInstruction"
+                android:id="@+id/txt_upServiceUserInstruction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -422,7 +429,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txt_serviceAmountToBePaid"
+                    android:id="@+id/txt_upServiceAmountToBePaid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ksh 3000"
@@ -468,7 +475,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_help"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -476,6 +482,7 @@
                     android:drawablePadding="7dp"
                     android:drawableTint="@color/black"
                     android:gravity="center"
+                    android:onClick="onHelpClick"
                     android:text="Help"
                     android:textColor="@color/black"
                     android:textStyle="bold"

@@ -289,7 +289,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout10"
+            android:id="@+id/ll_bottomBookCancelContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -336,8 +336,8 @@
             app:cardBackgroundColor="@color/dark_blue"
             app:cardCornerRadius="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout10"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout10"
+            app:layout_constraintEnd_toEndOf="@+id/ll_bottomBookCancelContainer"
+            app:layout_constraintStart_toStartOf="@+id/ll_bottomBookCancelContainer"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView

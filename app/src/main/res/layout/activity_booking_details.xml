@@ -5,12 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".BookingDetailsActivity">
 
+    <ViewFlipper
+        android:id="@+id/vf_bookingViewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <include layout="@layout/viewpager_accepted_booked_service_details" />
+        <include layout="@layout/viewpager_accepted_booked_service_details" />
 
-    <include layout="@layout/viewpager_pending_declined_service_details" />
+        <include layout="@layout/viewpager_pending_declined_service_details" />
 
-    <include layout="@layout/viewpager_upcoming_booking_details" />
+        <include layout="@layout/viewpager_upcoming_booking_details" />
 
-
+    </ViewFlipper>
 </LinearLayout>

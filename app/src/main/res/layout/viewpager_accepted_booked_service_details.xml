@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/cl_acceptedBooked"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scrollbarSize="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+        app:layout_constraintBottom_toTopOf="@+id/ll_abBottomBookCancelContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -81,7 +81,7 @@
 
 
                             <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/iv_serviceImage"
+                                android:id="@+id/iv_abServiceImage"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_margin="5dp"
@@ -101,14 +101,14 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/txt_serviceName"
+                                android:id="@+id/txt_abServiceName"
                                 style="@style/topDesign_textView_bold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Name: Super Plumbing" />
 
                             <TextView
-                                android:id="@+id/txt_serviceAddress"
+                                android:id="@+id/txt_abServiceAddress"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                                 android:text="Address: Phase 1 Mayur Vihar" />
 
                             <TextView
-                                android:id="@+id/txt_serviceType"
+                                android:id="@+id/txt_abServiceType"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                                 android:text="Service type: cleaning" />
 
                             <TextView
-                                android:id="@+id/txt_serviceBookingId"
+                                android:id="@+id/txt_abServiceBookingId"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                                 android:text="Booking id: HFUDYUKJUGDLK" />
 
                             <TextView
-                                android:id="@+id/txt_serviceStatus"
+                                android:id="@+id/txt_abServiceStatus"
                                 style="@style/topDesign_textView_bold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -147,8 +147,80 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_congratulationContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="3dp"
+                app:cardCornerRadius="20dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/giving_high_five_2x" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/three_side_round_background_top"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="Congratulations, your\nservice has been booked."
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_cheersContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="3dp"
+                app:cardCornerRadius="20dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/message_with_girl_2x" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/three_side_round_background_bottom"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="Cheers, your service request\nis accepted."
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.cardview.widget.CardView>
+
             <LinearLayout
-                android:id="@+id/ll_requestSummery"
+                android:id="@+id/ll_abRequestSummeryContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -158,7 +230,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="30dp"
                     android:text="@string/request_summery"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -176,7 +247,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/txt_serviceRequestedOn"
+                        android:id="@+id/txt_abServiceRequestedOn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -199,7 +270,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/txt_serviceAcceptedOn"
+                        android:id="@+id/txt_abServiceAcceptedOn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -222,7 +293,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/txt_serviceRequestId"
+                        android:id="@+id/txt_abServiceRequestId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -272,10 +343,11 @@
                     android:textColorHint="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceDate"
+                    android:id="@+id/txt_abServiceDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
+                    android:gravity="end"
                     android:hint="10 December 2020"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
@@ -309,10 +381,11 @@
                     android:textColorHint="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceTime"
+                    android:id="@+id/txt_abServiceTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
+                    android:gravity="end"
                     android:hint="04:00 PM"
                     android:paddingEnd="5dp"
                     android:textColor="@color/black"
@@ -329,7 +402,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txt_serviceWorkDescription"
+                android:id="@+id/txt_abServiceWorkDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -341,7 +414,7 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/txt_seeMore"
+                android:id="@+id/txt_abSeeMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -353,7 +426,7 @@
 
 
             <LinearLayout
-                android:id="@+id/ll_serviceAddress"
+                android:id="@+id/ll_abServiceAddressContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -369,7 +442,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txt_serviceUserName"
+                    android:id="@+id/txt_abServiceUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -378,7 +451,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceUserContactNumber"
+                    android:id="@+id/txt_abServiceUserContactNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -387,7 +460,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceUserAddress"
+                    android:id="@+id/txt_abServiceUserAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -395,7 +468,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceUserInstruction"
+                    android:id="@+id/txt_abServiceUserInstruction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -425,7 +498,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_serviceAmountToBePaid"
+                        android:id="@+id/txt_abServiceAmountToBePaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ksh 3000"
@@ -451,6 +524,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_abCouponContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -460,6 +534,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center">
 
                     <TextView
@@ -471,7 +546,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_serviceUserAmountWillingToPay"
+                        android:id="@+id/txt_abServiceUserAmountWillingToPay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ksh 3000"
@@ -513,7 +588,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp">
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -524,7 +600,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_finalAmountToPay"
+                        android:id="@+id/txt_abFinalAmountToPay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ksh 3000"
@@ -535,10 +611,11 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_containerContactHelp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginHorizontal="20dp">
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:id="@+id/txt_contactUs"
@@ -556,7 +633,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_help"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -564,6 +640,7 @@
                     android:drawablePadding="7dp"
                     android:drawableTint="@color/black"
                     android:gravity="center"
+                    android:onClick="onHelpClick"
                     android:text="Help"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -578,7 +655,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout10"
+        android:id="@+id/ll_abBottomBookCancelContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

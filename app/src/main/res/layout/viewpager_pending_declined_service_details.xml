@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/cl_pendingDeclined"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -101,14 +101,14 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/txt_serviceName"
+                                android:id="@+id/txt_pdServiceName"
                                 style="@style/topDesign_textView_bold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Name: Super Plumbing" />
 
                             <TextView
-                                android:id="@+id/txt_serviceAddress"
+                                android:id="@+id/txt_pdServiceAddress"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                                 android:text="Address: Phase 1 Mayur Vihar" />
 
                             <TextView
-                                android:id="@+id/txt_serviceType"
+                                android:id="@+id/txt_pdServiceType"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                                 android:text="Service type: cleaning" />
 
                             <TextView
-                                android:id="@+id/txt_serviceStatus"
+                                android:id="@+id/txt_pdServiceStatus"
                                 style="@style/topDesign_textView_bold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceRequestedOn"
+                    android:id="@+id/txt_pdServiceRequestedOn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -184,7 +184,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceRequestId"
+                    android:id="@+id/txt_pdServiceRequestId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -231,10 +231,11 @@
                     android:textColorHint="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceDate"
+                    android:id="@+id/txt_pdServiceDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
+                    android:gravity="end"
                     android:hint="10 December 2020"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
@@ -268,10 +269,11 @@
                     android:textColorHint="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_serviceTime"
+                    android:id="@+id/txt_pdServiceTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
+                    android:gravity="end"
                     android:hint="04:00 PM"
                     android:paddingEnd="5dp"
                     android:textColor="@color/black"
@@ -288,7 +290,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txt_serviceWorkDescription"
+                android:id="@+id/txt_pdServiceWorkDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -331,7 +333,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txt_serviceAmountToBePaid"
+                    android:id="@+id/txt_pdServiceAmountToBePaid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ksh 3000"
@@ -362,7 +364,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_help"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -370,6 +371,7 @@
                     android:drawablePadding="7dp"
                     android:drawableTint="@color/black"
                     android:gravity="center"
+                    android:onClick="onHelpClick"
                     android:text="Help"
                     android:textColor="@color/black"
                     android:textStyle="bold"

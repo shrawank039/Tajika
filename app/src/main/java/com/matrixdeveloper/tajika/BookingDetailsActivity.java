@@ -9,12 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.matrixdeveloper.tajika.model.RequestDetails;
@@ -31,15 +33,29 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private String TAG = "BookingDetailsAct";
     private String id;
     private ImageView backPress, serviceImage;
-    private TextView help, serviceName, serviceAddress, serviceType, serviceBookingId, serviceStatus, requestedOn;
-    private TextView acceptedOn, requestNumber, serviceDate, serviceTime, serviceWorkDesc, serviceUserName;
-    private TextView serviceUserContact, serviceUserAddress, amountToPay, amountWillingToPay, applyCoupon, finalAmountToPay;
-    private TextView bookThisService, userInstruction, bookingDate;
+
+    //for accepted booked
+    private TextView abServiceName, abServiceAddress, abServiceType, abServiceBookingId, abServiceStatus, abRequestedOn;
+    private TextView abAcceptedOn, abRequestNumber, abServiceDate, abServiceTime, abServiceWorkDesc, abServiceUserName;
+    private TextView abServiceUserContact, abServiceUserAddress, abUserInstruction, abAmountToPay, abAmountWillingToPay, applyCoupon, abFinalAmountToPay;
+    private TextView bookThisService;
+
+    //for pending declined
+    private TextView pdServiceName, pdServiceAddress, pdServiceType, pdServiceStatus, pdRequestedOn;
+    private TextView pdRequestNumber, pdServiceDate, pdServiceTime, pdServiceWorkDesc, pdAmountToBePay;
+
+    //for pending declined
+    private TextView upServiceName, upServiceAddress, upServiceType, upServiceBookingId, upServiceBookingDate, upServiceStatus;
+    private TextView upServiceDate, upServiceTime, upServiceWorkDesc, upServiceUserName, upServiceUserContact, upServiceUserAddress, upUserInstruction, upAmountToBePaid;
+
     private String cancellationReason;
     private EditText cancellationComment;
     private ViewFlipper bookingViewFlipper;
-    String status;
-    private ConstraintLayout upcoming, pending, booked;
+    private CardView congratsContainer, cheersContainer;
+    private LinearLayout abContainerServiceAddress, abContainerBottomBookCancel, abContainerRequestSummery, abCouponContainer;
+    private ConstraintLayout abContainerContactHelp;
+
+    private String status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +71,31 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
         switch (status) {
             case "Booked":
-            case "Upcoming":
-                upcoming.setVisibility(View.VISIBLE);
-                booked.setVisibility(View.GONE);
-                pending.setVisibility(View.GONE);
+                bookingViewFlipper.setDisplayedChild(0);
+                congratsContainer.setVisibility(View.VISIBLE);
+                cheersContainer.setVisibility(View.GONE);
+                abContainerRequestSummery.setVisibility(View.GONE);
+                abContainerServiceAddress.setVisibility(View.VISIBLE);
+                abCouponContainer.setVisibility(View.GONE);
+                abContainerBottomBookCancel.setVisibility(View.GONE);
+                abContainerContactHelp.setVisibility(View.VISIBLE);
                 break;
             case "Accepted":
-                upcoming.setVisibility(View.GONE);
-                booked.setVisibility(View.VISIBLE);
-                pending.setVisibility(View.GONE);
+                bookingViewFlipper.setDisplayedChild(0);
+                congratsContainer.setVisibility(View.GONE);
+                cheersContainer.setVisibility(View.VISIBLE);
+                abContainerRequestSummery.setVisibility(View.VISIBLE);
+                abContainerServiceAddress.setVisibility(View.GONE);
+                abCouponContainer.setVisibility(View.VISIBLE);
+                abContainerBottomBookCancel.setVisibility(View.VISIBLE);
+                abContainerContactHelp.setVisibility(View.GONE);
                 break;
             case "Declined":
             case "Pending":
-                upcoming.setVisibility(View.GONE);
-                booked.setVisibility(View.GONE);
-                pending.setVisibility(View.VISIBLE);
+                bookingViewFlipper.setDisplayedChild(1);
+                break;
+            case "Upcoming":
+                bookingViewFlipper.setDisplayedChild(2);
                 break;
 
         }
@@ -79,45 +105,74 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
     private void initViews() {
 
-        //bookingViewFlipper = findViewById(R.id.vf_bookingViewFlipper);
+        bookingViewFlipper = findViewById(R.id.vf_bookingViewFlipper);
         backPress = findViewById(R.id.iv_backPress);
-        help = findViewById(R.id.txt_help);
 
-        serviceName = findViewById(R.id.txt_serviceName);
-        serviceAddress = findViewById(R.id.txt_serviceAddress);
-        serviceType = findViewById(R.id.txt_serviceType);
-        serviceBookingId = findViewById(R.id.txt_serviceBookingId);
-        serviceStatus = findViewById(R.id.txt_serviceStatus);
-
-        requestedOn = findViewById(R.id.txt_serviceRequestedOn);
-        acceptedOn = findViewById(R.id.txt_serviceAcceptedOn);
-        requestNumber = findViewById(R.id.txt_serviceRequestId);
-        serviceDate = findViewById(R.id.txt_serviceDate);
-        serviceTime = findViewById(R.id.txt_serviceTime);
-
-        serviceWorkDesc = findViewById(R.id.txt_serviceWorkDescription);
-        serviceUserName = findViewById(R.id.txt_serviceUserName);
-        serviceUserContact = findViewById(R.id.txt_serviceUserContactNumber);
-        serviceUserAddress = findViewById(R.id.txt_serviceUserAddress);
-        amountToPay = findViewById(R.id.txt_serviceAmountToBePaid);
-        amountWillingToPay = findViewById(R.id.txt_serviceUserAmountWillingToPay);
-        finalAmountToPay = findViewById(R.id.txt_finalAmountToPay);
+        // for accepted booked service viewFlipper--> ab stands for accepted_booked
+        abServiceName = findViewById(R.id.txt_abServiceName);
+        abServiceAddress = findViewById(R.id.txt_abServiceAddress);
+        abServiceType = findViewById(R.id.txt_abServiceType);
+        abServiceBookingId = findViewById(R.id.txt_abServiceBookingId);
+        abServiceStatus = findViewById(R.id.txt_abServiceStatus);
+        abRequestedOn = findViewById(R.id.txt_abServiceRequestedOn);
+        abAcceptedOn = findViewById(R.id.txt_abServiceAcceptedOn);
+        abRequestNumber = findViewById(R.id.txt_abServiceRequestId);
+        abServiceDate = findViewById(R.id.txt_abServiceDate);
+        abServiceTime = findViewById(R.id.txt_abServiceTime);
+        abServiceWorkDesc = findViewById(R.id.txt_abServiceWorkDescription);
+        abServiceUserName = findViewById(R.id.txt_abServiceUserName);
+        abServiceUserContact = findViewById(R.id.txt_abServiceUserContactNumber);
+        abServiceUserAddress = findViewById(R.id.txt_abServiceUserAddress);
+        abUserInstruction = findViewById(R.id.txt_abServiceUserInstruction);
+        abAmountToPay = findViewById(R.id.txt_abServiceAmountToBePaid);
+        abAmountWillingToPay = findViewById(R.id.txt_abServiceUserAmountWillingToPay);
         applyCoupon = findViewById(R.id.txt_applyCoupon);
+        abFinalAmountToPay = findViewById(R.id.txt_abFinalAmountToPay);
         bookThisService = findViewById(R.id.txt_bookThisService);
-        userInstruction = findViewById(R.id.txt_serviceUserInstruction);
-        bookingDate = findViewById(R.id.txt_serviceBookingDate);
+
+        //Containers to show or Hide
+        abContainerRequestSummery = findViewById(R.id.ll_abRequestSummeryContainer);
+        abContainerServiceAddress = findViewById(R.id.ll_abServiceAddressContainer);
+        abContainerBottomBookCancel = findViewById(R.id.ll_abBottomBookCancelContainer);
+        congratsContainer = findViewById(R.id.cv_congratulationContainer);
+        cheersContainer = findViewById(R.id.cv_cheersContainer);
+        abCouponContainer = findViewById(R.id.ll_abCouponContainer);
+        abContainerContactHelp = findViewById(R.id.cl_containerContactHelp);
 
 
-        upcoming = findViewById(R.id.cl_upcoming);
-        pending = findViewById(R.id.cl_pendingDeclined);
-        booked = findViewById(R.id.cl_acceptedBooked);
+        // for pending declined service viewFlipper --> pd stands for pending_declined
+        pdServiceName = findViewById(R.id.txt_pdServiceName);
+        pdServiceAddress = findViewById(R.id.txt_pdServiceAddress);
+        pdServiceType = findViewById(R.id.txt_pdServiceType);
+        pdServiceStatus = findViewById(R.id.txt_pdServiceStatus);
+        pdRequestedOn = findViewById(R.id.txt_pdServiceRequestedOn);
+        pdRequestNumber = findViewById(R.id.txt_pdServiceRequestId);
+        pdServiceDate = findViewById(R.id.txt_pdServiceDate);
+        pdServiceTime = findViewById(R.id.txt_pdServiceTime);
+        pdServiceWorkDesc = findViewById(R.id.txt_pdServiceWorkDescription);
+        pdAmountToBePay = findViewById(R.id.txt_pdServiceAmountToBePaid);
 
+
+        // for upcoming service viewFlipper --> pd stands for pending_declined
+        upServiceName = findViewById(R.id.txt_upServiceName);
+        upServiceAddress = findViewById(R.id.txt_upServiceAddress);
+        upServiceType = findViewById(R.id.txt_upServiceType);
+        upServiceBookingId = findViewById(R.id.txt_upServiceBookingId);
+        upServiceBookingDate = findViewById(R.id.txt_upServiceBookingDate);
+        upServiceStatus = findViewById(R.id.txt_upServiceStatus);
+        upServiceDate = findViewById(R.id.txt_upServiceDate);
+        upServiceTime = findViewById(R.id.txt_upServiceTime);
+        upServiceWorkDesc = findViewById(R.id.txt_upServiceWorkDescription);
+        upServiceUserName = findViewById(R.id.txt_upServiceUserName);
+        upServiceUserContact = findViewById(R.id.txt_upServiceUserContactNumber);
+        upServiceUserAddress = findViewById(R.id.txt_upServiceUserAddress);
+        upUserInstruction = findViewById(R.id.txt_upServiceUserInstruction);
+        upAmountToBePaid = findViewById(R.id.txt_upServiceAmountToBePaid);
 
     }
 
     private void initListeners() {
         backPress.setOnClickListener(view -> BookingDetailsActivity.super.onBackPressed());
-        help.setOnClickListener(view -> startActivity(new Intent(BookingDetailsActivity.this, HelpActivity.class)));
     }
 
     private void getBookingDetails(String bookingID) {
@@ -134,25 +189,56 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
             try {
                 RequestDetails requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
-                serviceName.setText("Name: " + requestDetails.getServiceName());
-                serviceAddress.setText("Address: " + requestDetails.getAddress());
-                serviceType.setText("Service Type: " + requestDetails.getServiceType());
-                serviceBookingId.setText("Booking Id: " + requestDetails.getBookingId());
-                serviceStatus.setText("Status: " + requestDetails.getStatus());
-                requestedOn.setText(requestDetails.getRequestDate() + " at " + requestDetails.getRequestTime());
-                acceptedOn.setText(requestDetails.getRequestAcceptDate() + " at " + requestDetails.getRequestAcceptTime());
-                requestNumber.setText(requestDetails.getRequestId());
-                serviceDate.setText(requestDetails.getServiceDate());
-                serviceTime.setText(requestDetails.getServiceTime());
-                serviceWorkDesc.setText(requestDetails.getWorkDescription());
-                serviceUserName.setText("Name: " + requestDetails.getContactPersonName());
-                serviceUserContact.setText("Contact No: " + requestDetails.getContactPersonPhone());
-                serviceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
-                userInstruction.setText("Instruction: " + requestDetails.getInstruction());
+
+                //for accepted booked service request
+                abServiceName.setText("Name: " + requestDetails.getServiceName());
+                abServiceAddress.setText("Address: " + requestDetails.getAddress());
+                abServiceType.setText("Service Type: " + requestDetails.getServiceType());
+                abServiceBookingId.setText("Booking Id: " + requestDetails.getBookingId());
+                abServiceStatus.setText("Status: " + requestDetails.getStatus());
+                abRequestedOn.setText(requestDetails.getRequestDate() + " at " + requestDetails.getRequestTime());
+                abAcceptedOn.setText(requestDetails.getRequestAcceptDate() + " at " + requestDetails.getRequestAcceptTime());
+                abRequestNumber.setText(requestDetails.getRequestId());
+                abServiceDate.setText(requestDetails.getServiceDate());
+                abServiceTime.setText(requestDetails.getServiceTime());
+                abServiceWorkDesc.setText(requestDetails.getWorkDescription());
+                abServiceUserName.setText("Name: " + requestDetails.getContactPersonName());
+                abServiceUserContact.setText("Contact No: " + requestDetails.getContactPersonPhone());
+                abServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
+                abUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
                 //amountToPay.setText(requestDetails.);
-                amountWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
+                abAmountWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
                 //finalAmountToPay.setText(requestDetails.);
-                bookingDate.setText(requestDetails.getBookingDatetime());
+
+
+                //for pending declined service request
+                pdServiceName.setText("Name: " + requestDetails.getServiceName());
+                pdServiceAddress.setText("Address: " + requestDetails.getAddress());
+                pdServiceType.setText("Service Type: " + requestDetails.getServiceType());
+                pdServiceStatus.setText("Status: " + requestDetails.getStatus());
+                pdRequestedOn.setText(requestDetails.getRequestDate() + " at " + requestDetails.getRequestTime());
+                pdRequestNumber.setText(requestDetails.getRequestId());
+                pdServiceDate.setText(requestDetails.getServiceDate());
+                pdServiceTime.setText(requestDetails.getServiceTime());
+                pdServiceWorkDesc.setText(requestDetails.getWorkDescription());
+                //pdAmountToBePay.setText(requestDetails.);
+
+
+                //for upcoming service request
+                upServiceName.setText("Name: " + requestDetails.getServiceName());
+                upServiceAddress.setText("Address: " + requestDetails.getAddress());
+                upServiceType.setText("Service Type: " + requestDetails.getServiceType());
+                upServiceBookingId.setText("Booking Id: " + requestDetails.getBookingId());
+                upServiceBookingDate.setText("Booked on: " + requestDetails.getBookingDatetime());
+                upServiceStatus.setText("Status: " + requestDetails.getStatus());
+                upServiceDate.setText(requestDetails.getServiceDate());
+                upServiceTime.setText(requestDetails.getServiceTime());
+                upServiceWorkDesc.setText(requestDetails.getWorkDescription());
+                upServiceUserName.setText("Name: " + requestDetails.getContactPersonName());
+                upServiceUserContact.setText("Contact No: " + requestDetails.getContactPersonPhone());
+                upServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
+                upUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
+                //upAmountToBePaid.setText(requestDetails.);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -230,4 +316,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         });
     }
 
+    public void onHelpClick(View view) {
+        new Intent(BookingDetailsActivity.this, HelpActivity.class);
+    }
 }
