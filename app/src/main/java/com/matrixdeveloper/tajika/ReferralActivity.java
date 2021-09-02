@@ -2,6 +2,7 @@ package com.matrixdeveloper.tajika;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,5 +60,9 @@ public class ReferralActivity extends AppCompatActivity {
             shareIntent.putExtra(Intent.EXTRA_TEXT, "Share Via");
             startActivity(Intent.createChooser(shareIntent, "App Link will be pasted here"));
         });
+    }
+
+    public void checkPoints(View view) {
+        startActivity(new Intent(getApplicationContext(), CoinsWalletActivity.class));
     }
 }

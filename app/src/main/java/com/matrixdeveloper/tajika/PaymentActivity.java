@@ -25,8 +25,8 @@ public class PaymentActivity extends AppCompatActivity {
     String merchantCode= "4157993027"; // This is a five digit number that is specified in the welcome email
     // You will generate outlet code, api key, customer key and customer secret from  merchant portal. Go to the Manage API Key menu to generate a new key
     String outletCode = "0000000000";
-    String password= "NoVjXD73cBGgCqLJODU2cdLwiV9j6cgG";
-    String apiKey = "b21MaWIxQXl1a0VMUkxBTWdUQXowY1B2N1V1Z1RtN1I6MEJKWVZ6WEtrR0ZWU2puNQ==";
+    String password= "RyFmPRzu5XMPNzxZXC6hezbMgCgLTezo";
+    String apiKey = "Basic b21MaWIxQXl1a0VMUkxBTWdUQXowY1B2N1V1Z1RtN1I6MEJKWVZ6WEtrR0ZWU2puNQ==";
     String orderRef = "";
     PgwSdk sdk;
 
@@ -43,14 +43,12 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onConnected(PgwSdk pgwSdk) {
                 sdk = pgwSdk; //am assuming you already declared this variable somewhere.
-                Toast.makeText(PaymentActivity.this, "sdk: connected", Toast.LENGTH_SHORT).show();
                 //TODO: SDK is ready for you to consume.
             }
 
             @Override
             public void onError(ErrorResponse errorResponse) {
                 //TODO: an error occurred. You have access to the message code and a message through ErrorResponse
-                Toast.makeText(PaymentActivity.this, "sdk: error", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -60,9 +58,11 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void createOrder() {
-        //use sdk initialized in step 3.
         if(sdk.isConnected()){
-            String customerWebSite = "https://www.finserve.africa"; //merchantWebsite
+
+            Toast.makeText(PaymentActivity.this, "sdk: connected", Toast.LENGTH_SHORT).show();
+
+            String customerWebSite = "www.tester.co.ke"; //merchantWebsite
             String orderRef = "REF0001BN"; //Random minimum 9 characters
             float orderAmount = 10.03f; // order reference
             String currency = "KES";

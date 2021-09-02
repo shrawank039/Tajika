@@ -66,7 +66,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
         initListeners();
 
-        id = getIntent().getStringExtra("service_id");
+        id = getIntent().getStringExtra("booking_id");
         status = getIntent().getStringExtra("status");
 
         switch (status) {
@@ -178,7 +178,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private void getBookingDetails(String bookingID) {
         JSONObject data = new JSONObject();
         try {
-            data.put("id", 2);
+            data.put("id", bookingID);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -291,7 +291,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("id", 3);
+            data.put("id", id);
             data.put("cancelation_reason", cancellationReason);
             data.put("cancelation_comment", cancellationComment.getText().toString());
 

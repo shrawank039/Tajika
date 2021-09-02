@@ -109,7 +109,6 @@ public class AllServiceActivity extends AppCompatActivity {
 
     private void getSearchResult(String key) {
 
-        Toast.makeText(this, "" + key, Toast.LENGTH_SHORT).show();
         JSONObject data = new JSONObject();
         try {
             data.put("servicename", key);
@@ -126,7 +125,6 @@ public class AllServiceActivity extends AppCompatActivity {
                 try {
                     jsonObject = response.optJSONObject("data");
                     serviceArray = jsonObject.getJSONArray(type);
-                    Utils.toast(this,serviceArray.toString());
 
                     if (serviceArray.length() > 0) {
                         for (int i = 0; i < serviceArray.length(); i++) {

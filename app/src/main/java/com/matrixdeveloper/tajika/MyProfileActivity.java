@@ -38,8 +38,12 @@ public class MyProfileActivity extends AppCompatActivity {
         intiViews();
         initListeners();
 
-        fetchUserDetails();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchUserDetails();
     }
 
     private void fetchUserDetails() {

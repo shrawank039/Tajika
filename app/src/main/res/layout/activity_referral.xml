@@ -130,6 +130,7 @@
                             android:layout_height="wrap_content"
                             android:background="#202A44"
                             android:padding="10dp"
+                            android:onClick="checkPoints"
                             android:text="@string/check_points_history"
                             android:textColor="@color/white" />
                     </androidx.cardview.widget.CardView>
