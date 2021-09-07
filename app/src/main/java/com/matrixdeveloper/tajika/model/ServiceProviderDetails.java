@@ -70,6 +70,9 @@ public class ServiceProviderDetails implements Serializable
     @SerializedName("about")
     @Expose
     private String about;
+    @SerializedName("subscription")
+    @Expose
+    private String subscription;
     @SerializedName("rating")
     @Expose
     private Double rating;
@@ -77,6 +80,14 @@ public class ServiceProviderDetails implements Serializable
     @Expose
     private Integer jobCompleted;
     private final static long serialVersionUID = 3584886829135607527L;
+
+    public String getSubscription() {
+        return subscription;
+    }
+
+    public void setSubscription(String subscription) {
+        this.subscription = subscription;
+    }
 
     public Integer getId() {
         return id;

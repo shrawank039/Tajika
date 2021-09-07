@@ -33,14 +33,15 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_completed_status.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_request_details.xml" value="0.12430555555555556" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottom_sheet_address.xml" value="0.13223684210526315" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsprovider.xml" value="0.13094462540716612" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsprovider.xml" value="0.12" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsproviders.xml" value="0.13094462540716612" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.14" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.1" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_booking_cancellation_reason.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_booking_cancelled.xml" value="0.12430555555555556" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_pay_onetime_charge.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_notice.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_successful.xml" value="0.13094462540716612" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/item_booked_or_requested.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_category.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_faq.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_more_options.xml" value="0.12960526315789472" />
@@ -49,7 +50,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/layout_no_item_found.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/spb_business_details.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/spi_business_details.xml" value="0.13223684210526315" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.12" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.14" />
         <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_pending_declined_details.xml" value="0.16" />
         <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.14" />
         <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_upcoming_booking_details.xml" value="0.12" />
@@ -58,7 +59,6 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_location_selector.xml" value="0.23425925925925925" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.23425925925925925" />
-        <entry key="app/src/main/res/layout/activity_referral.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.23425925925925925" />
         <entry key="app/src/main/res/layout/bottomsheet_goodsprovider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/bottomsheet_service_and_goods_provider.xml" value="0.2546875" />

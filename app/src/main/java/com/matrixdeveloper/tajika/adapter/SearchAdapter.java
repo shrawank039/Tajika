@@ -5,19 +5,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.LocationSelectorActivity;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.SearchActivity;
 import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
@@ -35,19 +31,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     private SubCatAdapter subCatAdapter;
     private List<SubCategory> subCategories = new ArrayList<>();
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        final TextView title;
-
-
-        MyViewHolder(View view) {
-            super(view);
-
-            title = view.findViewById(R.id.txt_itmCategory);
-            rvSubcategory = view.findViewById(R.id.rv_subcat);
-        }
-    }
-
 
     public SearchAdapter(Context context, List<Category> categories) {
         ctx = context;
@@ -58,8 +41,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = null;
-            itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_category, parent, false);
+        itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_category, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -87,9 +70,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                         .putExtra("service_name", subCategory.getServiceName())
                         .putExtra("service_type", subCategory.getServiceType())
                         .putExtra("service_id", String.valueOf(subCategory.getId())));
-
-             //   Toast.makeText(ctx, subCategory.getServiceName(), Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -102,6 +82,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-            return categories.size();
+        return categories.size();
     }
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        final TextView title;
+
+        MyViewHolder(View view) {
+            super(view);
+            title = view.findViewById(R.id.txt_itmCategory);
+            rvSubcategory = view.findViewById(R.id.rv_subcat);
+        }
+    }
+
 }

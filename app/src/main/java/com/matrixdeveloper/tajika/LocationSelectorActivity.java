@@ -14,7 +14,6 @@ import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -38,6 +37,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -87,7 +87,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private Location location;
     private String selected_id;
     private ImageView gotoCurrentLocation, backPress;
-    private LinearLayout searchProviderCategory, viewDetails, noProviderFound, providerDetails, moreDetailsGoods, moreDetailsService, recommendedService, inner;
+    private LinearLayout searchProviderCategory, viewDetails, noProviderFound, providerDetails, moreDetailsGoods, moreDetailsService, spRecommendedService, inner;
     private View view, view1;
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
@@ -96,17 +96,20 @@ public class LocationSelectorActivity extends FragmentActivity
     private String service_name, service_id, service_type;
     int height;
     private ImageView img;
-    private TextView edtSearch, recommendedByTajika;
+    private TextView edtSearch, recommendedByTajika, addToCompare;
     private int peekHeight = 0;
-    private TextView txtProviderName, txtRating, txtServiceName, txtDistance, txtAbout, txtJobComp, txtEdu, txtAdd, txtSkill, compare;
     ServiceProviderDetails serviceProviderDetails;
     private CardView jointToProvideService, referToProvideService;
     PrefManager pref;
     Button btnGetDetailsGoods, btnChat, btnRequestService;
     private RecyclerView recSubscription;
     private LinearLayout parentTwoService, parentOneService, parentOneGoods;
-    int availableHeight, subscriptionStatus = 1;
+    int availableHeight;
+    String subscriptionStatus;
 
+    private ImageView spProviderImage, gpGoodsProviderImage;
+    private TextView spProviderName, spServiceName, spDistance, spRating, spAbout, spJobsCompleted, spEducation, spAddress, spSkillOne, spSkillTwo, spSkillThree;
+    private TextView gpGoodsProviderName, gpServiceName, gpDistance, gpRating, gpAbout, gpProductName, gpProductCost, gpCustomerAddress, gpProductCategory, gpProductDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,15 +203,15 @@ public class LocationSelectorActivity extends FragmentActivity
 
     }
 
-    private void checkSubscription(int subscriptionStatus) {
-        if (subscriptionStatus == 0) {
+    private void checkSubscription(String subscriptionStatus) {
+        if (subscriptionStatus.equals("subscribed")) {
             behavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
             moreDetailsGoods.setVisibility(View.VISIBLE);
             recSubscription.setVisibility(View.GONE);
             btnGetDetailsGoods.setVisibility(View.GONE);
-        } else if (subscriptionStatus == 1) {
+        } else if (subscriptionStatus.equals("unsubscribed") || subscriptionStatus.equals("")) {
             showSubscriptionPayOneTimeAlert();
-        } else if (subscriptionStatus == 2) {
+        } else if (subscriptionStatus.equals("expired")) {
             showSubscriptionAlert();
         }
     }
@@ -286,26 +289,15 @@ public class LocationSelectorActivity extends FragmentActivity
         backPress = findViewById(R.id.iv_backPress);
         requestService = findViewById(R.id.txt_requestService);
         moreDetailsGoods = findViewById(R.id.ll_moreDetailsGoods);
-        moreDetailsService = findViewById(R.id.ll_moreDetailsService);
-        recommendedService = findViewById(R.id.ll_recommendedService);
         edtSearch = findViewById(R.id.edt_search);
         edtSearch.setText(service_name);
         searchProviderCategory = findViewById(R.id.ll_searchProviderCategory);
 
-        //bottom sheet
+        //bottom sheet Common
         viewDetails = findViewById(R.id.ll_viewDetails);
         noProviderFound = findViewById(R.id.ll_noProviderFound);
         providerDetails = findViewById(R.id.ll_providerDetails);
-        txtProviderName = findViewById(R.id.txt_provider_name);
-        txtRating = findViewById(R.id.txt_rating);
-        compare = findViewById(R.id.txt_addToCompare);
-        txtServiceName = findViewById(R.id.txt_service_name);
-        txtDistance = findViewById(R.id.txt_distance);
-        txtAbout = findViewById(R.id.txt_about);
-        txtJobComp = findViewById(R.id.txt_jobs_completed);
-        txtEdu = findViewById(R.id.txt_education);
-        txtAdd = findViewById(R.id.txt_address);
-        txtSkill = findViewById(R.id.txt_skill);
+        addToCompare = findViewById(R.id.txt_addToCompare);
         jointToProvideService = findViewById(R.id.cv_joinToProvideService);
         referToProvideService = findViewById(R.id.cv_referToProvideService);
         btnChat = findViewById(R.id.btn_chat);
@@ -314,8 +306,38 @@ public class LocationSelectorActivity extends FragmentActivity
         recSubscription = findViewById(R.id.rv_subscription);
         parentTwoService = findViewById(R.id.ll_twoService);
         recommendedByTajika = findViewById(R.id.txt_recommendedByTajika);
-        parentOneService = findViewById(R.id.ll_oneService);
         parentOneGoods = findViewById(R.id.ll_oneGoods);
+
+        //BottomSheet Service Provider
+        spProviderImage = findViewById(R.id.iv_spProviderImage);
+        spProviderName = findViewById(R.id.txt_spProviderName);
+        spServiceName = findViewById(R.id.txt_spServiceName);
+        spDistance = findViewById(R.id.txt_spDistance);
+        spRating = findViewById(R.id.txt_spRating);
+        spAbout = findViewById(R.id.txt_spAbout);
+        spJobsCompleted = findViewById(R.id.txt_spJobsCompleted);
+        spEducation = findViewById(R.id.txt_spEducation);
+        spAddress = findViewById(R.id.txt_spAddress);
+        spSkillOne = findViewById(R.id.txt_spSkillOne);
+        spSkillTwo = findViewById(R.id.txt_spSkillTwo);
+        spSkillThree = findViewById(R.id.txt_spSkillThree);
+        parentOneService = findViewById(R.id.ll_oneService);
+        moreDetailsService = findViewById(R.id.ll_moreDetailsService);
+        spRecommendedService = findViewById(R.id.ll_spRecommendedService);
+
+
+        //BottomSheet Goods Provider
+        gpGoodsProviderImage = findViewById(R.id.iv_gpGoodsProviderImage);
+        gpGoodsProviderName = findViewById(R.id.txt_gpGoodsProviderName);
+        gpServiceName = findViewById(R.id.txt_gpServiceName);
+        gpDistance = findViewById(R.id.txt_gpDistance);
+        gpRating = findViewById(R.id.txt_gpRating);
+        gpAbout = findViewById(R.id.txt_gpAbout);
+        gpProductName = findViewById(R.id.txt_gpProductName);
+        gpProductCost = findViewById(R.id.txt_gpProductCost);
+        gpCustomerAddress = findViewById(R.id.txt_gpCustomerAddress);
+        gpProductCategory = findViewById(R.id.txt_gpProductCategory);
+        gpProductDetails = findViewById(R.id.txt_gpProductDetails);
 
     }
 
@@ -348,7 +370,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
     private void initListeners() {
         searchProviderCategory.setOnClickListener(view -> startActivity(new Intent(LocationSelectorActivity.this, SearchActivity.class)));
-        compare.setOnClickListener(view -> {
+        addToCompare.setOnClickListener(view -> {
             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             initiatePopUp();
         });
@@ -527,7 +549,6 @@ public class LocationSelectorActivity extends FragmentActivity
                                         public void onClick(View view) {
                                             behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                                             moreDetailsService.setVisibility(View.VISIBLE);
-                                            recommendedService.setVisibility(View.VISIBLE);
                                         }
                                     });
                                     return true;
@@ -593,7 +614,7 @@ public class LocationSelectorActivity extends FragmentActivity
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", providerID);
-            data.put("service_type",service_type);
+            data.put("service_type", service_type);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -605,15 +626,38 @@ public class LocationSelectorActivity extends FragmentActivity
             try {
 
                 serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
-                txtProviderName.setText(serviceProviderDetails.getName());
-                txtRating.setText(serviceProviderDetails.getRating() + " ratings");
-                txtServiceName.setText(serviceProviderDetails.getBusinessCategories());
-                txtDistance.setText(serviceProviderDetails.getDistance());
-                txtAbout.setText(serviceProviderDetails.getAbout());
-                txtJobComp.setText(String.valueOf(serviceProviderDetails.getJobCompleted()));
-                txtEdu.setText(serviceProviderDetails.getEducationLevel());
-                txtAdd.setText(serviceProviderDetails.getServiceArea());
-                txtSkill.setText(serviceProviderDetails.getServiceDescription());
+
+                Toast.makeText(this, "" + response, Toast.LENGTH_SHORT).show();
+
+                Glide.with(this).load(serviceProviderDetails.getProfileimage()).into(spProviderImage);
+
+                //for service
+                spProviderName.setText(serviceProviderDetails.getName());
+                spServiceName.setText(serviceProviderDetails.getBusinessCategories());
+                spDistance.setText(serviceProviderDetails.getDistance());
+                spRating.setText(serviceProviderDetails.getRating() + " ratings");
+                spAbout.setText(serviceProviderDetails.getAbout());
+                spJobsCompleted.setText(String.valueOf(serviceProviderDetails.getJobCompleted()));
+                spEducation.setText(serviceProviderDetails.getEducationLevel());
+                spAddress.setText(serviceProviderDetails.getServiceArea());
+                //spSkillOne.setText(serviceProviderDetails.);
+                //spSkillTwo.setText(serviceProviderDetails.);
+                //spSkillThree.setText(serviceProviderDetails.);
+
+
+                // for goods
+                gpGoodsProviderName.setText(serviceProviderDetails.getName());
+                gpServiceName.setText(serviceProviderDetails.getBusinessCategories());
+                gpDistance.setText(serviceProviderDetails.getDistance());
+                gpRating.setText(serviceProviderDetails.getRating() + " ratings");
+                gpAbout.setText(serviceProviderDetails.getAbout());
+                //gpProductName.setText(serviceProviderDetails.);
+                gpProductCost.setText(serviceProviderDetails.getMinimumCharge());
+                gpProductDetails.setText(String.valueOf(serviceProviderDetails.getServiceDescription()));
+                gpProductCategory.setText(serviceProviderDetails.getBusinessCategories());
+                gpCustomerAddress.setText(serviceProviderDetails.getServiceArea());
+                subscriptionStatus = serviceProviderDetails.getSubscription();
+
 
             } catch (JSONException e) {
                 e.printStackTrace();

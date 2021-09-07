@@ -153,7 +153,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         pdAmountToBePay = findViewById(R.id.txt_pdServiceAmountToBePaid);
 
 
-        // for upcoming service viewFlipper --> pd stands for pending_declined
+        // for upcoming service viewFlipper --> up stands for upcoming
         upServiceName = findViewById(R.id.txt_upServiceName);
         upServiceAddress = findViewById(R.id.txt_upServiceAddress);
         upServiceType = findViewById(R.id.txt_upServiceType);
@@ -257,7 +257,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         Spinner spinner = dialog.findViewById(R.id.spinner);
         cancellationComment = dialog.findViewById(R.id.edt_cancellationComment);
 
-        String[] simpleArrayEducation = {"I no longer need it", "Booked from somewhere else", "i don\'t like your service", "Response is late", "Fixed myself", "others"};
+        String[] simpleArrayEducation = {"Select Reason", "I no longer need it", "Booked from somewhere else", "i don\'t like your service", "Response is late", "Fixed myself", "Others"};
         ArrayAdapter aa = new ArrayAdapter(BookingDetailsActivity.this, android.R.layout.simple_spinner_item, simpleArrayEducation);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(aa);

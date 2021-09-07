@@ -30,6 +30,7 @@ public class BookServiceActivity extends AppCompatActivity {
         bookingID = getIntent().getStringExtra("booking_id");
 
         initViews();
+
         backPress.setOnClickListener(view -> BookServiceActivity.super.onBackPressed());
         llMakePayment.setOnClickListener(view -> bookService());
 

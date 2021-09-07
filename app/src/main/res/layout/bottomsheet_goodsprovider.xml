@@ -146,6 +146,7 @@
 
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_gpGoodsProviderImage"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/logo"
@@ -161,7 +162,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txt_provider_name"
+                            android:id="@+id/txt_gpGoodsProviderName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLines="1"
@@ -171,7 +172,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/txt_service_name"
+                            android:id="@+id/txt_gpServiceName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
@@ -181,7 +182,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/txt_distance"
+                            android:id="@+id/txt_gpDistance"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
@@ -191,7 +192,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/txt_rating"
+                        android:id="@+id/txt_gpRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -228,7 +229,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_about"
+                        android:id="@+id/txt_gpAbout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -294,7 +295,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/txt_jobs_completed"
+                                android:id="@+id/txt_gpProductName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -319,7 +320,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/txt_education"
+                                android:id="@+id/txt_gpProductCost"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -344,7 +345,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/txt_address"
+                                android:id="@+id/txt_gpCustomerAddress"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -402,6 +403,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
+                                android:id="@+id/txt_gpProductCategory"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -412,7 +414,6 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/txt_skillEngineering"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -422,7 +423,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/txt_skillServicing"
+                            android:id="@+id/txt_gpProductDetails"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -442,7 +443,7 @@
                         android:background="@color/dark_blue" />
 
                     <LinearLayout
-                        android:id="@+id/ll_recommendedService"
+                        android:id="@+id/ll_gpRecommendedGoods"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -504,11 +505,11 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
+                    android:letterSpacing="0.05"
                     android:paddingHorizontal="40dp"
                     android:paddingVertical="12dp"
                     android:text="Get details"
                     android:textAllCaps="false"
-                    android:letterSpacing="0.05"
                     android:textColor="@color/md_blue_grey_800"
                     android:textSize="16sp"
                     android:textStyle="bold"

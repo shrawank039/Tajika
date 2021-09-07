@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/bottom_sheet_service"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_grey_100"
-    app:behavior_peekHeight="0dp"
     android:orientation="vertical"
+    app:behavior_peekHeight="0dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <androidx.core.widget.NestedScrollView
@@ -152,6 +152,7 @@
 
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_spProviderImage"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/logo"
@@ -167,7 +168,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txt_provider_name"
+                            android:id="@+id/txt_spProviderName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLines="1"
@@ -177,7 +178,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/txt_service_name"
+                            android:id="@+id/txt_spServiceName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
@@ -188,7 +189,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/txt_distance"
+                            android:id="@+id/txt_spDistance"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
@@ -206,7 +207,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txt_rating"
+                            android:id="@+id/txt_spRating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/star_half_icon"
@@ -261,7 +262,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_about"
+                        android:id="@+id/txt_spAbout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -271,10 +272,10 @@
                         android:textColor="@color/dark_blue" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="end"
                         android:layout_marginTop="10dp"
-                        android:gravity="end"
                         android:text="Read more"
                         android:textColor="@color/golden"
                         android:textSize="16sp"
@@ -328,7 +329,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/txt_jobs_completed"
+                                android:id="@+id/txt_spJobsCompleted"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -353,7 +354,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/txt_education"
+                                android:id="@+id/txt_spEducation"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -378,7 +379,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/txt_address"
+                                android:id="@+id/txt_spAddress"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -423,7 +424,7 @@
 
 
                         <TextView
-                            android:id="@+id/txt_skill"
+                            android:id="@+id/txt_spSkillOne"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -433,7 +434,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/txt_skillEngineering"
+                            android:id="@+id/txt_spSkillTwo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -443,7 +444,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/txt_skillServicing"
+                            android:id="@+id/txt_spSkillThree"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -460,12 +461,12 @@
                         android:layout_height="1dp"
                         android:layout_marginVertical="15dp"
                         android:background="@color/dark_blue" />
+
                     <LinearLayout
-                        android:id="@+id/ll_recommendedService"
+                        android:id="@+id/ll_spRecommendedService"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="visible">
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -502,22 +503,22 @@
 
 
                     </LinearLayout>
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_requestService"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginVertical="20dp"
+                        android:letterSpacing="0.05"
                         android:paddingVertical="13dp"
                         android:text="Request Service"
                         android:textAllCaps="false"
-                        android:letterSpacing="0.05"
                         android:textColor="@color/md_blue_grey_800"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:cornerRadius="30dp" />
                 </LinearLayout>
-
 
 
                 <LinearLayout
