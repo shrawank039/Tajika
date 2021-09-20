@@ -10,8 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.matrixdeveloper.tajika.WebView.WebAppInterface;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -19,14 +17,13 @@ import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class PaymentWebViewActivity extends AppCompatActivity implements View.OnTouchListener, Handler.Callback {
 
     WebView myWebView;
-    String url="";
+    String url;
     String TAG = "PaymentWebViewAct";
     private static final int CLICK_ON_WEBVIEW = 1;
     private static final int CLICK_ON_URL = 2;
@@ -51,12 +48,12 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String urll) {
                 Utils.log(TAG, urll);
-                if (urll.contains("checkout/success")) {
+                if (urll.contains("transactionStatus=SUCCESS")) {
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class)
                     .putExtra("status","1"));
                     finish();
                     return true;
-                } else if (urll.contains("checkout/fail")){
+                } else if (urll.contains("transactionStatus=CANCELLED")){
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class)
                             .putExtra("status","0"));
                     return true;
@@ -65,12 +62,6 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
                 return false;
             }
         });
-
-
-//        String unencodedHtml = url;
-//        String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
-//                Base64.NO_PADDING);
-//        myWebView.loadData(encodedHtml, "text/html", "base64");
 
 
     }
