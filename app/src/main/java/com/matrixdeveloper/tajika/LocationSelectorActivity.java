@@ -377,7 +377,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
         gotoCurrentLocation.setOnClickListener(view -> initLocation());
 
-        backPress.setOnClickListener(view -> onBackPressed());
+        backPress.setOnClickListener(view -> finish());
 
         requestService.setOnClickListener(view -> startActivity(new Intent(LocationSelectorActivity.this, RequestServiceActivity.class)
                 .putExtra("provider_id", selected_id)
@@ -626,8 +626,6 @@ public class LocationSelectorActivity extends FragmentActivity
             try {
 
                 serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
-
-                Toast.makeText(this, "" + response, Toast.LENGTH_SHORT).show();
 
                 Glide.with(this).load(serviceProviderDetails.getProfileimage()).into(spProviderImage);
 

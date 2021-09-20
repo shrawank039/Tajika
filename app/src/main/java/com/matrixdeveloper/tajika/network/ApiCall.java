@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
@@ -201,5 +202,36 @@ public class ApiCall {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         MySingleton.getInstance(context).addToRequestQueue(jsonArrReq);
+    }
+
+    public static void postStringMethod(final Context context, final String url, Map<String, String> params, final VolleyStringCallback volleyCallback) {
+        Utils.log(TAG, "getMethod:" + ", url: " + url);
+        Utils.show(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                url,
+                response -> {
+                    Log.d(TAG, "onResponse: " + url + ",response:" + response);
+                    Utils.dismiss();
+
+                        volleyCallback.onSuccess(response);
+
+                }, error -> {
+                    Log.d(TAG, "onResponse: " + url + ",onErrorResponse:" + error);
+                    Utils.dismiss();
+                    VolleyErrorHandler.handle(url, error);
+                }) {
+            @Override
+            public Map<String, String> getParams(){
+                return params;
+            }
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
     }
 }

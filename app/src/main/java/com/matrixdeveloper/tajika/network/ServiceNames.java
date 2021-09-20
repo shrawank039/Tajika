@@ -38,6 +38,9 @@ public class ServiceNames {
     public static final String VOUCHER_LIST = API + "/getVouchersList";
     public static final String GET_SERVICE_REQUEST_DETAILS = API + "/getParticularServiceRequestDetails";
 
+    public static final String PAYMENT_TOKEN = API + "/createPaymentAccessToken";
+    public static final String PAYMENT_PAGE = API + "/getPaymentPage";
+
     // SP
     public static final String REGISTER_SERVICE_PROVIDER_INDI = API + "/createServiceProviderAccount";
     public static final String BUSINESS_SERVICE_PROVIDER_DETAILS = API + "/getServiceBusinessInfo";

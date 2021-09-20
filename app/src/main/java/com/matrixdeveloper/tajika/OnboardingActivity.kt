@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.matrixdeveloper.tajika.adapter.OnboardingViewPagerAdapter4
 import com.matrixdeveloper.tajika.utils.PrefManager
-import kotlinx.android.synthetic.main.activity_onboarding.*
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -23,11 +22,11 @@ class OnboardingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_onboarding)
 
         prf = PrefManager(this@OnboardingActivity)
-        mViewPager = viewPager
+        mViewPager = findViewById(R.id.viewPager)
         mViewPager.adapter = OnboardingViewPagerAdapter4(supportFragmentManager, this)
         mViewPager.offscreenPageLimit = 1
         //btnBack = btn_previous_step
-        btnNext = btn_next_step
+        btnNext = findViewById(R.id.btn_next_step)
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageSelected(position: Int) {
                 if (position == 2) {
