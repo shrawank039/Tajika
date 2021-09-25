@@ -1,5 +1,6 @@
 package com.matrixdeveloper.tajika;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -8,8 +9,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.helpers.GenericTextWatcher;
+import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.Global;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
@@ -20,16 +24,19 @@ public class OTPInputActivity extends AppCompatActivity {
 
     private EditText otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four, otp_textbox_five, otp_textbox_six;
     private TextView resendOtp, back;
-    private PrefManager pref;
+    private PrefManager prf;
     private String TAG = "OtpInputAct";
+    private String email, otp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_input);
 
-        pref = new PrefManager(this);
+        prf = new PrefManager(this);
 
+        email = getIntent().getStringExtra("email");
+        otp = getIntent().getStringExtra("otp");
         resendOtp = findViewById(R.id.txt_resendOtp);
         back = findViewById(R.id.txt_back);
         otp_textbox_one = findViewById(R.id.otp_edit_box1);
@@ -54,7 +61,7 @@ public class OTPInputActivity extends AppCompatActivity {
             public void onClick(View view) {
                 JSONObject data = new JSONObject();
                 try {
-                    data.put("email", pref.getString("email"));
+                    data.put("email", email);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -63,6 +70,12 @@ public class OTPInputActivity extends AppCompatActivity {
 
                     Utils.log(TAG, response.toString());
                     Utils.toast(OTPInputActivity.this, response.optString("message"));
+
+                    if (response.optInt("status") == 200){
+                        JSONObject dataObj = response.optJSONObject("data");
+                        assert dataObj != null;
+                        otp = dataObj.optString("otp");
+                    }
 
                 });
             }
@@ -82,7 +95,7 @@ public class OTPInputActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("email", pref.getString("email"));
+            data.put("email", email);
             data.put("otp", mergePassword);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -92,6 +105,24 @@ public class OTPInputActivity extends AppCompatActivity {
 
             Utils.log(TAG, "input data: " + data);
             Utils.toast(OTPInputActivity.this, response.optString("message"));
+
+            try {
+
+                Login login = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), Login.class);
+
+                prf.setString(Global.user_id, login.getId().toString());
+                prf.setString(Global.token, login.getToken());
+                prf.setString(Global.role, login.getRoles().toString());
+                prf.setString(Global.email, login.getEmail());
+                prf.setString(Global.name, login.getName());
+
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                finish();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         });
     }

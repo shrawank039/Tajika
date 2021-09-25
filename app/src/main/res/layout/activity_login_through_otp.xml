@@ -63,6 +63,7 @@
                 android:src="@drawable/profile_2x" />
 
             <EditText
+                android:id="@+id/edt_email"
                 style="@style/register_editText_container"
                 android:hint="Email / Mobile"
                 android:inputType="textEmailAddress" />
