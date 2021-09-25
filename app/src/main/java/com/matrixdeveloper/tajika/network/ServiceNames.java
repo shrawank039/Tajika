@@ -42,6 +42,7 @@ public class ServiceNames {
     public static final String PAYMENT_PAGE = API + "/getPaymentPage";
 
     // SP
+    public static final String ALL_CAT_SUBCAT = API + "/getAllCategorySubCatList";
     public static final String REGISTER_SERVICE_PROVIDER_INDI = API + "/createServiceProviderAccount";
     public static final String BUSINESS_SERVICE_PROVIDER_DETAILS = API + "/getServiceBusinessInfo";
     public static final String GET_SERVICE_REQUEST = API + "/getAllServiceRequest";

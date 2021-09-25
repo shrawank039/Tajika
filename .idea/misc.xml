@@ -65,6 +65,7 @@
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.23425925925925925" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.23425925925925925" />
+        <entry key="app/src/main/res/layout/activity_spi_register.xml" value="0.2037037037037037" />
         <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/bottomsheet_goodsprovider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/bottomsheet_service_and_goods_provider.xml" value="0.2546875" />
@@ -73,6 +74,7 @@
         <entry key="app/src/main/res/layout/item_category.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_recomended_services.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_subcategory.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/spi_business_details.xml" value="0.2037037037037037" />
       </map>
     </option>
   </component>

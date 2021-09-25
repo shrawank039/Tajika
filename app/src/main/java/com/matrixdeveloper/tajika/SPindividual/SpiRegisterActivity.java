@@ -43,6 +43,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
+import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.Register;
 import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -69,6 +70,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class SpiRegisterActivity extends AppCompatActivity {
 
@@ -100,6 +102,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private ImageView showPass, showCPass;
     private static PrefManager prf;
 
+    private List<Category> catService;
     List<String> spinnerArray = new ArrayList<>();
     String[] simpleArray = {"Select Business Category"};
     String[] simpleArrayEducation = {"None", "Primary", "Polytechnic", "Secondary/High School", "College/University"};
@@ -187,6 +190,45 @@ public class SpiRegisterActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
+        });
+
+        catService = new ArrayList<>();
+        getCatSubcat("service");
+
+    }
+
+    private void getCatSubcat(String type) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("service_type", type);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.ALL_CAT_SUBCAT, data, response -> {
+
+            Utils.log(TAG, response.toString());
+
+            JSONArray serviceArray = null;
+            if (Objects.equals(response.opt("status"), 200)) {
+                try {
+                    serviceArray = response.getJSONArray("data");
+
+                        for (int i = 0; i < serviceArray.length(); i++) {
+                            try {
+                                Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
+                                catService.add(category);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
         });
 
     }
