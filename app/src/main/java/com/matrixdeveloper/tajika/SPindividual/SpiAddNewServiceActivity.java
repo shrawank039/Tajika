@@ -50,7 +50,7 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
 
     private List<String> subCategoryName = new ArrayList<>();
     private List<Integer> subCategoryID = new ArrayList<>();
-    private List<Category> categoryList;
+    private List<Category> categoryList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +76,15 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
                 Toast.makeText(SpiAddNewServiceActivity.this, "" + serviceCatID, Toast.LENGTH_SHORT).show();
 
                 // for sub category
-                    for (int i = 0; i < categoryList.get(position).getSubCategory().size(); i++) {
-                        SubCategory subCategory = categoryList.get(position).getSubCategory().get(i);
+                    subCategoryID.clear();
+                    subCategoryName.clear();
+                if (position !=0) {
+                    for (int i = 0; i < categoryList.get(position-1).getSubCategory().size(); i++) {
+                        SubCategory subCategory = categoryList.get(position-1).getSubCategory().get(i);
                         subCategoryID.add(subCategory.getId());
                         subCategoryName.add(subCategory.getServiceName());
                     }
+                }
             }
 
             @Override
