@@ -103,9 +103,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private ImageView showPass, showCPass;
     private static PrefManager prf;
 
-    private List<Category> catService = new ArrayList<>();
     List<String> spinnerArray = new ArrayList<>();
-    String[] simpleArray = {"Select Business Category"};
     String[] simpleArrayEducation = {"None", "Primary", "Secondary/High School", "College/Polytechnic", "University"};
     Spinner spinnerServiceCategory, spinnerHighestEducation;
 
@@ -165,7 +163,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
         btnSave = regViewFlipper.findViewById(R.id.document_save);
 
         initListeners();
-        getServiceList();
         getCatSubcat("service");
 
         spinnerServiceCategory = regViewFlipper.findViewById(R.id.spinner);
@@ -227,7 +224,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
                     for (int i = 0; i < serviceArray.length(); i++) {
                         try {
                             Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
-                            catService.add(category);
 
                             categoryID.add(category.getId());
                             categoryName.add(category.getName());
@@ -394,42 +390,6 @@ public class SpiRegisterActivity extends AppCompatActivity {
 
     }
 
-    private void getServiceList() {
-
-        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
-
-            Utils.log(TAG, response.toString());
-
-            JSONArray jsonarray = null;
-            try {
-
-                jsonarray = response.getJSONArray("data");
-
-                for (int i = 0; i < jsonarray.length(); i++) {
-
-                    try {
-
-                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
-                        spinnerArray.add(subCategory.getServiceName());
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                simpleArray = new String[spinnerArray.size()];
-                spinnerArray.toArray(simpleArray);
-                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, simpleArray);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerServiceCategory.setAdapter(adapter);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-        });
-    }
 
     private void initiatePhotoSelection() {
         try {

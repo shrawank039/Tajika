@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.SPIMyServicesModel;
 
+import java.util.List;
+
 public class SPIMyServicesAdapter extends RecyclerView.Adapter<SPIMyServicesAdapter.viewHolder> {
 
-    private Context ctx;
-    private SPIMyServicesModel[] listdata;
+    private final Context ctx;
+    List<SPIMyServicesModel> listdata;
 
-    public SPIMyServicesAdapter(Context ctx, SPIMyServicesModel[] listdata) {
+    public SPIMyServicesAdapter(Context ctx, List<SPIMyServicesModel> listdata) {
         this.ctx = ctx;
         this.listdata = listdata;
     }
@@ -33,11 +35,12 @@ public class SPIMyServicesAdapter extends RecyclerView.Adapter<SPIMyServicesAdap
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        final SPIMyServicesModel myListData = listdata[position];
-        holder.serviceNumber.setText(myListData.getServiceNumber());
-        holder.serviceCategory.setText(myListData.getServiceCategory());
-        holder.serviceExperience.setText(myListData.getServiceExperience());
-        holder.serviceMinCharge.setText(myListData.getServiceMinCharge());
+
+        final SPIMyServicesModel myListData = listdata.get(position);
+        holder.serviceNumber.setText("Service #"+myListData.getId());
+        holder.serviceCategory.setText(myListData.getCategoryName());
+        holder.serviceExperience.setText(myListData.getExperience());
+        holder.serviceMinCharge.setText(myListData.getMincharge());
 
         holder.serviceEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,14 +51,15 @@ public class SPIMyServicesAdapter extends RecyclerView.Adapter<SPIMyServicesAdap
         holder.serviceDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ctx, "Service Position" + position + " delete Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "Service Position " + position + " delete Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {

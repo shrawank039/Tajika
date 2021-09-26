@@ -1,58 +1,100 @@
 package com.matrixdeveloper.tajika.model;
 
-public class SPIMyServicesModel {
-    int id;
-    String serviceNumber;
-    String serviceCategory;
-    String serviceExperience;
-    String serviceMinCharge;
+import java.io.Serializable;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public SPIMyServicesModel(int id, String serviceNumber, String serviceCategory, String serviceExperience, String serviceMinCharge) {
-        this.id = id;
-        this.serviceNumber = serviceNumber;
-        this.serviceCategory = serviceCategory;
-        this.serviceExperience = serviceExperience;
-        this.serviceMinCharge = serviceMinCharge;
-    }
+public class SPIMyServicesModel implements Serializable
+{
 
-    public int getId() {
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("user_id")
+    @Expose
+    private Integer userId;
+    @SerializedName("name")
+    @Expose
+    private Integer name;
+    @SerializedName("sub_cat_id")
+    @Expose
+    private Integer subCatId;
+    @SerializedName("experience")
+    @Expose
+    private String experience;
+    @SerializedName("mincharge")
+    @Expose
+    private String mincharge;
+    @SerializedName("category_name")
+    @Expose
+    private String categoryName;
+    @SerializedName("subcategory_name")
+    @Expose
+    private String subcategoryName;
+    private final static long serialVersionUID = 4129411047693324626L;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getServiceNumber() {
-        return serviceNumber;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setServiceNumber(String serviceNumber) {
-        this.serviceNumber = serviceNumber;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getServiceCategory() {
-        return serviceCategory;
+    public Integer getName() {
+        return name;
     }
 
-    public void setServiceCategory(String serviceCategory) {
-        this.serviceCategory = serviceCategory;
+    public void setName(Integer name) {
+        this.name = name;
     }
 
-    public String getServiceExperience() {
-        return serviceExperience;
+    public Integer getSubCatId() {
+        return subCatId;
     }
 
-    public void setServiceExperience(String serviceExperience) {
-        this.serviceExperience = serviceExperience;
+    public void setSubCatId(Integer subCatId) {
+        this.subCatId = subCatId;
     }
 
-    public String getServiceMinCharge() {
-        return serviceMinCharge;
+    public String getExperience() {
+        return experience;
     }
 
-    public void setServiceMinCharge(String serviceMinCharge) {
-        this.serviceMinCharge = serviceMinCharge;
+    public void setExperience(String experience) {
+        this.experience = experience;
     }
+
+    public String getMincharge() {
+        return mincharge;
+    }
+
+    public void setMincharge(String mincharge) {
+        this.mincharge = mincharge;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getSubcategoryName() {
+        return subcategoryName;
+    }
+
+    public void setSubcategoryName(String subcategoryName) {
+        this.subcategoryName = subcategoryName;
+    }
+
 }
-

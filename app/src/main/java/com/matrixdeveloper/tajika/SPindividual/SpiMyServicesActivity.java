@@ -13,12 +13,17 @@ import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIMyServicesAdapter;
 import com.matrixdeveloper.tajika.model.SPIMyServicesModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpiMyServicesActivity extends AppCompatActivity {
 
@@ -28,6 +33,8 @@ public class SpiMyServicesActivity extends AppCompatActivity {
     private final String TAG = "SpiMyServicesAct";
     private PrefManager pref;
     private Button addNewGoodsOrServices;
+
+    private List<SPIMyServicesModel> serviceArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +46,8 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         myServicesRecView = findViewById(R.id.rv_myServices);
         addNewGoodsOrServices = findViewById(R.id.button2);
 
-        SPIMyServicesModel[] myListData = new SPIMyServicesModel[]{
-                new SPIMyServicesModel(1, "Service #1", "Catering", "4.1 Years", "500 Ksh"),
-                new SPIMyServicesModel(2, "Service #2", "Plumbing", "3.5 Years", "250 Ksh")
-        };
-
-        servicesAdapter = new SPIMyServicesAdapter(this, myListData);
-        myServicesRecView.setHasFixedSize(true);
-        myServicesRecView.setLayoutManager(new LinearLayoutManager(this));
-        myServicesRecView.setAdapter(servicesAdapter);
-
         backPress.setOnClickListener(view -> SpiMyServicesActivity.super.onBackPressed());
-        addNewGoodsOrServices.setOnClickListener(view -> startActivity(new Intent(SpiMyServicesActivity.this,SpiAddNewServiceActivity.class)));
+        addNewGoodsOrServices.setOnClickListener(view -> startActivity(new Intent(SpiMyServicesActivity.this, SpiAddNewServiceActivity.class)));
 
         myServiceList();
     }
@@ -65,22 +62,20 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         }
         ApiCall.postMethod(this, ServiceNames.PROVIDER_SERVICE_LIST, data, response -> {
             Utils.log(TAG, response.toString());
-        });
 
-    }
-
-    private void addNewService() {
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("user_id", pref.getString("id"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        ApiCall.postMethod(this, ServiceNames.ADD_NEW_SERVICE, data, response -> {
-            Utils.log(TAG, response.toString());
-
-
+            for (int i = 0; i < response.length(); i++) {
+                try {
+                    JSONArray myServices = response.getJSONArray("data");
+                    SPIMyServicesModel servicesModel = MySingleton.getGson().fromJson(myServices.getJSONObject(i).toString(), SPIMyServicesModel.class);
+                    serviceArray.add(servicesModel);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            servicesAdapter = new SPIMyServicesAdapter(this, serviceArray);
+            myServicesRecView.setHasFixedSize(true);
+            myServicesRecView.setLayoutManager(new LinearLayoutManager(this));
+            myServicesRecView.setAdapter(servicesAdapter);
         });
 
     }
