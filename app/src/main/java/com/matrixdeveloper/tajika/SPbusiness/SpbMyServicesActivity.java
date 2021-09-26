@@ -73,24 +73,8 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.PROVIDER_SERVICE_LIST, data, response -> {
             Utils.log(TAG, response.toString());
 
-
         });
 
     }
 
-    private void addNewService() {
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("user_id", pref.getString("id"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        ApiCall.postMethod(this, ServiceNames.ADD_NEW_SERVICE, data, response -> {
-            Utils.log(TAG, response.toString());
-
-
-        });
-
-    }
 }

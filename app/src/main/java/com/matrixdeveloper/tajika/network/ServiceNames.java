@@ -53,8 +53,11 @@ public class ServiceNames {
     public static final String PROVIDER_ALL_BOOKING = API + "/serviceProviderAllBooking";
     public static final String PROVIDER_SERVICE_LIST = API + "/myServiceList";
     public static final String ADD_NEW_SERVICE = API + "/saveService";
+    public static final String ADD_NEW_GOODS = API + "/saveGoods";
     public static final String UPDATE_SERVICE = API + "/updateService";
     public static final String DELETE_SERVICE = API + "/deleteService";
+    public static final String UPDATE_GOODS = API + "/updateGoods";
+    public static final String DELETE_GOODS = API + "/deleteGoods";
     public static final String GET_PROVIDER_PROFILE_IND = API + "/getServiceProfileDetails";
     public static final String UPDATE_PROVIDER_PROFILE_IND = API + "/updateServiceProviderDetails";
     public static final String UPDATE_LIVE_STATUS = API + "/updateOnline";
