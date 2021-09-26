@@ -22,7 +22,7 @@ import java.util.Map;
 public class ApiCall {
 
     private static final int MY_SOCKET_TIMEOUT_MS = 5000;
-    private static String TAG = "APPTAJIKA";
+    private static final String TAG = "APPTAJIKA";
 
     public static void postMethod(final Context context, final String url, final JSONObject jsonObject, final VolleyCallback volleyCallback) {
         Utils.log(TAG, "getMethod:" + ", url: " + url);

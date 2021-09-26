@@ -14,7 +14,7 @@ import com.matrixdeveloper.tajika.utils.PrefManager;
 public class LandingPage extends AppCompatActivity {
 
     private static PrefManager prf;
-    private Button serviceProIndividual, user, serviceProBusiness,help;
+    private Button serviceProIndividual, user, serviceProBusiness, help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +26,10 @@ public class LandingPage extends AppCompatActivity {
 
         prf = new PrefManager(LandingPage.this);
 
-        if (!prf.getString("id").equals("")){
+        if (!prf.getString("id").equals("")) {
 
             if (prf.getString("role").equals("3"))
-            startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class));
             else if (prf.getString("role").equals("4"))
                 startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class));
             else
@@ -42,8 +42,8 @@ public class LandingPage extends AppCompatActivity {
     private void initView() {
         serviceProIndividual = findViewById(R.id.btn_serviceProviderIndividual);
         user = findViewById(R.id.btn_user);
-        serviceProBusiness=findViewById(R.id.btn_serviceProviderBusiness);
-        help=findViewById(R.id.btn_help);
+        serviceProBusiness = findViewById(R.id.btn_serviceProviderBusiness);
+        help = findViewById(R.id.btn_help);
     }
 
     private void initListeners() {

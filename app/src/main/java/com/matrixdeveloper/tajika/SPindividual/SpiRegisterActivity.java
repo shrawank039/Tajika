@@ -92,6 +92,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private Uri filePath;
     String picturePath = "";
     String dateSelected;
+    int serviceCatID;
     protected boolean hasReadWritePermissions;
     protected static final int REQUEST_PERMISSIONS_READ_WRITE = 4;
     private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
@@ -102,10 +103,10 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private ImageView showPass, showCPass;
     private static PrefManager prf;
 
-    private List<Category> catService;
+    private List<Category> catService = new ArrayList<>();
     List<String> spinnerArray = new ArrayList<>();
     String[] simpleArray = {"Select Business Category"};
-    String[] simpleArrayEducation = {"None", "Primary", "Polytechnic", "Secondary/High School", "College/University"};
+    String[] simpleArrayEducation = {"None", "Primary", "Secondary/High School", "College/Polytechnic", "University"};
     Spinner spinnerServiceCategory, spinnerHighestEducation;
 
     private Bitmap bitmap;
@@ -115,6 +116,10 @@ public class SpiRegisterActivity extends AppCompatActivity {
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     private int MY_CAMERA_REQUEST_CODE = 100;
     private FusedLocationProviderClient fusedLocationClient;
+
+
+    private List<String> categoryName = new ArrayList<>();
+    private List<Integer> categoryID = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -143,10 +148,9 @@ public class SpiRegisterActivity extends AppCompatActivity {
         showPass = regViewFlipper.findViewById(R.id.showPass);
         showCPass = regViewFlipper.findViewById(R.id.showCPass);
 
-
         edtServiceArea = regViewFlipper.findViewById(R.id.edt_serviceArea);
 
-        //  edtBusinessCategories = regViewFlipper.findViewById(R.id.edt_businessCategory);
+        //edtBusinessCategories = regViewFlipper.findViewById(R.id.edt_businessCategory);
 
         edtBusinessLink = regViewFlipper.findViewById(R.id.edt_businessLink);
         edtYourExperience = regViewFlipper.findViewById(R.id.edt_yourExperience);
@@ -162,18 +166,18 @@ public class SpiRegisterActivity extends AppCompatActivity {
 
         initListeners();
         getServiceList();
+        getCatSubcat("service");
 
         spinnerServiceCategory = regViewFlipper.findViewById(R.id.spinner);
         spinnerHighestEducation = regViewFlipper.findViewById(R.id.spinnerEducation);
 
-        ArrayAdapter aa = new ArrayAdapter(SpiRegisterActivity.this, android.R.layout.simple_spinner_item, simpleArrayEducation);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerHighestEducation.setAdapter(aa);
-
+        categoryName.add("Choose Service Type");
+        categoryID.add(0);
         spinnerServiceCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                business_categories = parent.getItemAtPosition(position).toString();
+                //business_categories = parent.getItemAtPosition(position).toString();
+                serviceCatID = categoryID.get(spinnerServiceCategory.getSelectedItemPosition());
             }
 
             @Override
@@ -192,8 +196,13 @@ public class SpiRegisterActivity extends AppCompatActivity {
             }
         });
 
-        catService = new ArrayList<>();
-        getCatSubcat("service");
+        ArrayAdapter aa = new ArrayAdapter(SpiRegisterActivity.this, android.R.layout.simple_spinner_item, simpleArrayEducation);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerHighestEducation.setAdapter(aa);
+
+        ArrayAdapter aaa = new ArrayAdapter(SpiRegisterActivity.this, android.R.layout.simple_spinner_item, categoryName);
+        aaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerServiceCategory.setAdapter(aaa);
 
     }
 
@@ -215,29 +224,29 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 try {
                     serviceArray = response.getJSONArray("data");
 
-                        for (int i = 0; i < serviceArray.length(); i++) {
-                            try {
-                                Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
-                                catService.add(category);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                    for (int i = 0; i < serviceArray.length(); i++) {
+                        try {
+                            Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
+                            catService.add(category);
+
+                            categoryID.add(category.getId());
+                            categoryName.add(category.getName());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
         });
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initListeners() {
         nextToBusinessDetails.setOnClickListener(view -> regViewFlipper.showNext());
         nextToDocumentUpload.setOnClickListener(view -> regViewFlipper.showNext());
-
 
         ll_id_upload.setOnClickListener(view -> {
             type = 1;
@@ -279,7 +288,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            // for ActivityCompat #requestPermissions for more details.
             return;
         }
         fusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
@@ -291,7 +300,11 @@ public class SpiRegisterActivity extends AppCompatActivity {
             public void onLocationFound(double latitide, double longi) {
                 latitude = String.valueOf(latitide);
                 longitude = String.valueOf(longi);
-                registerSubmit();
+                if (serviceCatID != 0) {
+                    registerSubmit();
+                } else {
+                    Toast.makeText(SpiRegisterActivity.this, "Please choose service type", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -334,7 +347,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 data.put("password_confirmation", pass);
                 data.put("role", "3");
                 data.put("service_area", service_area);
-                data.put("business_categories", business_categories);
+                data.put("business_categories", String.valueOf(serviceCatID));
                 data.put("service_description", service_description);
                 data.put("year_of_experience", year_of_experience);
                 data.put("bussiness_link", bussiness_link);

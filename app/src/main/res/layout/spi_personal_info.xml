@@ -73,6 +73,7 @@
 
                 <EditText
                     android:id="@+id/edt_name"
+                    android:inputType="textCapWords"
                     style="@style/register_editText_container"
                     android:hint="Enter Name" />
 

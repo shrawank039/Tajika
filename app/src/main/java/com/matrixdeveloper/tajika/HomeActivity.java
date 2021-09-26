@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,8 +47,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
-    private RecyclerView recyclerViewService,recyclerViewGoods;
-    private ServiceAdapter mAdapterType0,mAdapterType1;
+    private RecyclerView recyclerViewService, recyclerViewGoods;
+    private ServiceAdapter mAdapterType0, mAdapterType1;
     private PrefManager prf;
     private String TAG = "HomeAct";
     SliderLayout homeSlider;
@@ -55,8 +56,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private GridLayoutManager gridLayoutManager;
     private LinearLayout coinsWallet, notificationList, referFriends, llSearch;
-    private TextView viewAllService, viewAllGoods, greeting;
+    private TextView viewAllService, viewAllGoods, greeting, userName;
     private CardView chatting;
+    private ImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +76,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // For recommended services
         recyclerViewService.setHasFixedSize(true);
-        gridLayoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL,false);
+        gridLayoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
         recyclerViewService.setLayoutManager(gridLayoutManager);
         recyclerViewService.setItemAnimator(new DefaultItemAnimator());
         recyclerViewService.setAdapter(mAdapterType0);
@@ -97,12 +99,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }));
 
-
         // For recommended Goods
 
         mAdapterType1 = new ServiceAdapter(HomeActivity.this, subCatGoods, 2);
         recyclerViewGoods.setHasFixedSize(true);
-        gridLayoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL,false);
+        gridLayoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
         recyclerViewGoods.setLayoutManager(gridLayoutManager);
         recyclerViewGoods.setItemAnimator(new DefaultItemAnimator());
         recyclerViewGoods.setAdapter(mAdapterType1);
@@ -166,8 +167,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void initViews() {
         prf = new PrefManager(this);
 
+        //for navigation drawer
         navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
+        profileImage = headerView.findViewById(R.id.iv_userImage);
+        userName = headerView.findViewById(R.id.txt_userName);
+
         drawer = findViewById(R.id.drawer_layout);
         homeSlider = findViewById(R.id.slider);
         notificationList = findViewById(R.id.ll_notificationList);
@@ -180,6 +186,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         llSearch = findViewById(R.id.ll_search);
         chatting = findViewById(R.id.cv_conversation);
         greeting = findViewById(R.id.txt_homeGreeting);
+
+        //setting navigation drawer
+        //Glide.with(this).load(personPhoto).into(profileImage);
+        userName.setText(prf.getString("name"));
     }
 
     private void updateToken(String token) {
@@ -194,7 +204,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         ApiCall.postMethod(this, ServiceNames.SAVE_FCM_TOKEN, data, response -> {
 
             Utils.log(TAG, "SAVE TOKEN RESPONSE : " + response.toString());
-
 
         });
     }
@@ -214,8 +223,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         llSearch.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), SearchActivity.class));
         });
-
-
     }
 
     private void getHomeScreenData() {
@@ -236,6 +243,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             JSONArray bannerArray = null;
             JSONArray serviceArray = null;
             JSONArray goodsArray = null;
+
             try {
 
                 jsonObject = response.getJSONObject("data");
@@ -305,7 +313,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         e.printStackTrace();
                     }
                 }
-
 
 
             } catch (JSONException e) {

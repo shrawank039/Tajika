@@ -43,9 +43,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:layout_marginHorizontal="30dp"
                     android:text="Please provide accurate details as you register your skills and experience."
                     android:textSize="16sp" />
 
@@ -75,7 +75,7 @@
 
                 <Spinner
                     android:id="@+id/spinner"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingVertical="5dp"
@@ -123,6 +123,7 @@
                     style="@style/register_editText_container"
                     android:gravity="start"
                     android:hint="Describe your professional skills to help you get more work."
+                    android:inputType="textCapSentences"
                     android:lines="4"
                     android:padding="15dp" />
 
