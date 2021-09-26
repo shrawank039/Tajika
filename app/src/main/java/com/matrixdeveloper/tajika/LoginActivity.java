@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
@@ -26,8 +24,8 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPass;
-    private String TAG = "LoginAct";
-    private static PrefManager prf;
+    private final String TAG = "LoginAct";
+    private PrefManager prf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
         });
 

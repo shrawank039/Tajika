@@ -1,10 +1,5 @@
 package com.matrixdeveloper.tajika.SPbusiness;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,11 +26,16 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
+import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.Register;
-import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -59,6 +59,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class SpbRegisterActivity extends AppCompatActivity {
 
@@ -79,10 +80,12 @@ public class SpbRegisterActivity extends AppCompatActivity {
     private InputStream inputStreamImg;
     private String imgPath = null;
 
-    List<String> spinnerArray = new ArrayList<>();
-    String[] simpleArray = {"Select Business Category"};
-    Spinner spinner;
+    Spinner spinnerServiceCategory;
     private static PrefManager prf;
+
+    int serviceCatID;
+    private List<String> categoryName = new ArrayList<>();
+    private List<Integer> categoryID = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,18 +129,21 @@ public class SpbRegisterActivity extends AppCompatActivity {
 
         getServiceList();
 
-        spinner = (Spinner) regViewFlipper.findViewById(R.id.spinner);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerServiceCategory = regViewFlipper.findViewById(R.id.spinner);
+        categoryName.add("Choose Business Category");
+        categoryID.add(0);
+        spinnerServiceCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                business_categories = parent.getItemAtPosition(position).toString();
+                //business_categories = parent.getItemAtPosition(position).toString();
+                serviceCatID = categoryID.get(spinnerServiceCategory.getSelectedItemPosition());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
     }
 
     private void initiatePhotoSelection() {
@@ -279,7 +285,11 @@ public class SpbRegisterActivity extends AppCompatActivity {
             public void onLocationFound(double latitide, double longi) {
                 latitude = String.valueOf(latitide);
                 longitude = String.valueOf(longi);
-                registerSubmit();
+                if (serviceCatID != 0) {
+                    registerSubmit();
+                } else {
+                    Toast.makeText(SpbRegisterActivity.this, "Please! choose business category", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -319,7 +329,7 @@ public class SpbRegisterActivity extends AppCompatActivity {
                 data.put("business_name", name);
                 data.put("location_address", service_area);
                 data.put("location", service_area);
-                data.put("business_categories", business_categories);
+                data.put("business_categories", String.valueOf(serviceCatID));
                 data.put("service_description", service_description);
                 data.put("year_of_experience", year_of_experience);
                 data.put("bussiness_link", bussiness_link);
@@ -365,40 +375,43 @@ public class SpbRegisterActivity extends AppCompatActivity {
     }
 
     private void getServiceList() {
-
-        ApiCall.getMethod(this, ServiceNames.SERVICE_LIST, response -> {
+        JSONObject data = new JSONObject();
+        try {
+            data.put("service_type", type);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.ALL_CAT_SUBCAT, data, response -> {
 
             Utils.log(TAG, response.toString());
 
-            JSONArray jsonarray = null;
-            try {
+            JSONArray serviceArray = null;
+            if (Objects.equals(response.opt("status"), 200)) {
+                try {
+                    serviceArray = response.getJSONArray("data");
 
-                jsonarray = response.getJSONArray("data");
+                    for (int i = 0; i < serviceArray.length(); i++) {
+                        try {
+                            Category category = MySingleton.getGson().fromJson(serviceArray.getJSONObject(i).toString(), Category.class);
 
-                for (int i = 0; i < jsonarray.length(); i++) {
-
-                    try {
-
-                        SubCategory subCategory = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), SubCategory.class);
-                        spinnerArray.add(subCategory.getServiceName());
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            categoryID.add(category.getId());
+                            categoryName.add(category.getName());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-                simpleArray = new String[ spinnerArray.size() ];
-                spinnerArray.toArray( simpleArray );
-                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, simpleArray);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setAdapter(adapter);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
 
+            ArrayAdapter aaa = new ArrayAdapter(SpbRegisterActivity.this, android.R.layout.simple_spinner_item, categoryName);
+            aaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerServiceCategory.setAdapter(aaa);
 
         });
+
     }
 
     @Override
