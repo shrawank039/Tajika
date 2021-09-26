@@ -30,7 +30,7 @@ public class NotificationActivity extends AppCompatActivity {
     NotificationAdapter notificationAdapter;
     private List<NotificationModel> notificationModelList;
     private PrefManager prf;
-    private String TAG = "AllServiceAct";
+    private final String TAG = "AllServiceAct";
     private ImageView backPress, clearAllNotification;
 
 

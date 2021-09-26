@@ -18,7 +18,7 @@ import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import java.util.List;
 
 public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.viewHolder> {
-    private Context ctx;
+    private final Context ctx;
     List<ServiceRequestList> serviceRequestLists;
 
     public MyBookingAdapter(Context ctx, List<ServiceRequestList> serviceRequestLists) {
@@ -50,8 +50,11 @@ public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.view
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        private ImageView serviceImage;
-        private TextView serviceName, serviceAddress, serviceType, serviceStatus;
+        private final ImageView serviceImage;
+        private final TextView serviceName;
+        private final TextView serviceAddress;
+        private final TextView serviceType;
+        private final TextView serviceStatus;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

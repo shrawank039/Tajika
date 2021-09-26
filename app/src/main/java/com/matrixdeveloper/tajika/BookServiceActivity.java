@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class BookServiceActivity extends AppCompatActivity {
 
     private ImageView backPress;
-    private String TAG = "BookServiceAct";
+    private final String TAG = "BookServiceAct";
     String bookingID;
     private EditText name, phoneNUmber, flatNumber, streetAddress, landmark, anyInstruction;
     private LinearLayout llMakePayment;

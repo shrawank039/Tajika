@@ -29,7 +29,7 @@ import org.json.JSONObject;
 public class SpbLoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPass;
-    private String TAG = "SpiLoginAct";
+    private final String TAG = "SpiLoginAct";
     private static PrefManager prf;
     private TextView loginGreetings;
 

@@ -18,7 +18,7 @@ import java.util.List;
 
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     List<VoucherList> voucherLists;
 
     public VoucherAdapter(Context ctx, List<VoucherList> voucherLists) {
@@ -56,8 +56,12 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHold
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        private RatingBar voucherRating;
-        private TextView voucherHeader, voucherMinOrder, voucherValidity, voucherCode, voucherCopyCode;
+        private final RatingBar voucherRating;
+        private final TextView voucherHeader;
+        private final TextView voucherMinOrder;
+        private final TextView voucherValidity;
+        private final TextView voucherCode;
+        private final TextView voucherCopyCode;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

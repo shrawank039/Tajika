@@ -32,10 +32,10 @@ public class CoinsWalletActivity extends AppCompatActivity {
     private LinearLayout redeemCoin;
     private ImageView backPress;
     private TextView pointsEarned, pointsAvailable, pointsUsed;
-    private String TAG = "CoinsWalletActivity";
+    private final String TAG = "CoinsWalletActivity";
 
     private PrefManager prf;
-    private ArrayList<CoinsWalletModel> myListData = new ArrayList<>();
+    private final ArrayList<CoinsWalletModel> myListData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -32,7 +32,7 @@ import java.util.Objects;
 public class SearchActivity extends AppCompatActivity {
 
     private EditText inputSearch;
-    private String TAG = "SearchServiceAct";
+    private final String TAG = "SearchServiceAct";
     private List<Category> catService, catGoods;
     private SearchAdapter serviceAdapter, goodsAdapter;
     private RecyclerView rvService, rvGoods;

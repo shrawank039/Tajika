@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 public class LoginThroughOTPActivity extends AppCompatActivity {
 
-    private String TAG = "LoginThroughOTPAct";
+    private final String TAG = "LoginThroughOTPAct";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class LoginThroughOTPActivity extends AppCompatActivity {
                 assert dataObj != null;
                 startActivity(new Intent(
                         this, OTPInputActivity.class
-                ).putExtra("email", email).putExtra("otp", dataObj.optString("otp")));
+                ).putExtra("email", email));
             }
 
         });

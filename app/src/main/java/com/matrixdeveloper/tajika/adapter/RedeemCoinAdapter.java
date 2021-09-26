@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class RedeemCoinAdapter extends RecyclerView.Adapter<RedeemCoinAdapter.viewHolder> {
-    private Context ctx;
+    private final Context ctx;
     ArrayList<RedeemCoinModel> redeemCoinModels;
 
     public RedeemCoinAdapter(Context ctx, ArrayList<RedeemCoinModel> redeemCoinModels) {
@@ -92,8 +92,11 @@ public class RedeemCoinAdapter extends RecyclerView.Adapter<RedeemCoinAdapter.vi
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        private RatingBar redeemRating;
-        private TextView reedemHeading, redeemReqCoin, redeemValidity, redeemNow;
+        private final RatingBar redeemRating;
+        private final TextView reedemHeading;
+        private final TextView redeemReqCoin;
+        private final TextView redeemValidity;
+        private final TextView redeemNow;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

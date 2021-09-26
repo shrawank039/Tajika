@@ -29,7 +29,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
         View.OnClickListener {
 
     private String provider_id, service_name, service_id;
-    private String TAG = "RequestServiceAct";
+    private final String TAG = "RequestServiceAct";
     private static PrefManager prf;
     private Button submitRequest;
     private EditText edtDate, edtTime, edtAmount, edtService, edtDescription;

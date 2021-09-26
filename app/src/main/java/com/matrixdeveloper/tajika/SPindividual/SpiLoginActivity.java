@@ -29,7 +29,7 @@ public class SpiLoginActivity extends AppCompatActivity {
 
     private EditText edtEmail, edtPass;
     private TextView loginGreetings;
-    private String TAG = "SpiLoginAct";
+    private final String TAG = "SpiLoginAct";
     private static PrefManager prf;
 
     @Override

@@ -37,7 +37,7 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
 
         getToken();
 
-        myWebView = (WebView) findViewById(R.id.webview);
+        myWebView = findViewById(R.id.webview);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
         myWebView.requestFocus();
@@ -124,11 +124,7 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
             handler.removeMessages(CLICK_ON_WEBVIEW);
             return true;
         }
-        if (msg.what == CLICK_ON_WEBVIEW){
-
-            return true;
-        }
-        return false;
+        return msg.what == CLICK_ON_WEBVIEW;
     }
 }
 

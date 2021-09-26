@@ -56,7 +56,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private InputStream inputStreamImg;
     private String imgPath = null;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
-    private int MY_CAMERA_REQUEST_CODE = 100;
+    private final int MY_CAMERA_REQUEST_CODE = 100;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -175,7 +175,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 Log.e("Activity", "Pick from Gallery::>>> ");
 
                 imgPath = getRealPathFromURI(selectedImage);
-                destination = new File(imgPath.toString());
+                destination = new File(imgPath);
                 profilePicture.setImageBitmap(bitmap);
 
             } catch (Exception e) {

@@ -30,7 +30,7 @@ import java.util.Objects;
 
 public class AllServiceActivity extends AppCompatActivity {
 
-    private String TAG = "AllServiceAct";
+    private final String TAG = "AllServiceAct";
     private EditText inputSearch;
     private List<Category> catService, catGoods;
     private SearchAdapter serviceAdapter;

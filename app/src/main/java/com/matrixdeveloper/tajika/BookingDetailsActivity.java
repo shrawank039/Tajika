@@ -30,7 +30,7 @@ import org.json.JSONObject;
 
 public class BookingDetailsActivity extends AppCompatActivity {
 
-    private String TAG = "BookingDetailsAct";
+    private final String TAG = "BookingDetailsAct";
     private String id;
     private ImageView backPress, serviceImage;
 
@@ -257,7 +257,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         Spinner spinner = dialog.findViewById(R.id.spinner);
         cancellationComment = dialog.findViewById(R.id.edt_cancellationComment);
 
-        String[] simpleArrayEducation = {"Select Reason", "I no longer need it", "Booked from somewhere else", "i don\'t like your service", "Response is late", "Fixed myself", "Others"};
+        String[] simpleArrayEducation = {"Select Reason", "I no longer need it", "Booked from somewhere else", "i don't like your service", "Response is late", "Fixed myself", "Others"};
         ArrayAdapter aa = new ArrayAdapter(BookingDetailsActivity.this, android.R.layout.simple_spinner_item, simpleArrayEducation);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(aa);

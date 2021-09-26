@@ -33,8 +33,8 @@ public class HelpActivity extends AppCompatActivity {
     private TextView txtMailSupport, txtCallSupport;
     private ImageView backPress, callSupport, mailSupport;
     private String mailId, telNumber;
-    private List<FaqModel> myListData = new ArrayList<>();
-    private String TAG = "HelpActivity";
+    private final List<FaqModel> myListData = new ArrayList<>();
+    private final String TAG = "HelpActivity";
 
 
     @Override

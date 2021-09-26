@@ -23,7 +23,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
 
     private TextView completeJob;
     private String id;
-    private String TAG = "SpiServiceAcceptAct";
+    private final String TAG = "SpiServiceAcceptAct";
     private PrefManager pref;
     RequestDetails requestDetails;
 

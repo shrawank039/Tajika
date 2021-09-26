@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.SPbusiness.SpiAddNewGoodsActivity;
 import com.matrixdeveloper.tajika.model.Category;
+import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -49,7 +50,7 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
 
     private List<String> subCategoryName = new ArrayList<>();
     private List<Integer> subCategoryID = new ArrayList<>();
-    private Category category;
+    private List<Category> categoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +70,17 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
         sprCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 serviceCatID = categoryID.get(sprCategory.getSelectedItemPosition());
 
-                Toast.makeText(SpiAddNewServiceActivity.this, "" + category.getSubCategory().get(position).getServiceName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SpiAddNewServiceActivity.this, "" + serviceCatID, Toast.LENGTH_SHORT).show();
+
+                // for sub category
+                    for (int i = 0; i < categoryList.get(position).getSubCategory().size(); i++) {
+                        SubCategory subCategory = categoryList.get(position).getSubCategory().get(i);
+                        subCategoryID.add(subCategory.getId());
+                        subCategoryName.add(subCategory.getServiceName());
+                    }
             }
 
             @Override
@@ -140,29 +149,15 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
                     // for category
                     for (int i = 0; i < catArray.length(); i++) {
                         try {
-                            category = MySingleton.getGson().fromJson(catArray.getJSONObject(i).toString(), Category.class);
+                            Category category = MySingleton.getGson().fromJson(catArray.getJSONObject(i).toString(), Category.class);
+                            categoryList.add(category);
                             categoryID.add(category.getId());
                             categoryName.add(category.getName());
-
-                            //category.getSubCategory().get(1).getServiceName();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-
-                    // for sub category
-                    /*for (int i = 0; i < catArray.length(); i++) {
-                        try {
-                            subCatArray = catArray.getJSONArray(i);
-                            SubCategory subCategory = MySingleton.getGson().fromJson(subCatArray.getJSONObject(i).toString(), SubCategory.class);
-                            subCategoryID.add(subCategory.getId());
-                            subCategoryName.add(subCategory.getServiceName());
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }*/
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -189,26 +184,6 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
         }
 
         ApiCall.postMethod(this, ServiceNames.ADD_NEW_SERVICE, data, response -> {
-            Utils.log(TAG, response.toString());
-            Utils.toast(this, response.optString("message"));
-        });
-
-    }
-
-    private void updateService() {
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("user_id", pref.getString("id"));
-            data.put("name", "");
-            data.put("sub_cat_id", "");
-            data.put("mincharge", "");
-            data.put("experience", "");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        ApiCall.postMethod(this, ServiceNames.UPDATE_SERVICE, data, response -> {
             Utils.log(TAG, response.toString());
             Utils.toast(this, response.optString("message"));
         });

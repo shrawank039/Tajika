@@ -55,8 +55,10 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        private TextView subType, subAmount, subDays;
-        private CardView cvSelectPackage;
+        private final TextView subType;
+        private final TextView subAmount;
+        private final TextView subDays;
+        private final CardView cvSelectPackage;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

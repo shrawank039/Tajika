@@ -25,8 +25,8 @@ public class OTPInputActivity extends AppCompatActivity {
     private EditText otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four, otp_textbox_five, otp_textbox_six;
     private TextView resendOtp, back;
     private PrefManager prf;
-    private String TAG = "OtpInputAct";
-    private String email, otp;
+    private final String TAG = "OtpInputAct";
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,6 @@ public class OTPInputActivity extends AppCompatActivity {
         prf = new PrefManager(this);
 
         email = getIntent().getStringExtra("email");
-        otp = getIntent().getStringExtra("otp");
         resendOtp = findViewById(R.id.txt_resendOtp);
         back = findViewById(R.id.txt_back);
         otp_textbox_one = findViewById(R.id.otp_edit_box1);
@@ -56,6 +55,7 @@ public class OTPInputActivity extends AppCompatActivity {
         otp_textbox_six.addTextChangedListener(new GenericTextWatcher(otp_textbox_six, edit));
 
         back.setOnClickListener(view -> OTPInputActivity.super.onBackPressed());
+
         resendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,8 +73,6 @@ public class OTPInputActivity extends AppCompatActivity {
 
                     if (response.optInt("status") == 200){
                         JSONObject dataObj = response.optJSONObject("data");
-                        assert dataObj != null;
-                        otp = dataObj.optString("otp");
                     }
 
                 });

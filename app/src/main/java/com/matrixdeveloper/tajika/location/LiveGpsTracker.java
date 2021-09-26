@@ -31,8 +31,8 @@ public class LiveGpsTracker {
     private static final LiveGpsTracker ourInstance = new LiveGpsTracker();
     public static final int REQUEST_FINE_LOCATION = 9876;
     static Activity mActivity;
-    private long UPDATE_INTERVAL = 500 * 1000;  /* 5 min */
-    private long FASTEST_INTERVAL = 2000; /* 2 sec */
+    private final long UPDATE_INTERVAL = 500 * 1000;  /* 5 min */
+    private final long FASTEST_INTERVAL = 2000; /* 2 sec */
     private LocationRequest mLocationRequest;
     static LocationUpdate mListener;
     private AlertDialog alertDialog;
@@ -159,12 +159,8 @@ public class LiveGpsTracker {
     }
 
     private boolean permissionExists() {
-        if (ContextCompat.checkSelfPermission(mActivity,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
-        }
+        return ContextCompat.checkSelfPermission(mActivity,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
     private void requestPermissions() {
@@ -189,8 +185,8 @@ public class LiveGpsTracker {
     public void onLocationChanged(Location location) {
         // New location has now been determined
         String msg = "Updated Location: " +
-                Double.toString(location.getLatitude()) + "," +
-                Double.toString(location.getLongitude());
+                location.getLatitude() + "," +
+                location.getLongitude();
         if(location!=null && mListener!=null && mActivity!= null) {
             mListener.onLocationFound(location.getLatitude(), location.getLongitude());
             stopLocationCallback();

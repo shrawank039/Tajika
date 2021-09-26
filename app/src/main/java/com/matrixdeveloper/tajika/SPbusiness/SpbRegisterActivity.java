@@ -74,7 +74,7 @@ public class SpbRegisterActivity extends AppCompatActivity {
     private LinearLayout ll_logo_upload, ll_service_photo_upload;
     private int type = AppConstants.DOCUMENT_TYPE_ID;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
-    private int MY_CAMERA_REQUEST_CODE = 100;
+    private final int MY_CAMERA_REQUEST_CODE = 100;
     private Bitmap bitmap;
     private File destination;
     private InputStream inputStreamImg;
@@ -84,8 +84,8 @@ public class SpbRegisterActivity extends AppCompatActivity {
     private static PrefManager prf;
 
     int serviceCatID;
-    private List<String> categoryName = new ArrayList<>();
-    private List<Integer> categoryID = new ArrayList<>();
+    private final List<String> categoryName = new ArrayList<>();
+    private final List<Integer> categoryID = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

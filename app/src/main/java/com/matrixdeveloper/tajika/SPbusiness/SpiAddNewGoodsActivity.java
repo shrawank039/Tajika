@@ -45,25 +45,6 @@ public class SpiAddNewGoodsActivity extends AppCompatActivity {
 
     }
 
-    private void updateGoods() {
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("user_id", pref.getString("id"));
-            data.put("name", "");
-            data.put("sub_cat_id", "");
-            data.put("price", "");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        ApiCall.postMethod(this, ServiceNames.UPDATE_GOODS, data, response -> {
-            Utils.log(TAG, response.toString());
-            Utils.toast(this, response.optString("message"));
-        });
-
-    }
-
     private void deleteGoods() {
 
         JSONObject data = new JSONObject();

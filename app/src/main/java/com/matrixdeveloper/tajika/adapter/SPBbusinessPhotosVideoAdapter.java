@@ -15,7 +15,7 @@ import com.matrixdeveloper.tajika.model.SPBbusinessPhotosVideosModel;
 
 public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusinessPhotosVideoAdapter.viewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     SPBbusinessPhotosVideosModel[] photosVideosModels;
 
     public SPBbusinessPhotosVideoAdapter(Context ctx, SPBbusinessPhotosVideosModel[] photosVideosModels) {
@@ -44,7 +44,7 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        private ImageView businessPhotos;
+        private final ImageView businessPhotos;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

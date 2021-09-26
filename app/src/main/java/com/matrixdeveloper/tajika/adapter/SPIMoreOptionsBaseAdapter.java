@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.matrixdeveloper.tajika.R;
 
 public class SPIMoreOptionsBaseAdapter extends BaseAdapter {
-    String moreOptionsList[];
+    String[] moreOptionsList;
     LayoutInflater inflter;
 
     public SPIMoreOptionsBaseAdapter(Context applicationContext, String[] moreOptionsList) {

@@ -22,7 +22,7 @@ public class SpiMoreActivity extends AppCompatActivity {
 
     private ListView moreOptions;
     private PrefManager prf;
-    String settingsList[] = {"My Profile", "Services you offer", "All requests", "All bookings",
+    String[] settingsList = {"My Profile", "Services you offer", "All requests", "All bookings",
             "Credit wallet", "Refer Friends", "Switch to user", "Rate App", "Contact us", "About us", "Logout"};
 
     @Override

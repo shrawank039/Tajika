@@ -29,7 +29,7 @@ public class SpiAllTransactionActivity extends AppCompatActivity {
     private SPIRecentTransactionAdapter recentTransactionAdapter;
     private ImageView backPress;
     private PrefManager prf;
-    private String TAG = "AllTransactionsAct";
+    private final String TAG = "AllTransactionsAct";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

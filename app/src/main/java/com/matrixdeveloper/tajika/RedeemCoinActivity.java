@@ -29,8 +29,8 @@ public class RedeemCoinActivity extends AppCompatActivity {
     private RecyclerView redeemCoinRecView;
     private RedeemCoinAdapter redeemCoinAdapter;
     private ImageView backPress;
-    private String TAG="RedeemCoinAct";
-    private ArrayList<RedeemCoinModel> myListData = new ArrayList<>();
+    private final String TAG="RedeemCoinAct";
+    private final ArrayList<RedeemCoinModel> myListData = new ArrayList<>();
     public static PrefManager prf;
 
     @Override

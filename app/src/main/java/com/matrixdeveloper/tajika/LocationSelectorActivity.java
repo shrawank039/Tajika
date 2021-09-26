@@ -91,7 +91,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private View view, view1;
     ArrayList<LatLng> pointer = new ArrayList<>();
     private List<ServiceProvider> serviceProviderList;
-    private String TAG = "LocationSelectorAct";
+    private final String TAG = "LocationSelectorAct";
     private BottomSheetBehavior behavior, behavior2;
     private String service_name, service_id, service_type;
     int height;

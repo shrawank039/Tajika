@@ -32,7 +32,7 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
     private ImageView backPress;
     private TextView allCredit, allTransaction, walletBalance;
     private PrefManager prf;
-    private String TAG = "WalletAct";
+    private final String TAG = "WalletAct";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

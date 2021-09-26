@@ -21,7 +21,7 @@ public class SpiAddCreditActivity extends AppCompatActivity {
     private ImageView backPress;
     private Button submit;
     private EditText addCredit;
-    private String TAG = "AddCreditAct";
+    private final String TAG = "AddCreditAct";
     private PrefManager pref;
 
     @Override

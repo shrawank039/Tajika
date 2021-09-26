@@ -46,7 +46,7 @@ public class SpiHomeActivity extends AppCompatActivity {
     private List<ServiceRequestList> requestLists;
     private List<UpcomingJob> upcomingJobList;
     private PrefManager pref;
-    private String TAG = "SPHomeAct";
+    private final String TAG = "SPHomeAct";
     private ImageView allBookings;
     private CardView cvMessageButton;
     private Button checkNewOffers;

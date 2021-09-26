@@ -24,7 +24,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
     private TextView serviceAccept, serviceDeclined, requestId, jobDate, jobTime, jobType,
             address, description, amtWillingToPay, contactName, contactNumber;
     private String id;
-    private String TAG = "SpiServiceRequestDetailsAct";
+    private final String TAG = "SpiServiceRequestDetailsAct";
     private PrefManager pref;
     RequestDetails requestDetails;
 

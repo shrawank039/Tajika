@@ -9,8 +9,8 @@ import com.matrixdeveloper.tajika.R;
 
 public class GenericTextWatcher implements TextWatcher {
     private final EditText[] editText;
-    private View view;
-    public GenericTextWatcher(View view, EditText editText[])
+    private final View view;
+    public GenericTextWatcher(View view, EditText[] editText)
     {
         this.editText = editText;
         this.view = view;

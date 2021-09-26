@@ -14,8 +14,8 @@ import com.matrixdeveloper.tajika.model.SPIAllBookingsModel;
 
 public class SPIAllBookingsAdapter extends RecyclerView.Adapter<SPIAllBookingsAdapter.viewHolder> {
 
-    private Context ctx;
-    private SPIAllBookingsModel[] listdata;
+    private final Context ctx;
+    private final SPIAllBookingsModel[] listdata;
 
     public SPIAllBookingsAdapter(Context ctx, SPIAllBookingsModel[] listdata) {
         this.ctx = ctx;

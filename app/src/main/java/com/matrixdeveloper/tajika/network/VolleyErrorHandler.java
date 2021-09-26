@@ -7,7 +7,7 @@ import com.matrixdeveloper.tajika.app.App;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 public class VolleyErrorHandler {
-    private static String TAG = VolleyErrorHandler.class.getSimpleName();
+    private static final String TAG = VolleyErrorHandler.class.getSimpleName();
 
     public static void handle(String url, VolleyError volleyError) {
         Context context = App.getContext();

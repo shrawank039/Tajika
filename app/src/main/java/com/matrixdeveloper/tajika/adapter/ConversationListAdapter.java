@@ -15,8 +15,8 @@ import com.matrixdeveloper.tajika.R;
 
 public class ConversationListAdapter extends RecyclerView.Adapter<ConversationListAdapter.viewModel> {
 
-    private Context ctx;
-    private ConversationListModel[] conversationListModels;
+    private final Context ctx;
+    private final ConversationListModel[] conversationListModels;
 
     public ConversationListAdapter(Context ctx, ConversationListModel[] conversationListModels) {
         this.ctx = ctx;
@@ -43,8 +43,9 @@ public class ConversationListAdapter extends RecyclerView.Adapter<ConversationLi
     }
 
     public static class viewModel extends RecyclerView.ViewHolder {
-        private ImageView serviceImage;
-        private TextView serviceText, serviceDate;
+        private final ImageView serviceImage;
+        private final TextView serviceText;
+        private final TextView serviceDate;
 
         public viewModel(@NonNull View itemView) {
             super(itemView);

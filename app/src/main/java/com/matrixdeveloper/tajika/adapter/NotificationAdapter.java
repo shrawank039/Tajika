@@ -21,7 +21,7 @@ import java.util.List;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.viewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     List<NotificationModel> notificationModelList;
 
     public NotificationAdapter(Context ctx, List<NotificationModel> notificationModelList) {
@@ -55,9 +55,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        private ImageView clearNotification;
-        private TextView notificationHeader, notificationContent, notificationFooter;
-        private LinearLayout notificationBody;
+        private final ImageView clearNotification;
+        private final TextView notificationHeader;
+        private final TextView notificationContent;
+        private final TextView notificationFooter;
+        private final LinearLayout notificationBody;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

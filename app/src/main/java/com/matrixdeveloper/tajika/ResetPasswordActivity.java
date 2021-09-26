@@ -26,7 +26,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private TextView backToLogin;
     private EditText regMobile, regEmail;
     private Button next;
-    private String TAG = "ResetPasswordAct";
+    private final String TAG = "ResetPasswordAct";
     private PrefManager pref;
 
     @Override
@@ -35,7 +35,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reset_password);
 
         pref = new PrefManager(this);
-        rGroup = (RadioGroup) findViewById(R.id.rg_resetPassword);
+        rGroup = findViewById(R.id.rg_resetPassword);
         onEmail = findViewById(R.id.ll_onEmail);
         onMobile = findViewById(R.id.ll_onNumber);
         backToLogin = findViewById(R.id.tv_backToLogin);
@@ -43,8 +43,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
         regMobile = findViewById(R.id.edt_regNumber);
         next = findViewById(R.id.btn_next);
 
-        rGroup.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) (group, checkedId) -> {
-            RadioButton checkedRadioButton1 = (RadioButton) group.findViewById(checkedId);
+        rGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton checkedRadioButton1 = group.findViewById(checkedId);
             if (checkedRadioButton1.getText().equals("On Mobile")) {
                 onMobile.setVisibility(View.VISIBLE);
                 onEmail.setVisibility(View.GONE);

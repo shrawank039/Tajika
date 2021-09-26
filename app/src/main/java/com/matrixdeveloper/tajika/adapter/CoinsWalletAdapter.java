@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class CoinsWalletAdapter extends RecyclerView.Adapter<CoinsWalletAdapter.viewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     ArrayList<CoinsWalletModel> coinsWalletModels;
 
     public CoinsWalletAdapter(Context ctx, ArrayList<CoinsWalletModel> coinsWalletModels) {
@@ -56,8 +56,11 @@ public class CoinsWalletAdapter extends RecyclerView.Adapter<CoinsWalletAdapter.
 
     public static class viewHolder extends RecyclerView.ViewHolder {
 
-        private TextView header, coins, date;
-        private ImageView debited, credited;
+        private final TextView header;
+        private final TextView coins;
+        private final TextView date;
+        private final ImageView debited;
+        private final ImageView credited;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

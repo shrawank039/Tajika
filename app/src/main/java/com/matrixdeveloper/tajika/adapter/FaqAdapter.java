@@ -18,7 +18,7 @@ import java.util.List;
 
 public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.MyViewHolder> {
 
-    private Context ctx;
+    private final Context ctx;
     List<FaqModel> listdata;
 
     public FaqAdapter(Context ctx, List<FaqModel> listdata) {
@@ -58,9 +58,10 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView faqQuestion,faqAnswer;
-        private LinearLayout expand;
-        private ImageView dropDown;
+        private final TextView faqQuestion;
+        private final TextView faqAnswer;
+        private final LinearLayout expand;
+        private final ImageView dropDown;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             faqQuestion=itemView.findViewById(R.id.txt_faqQuestion);

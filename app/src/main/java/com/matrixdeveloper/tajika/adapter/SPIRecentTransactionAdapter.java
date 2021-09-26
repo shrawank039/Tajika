@@ -16,8 +16,8 @@ import com.matrixdeveloper.tajika.model.SPIRecentTransactionModel;
 import java.util.List;
 
 public class SPIRecentTransactionAdapter extends RecyclerView.Adapter<SPIRecentTransactionAdapter.viewHolder> {
-    private Context ctx;
-    private List<SPIRecentTransactionModel> listdata;
+    private final Context ctx;
+    private final List<SPIRecentTransactionModel> listdata;
 
     public SPIRecentTransactionAdapter(Context ctx, List<SPIRecentTransactionModel> listdata) {
         this.ctx = ctx;
@@ -45,7 +45,9 @@ public class SPIRecentTransactionAdapter extends RecyclerView.Adapter<SPIRecentT
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        private TextView transactionID,transactionDate,debitAmount;
+        private final TextView transactionID;
+        private final TextView transactionDate;
+        private final TextView debitAmount;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             transactionID=itemView.findViewById(R.id.txt_txnID);

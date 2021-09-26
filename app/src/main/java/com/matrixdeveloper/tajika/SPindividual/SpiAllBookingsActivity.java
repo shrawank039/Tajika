@@ -24,7 +24,7 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
     private RecyclerView allBookingsRecyclerView;
     private SPIAllBookingsAdapter allBookingsAdapter;
     TextView upcoming, completed;
-    private String TAG = "SpiAllBookingsAct";
+    private final String TAG = "SpiAllBookingsAct";
     private PrefManager pref;
 
     @Override

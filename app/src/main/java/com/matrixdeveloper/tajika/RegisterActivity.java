@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass;
     private String name, phone, email, pass, Cpass;
-    private String TAG = "RegisterAct";
+    private final String TAG = "RegisterAct";
     private static PrefManager prf;
     private CheckBox termsAndPolicy;
 

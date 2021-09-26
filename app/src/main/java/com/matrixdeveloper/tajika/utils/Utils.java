@@ -13,7 +13,7 @@ public class Utils {
 
     public static Boolean isShowing = false;
     private static CustomDialog customDialog;
-    private static String TAG = Utils.class.getSimpleName();
+    private static final String TAG = Utils.class.getSimpleName();
 
 
     public static void show(Context context) {

@@ -431,7 +431,7 @@ public class FileOp {
     public void writeHash() {
         String strHash = getSPHash();
         try {
-            fos = context.openFileOutput("Hash", context.MODE_PRIVATE);
+            fos = context.openFileOutput("Hash", Context.MODE_PRIVATE);
             osw = new OutputStreamWriter(fos);
             osw.write(strHash);
             osw.flush();

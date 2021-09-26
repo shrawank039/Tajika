@@ -24,7 +24,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
 
     private final Context ctx;
     private final List<SubCategory> subCategories;
-    private int type;
+    private final int type;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 

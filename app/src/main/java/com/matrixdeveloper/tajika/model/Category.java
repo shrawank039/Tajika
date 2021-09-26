@@ -14,7 +14,7 @@ public class Category implements Serializable
     private Integer id;
     @SerializedName("name")
     @Expose
-    private String name;;
+    private String name;
     @SerializedName("image")
     @Expose
     private String image;
