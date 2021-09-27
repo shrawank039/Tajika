@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -73,14 +72,13 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
 
                 serviceCatID = categoryID.get(sprCategory.getSelectedItemPosition());
 
-                Toast.makeText(SpiAddNewServiceActivity.this, "" + serviceCatID, Toast.LENGTH_SHORT).show();
-
                 // for sub category
-                    subCategoryID.clear();
-                    subCategoryName.clear();
-                if (position !=0) {
-                    for (int i = 0; i < categoryList.get(position-1).getSubCategory().size(); i++) {
-                        SubCategory subCategory = categoryList.get(position-1).getSubCategory().get(i);
+                subCategoryID.clear();
+                subCategoryName.clear();
+
+                if (position != 0) {
+                    for (int i = 0; i < categoryList.get(position - 1).getSubCategory().size(); i++) {
+                        SubCategory subCategory = categoryList.get(position - 1).getSubCategory().get(i);
                         subCategoryID.add(subCategory.getId());
                         subCategoryName.add(subCategory.getServiceName());
                     }
@@ -179,10 +177,10 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", pref.getString("id"));
-            data.put("name", "");
-            data.put("sub_cat_id", "");
-            data.put("mincharge", "");
-            data.put("experience", "");
+            data.put("name", String.valueOf(serviceCatID));
+            data.put("sub_cat_id", String.valueOf(serviceSubCatID));
+            data.put("mincharge", edtMinCharge.getText().toString());
+            data.put("experience", edtExp.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -194,19 +192,4 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
 
     }
 
-    private void deleteService() {
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("id", "");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        ApiCall.postMethod(this, ServiceNames.DELETE_SERVICE, data, response -> {
-            Utils.log(TAG, response.toString());
-            Utils.toast(this, response.optString("message"));
-        });
-
-    }
 }

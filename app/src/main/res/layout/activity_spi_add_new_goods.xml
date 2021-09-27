@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     android:hint="Name*"
-                    android:paddingVertical="23dp"
+                    android:paddingVertical="15dp"
                     android:paddingStart="10dp" />
             </LinearLayout>
 
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     android:hint="Name*"
-                    android:paddingVertical="23dp"
+                    android:paddingVertical="15dp"
                     android:paddingStart="10dp" />
             </LinearLayout>
 
@@ -100,11 +100,14 @@
                 android:text="Enter Price"
                 android:theme="@style/topDesign_textView" />
 
-            <EditText style="@style/bookService_editText_container"
+            <EditText
+                android:id="@+id/edt_enterPrice"
+                style="@style/bookService_editText_container"
                 android:inputType="number"
-                android:maxLength="4"/>
+                android:maxLength="4" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_saveGoods"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

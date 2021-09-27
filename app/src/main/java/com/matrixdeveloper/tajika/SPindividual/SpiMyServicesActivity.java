@@ -79,4 +79,20 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         });
 
     }
+
+    public void deleteService(int serviceID) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", String.valueOf(serviceID));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.DELETE_SERVICE, data, response -> {
+            Utils.log(TAG, response.toString());
+            Utils.toast(this, response.optString("message"));
+        });
+
+    }
 }

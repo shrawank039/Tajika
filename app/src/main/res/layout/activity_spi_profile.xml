@@ -50,6 +50,7 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_providerImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
@@ -64,6 +65,7 @@
                 android:gravity="center">
 
                 <RatingBar
+                    android:id="@+id/rating_providerRating"
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,6 +74,7 @@
                     android:theme="@style/RatingBar" />
 
                 <TextView
+                    android:id="@+id/txt_ratings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -120,7 +123,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_providerName"
+                        android:id="@+id/edt_providerName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -152,7 +155,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_providerPhone"
+                        android:id="@+id/edt_providerPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -232,7 +235,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_serviceCategory"
+                        android:id="@+id/edt_businessNameTop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -264,7 +267,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_serviceExperience"
+                        android:id="@+id/txt_businessCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -296,7 +299,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_serviceMinCharge"
+                        android:id="@+id/txt_providerExperience"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -355,6 +358,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/txt_businessDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -401,7 +405,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_provide"
+                        android:id="@+id/txt_provideEducation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -465,7 +469,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_ppassportCopyStatus"
+                        android:id="@+id/txt_passportCopyStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -622,7 +626,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Email:"
+                        android:text="Expires On:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 

@@ -131,7 +131,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_providerName"
+                        android:id="@+id/edt_providerName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -163,7 +163,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_providerPhone"
+                        android:id="@+id/edt_providerPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

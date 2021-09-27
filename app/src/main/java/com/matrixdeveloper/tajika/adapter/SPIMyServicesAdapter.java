@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPindividual.SpiMyServicesActivity;
 import com.matrixdeveloper.tajika.model.SPIMyServicesModel;
 
 import java.util.List;
@@ -48,10 +49,12 @@ public class SPIMyServicesAdapter extends RecyclerView.Adapter<SPIMyServicesAdap
                 Toast.makeText(ctx, "Service Position"+position+" Edit Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
+
         holder.serviceDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ctx, "Service Position " + position + " delete Clicked", Toast.LENGTH_SHORT).show();
+                ((SpiMyServicesActivity)ctx).deleteService(myListData.getId());
             }
         });
 

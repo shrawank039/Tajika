@@ -8,18 +8,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-      style="@style/appBar_container"
+        style="@style/appBar_container"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_backPress"
-          style="@style/appBar_imageView" />
+            style="@style/appBar_imageView" />
 
         <TextView
             style="@style/appBar_textView"
-            android:text="Edit Profile"/>
+            android:text="Edit Profile" />
     </LinearLayout>
 
     <ScrollView
@@ -45,16 +45,16 @@
                 android:src="@drawable/plumbing"
                 app:civ_border_width="1dp" />
 
-            <TextView
-                android:id="@+id/txt_businessName"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/edt_businessNameTop"
+                style="@style/topDesign_textView_bold"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginVertical="15dp"
-                android:gravity="center"
-                android:text="Royal Catering"
+                android:hint="Royal Catering"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                style="@style/topDesign_textView_bold"/>
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -72,20 +72,19 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/your_details"
                     android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
-                    style="@style/topDesign_textView_bold"/>
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -95,13 +94,12 @@
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_providerName"
+                    <EditText
+                        android:id="@+id/edt_providerName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
-                        android:text="John Doe"
+                        android:hint="John Doe"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -116,8 +114,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,13 +124,14 @@
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_providerPhone"
+                    <EditText
+                        android:id="@+id/edt_providerPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
-                        android:text="+1234567890"
+                        android:hint="+1234567890"
+                        android:maxLength="10"
+                        android:inputType="number"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -148,8 +146,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -159,13 +156,13 @@
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_providerEmail"
+                    <EditText
+                        android:id="@+id/edt_providerEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
-                        android:text="johndoe@gmail.com"
+                        android:inputType="textEmailAddress"
+                        android:hint="johndoe@gmail.com"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -184,20 +181,19 @@
 
                 <TextView
                     android:id="@+id/txt_serviceNumber"
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/business_details"
                     android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
-                    style="@style/topDesign_textView_bold"/>
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -207,13 +203,12 @@
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_serviceCategory"
+                    <EditText
+                        android:id="@+id/edt_businessName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
-                        android:text="Royal Catering"
+                        android:hint="Royal Catering"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -228,8 +223,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -239,13 +233,12 @@
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_serviceExperience"
+                    <EditText
+                        android:id="@+id/edt_businessCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
-                        android:text="Catering"
+                        android:hint="Catering"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -260,8 +253,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -271,13 +263,12 @@
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_serviceMinCharge"
+                    <EditText
+                        android:id="@+id/edt_providerExperience"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
-                        android:text="6.5 Years"
+                        android:hint="6.5 Years"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -292,24 +283,52 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="Minimum Charge:"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edt_serviceMinCharge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:hint="55 Ksh"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@color/grey_300" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Business link:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_businessLink"
+                    <EditText
+                        android:id="@+id/edt_businessLink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="end"
-                        android:text="www.royalcatering.com"
+                        android:layout_weight="1"
+                        android:hint="www.royalcatering.com"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -330,14 +349,16 @@
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/edt_businessDesc"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:gravity="top"
+                    android:hint="Enter business details here"
                     android:justificationMode="inter_word"
-                    android:maxLines="5"
-                    android:text="@string/dummy_text"
+                    android:minHeight="100dp"
                     android:textColor="@color/dark_blue" />
 
             </LinearLayout>
@@ -353,13 +374,13 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/other_details"
                     android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
-                    style="@style/topDesign_textView_bold" />
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -377,7 +398,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_provide"
+                        android:id="@+id/txt_provideEducation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -441,7 +462,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_ppassportCopyStatus"
+                        android:id="@+id/txt_passportCopyStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -518,12 +539,12 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_renew"
+                android:id="@+id/btn_update"
+                style="@style/submit_buttons"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
-                android:text="Submit"
-               style="@style/submit_buttons"/>
+                android:text="Submit" />
 
         </LinearLayout>
 
