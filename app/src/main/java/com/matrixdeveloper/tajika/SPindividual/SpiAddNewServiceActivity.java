@@ -63,8 +63,9 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
 
         categoryName.add("Choose category");
         categoryID.add(0);
-        subCategoryName.add("Choose sub category");
-        subCategoryID.add(0);
+
+        ArrayAdapter aaa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, subCategoryName);
+        aaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         sprCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -75,6 +76,8 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
                 // for sub category
                 subCategoryID.clear();
                 subCategoryName.clear();
+                subCategoryName.add("Choose sub-category");
+                subCategoryID.add(0);
 
                 if (position != 0) {
                     for (int i = 0; i < categoryList.get(position - 1).getSubCategory().size(); i++) {
@@ -83,6 +86,8 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
                         subCategoryName.add(subCategory.getServiceName());
                     }
                 }
+
+                sprSubCategory.setAdapter(aaa);
             }
 
             @Override
@@ -102,10 +107,6 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
         });
 
 
-        ArrayAdapter aaa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, subCategoryName);
-        aaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sprSubCategory.setAdapter(aaa);
-
     }
 
     private void initListeners() {
@@ -114,7 +115,17 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
 
         addNewGood.setOnClickListener(v -> startActivity(new Intent(SpiAddNewServiceActivity.this, SpiAddNewGoodsActivity.class)));
 
-        saveService.setOnClickListener(v -> addNewService());
+        saveService.setOnClickListener(v -> {
+            if(serviceCatID!=0){
+                if(serviceSubCatID!=0){
+                    addNewService();
+                }else {
+                    Utils.toast(getApplicationContext(),"Sub-Category filed required!");
+                }
+            }else {
+                Utils.toast(getApplicationContext(),"Category filed required!");
+            }
+        });
 
     }
 
