@@ -103,8 +103,7 @@
             <EditText
                 android:id="@+id/edt_enterPrice"
                 style="@style/bookService_editText_container"
-                android:inputType="number"
-                android:maxLength="4" />
+                android:inputType="number" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_saveGoods"

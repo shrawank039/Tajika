@@ -41,6 +41,7 @@
             app:tint="@color/md_red_A700" />
 
         <TextView
+            android:id="@+id/txt_creditBalance"
             style="@style/topDesign_textView_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

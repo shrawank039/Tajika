@@ -65,6 +65,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_todaySales"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400 Ksh"
@@ -89,6 +90,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_weekSales"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400 Ksh"
@@ -113,6 +115,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_totalSales"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400 Ksh"
@@ -158,6 +161,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_consumerGoods"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400"
@@ -182,6 +186,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_clientsConnected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400"
@@ -206,6 +211,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_totalServiceProvided"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400"
@@ -230,6 +236,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_totalGoodsSold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400"
@@ -254,6 +261,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_totalClientConnected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400"
@@ -278,6 +286,7 @@
                     android:theme="@style/topDesign_textView" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_totalFailedService"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400"

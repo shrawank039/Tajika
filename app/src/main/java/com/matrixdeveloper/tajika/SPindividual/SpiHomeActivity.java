@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,22 +52,20 @@ public class SpiHomeActivity extends AppCompatActivity {
     private CardView cvMessageButton;
     private Button checkNewOffers;
     private ViewFlipper viewFlipper;
+    private TextView creditBalance, todaySales, weekSales, totalSales, consumerGoods, clientConnected;
+    private TextView totalServiceProvided, totalGoodsSold, totalClientConnected, totalFailedService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_home);
 
-        pref = new PrefManager(this);
+        initViews();
+
         requestLists = new ArrayList<>();
         upcomingJobList = new ArrayList<>();
         requestAdapter = new NewRequestAdapter(SpiHomeActivity.this, requestLists, 0);
         upcomingJobAdapter = new UpcomingJobAdapter(SpiHomeActivity.this, upcomingJobList, 0);
-
-        requestRecycler = findViewById(R.id.rv_new_request);
-        upcomingJobRecycler = findViewById(R.id.rv_upcoming_job);
-        checkNewOffers = findViewById(R.id.btn_checkNewOrders);
-        viewFlipper = findViewById(R.id.viewflipper);
 
         requestRecycler.setHasFixedSize(true);
         requestRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -78,6 +77,19 @@ public class SpiHomeActivity extends AppCompatActivity {
         upcomingJobRecycler.setItemAnimator(new DefaultItemAnimator());
         upcomingJobRecycler.setAdapter(upcomingJobAdapter);
 
+        initListeners();
+
+        getHomeData();
+
+    }
+
+
+    private void initViews() {
+        pref = new PrefManager(this);
+        requestRecycler = findViewById(R.id.rv_new_request);
+        upcomingJobRecycler = findViewById(R.id.rv_upcoming_job);
+        checkNewOffers = findViewById(R.id.btn_checkNewOrders);
+        viewFlipper = findViewById(R.id.viewflipper);
         moreSettings = findViewById(R.id.iv_moreSettings);
         notifications = findViewById(R.id.iv_notifications);
         onlineOffline = findViewById(R.id.switch_onlineOffline);
@@ -86,56 +98,38 @@ public class SpiHomeActivity extends AppCompatActivity {
         upcomingJobsNotFound = findViewById(R.id.ll_upComingJobsRequestNotFound);
         cvMessageButton = findViewById(R.id.cv_conversation);
         allBookings = findViewById(R.id.iv_allBookings);
+        creditBalance = findViewById(R.id.txt_creditBalance);
+        todaySales = findViewById(R.id.txt_todaySales);
+        weekSales = findViewById(R.id.txt_weekSales);
+        totalSales = findViewById(R.id.txt_totalSales);
+        consumerGoods = findViewById(R.id.txt_consumerGoods);
+        clientConnected = findViewById(R.id.txt_clientsConnected);
+        totalServiceProvided = findViewById(R.id.txt_totalServiceProvided);
+        totalGoodsSold = findViewById(R.id.txt_totalGoodsSold);
+        totalClientConnected = findViewById(R.id.txt_totalClientConnected);
+        totalFailedService = findViewById(R.id.txt_totalFailedService);
+    }
 
-        checkNewOffers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewFlipper.setDisplayedChild(1);
+    private void initListeners() {
+
+        checkNewOffers.setOnClickListener(v -> viewFlipper.setDisplayedChild(1));
+
+        cvMessageButton.setOnClickListener(view -> startActivity(new Intent(SpiHomeActivity.this, ConversationListActivity.class)));
+
+        allBookings.setOnClickListener(view -> startActivity(new Intent(SpiHomeActivity.this, SpiAllBookingsActivity.class)));
+
+        moreSettings.setOnClickListener(view -> startActivity(new Intent(SpiHomeActivity.this, SpiMoreActivity.class)));
+
+        notifications.setOnClickListener(view -> startActivity(new Intent(SpiHomeActivity.this, NotificationActivity.class)));
+
+        onlineOffline.setOnClickListener(view -> {
+            if (onlineOffline.isChecked()) {
+                changeStatus("1");
+
+            } else {
+                changeStatus("0");
             }
         });
-
-        cvMessageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SpiHomeActivity.this, ConversationListActivity.class));
-
-            }
-        });
-        allBookings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SpiHomeActivity.this, SpiAllBookingsActivity.class));
-
-            }
-        });
-
-        moreSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SpiHomeActivity.this, SpiMoreActivity.class));
-            }
-        });
-        notifications.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SpiHomeActivity.this, NotificationActivity.class));
-            }
-        });
-
-        onlineOffline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onlineOffline.isChecked()) {
-                    changeStatus("1");
-
-                } else {
-                    changeStatus("0");
-                }
-            }
-        });
-
-        getHomeData();
-
     }
 
     private void changeStatus(String status) {
@@ -156,6 +150,7 @@ public class SpiHomeActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         ApiCall.postMethod(this, ServiceNames.UPDATE_LIVE_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
 
@@ -185,10 +180,25 @@ public class SpiHomeActivity extends AppCompatActivity {
                 requestArray = jsonObject.getJSONArray("tajikaServiceRequest");
                 upcominJobArray = jsonObject.getJSONArray("upcomingjob");
 
+                JSONObject jsonObject1 = jsonObject.getJSONObject("sales");
+
                 // request list
                 if (requestArray.length() < 1) {
                     newServiceRequestNotFound.setVisibility(View.VISIBLE);
                 }
+
+                creditBalance.setText("Credit Bal: Ksh " + jsonObject.optString("creditbalance"));
+                todaySales.setText(jsonObject1.optString("today_sale") + " Ksh");
+                weekSales.setText(jsonObject1.optString("week_sale") + " Ksh");
+                totalSales.setText(jsonObject1.optString("total_sale") + " Ksh");
+                consumerGoods.setText(jsonObject1.optString("customer_goods"));
+                clientConnected.setText(jsonObject1.optString("clinet_connected"));
+                totalServiceProvided.setText(jsonObject1.optString("service_provided"));
+                totalGoodsSold.setText(jsonObject1.optString("goods_sold"));
+                totalClientConnected.setText(jsonObject1.optString("client_contacted"));
+                totalFailedService.setText(jsonObject1.optString("failed_order"));
+
+
                 for (int i = 0; i < requestArray.length(); i++) {
 
                     try {

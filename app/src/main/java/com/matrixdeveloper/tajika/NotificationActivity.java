@@ -99,7 +99,6 @@ public class NotificationActivity extends AppCompatActivity {
 
                         notificationAdapter.notifyDataSetChanged();
 
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -108,7 +107,6 @@ public class NotificationActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
         });
     }

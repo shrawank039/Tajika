@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.VouchersActivity;
 import com.matrixdeveloper.tajika.model.VoucherList;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.viewHold
         holder.voucherCopyCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ctx, voucherModel.getCode() + " Copied !!", Toast.LENGTH_SHORT).show();
+                ((VouchersActivity)ctx).copyToClipBoard(voucherModel.getCode().toString());
             }
         });
     }

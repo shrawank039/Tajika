@@ -59,28 +59,18 @@ public class SPIMyServicesAdapter extends RecyclerView.Adapter<SPIMyServicesAdap
             holder.serviceExperience.setText(myListData.getExperience());
             holder.serviceMinCharge.setText(myListData.getMincharge());
 
-            holder.serviceDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    deleteService(myListData.getId(), position);
-                }
-            });
+            holder.serviceDelete.setOnClickListener(view -> deleteItem(myListData.getId(), position, ServiceNames.DELETE_SERVICE));
         } else if (serviceType == 0) {
             holder.goodsNumber.setText("Goods #" + myListData.getId());
             holder.goodsCategory.setText(myListData.getCategoryName());
             holder.goodsSubCategory.setText(myListData.getSubcategoryName());
             holder.goodsPrice.setText(myListData.getPrice());
-            holder.goodsDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    deleteGoods(myListData.getId(), position);
-                }
-            });
+            holder.goodsDelete.setOnClickListener(view -> deleteItem(myListData.getId(), position,ServiceNames.DELETE_GOODS));
         }
 
     }
 
-    public void deleteService(int serviceID, int itemPosition) {
+    public void deleteItem(int serviceID, int itemPosition, String url) {
 
         JSONObject data = new JSONObject();
         try {
@@ -89,33 +79,13 @@ public class SPIMyServicesAdapter extends RecyclerView.Adapter<SPIMyServicesAdap
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(ctx, ServiceNames.DELETE_SERVICE, data, response -> {
+        ApiCall.postMethod(ctx, url, data, response -> {
             Utils.log("TAG", response.toString());
             Utils.toast(ctx, response.optString("message"));
             if(response.optString("status").equals("200")){
                 notifyItemRemoved(itemPosition);
             }
         });
-
-    }
-
-    public void deleteGoods(int serviceID, int itemPosition) {
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("id", String.valueOf(serviceID));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        ApiCall.postMethod(ctx, ServiceNames.DELETE_GOODS, data, response -> {
-            Utils.log("TAG", response.toString());
-            Utils.toast(ctx, response.optString("message"));
-            if(response.optString("status").equals("200")){
-                notifyItemRemoved(itemPosition);
-            }
-        });
-
     }
 
     @Override
@@ -129,17 +99,17 @@ public class SPIMyServicesAdapter extends RecyclerView.Adapter<SPIMyServicesAdap
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-                serviceNumber = itemView.findViewById(R.id.txt_serviceNumber);
-                serviceCategory = itemView.findViewById(R.id.txt_serviceCategory);
-                serviceExperience = itemView.findViewById(R.id.txt_serviceExperience);
-                serviceMinCharge = itemView.findViewById(R.id.txt_serviceMinCharge);
-                serviceEdit = itemView.findViewById(R.id.iv_serviceEdit);
-                serviceDelete = itemView.findViewById(R.id.iv_serviceDelete);
-                goodsNumber = itemView.findViewById(R.id.txt_goodsNumber);
-                goodsCategory = itemView.findViewById(R.id.txt_category);
-                goodsSubCategory = itemView.findViewById(R.id.txt_subCategory);
-                goodsPrice = itemView.findViewById(R.id.txt_goodsPrice);
-                goodsDelete = itemView.findViewById(R.id.iv_goodsDelete);
+            serviceNumber = itemView.findViewById(R.id.txt_serviceNumber);
+            serviceCategory = itemView.findViewById(R.id.txt_serviceCategory);
+            serviceExperience = itemView.findViewById(R.id.txt_serviceExperience);
+            serviceMinCharge = itemView.findViewById(R.id.txt_serviceMinCharge);
+            serviceEdit = itemView.findViewById(R.id.iv_serviceEdit);
+            serviceDelete = itemView.findViewById(R.id.iv_serviceDelete);
+            goodsNumber = itemView.findViewById(R.id.txt_goodsNumber);
+            goodsCategory = itemView.findViewById(R.id.txt_category);
+            goodsSubCategory = itemView.findViewById(R.id.txt_subCategory);
+            goodsPrice = itemView.findViewById(R.id.txt_goodsPrice);
+            goodsDelete = itemView.findViewById(R.id.iv_goodsDelete);
         }
     }
 }

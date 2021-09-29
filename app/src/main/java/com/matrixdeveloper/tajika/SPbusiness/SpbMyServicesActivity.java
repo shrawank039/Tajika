@@ -66,6 +66,9 @@ public class SpbMyServicesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        serviceArray.clear();
+        goodsArray.clear();
+
         myServiceList();
         myGoodsList();
     }

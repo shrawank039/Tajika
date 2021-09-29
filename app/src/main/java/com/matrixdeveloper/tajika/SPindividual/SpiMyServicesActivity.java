@@ -53,6 +53,7 @@ public class SpiMyServicesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        serviceArray.clear();
         myServiceList();
     }
 
