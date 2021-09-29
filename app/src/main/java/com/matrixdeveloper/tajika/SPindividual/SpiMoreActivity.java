@@ -59,6 +59,7 @@ public class SpiMoreActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), ReferralActivity.class));
                     break;
                 case 6:
+                case 10:
                     prf.setString("id", "");
                     Intent intent = new Intent(this, LandingPage.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -76,12 +77,6 @@ public class SpiMoreActivity extends AppCompatActivity {
                     break;
                 case 9:
                     startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
-                    break;
-                case 10:
-                    prf.setString("id", "");
-                    Intent intent2 = new Intent(this, LoginActivity.class);
-                    intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent2);
                     break;
                 default:
                     Toast.makeText(SpiMoreActivity.this, "" + i, Toast.LENGTH_SHORT).show();

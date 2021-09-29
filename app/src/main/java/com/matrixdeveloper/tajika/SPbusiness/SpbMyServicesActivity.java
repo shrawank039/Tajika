@@ -1,11 +1,13 @@
 package com.matrixdeveloper.tajika.SPbusiness;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +33,8 @@ public class SpbMyServicesActivity extends AppCompatActivity {
     private ImageView backPress;
     private RecyclerView myServicesRecView;
     private SPIMyServicesAdapter servicesAdapter;
+    private SPIMyServicesAdapter goodsAdapter;
+    private ConcatAdapter concatAdapter;
     private final String TAG = "SpbMyServicesAct";
     private PrefManager pref;
     private Button addNewGoodOrService;
@@ -47,14 +51,26 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         myServicesRecView = findViewById(R.id.rv_myServices);
         addNewGoodOrService = findViewById(R.id.button2);
 
-
         backPress.setOnClickListener(view -> SpbMyServicesActivity.super.onBackPressed());
         addNewGoodOrService.setOnClickListener(v -> startActivity(new Intent(SpbMyServicesActivity.this, SpiAddNewServiceActivity.class)));
 
+        servicesAdapter = new SPIMyServicesAdapter(this, serviceArray, 1);
+        goodsAdapter = new SPIMyServicesAdapter(this, goodsArray, 0);
+        concatAdapter = new ConcatAdapter(servicesAdapter, goodsAdapter);
+        myServicesRecView.setHasFixedSize(true);
+        myServicesRecView.setLayoutManager(new LinearLayoutManager(this));
+        myServicesRecView.setAdapter(concatAdapter);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         myServiceList();
         myGoodsList();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void myGoodsList() {
 
         JSONObject data = new JSONObject();
@@ -70,16 +86,19 @@ public class SpbMyServicesActivity extends AppCompatActivity {
                 try {
                     JSONArray myServices = response.getJSONArray("data");
                     SPIMyServicesModel servicesModel = MySingleton.getGson().fromJson(myServices.getJSONObject(i).toString(), SPIMyServicesModel.class);
-                    serviceArray.add(servicesModel);
+                    goodsArray.add(servicesModel);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            servicesAdapter = new SPIMyServicesAdapter(this, serviceArray, 0);
+
+            goodsAdapter.notifyDataSetChanged();
+            concatAdapter.notifyDataSetChanged();
 
         });
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void myServiceList() {
 
         JSONObject data = new JSONObject();
@@ -100,27 +119,8 @@ public class SpbMyServicesActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            servicesAdapter = new SPIMyServicesAdapter(this, serviceArray, 1);
-            myServicesRecView.setHasFixedSize(true);
-            myServicesRecView.setLayoutManager(new LinearLayoutManager(this));
-            myServicesRecView.setAdapter(servicesAdapter);
+           servicesAdapter.notifyDataSetChanged();
         });
     }
 
-    public void deleteGoods(int serviceID) {
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("id", String.valueOf(serviceID));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        ApiCall.postMethod(this, ServiceNames.DELETE_GOODS, data, response -> {
-            Utils.log(TAG, response.toString());
-            Utils.toast(this, response.optString("message"));
-            myServiceList();
-        });
-
-    }
 }
