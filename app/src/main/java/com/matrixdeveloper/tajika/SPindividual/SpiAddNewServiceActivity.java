@@ -199,6 +199,9 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.ADD_NEW_SERVICE, data, response -> {
             Utils.log(TAG, response.toString());
             Utils.toast(this, response.optString("message"));
+            if (response.optString("status").equals("200")){
+                finish();
+            }
         });
 
     }
