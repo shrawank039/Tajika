@@ -33,7 +33,7 @@ public class RequestDetails implements Serializable
     private String requestId;
     @SerializedName("booking_id")
     @Expose
-    private String bookingId;
+    private Object bookingId;
     @SerializedName("status")
     @Expose
     private String status;
@@ -63,19 +63,19 @@ public class RequestDetails implements Serializable
     private String contactPersonPhone;
     @SerializedName("serviceaddress_building_no")
     @Expose
-    private String serviceaddressBuildingNo;
+    private Object serviceaddressBuildingNo;
     @SerializedName("serviceaddress_streetaddress")
     @Expose
-    private String serviceaddressStreetaddress;
+    private Object serviceaddressStreetaddress;
     @SerializedName("serviceaddress_landmark")
     @Expose
-    private String serviceaddressLandmark;
+    private Object serviceaddressLandmark;
     @SerializedName("instruction")
     @Expose
-    private String instruction;
+    private Object instruction;
     @SerializedName("booking_datetime")
     @Expose
-    private String bookingDatetime;
+    private Object bookingDatetime;
     @SerializedName("cancelation_reason")
     @Expose
     private Object cancelationReason;
@@ -114,8 +114,8 @@ public class RequestDetails implements Serializable
     private String currency;
     @SerializedName("adminpayableamount")
     @Expose
-    private Integer adminpayableamount;
-    private final static long serialVersionUID = 9200144750725155410L;
+    private Double adminpayableamount;
+    private final static long serialVersionUID = 8171282150038736230L;
 
     public Integer getId() {
         return id;
@@ -181,11 +181,11 @@ public class RequestDetails implements Serializable
         this.requestId = requestId;
     }
 
-    public String getBookingId() {
+    public Object getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(String bookingId) {
+    public void setBookingId(Object bookingId) {
         this.bookingId = bookingId;
     }
 
@@ -261,43 +261,43 @@ public class RequestDetails implements Serializable
         this.contactPersonPhone = contactPersonPhone;
     }
 
-    public String getServiceaddressBuildingNo() {
+    public Object getServiceaddressBuildingNo() {
         return serviceaddressBuildingNo;
     }
 
-    public void setServiceaddressBuildingNo(String serviceaddressBuildingNo) {
+    public void setServiceaddressBuildingNo(Object serviceaddressBuildingNo) {
         this.serviceaddressBuildingNo = serviceaddressBuildingNo;
     }
 
-    public String getServiceaddressStreetaddress() {
+    public Object getServiceaddressStreetaddress() {
         return serviceaddressStreetaddress;
     }
 
-    public void setServiceaddressStreetaddress(String serviceaddressStreetaddress) {
+    public void setServiceaddressStreetaddress(Object serviceaddressStreetaddress) {
         this.serviceaddressStreetaddress = serviceaddressStreetaddress;
     }
 
-    public String getServiceaddressLandmark() {
+    public Object getServiceaddressLandmark() {
         return serviceaddressLandmark;
     }
 
-    public void setServiceaddressLandmark(String serviceaddressLandmark) {
+    public void setServiceaddressLandmark(Object serviceaddressLandmark) {
         this.serviceaddressLandmark = serviceaddressLandmark;
     }
 
-    public String getInstruction() {
+    public Object getInstruction() {
         return instruction;
     }
 
-    public void setInstruction(String instruction) {
+    public void setInstruction(Object instruction) {
         this.instruction = instruction;
     }
 
-    public String getBookingDatetime() {
+    public Object getBookingDatetime() {
         return bookingDatetime;
     }
 
-    public void setBookingDatetime(String bookingDatetime) {
+    public void setBookingDatetime(Object bookingDatetime) {
         this.bookingDatetime = bookingDatetime;
     }
 
@@ -397,11 +397,11 @@ public class RequestDetails implements Serializable
         this.currency = currency;
     }
 
-    public Integer getAdminpayableamount() {
+    public Double getAdminpayableamount() {
         return adminpayableamount;
     }
 
-    public void setAdminpayableamount(Integer adminpayableamount) {
+    public void setAdminpayableamount(Double adminpayableamount) {
         this.adminpayableamount = adminpayableamount;
     }
 
