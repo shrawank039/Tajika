@@ -1,14 +1,17 @@
 package com.matrixdeveloper.tajika;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.adapter.VoucherAdapter;
-import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.model.VoucherList;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
@@ -18,7 +21,6 @@ import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class VouchersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vouchers);
-        backPress=findViewById(R.id.iv_backPress);
+        backPress = findViewById(R.id.iv_backPress);
 
         pref = new PrefManager(this);
 
@@ -83,7 +85,14 @@ public class VouchersActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
         });
+    }
+
+    public void copyToClipBoard(String text) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Copied Text", text);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, " Copied !!", Toast.LENGTH_SHORT).show();
+
     }
 }
