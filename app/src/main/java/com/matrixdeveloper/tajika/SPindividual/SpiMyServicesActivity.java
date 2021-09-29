@@ -48,11 +48,17 @@ public class SpiMyServicesActivity extends AppCompatActivity {
 
         backPress.setOnClickListener(view -> SpiMyServicesActivity.super.onBackPressed());
         addNewGoodsOrServices.setOnClickListener(view -> startActivity(new Intent(SpiMyServicesActivity.this, SpiAddNewServiceActivity.class)));
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         myServiceList();
     }
 
     private void myServiceList() {
+
+        serviceArray.clear();
 
         JSONObject data = new JSONObject();
         try {
@@ -92,6 +98,7 @@ public class SpiMyServicesActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.DELETE_SERVICE, data, response -> {
             Utils.log(TAG, response.toString());
             Utils.toast(this, response.optString("message"));
+            myServiceList();
         });
 
     }
