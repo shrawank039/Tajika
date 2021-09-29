@@ -52,6 +52,7 @@ public class ServiceNames {
     public static final String ADD_SERVICE_RATING = API + "/addservicerating";
     public static final String PROVIDER_ALL_BOOKING = API + "/serviceProviderAllBooking";
     public static final String PROVIDER_SERVICE_LIST = API + "/myServiceList";
+    public static final String PROVIDER_GOODS_LIST = API + "/myGoodsList";
     public static final String ADD_NEW_SERVICE = API + "/saveService";
     public static final String ADD_NEW_GOODS = API + "/saveGoods";
     public static final String UPDATE_SERVICE = API + "/updateService";

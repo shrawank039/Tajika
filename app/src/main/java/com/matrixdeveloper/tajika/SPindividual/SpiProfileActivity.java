@@ -98,7 +98,6 @@ public class SpiProfileActivity extends AppCompatActivity {
                     purchasedOn.setText(jsonObject.optString("start_date"));
                     expiresOn.setText(jsonObject.optString("end_date"));
 
-
                     //Not in response
                     businessName.setText(jsonObject.optString("business_categories"));
 

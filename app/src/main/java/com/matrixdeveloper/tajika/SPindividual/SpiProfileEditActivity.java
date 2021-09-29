@@ -39,7 +39,6 @@ public class SpiProfileEditActivity extends AppCompatActivity {
     }
 
     private void initListeners() {
-
         backPress.setOnClickListener(view -> SpiProfileEditActivity.super.onBackPressed());
         updateProfile.setOnClickListener(view -> initiateProfileUpdate());
 

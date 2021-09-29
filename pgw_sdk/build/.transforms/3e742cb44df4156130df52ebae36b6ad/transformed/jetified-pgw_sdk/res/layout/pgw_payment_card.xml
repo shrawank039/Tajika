@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="90dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@null"
+    android:paddingTop="10dp"
+    android:orientation="vertical"
+    card_view:cardPreventCornerOverlap="false">
+
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:src="@drawable/enterphone"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/cards_info_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Cards"
+            android:paddingTop="20dp"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:fontFamily="Helvetica"/>
+
+</LinearLayout>

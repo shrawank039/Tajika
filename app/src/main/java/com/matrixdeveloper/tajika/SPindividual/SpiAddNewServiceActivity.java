@@ -59,6 +59,10 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
         initViews();
         initListeners();
 
+        if(pref.getString("role").equals("3")){
+            addNewGood.setVisibility(View.GONE);
+        }
+
         getCatSubcat();
 
         categoryName.add("Choose category");

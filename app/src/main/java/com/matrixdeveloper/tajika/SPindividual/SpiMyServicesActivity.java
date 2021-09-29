@@ -78,7 +78,7 @@ public class SpiMyServicesActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            servicesAdapter = new SPIMyServicesAdapter(this, serviceArray);
+            servicesAdapter = new SPIMyServicesAdapter(this, serviceArray, 1);
             myServicesRecView.setHasFixedSize(true);
             myServicesRecView.setLayoutManager(new LinearLayoutManager(this));
             myServicesRecView.setAdapter(servicesAdapter);
