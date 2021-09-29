@@ -40,7 +40,6 @@ public class SpiProfileEditActivity extends AppCompatActivity {
     }
 
     private void initListeners() {
-
         backPress.setOnClickListener(view -> SpiProfileEditActivity.super.onBackPressed());
         updateProfile.setOnClickListener(view -> initiateProfileUpdate());
 
@@ -53,6 +52,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         ApiCall.postMethod(this, ServiceNames.GET_PROVIDER_PROFILE_IND, data, response -> {
             Utils.log(TAG, response.toString());
             try {

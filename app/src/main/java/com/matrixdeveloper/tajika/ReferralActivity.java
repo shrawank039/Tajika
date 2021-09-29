@@ -1,5 +1,6 @@
 package com.matrixdeveloper.tajika;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,7 @@ public class ReferralActivity extends AppCompatActivity {
             sendIntent.setType("vnd.android-dir/mms-sms");
             startActivity(sendIntent);
         });
+
         shareThroughWhatsapp.setOnClickListener(view -> {
             Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
             whatsappIntent.setType("text/plain");
@@ -42,17 +44,20 @@ public class ReferralActivity extends AppCompatActivity {
                 Toast.makeText(ReferralActivity.this, "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
             }
         });
+
         shareThroughFacebook.setOnClickListener(view -> {
-            Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-            whatsappIntent.setType("text/plain");
-            whatsappIntent.setPackage("com.facebook.katana");
-            whatsappIntent.putExtra(Intent.EXTRA_TEXT, "");
+            Intent fbIntent = new Intent(Intent.ACTION_SEND);
+            fbIntent.setType("text/plain");
+            fbIntent.setPackage("com.facebook.katana");
+            fbIntent.putExtra(Intent.EXTRA_TEXT, "");
+
             try {
-                startActivity(whatsappIntent);
-            } catch (android.content.ActivityNotFoundException ex) {
+                startActivity(fbIntent);
+            } catch (ActivityNotFoundException ex) {
                 Toast.makeText(ReferralActivity.this, "Facebook have not been installed.", Toast.LENGTH_SHORT).show();
             }
         });
+
         share.setOnClickListener(view -> {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
