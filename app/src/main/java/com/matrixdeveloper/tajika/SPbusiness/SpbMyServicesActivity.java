@@ -2,7 +2,6 @@ package com.matrixdeveloper.tajika.SPbusiness;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -36,6 +35,7 @@ public class SpbMyServicesActivity extends AppCompatActivity {
     private PrefManager pref;
     private Button addNewGoodOrService;
     private List<SPIMyServicesModel> serviceArray = new ArrayList<>();
+    private List<SPIMyServicesModel> goodsArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +49,35 @@ public class SpbMyServicesActivity extends AppCompatActivity {
 
 
         backPress.setOnClickListener(view -> SpbMyServicesActivity.super.onBackPressed());
-        addNewGoodOrService.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SpbMyServicesActivity.this, SpiAddNewServiceActivity.class));
-            }
-        });
+        addNewGoodOrService.setOnClickListener(v -> startActivity(new Intent(SpbMyServicesActivity.this, SpiAddNewServiceActivity.class)));
 
         myServiceList();
+        myGoodsList();
+    }
+
+    private void myGoodsList() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.PROVIDER_GOODS_LIST, data, response -> {
+            Utils.log(TAG, response.toString());
+
+            for (int i = 0; i < response.length(); i++) {
+                try {
+                    JSONArray myServices = response.getJSONArray("data");
+                    SPIMyServicesModel servicesModel = MySingleton.getGson().fromJson(myServices.getJSONObject(i).toString(), SPIMyServicesModel.class);
+                    serviceArray.add(servicesModel);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            servicesAdapter = new SPIMyServicesAdapter(this, serviceArray, 0);
+
+        });
     }
 
     private void myServiceList() {
@@ -79,10 +100,27 @@ public class SpbMyServicesActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            servicesAdapter = new SPIMyServicesAdapter(this, serviceArray);
+            servicesAdapter = new SPIMyServicesAdapter(this, serviceArray, 1);
             myServicesRecView.setHasFixedSize(true);
             myServicesRecView.setLayoutManager(new LinearLayoutManager(this));
             myServicesRecView.setAdapter(servicesAdapter);
         });
+    }
+
+    public void deleteGoods(int serviceID) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", String.valueOf(serviceID));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.DELETE_GOODS, data, response -> {
+            Utils.log(TAG, response.toString());
+            Utils.toast(this, response.optString("message"));
+            myServiceList();
+        });
+
     }
 }

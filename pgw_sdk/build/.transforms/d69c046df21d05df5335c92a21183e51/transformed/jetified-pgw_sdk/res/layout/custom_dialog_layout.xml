@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@drawable/lh_ic_close"
+        android:src="@drawable/lh_ic_close"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/dismiss"
+        android:text="Dismiss"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/image"
+        android:layout_marginTop="6dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/layout_buttons"
+        android:layout_marginBottom="20dp"  />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/dismiss"
+        android:layout_toRightOf="@+id/image"
+        android:gravity="center_vertical"
+        android:textColor="@color/ln_colorError"
+        android:text="fdjbdbkfbfbd"
+        android:textSize="12sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
+</RelativeLayout>

@@ -31,7 +31,18 @@ public class SPIMyServicesModel implements Serializable
     @SerializedName("subcategory_name")
     @Expose
     private String subcategoryName;
+    @SerializedName("price")
+    @Expose
+    private String price;
     private final static long serialVersionUID = 4129411047693324626L;
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public Integer getId() {
         return id;

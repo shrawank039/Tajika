@@ -15,6 +15,7 @@ import com.matrixdeveloper.tajika.LandingPage;
 import com.matrixdeveloper.tajika.LoginActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.ReferralActivity;
+import com.matrixdeveloper.tajika.SPbusiness.SpbMyServicesActivity;
 import com.matrixdeveloper.tajika.adapter.SPIMoreOptionsBaseAdapter;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
@@ -42,7 +43,11 @@ public class SpiMoreActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), SpiProfileActivity.class));
                     break;
                 case 1:
-                    startActivity(new Intent(getApplicationContext(), SpiMyServicesActivity.class));
+                    if(prf.getString("role").equals("3")) {
+                        startActivity(new Intent(getApplicationContext(), SpiMyServicesActivity.class));
+                    }else{
+                        startActivity(new Intent(getApplicationContext(), SpbMyServicesActivity.class));
+                    }
                     break;
                 case 3:
                     startActivity(new Intent(getApplicationContext(), SpiAllBookingsActivity.class));

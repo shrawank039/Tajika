@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="10dp"
+    android:background="#7E7E7E"
+    tools:context="com.example.pgw_sdk_android.PgwMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:background="@drawable/layout_bg_top"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+
+            >
+
+            <ImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/drawable_logo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Asgardian Inc"
+                        android:textSize="12sp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#ffffff"
+                        android:fontFamily="Helvetica Neue, Regular"
+                        android:padding="10dp"
+                        android:layout_marginRight="110dp"/>
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="left"
+                        android:background="@color/finserve_berry_default"
+                        android:src="@drawable/ic_close_white_24dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="asgad.mcu.com"
+                    android:textSize="12sp"
+                    android:paddingTop="2dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="Helvetica Neue, Regular"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Order ID  #20DCB2Q1D4"
+                    android:textSize="12sp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="Helvetica Neue, Regular"
+                    android:paddingTop="2dp"
+                    android:padding="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:orientation="horizontal"
+            android:paddingTop="6dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="Subtotal amount"
+                android:textSize="12dp"
+                android:layout_marginLeft="80dp"
+                android:textColor="#202020"
+                android:layout_marginRight="40dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="2,000.00"
+                android:textColor="#202020"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:textSize="12dp"
+                android:text="KES"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:orientation="horizontal"
+            android:paddingTop="6dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="Transaction Fees"
+                android:textSize="12dp"
+                android:layout_marginLeft="80dp"
+                android:textColor="#202020"
+                android:layout_marginRight="40dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="     50.00"
+                android:textColor="#202020"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:textSize="12dp"
+                android:text="KES"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:orientation="horizontal"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="Amount to pay"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:layout_marginLeft="80dp"
+                android:textColor="#202020"
+                android:layout_marginRight="40dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:text="    2,050.00"
+                android:textColor="@color/finserve_berry_default"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Helvetica Neue, Regular"
+                android:textColor="@color/finserve_berry_default"
+                android:textSize="12dp"
+                android:text="KES"/>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#FFFFFF">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fillViewport="true">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <include layout="@layout/pgw_pan_layout" />
+
+                    <include layout="@layout/pgw_exp_cvv_grp_layout" />
+
+                    <include layout="@layout/pgw_pin_layout" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.core.widget.NestedScrollView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#FFFFFF">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BACK"
+                android:paddingLeft="40dp"
+                android:textSize="12sp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="1dp"
+                android:textColor="#D9D9D9"/>
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="PAY"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/layout_buttons"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>
+
+

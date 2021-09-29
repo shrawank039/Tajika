@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ctil_expiry_input"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="8dp"
+    android:layout_weight="1"
+    android:hint="Expiry date(MM/YY)"
+    android:textColorHint="@color/ln_colorHint"
+    app:errorEnabled="true"
+    app:errorTextAppearance="@style/ErrorTextStyle"
+    app:passwordToggleEnabled="true"
+    android:drawableStart="@drawable/payment_method_generic_card"
+    android:drawableLeft="@drawable/payment_method_generic_card"
+    app:passwordToggleTint="@null"
+    app:theme="@style/MyTextInputLayout">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/tiet_exp_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:imeOptions="actionNext"
+        android:inputType="textPassword"
+        android:maxLength="5"
+        android:textSize="@dimen/ln_input_size"
+        app:theme="@style/MyTextInputEdit" />
+</com.google.android.material.textfield.TextInputLayout>
+

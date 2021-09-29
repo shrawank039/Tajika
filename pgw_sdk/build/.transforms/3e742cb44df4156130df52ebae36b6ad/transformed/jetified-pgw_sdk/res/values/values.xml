@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <string-array name="pin_progress">
+        <item>@color/finserve_berry_default</item>
+        <item>@color/bar_color</item>
+        <item>@color/ln_colorError</item>
+        <item>@color/finserve_berry_default</item>
+    </string-array>
+    <attr format="reference|color" name="jengaUIBackground"/>
+    <attr format="reference" name="jengaUIProfilePic"/>
+    <color name="album_title">#4c4c4c</color>
+    <color name="bar_color">#9b9b9b</color>
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="colorAccent">#ff000000</color>
+    <color name="colorPrimary">#ff000000</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="equity_grey">#CCCCCC</color>
+    <color name="equity_grey_light">#f1f1f1</color>
+    <color name="finserve_berry_default">#9b9b9b</color>
+    <color name="ln_actionMenuTextColor">#ffffff</color>
+    <color name="ln_colorControlActivated">#ff151525</color>
+    <color name="ln_colorControlHighlight">#ff000000</color>
+    <color name="ln_colorError">#ffdd0031</color>
+    <color name="ln_colorHint">#aaaaaa</color>
+    <color name="ln_colorInfoDesc">#ff6b6b76</color>
+    <color name="ln_colorInfoHeader">#ff151525</color>
+    <color name="ln_colorProgress">#ffffff</color>
+    <color name="ln_colorWhite">#ffffff</color>
+    <color name="ln_info_bg">#ff000000</color>
+    <color name="ln_verify_btn_disabled">#ffa4a4ac</color>
+    <color name="ln_verify_btn_enabled">#ff000000</color>
+    <color name="ln_verify_btn_pressed">#ff3a3a48</color>
+    <color name="text_main_color">#ff202020</color>
+    <color name="text_sub_color">#ff999999</color>
+    <color name="viewBg">#f1f5f8</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_semi_transparent">#B2FFFFFF</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="album_cover_height">160dp</dimen>
+    <dimen name="album_title">15dp</dimen>
+    <dimen name="album_title_padding">10dp</dimen>
+    <dimen name="backdrop_subtitle">18dp</dimen>
+    <dimen name="backdrop_title">30dp</dimen>
+    <dimen name="card_album_radius">0dp</dimen>
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="detail_backdrop_height">250dp</dimen>
+    <dimen name="drawer_icon_size">24dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="ic_album_overflow_height">30dp</dimen>
+    <dimen name="ic_album_overflow_margin_top">10dp</dimen>
+    <dimen name="ic_album_overflow_width">20dp</dimen>
+    <dimen name="icon_height">60dp</dimen>
+    <dimen name="item_offset">10dp</dimen>
+    <dimen name="ln_input_size">16sp</dimen>
+    <dimen name="ln_progress_txt_size">18sp</dimen>
+    <dimen name="ln_toolbar_title_size">18sp</dimen>
+    <dimen name="medium_text">16sp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="service_cover_height">120dp</dimen>
+    <dimen name="songs_count">12dp</dimen>
+    <dimen name="songs_count_padding_bottom">5dp</dimen>
+    <dimen name="ui_spacing_normal">8dp</dimen>
+    <dimen name="ui_spacing_small">4dp</dimen>
+    <string name="account_number_code">Enter %s as the Account Number</string>
+    <string name="add_card">Add Card</string>
+    <string name="airtel_line_one">Open your Airtel Money menu,select PayBill</string>
+    <string name="airtel_pin">Enter your Airtel Money PIN</string>
+    <string name="app_name">pgw_sdk</string>
+    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">fc171732-4923-435c-bea9-64b29b6e5568</string>
+    <string name="confirmation">Confirm details and complete expiry</string>
+    <string name="cvv_desc">A three-digit code on your credit card, you can find this on the back of your card.</string>
+    <string name="cvv_header">CVV</string>
+    <string name="exp_details">You should be able to find this date on the front of your card, under your card number.</string>
+    <string name="exp_header">Expiration Date</string>
+    <string name="gateway_3d_secure_authentication">3-D Secure Authentication</string>
+    <string name="gateway_error_missing_3d_secure_id">Missing 3-D Secure Id</string>
+    <string name="gateway_error_missing_summary_status">Missing summary status</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="line_one_paybill">Open your %s MPESA menu,select PayBill</string>
+    <string name="line_one_paybill_eazzy">Open your %s menu,select PayBill</string>
+    <string name="notification_text">Once you receive confirmation sms for %s click the button below</string>
+    <string name="otp_details">One time verification password sent from your bank to your registered mobile number to verify expiry</string>
+    <string name="otp_header">OTP</string>
+    <string name="paybill_number_code">Enter %d as the Paybill Number</string>
+    <string name="pin_details">You can\'t find this on the card. It is a 4 digit security pin to authorised card transactions.\nYou might have to contact your bank if you\'ve forgotten the pin</string>
+    <string name="pin_entry">Enter your %s MPESA PIN</string>
+    <string name="pin_entry_eazzy">Enter your %s  PIN</string>
+    <string name="pin_header">Card Pin</string>
+    <string name="progress_text">Saving Card</string>
+    <string name="select_country_code">Select country code</string>
+    <string name="select_payment_method">Select payment method</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main_activitytest">MainActivitytest</string>
+    <string name="title_activity_tigo">TigoActivity</string>
+    <string name="total_amount">Enter amount %s KES</string>
+    <string name="verification_details">Please contact your bank for more details, or try adding a different payment method</string>
+    <string name="verification_error">Sorry,something went wrong</string>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="DialogAnimation">
+        <item name="android:windowExitAnimation">@anim/dialog_slide_out</item>
+        <item name="android:windowEnterAnimation">@anim/dialog_slide_down</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
+    <style name="DialogSlideAnim" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+    <style name="DialogTheme" parent="@style/PGWAppTheme">
+        <item name="colorAccent">@color/ln_colorHint</item>
+    </style>
+    <style name="ErrorTextStyle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/ln_colorError</item>
+    </style>
+    <style name="MyTextInputEdit" parent="MyTextInputLayout">
+        <item name="colorControlNormal">@color/equity_grey</item>
+        <item name="colorControlActivated">@color/ln_colorHint</item>
+    </style>
+    <style name="MyTextInputLayout" parent="PGWAppTheme">
+        <item name="colorAccent">@color/ln_colorHint</item>
+        <item name="android:textColorHint">@color/ln_colorHint</item>
+        <item name="colorControlNormal">@color/ln_colorHint</item>
+        <item name="colorControlActivated">@color/ln_colorHint</item>
+    </style>
+    <style name="PGWAppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/ln_colorControlHighlight</item>
+        <item name="actionMenuTextColor">@color/ln_actionMenuTextColor</item>
+    </style>
+    <style name="PGWAppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="PGWAppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="PGWAppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="PGWEditText" parent="PGWAppTheme">
+        <item name="colorControlNormal">@color/equity_grey</item>
+        <item name="colorControlActivated">@color/ln_colorHint</item>
+    </style>
+    <style name="Text" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/text_main_color</item>
+        <!--<item name="fontPath">fonts/helvetica_neue-light.otf</item>-->
+    </style>
+    <style name="Text.Medium" parent="@style/Text">
+        <item name="android:textSize">@dimen/medium_text</item>
+    </style>
+    <style name="Text.Placeholder" parent="Text.Medium">
+        <item name="android:textColor">@color/text_sub_color</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/ln_colorError</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="ToolbarStyle" parent="@style/PGWAppTheme">
+        <item name="colorControlHighlight">@color/ln_colorWhite</item>
+        <item name="colorControlNormal">@color/ln_colorWhite</item>
+    </style>
+    <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/ln_colorHint</item>
+        <item name="colorPrimaryDark">@color/ln_colorHint</item>
+        <item name="colorAccent">@color/ln_colorHint</item>
+    </style>
+    <style name="loadingStyle" parent="PGWAppTheme">
+
+        <item name="colorAccent">@color/ln_colorProgress</item>
+    </style>
+</resources>

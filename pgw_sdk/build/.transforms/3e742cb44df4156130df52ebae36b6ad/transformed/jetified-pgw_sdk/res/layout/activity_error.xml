@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:background="#7E7E7E"
+    android:id="@+id/contentView">
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:background="@drawable/layout_bg_top"
+        >
+
+
+        <include layout="@layout/header"></include>
+
+        <LinearLayout
+            android:id="@+id/walledId"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#ffffff"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="40dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/success_icon" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/wallet_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="160dp"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#ffffff">
+            <TextView
+                android:id="@+id/stepOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This bill is already cleared!"
+                android:gravity="center"
+                android:paddingBottom="14dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#ffffff">
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/stepTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A confirmation message will be sent by"
+                android:gravity="center"
+                android:paddingBottom="3dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff">
+            <TextView
+                android:id="@+id/stepThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SMS to your mobile number."
+                android:gravity="center"
+                android:paddingBottom="14dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#ffffff">
+            <TextView
+                android:id="@+id/stepFour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thank you for shopping with us !"
+                android:gravity="center"
+                android:paddingBottom="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/confirm_button"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="Ok"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/layout_buttons"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
