@@ -26,7 +26,6 @@ public class SpiProfileEditActivity extends AppCompatActivity {
     private Button updateProfile;
     private PrefManager pref;
     private final String TAG = "SpiProfileEditAct";
-    private String serviceArea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +79,8 @@ public class SpiProfileEditActivity extends AppCompatActivity {
                     proQualification.setText(jsonObject.optString("professional_qualification"));
                     proQualificationStatus.setText(jsonObject.optString("qualification_certification"));
 
-                    serviceArea = jsonObject.optString("service_area");
-
                     //Not in response
-                    businessName.setText(jsonObject.optString("business_categories"));
+                    businessName.setText(jsonObject.optString("service_area"));
                     businessNameTop.setText(jsonObject.optString("business_categories"));
 
                 }
@@ -125,6 +122,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
         String phoneNumber = providerNumber.getText().toString().trim();
         String email = providerEmail.getText().toString().trim();
         String business_categories = businessCategory.getText().toString().trim();
+        String business_name = businessCategory.getText().toString().trim();
         String year_of_experience = providerExperience.getText().toString().trim();
         String bussiness_link = businessLink.getText().toString().trim();
         String service_description = businessDesc.getText().toString().trim();
@@ -142,7 +140,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
             data.put("name", name);
             data.put("phone", phoneNumber);
             data.put("email", email);
-            data.put("service_area", serviceArea);
+            data.put("service_area", business_name);
             data.put("business_categories", business_categories);
             data.put("service_description", service_description);
             data.put("year_of_experience", year_of_experience);
