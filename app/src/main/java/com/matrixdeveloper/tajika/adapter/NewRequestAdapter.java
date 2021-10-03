@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiServiceRequestDetailsActivity;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 
@@ -47,7 +48,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_new_services_request, parent, false);
+                .inflate(R.layout.item_new_services_request, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -60,13 +61,15 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         holder.jobDate.setText(serviceList.getServiceDate());
         holder.jobType.setText(serviceList.getServiceType());
 
-        holder.accept.setOnClickListener(v -> {
 
+        holder.accept.setOnClickListener(v -> {
+            ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString());
         });
 
         holder.viewInfo.setOnClickListener(v -> {
-            ctx.startActivity(new Intent(ctx, SpiServiceRequestDetailsActivity.class)
-            .putExtra("id", serviceList.getId()));
+            Intent intent = new Intent(ctx, SpiServiceRequestDetailsActivity.class);
+            intent.putExtra("ser_id", serviceList.getId().toString());
+            ctx.startActivity(intent);
         });
 
     }

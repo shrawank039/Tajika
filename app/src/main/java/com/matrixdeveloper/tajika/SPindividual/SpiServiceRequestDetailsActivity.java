@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,10 +24,10 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
     private ImageView backPress;
     private TextView serviceAccept, serviceDeclined, requestId, jobDate, jobTime, jobType,
             address, description, amtWillingToPay, contactName, contactNumber;
-    private String id;
     private final String TAG = "SpiServiceRequestDetailsAct";
     private PrefManager pref;
     RequestDetails requestDetails;
+    private String serID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +35,22 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spi_service_request_details);
 
         pref = new PrefManager(this);
-        id = getIntent().getStringExtra("id");
+
+        serID = getIntent().getStringExtra("ser_id");
 
         initViews();
 
         backPress.setOnClickListener(view -> SpiServiceRequestDetailsActivity.super.onBackPressed());
 
         serviceAccept.setOnClickListener(view -> {
-            changeServiceStatus(id, "Accept");
-
+            changeServiceStatus(serID, "Accept");
         });
 
         serviceDeclined.setOnClickListener(view -> {
-            changeServiceStatus(id, "Declined");
+            changeServiceStatus(serID, "Declined");
         });
 
-        getServiceDetails(id);
+        getServiceDetails(serID);
     }
 
     private void initViews() {
@@ -67,7 +68,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
         contactNumber = findViewById(R.id.txt_custNumber);
     }
 
-    private void changeServiceStatus(String id, String status) {
+    public void changeServiceStatus(String id, String status) {
         JSONObject data = new JSONObject();
         try {
             data.put("id", id);
@@ -80,9 +81,16 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
 
         ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
-            startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
-                    .putExtra("requestDetails", requestDetails));
-            finish();
+            if (status.equals("Accept")) {
+                startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
+                        .putExtra("requestDetails", requestDetails));
+                finish();
+            } else {
+                Intent intent = new Intent(this, SpiHomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                Toast.makeText(this, "Service has been declined..", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

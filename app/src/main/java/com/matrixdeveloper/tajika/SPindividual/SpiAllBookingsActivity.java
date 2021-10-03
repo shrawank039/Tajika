@@ -2,6 +2,7 @@ package com.matrixdeveloper.tajika.SPindividual;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
     TextView upcoming, completed;
     private final String TAG = "SpiAllBookingsAct";
     private PrefManager pref;
+    private ImageView backPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
         allBookingsRecyclerView = findViewById(R.id.recView_allBookings);
         upcoming = findViewById(R.id.txt_upcoming);
         completed = findViewById(R.id.txt_completed);
+        backPress = findViewById(R.id.iv_backPress);
+        pref = new PrefManager(this);
 
         SPIAllBookingsModel[] myListData = new SPIAllBookingsModel[]{
                 new SPIAllBookingsModel(1, "TJD5611", "Peter Lawrence", "04 Feb 2021",
@@ -53,22 +57,32 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
         upcoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                upcoming.setBackground(getResources().getDrawable(R.drawable.job_switch_background));
+                //upcoming.setBackground(getResources().getDrawable(R.drawable.job_switch_background));
                 upcoming.setTextColor(getResources().getColor(R.color.white));
+                upcoming.setBackgroundResource(R.color.dark_blue);
 
-                completed.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                //completed.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                completed.setBackgroundResource(R.color.white);
                 completed.setTextColor(getResources().getColor(R.color.dark_blue));
             }
         });
         completed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                completed.setBackground(getResources().getDrawable(R.drawable.job_switch_background));
+                //completed.setBackground(getResources().getDrawable(R.drawable.job_switch_background));
                 completed.setTextColor(getResources().getColor(R.color.white));
+                completed.setBackgroundResource(R.color.dark_blue);
 
-                upcoming.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                //upcoming.setBackgroundTintList(getResources().getColorStateList(R.color.white));
                 upcoming.setTextColor(getResources().getColor(R.color.dark_blue));
+                upcoming.setBackgroundResource(R.color.white);
 
+            }
+        });
+        backPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SpiAllBookingsActivity.super.onBackPressed();
             }
         });
 
@@ -87,6 +101,5 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
             Utils.log(TAG, response.toString());
 
         });
-
     }
 }

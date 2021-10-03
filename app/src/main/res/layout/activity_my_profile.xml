@@ -170,17 +170,6 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="end"
-                    android:text="Forgot Password?"
-                    android:textColor="@color/golden"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <LinearLayout style="@style/register_input_container">
 
@@ -189,7 +178,6 @@
                         style="@style/register_editText_container"
                         android:hint="New password"
                         android:inputType="textPassword" />
-
 
                 </LinearLayout>
 

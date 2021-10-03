@@ -94,6 +94,7 @@ public class EditProfileActivity extends AppCompatActivity {
         submit.setOnClickListener(view -> processProfileUpdate());
         selectGender.setOnClickListener(view -> initiatePopupMenu());
         choosePhoto.setOnClickListener(view -> initiatePhotoSelection());
+        profilePicture.setOnClickListener(view -> initiatePhotoSelection());
 
     }
 
