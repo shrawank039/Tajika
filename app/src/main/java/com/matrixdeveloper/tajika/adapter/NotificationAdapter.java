@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matrixdeveloper.tajika.BookingDetailsActivity;
 import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPindividual.SpiServiceRequestDetailsActivity;
 import com.matrixdeveloper.tajika.model.NotificationModel;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.notificationFooter.setText(notificationModel.getActiontext());
 
         holder.clearNotification.setOnClickListener(view -> ((NotificationActivity) ctx).deleteNotification(String.valueOf(notificationModel.getId())));
-        holder.notificationBody.setOnClickListener(view -> ctx.startActivity(new Intent(ctx, BookingDetailsActivity.class)
+        holder.notificationBody.setOnClickListener(view -> ctx.startActivity(new Intent(ctx, SpiServiceRequestDetailsActivity.class)
                 .putExtra("id", String.valueOf(notificationModel.getId()))));
     }
 

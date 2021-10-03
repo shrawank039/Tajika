@@ -17,11 +17,14 @@ import org.json.JSONObject;
 public class LoginThroughOTPActivity extends AppCompatActivity {
 
     private final String TAG = "LoginThroughOTPAct";
+    private String user_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_through_otp);
+
+        user_type = getIntent().getStringExtra("user_type");
     }
 
     public void onLoginThroughPasswordCLick(View view) {
@@ -50,7 +53,8 @@ public class LoginThroughOTPActivity extends AppCompatActivity {
                 assert dataObj != null;
                 startActivity(new Intent(
                         this, OTPInputActivity.class
-                ).putExtra("email", email));
+                ).putExtra("email", email)
+                        .putExtra("user_type", user_type));
             }
 
         });

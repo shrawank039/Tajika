@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginThroughOTPCLick(View view) {
         startActivity(new Intent(
                 this, LoginThroughOTPActivity.class
-        ));
+        ).putExtra("user_type", "user"));
     }
 
     public void onLoginCLick(View view) {
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onForgotPasswordClick(View view) {
         startActivity(new Intent(
                 this, ResetPasswordActivity.class
-        ));
+        ).putExtra("user_type", "user"));
     }
 
     public void onHideClick(View view) {

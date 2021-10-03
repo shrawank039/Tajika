@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
 import com.matrixdeveloper.tajika.helpers.GenericTextWatcher;
 import com.matrixdeveloper.tajika.model.Login;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -26,7 +27,7 @@ public class OTPInputActivity extends AppCompatActivity {
     private TextView resendOtp, back;
     private PrefManager prf;
     private final String TAG = "OtpInputAct";
-    private String email;
+    private String email, user_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class OTPInputActivity extends AppCompatActivity {
         prf = new PrefManager(this);
 
         email = getIntent().getStringExtra("email");
+        user_type = getIntent().getStringExtra("user_type");
         resendOtp = findViewById(R.id.txt_resendOtp);
         back = findViewById(R.id.txt_back);
         otp_textbox_one = findViewById(R.id.otp_edit_box1);
@@ -82,6 +84,7 @@ public class OTPInputActivity extends AppCompatActivity {
     }
 
     public void onLoginCLick(View view) {
+
         String inputOne = otp_textbox_one.getText().toString(),
                 inputTwo = otp_textbox_two.getText().toString(),
                 inputThree = otp_textbox_three.getText().toString(),
@@ -114,8 +117,13 @@ public class OTPInputActivity extends AppCompatActivity {
                 prf.setString(Global.email, login.getEmail());
                 prf.setString(Global.name, login.getName());
 
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                if (user_type.equals("business") || user_type.equals("individual")){
+                    startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                }else {
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                }
                 finish();
 
             } catch (JSONException e) {
