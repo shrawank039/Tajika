@@ -2,9 +2,11 @@ package com.matrixdeveloper.tajika.SPindividual;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +23,8 @@ import org.json.JSONObject;
 
 public class SpiServiceAcceptActivity extends AppCompatActivity {
 
-    private TextView completeJob;
+    private TextView completeJob, customerNumber;
+    private LinearLayout voiceCall;
     private String id;
     private final String TAG = "SpiServiceAcceptAct";
     private PrefManager pref;
@@ -35,6 +38,19 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
         pref = new PrefManager(this);
         requestDetails = (RequestDetails) getIntent().getSerializableExtra("requestDetails");
         completeJob = findViewById(R.id.txt_completeJob);
+        customerNumber = findViewById(R.id.txt_custNumber);
+        voiceCall = findViewById(R.id.ll_voiceCall);
+        voiceCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                String temp = "tel:" + customerNumber.getText().toString();
+                callIntent.setData(Uri.parse(temp));
+
+                startActivity(callIntent);
+            }
+        });
+
         completeJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +63,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
                 TextView no = dialog.findViewById(R.id.txt_no);
                 dialogButton.setOnClickListener(v -> dialog.dismiss());
                 yes.setOnClickListener(v -> {
-                    changeServiceStatus(id,"Completed");
+                    changeServiceStatus(id, "Completed");
                     dialog.dismiss();
                 });
                 no.setOnClickListener(v -> dialog.dismiss());

@@ -50,12 +50,12 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Service Request"
                     android:textColor="@color/dark_blue"
-                    android:textSize="16sp"
-                    style="@style/topDesign_textView_bold" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -172,9 +172,10 @@
                 android:backgroundTint="@color/dark_blue"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="20dp">
+                android:padding="15dp">
 
                 <LinearLayout
+                    android:id="@+id/ll_voiceCall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -193,53 +194,55 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/white" />
+                <!--
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_videocall_icon"
-                        android:drawablePadding="5dp"
-                        android:drawableTint="@color/white"
-                        android:gravity="center"
-                        android:text="Video Call"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:drawableStart="@drawable/ic_videocall_icon"
+                                        android:drawablePadding="5dp"
+                                        android:drawableTint="@color/white"
+                                        android:gravity="center"
+                                        android:text="Video Call"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/white" />
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_message_icon"
-                        android:drawablePadding="5dp"
-                        android:drawableTint="@color/white"
-                        android:gravity="center"
-                        android:text="Message"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:drawableStart="@drawable/ic_message_icon"
+                                        android:drawablePadding="5dp"
+                                        android:drawableTint="@color/white"
+                                        android:gravity="center"
+                                        android:text="Message"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>-->
+
             </LinearLayout>
 
             <LinearLayout
@@ -252,13 +255,13 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Customer info"
                     android:textColor="@color/dark_blue"
-                    android:textSize="16sp"
-                    style="@style/topDesign_textView_bold" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -325,12 +328,12 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/topDesign_textView_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Service address and description"
                     android:textColor="@color/dark_blue"
-                    android:textSize="16sp"
-                    style="@style/topDesign_textView_bold"/>
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -384,17 +387,17 @@
                         android:text="@string/dummy_text"
                         android:textColor="@color/dark_blue"
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/descReadMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="5dp"
-                        android:text="Read More"
-                        android:textColor="@color/golden"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                    <!--
+                                        <TextView
+                                            android:id="@+id/descReadMore"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="end"
+                                            android:layout_marginTop="5dp"
+                                            android:text="Read More"
+                                            android:textColor="@color/golden"
+                                            android:textSize="16sp"
+                                            android:textStyle="bold" />-->
                 </LinearLayout>
 
             </LinearLayout>

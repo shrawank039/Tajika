@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.AboutUsActivity;
 import com.matrixdeveloper.tajika.HelpActivity;
 import com.matrixdeveloper.tajika.LandingPage;
-import com.matrixdeveloper.tajika.LoginActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.ReferralActivity;
 import com.matrixdeveloper.tajika.SPbusiness.SpbMyServicesActivity;
@@ -43,9 +43,9 @@ public class SpiMoreActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), SpiProfileActivity.class));
                     break;
                 case 1:
-                    if(prf.getString("role").equals("3")) {
+                    if (prf.getString("role").equals("3")) {
                         startActivity(new Intent(getApplicationContext(), SpiMyServicesActivity.class));
-                    }else{
+                    } else {
                         startActivity(new Intent(getApplicationContext(), SpbMyServicesActivity.class));
                     }
                     break;
@@ -59,11 +59,10 @@ public class SpiMoreActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), ReferralActivity.class));
                     break;
                 case 6:
+                    openAlertDialog("Switch User", "Are you sure you want to switch user?");
+                    break;
                 case 10:
-                    prf.setString("id", "");
-                    Intent intent = new Intent(this, LandingPage.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    openAlertDialog("Confirm Logout", "Are you sure you want to Logout?");
                     break;
                 case 7:
                     try {
@@ -82,5 +81,19 @@ public class SpiMoreActivity extends AppCompatActivity {
                     Toast.makeText(SpiMoreActivity.this, "" + i, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void openAlertDialog(String title, String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
+                    prf.setString("id", "");
+                    Intent intent = new Intent(this, LandingPage.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                })
+                .setNegativeButton("No", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Nothing Happened", Toast.LENGTH_LONG))
+                .show();
     }
 }

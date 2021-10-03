@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.NewRequestAdapter;
 import com.matrixdeveloper.tajika.adapter.UpcomingJobAdapter;
+import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.model.UpcomingJob;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -54,6 +56,8 @@ public class SpiHomeActivity extends AppCompatActivity {
     private ViewFlipper viewFlipper;
     private TextView creditBalance, todaySales, weekSales, totalSales, consumerGoods, clientConnected;
     private TextView totalServiceProvided, totalGoodsSold, totalClientConnected, totalFailedService;
+    ServiceRequestList serviceList;
+    RequestDetails requestDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +162,31 @@ public class SpiHomeActivity extends AppCompatActivity {
 
     }
 
+    public void getServiceDetails(String id) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
+            Utils.log(TAG, response.toString());
+            try {
+
+                requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+                changeServiceStatus(requestDetails.getId().toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+    }
+
     private void getHomeData() {
 
         JSONObject data = new JSONObject();
@@ -203,7 +232,7 @@ public class SpiHomeActivity extends AppCompatActivity {
 
                     try {
 
-                        ServiceRequestList serviceList = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), ServiceRequestList.class);
+                        serviceList = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), ServiceRequestList.class);
                         requestLists.add(serviceList);
                         requestAdapter.notifyDataSetChanged();
 
@@ -245,5 +274,26 @@ public class SpiHomeActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void changeServiceStatus(String id) {
+
+        Toast.makeText(this, ""+requestDetails.getId(), Toast.LENGTH_SHORT).show();
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", id);
+            data.put("status", "Accept");
+            data.put("service_provider_id", pref.getString("id"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
+            Utils.log(TAG, response.toString());
+
+            startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
+                    .putExtra("requestDetails", requestDetails));
+        });
     }
 }

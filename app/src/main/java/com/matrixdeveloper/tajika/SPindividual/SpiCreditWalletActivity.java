@@ -39,13 +39,11 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_credit_wallet);
 
-
         backPress = findViewById(R.id.iv_backPress);
         recentTransactionRecyclerView = findViewById(R.id.recView_recentTransations);
         allCredit = findViewById(R.id.txt_allCredit);
         allTransaction = findViewById(R.id.txt_allTransaction);
         walletBalance = findViewById(R.id.txt_walletBalance);
-
 
         prf = new PrefManager(this);
 
@@ -74,7 +72,7 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
 
             try {
                 JSONArray jsonArray = jsonObject.getJSONArray("transdetails");
-                walletBalance.setText(jsonObject.optString("walletamount"));
+                walletBalance.setText("Ksh " + jsonObject.optString("walletamount"));
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject object = jsonArray.getJSONObject(i);
@@ -110,5 +108,11 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
         if (view == allTransaction) {
             startActivity(new Intent(SpiCreditWalletActivity.this, SpiAllTransactionActivity.class));
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWalletDetails();
     }
 }

@@ -234,7 +234,7 @@
                         android:text="@string/dummy_text"
                         android:textColor="@color/dark_blue"
                         android:textStyle="bold" />
-
+<!--
                     <TextView
                         android:id="@+id/descReadMore"
                         android:layout_width="wrap_content"
@@ -244,7 +244,7 @@
                         android:text="Read More"
                         android:textColor="@color/golden"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold" />-->
                 </LinearLayout>
 
             </LinearLayout>

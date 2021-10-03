@@ -50,7 +50,7 @@ public class RedeemCoinAdapter extends RecyclerView.Adapter<RedeemCoinAdapter.vi
         holder.redeemRating.setRating(2);
         holder.reedemHeading.setText(redeemCoinModel.getTitle());
         holder.redeemReqCoin.setText("Required coin: " + redeemCoinModel.getCoin());
-        holder.redeemValidity.setText(redeemCoinModel.getValidDate());
+        holder.redeemValidity.setText("Validity: "+redeemCoinModel.getValidDate());
 
         holder.redeemNow.setOnClickListener(new View.OnClickListener() {
             @Override
