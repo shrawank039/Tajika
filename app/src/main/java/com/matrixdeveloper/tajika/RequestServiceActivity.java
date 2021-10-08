@@ -144,7 +144,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
 
         if (v == goBackHome) {
             Intent goBack = new Intent(this, HomeActivity.class);
-            goBack.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            goBack.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(goBack);
         }
         if (v == manageRequests) {
@@ -154,7 +154,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
 
     private void openBookingActivity() {
         Intent bookingActivity = new Intent(this, BookingActivity.class);
-        bookingActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        bookingActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(bookingActivity);
     }
 }

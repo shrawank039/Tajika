@@ -16,7 +16,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_edit_profile.xml" value="0.21" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_help.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_home.xml" value="0.11282894736842106" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_location_selector.xml" value="0.13094462540716612" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_location_selector.xml" value="0.1" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_login.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_login_through_otp.xml" value="0.12430555555555556" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_my_profile.xml" value="0.18" />
@@ -86,13 +86,11 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_location_selector.xml" value="0.23425925925925925" />
         <entry key="app/src/main/res/layout/activity_login_through_otp.xml" value="0.2222222222222222" />
-        <entry key="app/src/main/res/layout/activity_notification.xml" value="0.25076923076923074" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/activity_otp_input.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.23425925925925925" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.23425925925925925" />
         <entry key="app/src/main/res/layout/activity_spb_register.xml" value="0.2222222222222222" />
-        <entry key="app/src/main/res/layout/activity_spi_all_request.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/layout/activity_spi_service_accept.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_spi_service_request_details.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.2546875" />

@@ -159,7 +159,7 @@ public class LocationSelectorActivity extends FragmentActivity
         parentTwoService.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                availableHeight = parentTwoService.getMeasuredHeight() + recommendedByTajika.getMeasuredHeight();
+                availableHeight = parentTwoService.getMeasuredHeight();
                 if (availableHeight > 0) {
                     parentTwoService.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     peekHeight += availableHeight;
@@ -184,7 +184,6 @@ public class LocationSelectorActivity extends FragmentActivity
             public void onClick(View v) {
                 behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 moreDetailsService.setVisibility(View.VISIBLE);
-                recommendedByTajika.setVisibility(View.VISIBLE);
                 parentTwoService.setVisibility(View.GONE);
             }
         });
@@ -396,11 +395,9 @@ public class LocationSelectorActivity extends FragmentActivity
 
                 if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                     moreDetailsService.setVisibility(View.VISIBLE);
-                    recommendedByTajika.setVisibility(View.VISIBLE);
                     parentTwoService.setVisibility(View.GONE);
                 } else {
                     moreDetailsService.setVisibility(View.GONE);
-                    recommendedByTajika.setVisibility(View.VISIBLE);
                     parentTwoService.setVisibility(View.VISIBLE);
                 }
             }
@@ -520,6 +517,11 @@ public class LocationSelectorActivity extends FragmentActivity
                         }
                     });
                 } else {
+
+                    recommendedByTajika.setVisibility(View.VISIBLE);
+                    ServiceProvider serviceProvider1 = MySingleton.getGson().fromJson(response.getJSONObject("recommended").toString(), ServiceProvider.class);
+                    getServiceProviderDetails(serviceProvider1.getId().toString());
+
                     for (int i = 0; i < jsonarray.length(); i++) {
                         try {
                             ServiceProvider serviceProvider = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), ServiceProvider.class);
@@ -534,6 +536,8 @@ public class LocationSelectorActivity extends FragmentActivity
                                 public boolean onMarkerClick(@NonNull Marker m) {
 
                                     selected_id = String.valueOf(m.getTag());
+
+                                    recommendedByTajika.setVisibility(View.GONE);
 
                                     providerDetails.setVisibility(View.VISIBLE);
 
