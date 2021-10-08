@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/md_grey_100"
     android:orientation="vertical"
-    app:behavior_peekHeight="200dp"
+    app:behavior_peekHeight="190dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <androidx.core.widget.NestedScrollView
@@ -137,19 +137,19 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txt_recommendedByTajika"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="24dp"
                     android:paddingStart="20dp"
-                    android:paddingTop="15dp"
-                    android:visibility="gone"
-                    android:text="@string/recommended_by_tajika" />
+                    android:paddingTop="5dp"
+                    android:text="@string/recommended_by_tajika"
+                    android:visibility="visible" />
 
                 <LinearLayout
                     android:id="@+id/ll_oneService"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="110dp"
                     android:orientation="horizontal"
                     android:paddingHorizontal="20dp"
-                    android:paddingVertical="15dp">
+                    android:paddingVertical="5dp">
 
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -525,7 +525,7 @@
                 <LinearLayout
                     android:id="@+id/ll_twoService"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="56dp"
                     android:orientation="horizontal"
                     android:visibility="visible">
 

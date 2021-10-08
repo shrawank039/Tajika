@@ -20,6 +20,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.Button;
@@ -159,7 +160,7 @@ public class LocationSelectorActivity extends FragmentActivity
         parentTwoService.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                availableHeight = parentTwoService.getMeasuredHeight();
+                availableHeight = parentTwoService.getMeasuredHeight() + recommendedByTajika.getMeasuredHeight();
                 if (availableHeight > 0) {
                     parentTwoService.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     peekHeight += availableHeight;
@@ -249,9 +250,9 @@ public class LocationSelectorActivity extends FragmentActivity
         ImageView dialogCancel = dialog.findViewById(R.id.iv_dialogCancel);
 
         makePayment.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(),PaymentWebViewActivity.class);
+            Intent intent = new Intent(getApplicationContext(), PaymentWebViewActivity.class);
             startActivityForResult(intent, PAYMENT_REQUEST);
-           // dialog.dismiss();
+            // dialog.dismiss();
         });
         dialogCancel.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
@@ -537,7 +538,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
                                     selected_id = String.valueOf(m.getTag());
 
-                                    recommendedByTajika.setVisibility(View.GONE);
+                                    recommendedByTajika.setVisibility(View.INVISIBLE);
 
                                     providerDetails.setVisibility(View.VISIBLE);
 
@@ -633,7 +634,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
                 serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
 
-                Glide.with(this).load(serviceProviderDetails.getProfileimage()).into(spProviderImage);
+                Glide.with(this).load(serviceProviderDetails.getProfileimage()).placeholder(R.drawable.provider_image_1x).into(spProviderImage);
 
                 //for service
                 spProviderName.setText(serviceProviderDetails.getName());
@@ -763,9 +764,10 @@ public class LocationSelectorActivity extends FragmentActivity
             }
         }, 100);
 
-      /*  GeocodingLocation locationAddress = new GeocodingLocation();
-        locationAddress.getAddressFromLocation(location.latitude,location.longitude,
+         /*GeocodingLocation locationAddress = new GeocodingLocation();
+          locationAddress.getAddressFromLocation(location.latitude,location.longitude,
                 getApplicationContext(), new GeocoderHandler());*/
+
         Geocoder gcd = new Geocoder(getApplicationContext(), Locale.getDefault());
         List<Address> addresses;
         placeBean = new PlaceBean();
@@ -784,7 +786,7 @@ public class LocationSelectorActivity extends FragmentActivity
                 mSelectedAddress = new AddressBean(location.latitude, location.longitude, fullAddress, "",
                         cityName, postalCode,
                         stateName, countryName);
-                //  ((LogisticsApplication) getApplicationContext()).saveSelectedAddress(mAddress);
+                //((LogisticsApplication) getApplicationContext()).saveSelectedAddress(mAddress);
                 edtAddress.setText(mSelectedAddress.getAddress_1());
 
 //                AppConstants.address = mSelectedAddress.getAddress_1();
@@ -829,10 +831,10 @@ public class LocationSelectorActivity extends FragmentActivity
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PAYMENT_REQUEST){
-            if (resultCode==1){
+        if (requestCode == PAYMENT_REQUEST) {
+            if (resultCode == 1) {
                 showSubscriptionSuccessAlert();
-            }else {
+            } else {
                 Utils.toast(getApplicationContext(), "Payment Failed!!!");
             }
         }
