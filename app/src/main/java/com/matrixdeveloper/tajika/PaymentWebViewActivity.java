@@ -49,13 +49,12 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
             public boolean shouldOverrideUrlLoading(WebView view, String urll) {
                 Utils.log(TAG, urll);
                 if (urll.contains("transactionStatus=SUCCESS")) {
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class)
-                    .putExtra("status","1"));
+                    setResult(1);
                     finish();
                     return true;
                 } else if (urll.contains("transactionStatus=CANCELLED")){
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class)
-                            .putExtra("status","0"));
+                    setResult(1);
+                    finish();
                     return true;
                 }
 

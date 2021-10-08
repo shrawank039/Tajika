@@ -20,6 +20,9 @@ import com.matrixdeveloper.tajika.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpiAllBookingsActivity extends AppCompatActivity {
 
     private RecyclerView allBookingsRecyclerView;
@@ -28,6 +31,7 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
     private final String TAG = "SpiAllBookingsAct";
     private PrefManager pref;
     private ImageView backPress;
+    private List<SPIAllBookingsModel> spiAllBookingsModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +43,7 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
         backPress = findViewById(R.id.iv_backPress);
         pref = new PrefManager(this);
 
-        SPIAllBookingsModel[] myListData = new SPIAllBookingsModel[]{
-                new SPIAllBookingsModel(1, "TJD5611", "Peter Lawrence", "04 Feb 2021",
-                        "Catering", "1", "05 Feb 2021"),
-                new SPIAllBookingsModel(2, "TJD5611", "Peter Lawrence", "04 Feb 2021",
-                        "Catering", "2", "05 Feb 2021"),
-                new SPIAllBookingsModel(2, "TJD5611", "Peter Lawrence", "04 Feb 2021",
-                        "Catering", "0", "05 Feb 2021"),
-
-        };
-
-        allBookingsAdapter = new SPIAllBookingsAdapter(this, myListData);
+        allBookingsAdapter = new SPIAllBookingsAdapter(this, spiAllBookingsModels);
         allBookingsRecyclerView.setHasFixedSize(true);
         allBookingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         allBookingsRecyclerView.setAdapter(allBookingsAdapter);
@@ -64,6 +58,8 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
                 //completed.setBackgroundTintList(getResources().getColorStateList(R.color.white));
                 completed.setBackgroundResource(R.color.white);
                 completed.setTextColor(getResources().getColor(R.color.dark_blue));
+
+                getAllBooking("Upcoming");
             }
         });
         completed.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +73,7 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
                 upcoming.setTextColor(getResources().getColor(R.color.dark_blue));
                 upcoming.setBackgroundResource(R.color.white);
 
+                getAllBooking("Completed");
             }
         });
         backPress.setOnClickListener(new View.OnClickListener() {
@@ -86,14 +83,15 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
             }
         });
 
-        getAllBooking();
+        getAllBooking("Upcoming");
     }
 
-    private void getAllBooking() {
+    private void getAllBooking(String status) {
 
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", pref.getString("id"));
+            data.put("status", status);
         } catch (JSONException e) {
             e.printStackTrace();
         }

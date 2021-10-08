@@ -106,6 +106,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private LinearLayout parentTwoService, parentOneService, parentOneGoods;
     int availableHeight;
     String subscriptionStatus;
+    private final int PAYMENT_REQUEST = 1;
 
     private ImageView spProviderImage, gpGoodsProviderImage;
     private TextView spProviderName, spServiceName, spDistance, spRating, spAbout, spJobsCompleted, spEducation, spAddress, spSkillOne, spSkillTwo, spSkillThree;
@@ -249,8 +250,9 @@ public class LocationSelectorActivity extends FragmentActivity
         ImageView dialogCancel = dialog.findViewById(R.id.iv_dialogCancel);
 
         makePayment.setOnClickListener(v -> {
-            showSubscriptionSuccessAlert();
-            dialog.dismiss();
+            Intent intent = new Intent(getApplicationContext(),PaymentWebViewActivity.class);
+            startActivityForResult(intent, PAYMENT_REQUEST);
+           // dialog.dismiss();
         });
         dialogCancel.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
@@ -822,6 +824,14 @@ public class LocationSelectorActivity extends FragmentActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PAYMENT_REQUEST){
+            if (resultCode==1){
+                showSubscriptionSuccessAlert();
+            }else {
+                Utils.toast(getApplicationContext(), "Payment Failed!!!");
+            }
+        }
 
     }
 

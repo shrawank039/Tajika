@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.SPIAllBookingsModel;
 
+import java.util.List;
+
 public class SPIAllBookingsAdapter extends RecyclerView.Adapter<SPIAllBookingsAdapter.viewHolder> {
 
     private final Context ctx;
-    private final SPIAllBookingsModel[] listdata;
+    private final List<SPIAllBookingsModel> listdata;
 
-    public SPIAllBookingsAdapter(Context ctx, SPIAllBookingsModel[] listdata) {
+    public SPIAllBookingsAdapter(Context ctx, List<SPIAllBookingsModel> listdata) {
         this.ctx = ctx;
         this.listdata = listdata;
     }
@@ -31,7 +33,7 @@ public class SPIAllBookingsAdapter extends RecyclerView.Adapter<SPIAllBookingsAd
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        final SPIAllBookingsModel myListData = listdata[position];
+        final SPIAllBookingsModel myListData = listdata.get(position);
         holder.bookingID.setText("Booking id: " + myListData.getBookingID());
         holder.customerName.setText(myListData.getCustomerName());
         holder.serviceDate.setText(myListData.getServiceDate());
@@ -53,7 +55,7 @@ public class SPIAllBookingsAdapter extends RecyclerView.Adapter<SPIAllBookingsAd
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
