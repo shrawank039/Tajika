@@ -117,7 +117,12 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
 
         backPress.setOnClickListener(v -> SpiAddNewServiceActivity.super.onBackPressed());
 
-        addNewGood.setOnClickListener(v -> startActivity(new Intent(SpiAddNewServiceActivity.this, SpiAddNewGoodsActivity.class)));
+        addNewGood.setOnClickListener(v -> {
+                    startActivity(new Intent(SpiAddNewServiceActivity.this, SpiAddNewGoodsActivity.class));
+                    finish();
+                });
+
+
 
         saveService.setOnClickListener(v -> {
             if(serviceCatID!=0){

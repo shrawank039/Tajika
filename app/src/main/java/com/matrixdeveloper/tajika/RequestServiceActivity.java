@@ -85,7 +85,9 @@ public class RequestServiceActivity extends AppCompatActivity implements
         ApiCall.postMethod(this, ServiceNames.SUBMIT_SERVICE_REQUEST, data, response -> {
             Utils.log(TAG, response.toString());
             Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();
-            openBookingActivity();
+            if (response.optString("status").equals("200")) {
+                openBookingActivity();
+            }
         });
     }
 

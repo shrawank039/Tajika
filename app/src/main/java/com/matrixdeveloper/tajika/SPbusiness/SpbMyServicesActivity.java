@@ -54,21 +54,21 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         backPress.setOnClickListener(view -> SpbMyServicesActivity.super.onBackPressed());
         addNewGoodOrService.setOnClickListener(v -> startActivity(new Intent(SpbMyServicesActivity.this, SpiAddNewServiceActivity.class)));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        serviceArray.clear();
+        goodsArray.clear();
+
         servicesAdapter = new SPIMyServicesAdapter(this, serviceArray, 1);
         goodsAdapter = new SPIMyServicesAdapter(this, goodsArray, 0);
         concatAdapter = new ConcatAdapter(servicesAdapter, goodsAdapter);
         myServicesRecView.setHasFixedSize(true);
         myServicesRecView.setLayoutManager(new LinearLayoutManager(this));
         myServicesRecView.setAdapter(concatAdapter);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        serviceArray.clear();
-        goodsArray.clear();
-
         myServiceList();
         myGoodsList();
     }
