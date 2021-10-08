@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.matrixdeveloper.tajika.AboutUsActivity;
 import com.matrixdeveloper.tajika.HelpActivity;
 import com.matrixdeveloper.tajika.LandingPage;
+import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.ReferralActivity;
 import com.matrixdeveloper.tajika.SPbusiness.SpbMyServicesActivity;
@@ -48,6 +49,9 @@ public class SpiMoreActivity extends AppCompatActivity {
                     } else {
                         startActivity(new Intent(getApplicationContext(), SpbMyServicesActivity.class));
                     }
+                    break;
+                case 2:
+                    startActivity(new Intent(getApplicationContext(), SpiAllRequestActivity.class));
                     break;
                 case 3:
                     startActivity(new Intent(getApplicationContext(), SpiAllBookingsActivity.class));

@@ -1,14 +1,16 @@
-package com.matrixdeveloper.tajika;
+package com.matrixdeveloper.tajika.SPindividual;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.matrixdeveloper.tajika.NotificationActivity;
+import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.NotificationAdapter;
 import com.matrixdeveloper.tajika.model.NotificationModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -24,7 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationActivity extends AppCompatActivity {
+public class SpiAllRequestActivity extends AppCompatActivity {
 
     RecyclerView notificationRecyclerview;
     NotificationAdapter notificationAdapter;
@@ -37,7 +39,7 @@ public class NotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification);
+        setContentView(R.layout.activity_spi_all_request);
 
         prf = new PrefManager(this);
         notificationModelList = new ArrayList<>();
@@ -50,14 +52,14 @@ public class NotificationActivity extends AppCompatActivity {
         notificationRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         notificationRecyclerview.setAdapter(notificationAdapter);
         backPress = findViewById(R.id.iv_backPress);
-        backPress.setOnClickListener(view -> NotificationActivity.super.onBackPressed());
+        backPress.setOnClickListener(view -> SpiAllRequestActivity.super.onBackPressed());
         clearAllNotification.setOnClickListener(view -> refreshPopup());
 
         getNotificationList();
     }
 
     private void refreshPopup() {
-        PopupMenu popup = new PopupMenu(NotificationActivity.this, clearAllNotification);
+        PopupMenu popup = new PopupMenu(SpiAllRequestActivity.this, clearAllNotification);
         popup.getMenuInflater().inflate(R.menu.clear_all_notification_menu, popup.getMenu());
 
         popup.setOnMenuItemClickListener(item -> {
