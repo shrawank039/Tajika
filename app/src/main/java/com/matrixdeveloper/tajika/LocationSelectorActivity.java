@@ -138,7 +138,6 @@ public class LocationSelectorActivity extends FragmentActivity
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
-
         if (service_type.equals("goods")) {
             bottomSheet.setVisibility(View.GONE);
         } else if (service_type.equals("service")) {
@@ -409,6 +408,7 @@ public class LocationSelectorActivity extends FragmentActivity
                 // React to dragging events
             }
         });
+
         behavior2.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {

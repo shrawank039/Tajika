@@ -10,7 +10,7 @@
         <entry key="..\:/Tajika/app/src/main/res/drawable/three_side_round_background.xml" value="0.14104234527687295" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_all_service.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_book_service.xml" value="0.12430555555555556" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_booking.xml" value="0.12430555555555556" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_booking.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_booking_details.xml" value="0.16" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_coins_wallet.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_edit_profile.xml" value="0.21" />
@@ -26,9 +26,9 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_payment.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_privacy_policy.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_redeem_coin.xml" value="0.12430555555555556" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_referral.xml" value="0.12430555555555556" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_referral.xml" value="0.18" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_register.xml" value="0.13223684210526315" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_request_service.xml" value="0.12430555555555556" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_request_service.xml" value="0.25" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_reset_password.xml" value="0.13" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_search.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_my_services.xml" value="0.17864583333333334" />

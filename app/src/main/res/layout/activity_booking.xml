@@ -23,7 +23,7 @@
 
         <TextView
             style="@style/appBar_textView"
-            android:text="All Services" />
+            android:text="Bookings" />
 
     </LinearLayout>
 

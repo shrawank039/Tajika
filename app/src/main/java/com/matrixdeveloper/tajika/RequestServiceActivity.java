@@ -34,7 +34,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
     private Button submitRequest;
     private EditText edtDate, edtTime, edtAmount, edtService, edtDescription;
     private ImageView backPress;
-    private TextView goBackHome;
+    private TextView goBackHome, manageRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
         submitRequest = findViewById(R.id.btn_submit);
         backPress = findViewById(R.id.iv_backPress);
         goBackHome = findViewById(R.id.txt_goBackHome);
+        manageRequests = findViewById(R.id.txt_manageRequests);
 
         edtService.setText(service_name);
         prf = new PrefManager(this);
@@ -62,6 +63,7 @@ public class RequestServiceActivity extends AppCompatActivity implements
         submitRequest.setOnClickListener(this);
         backPress.setOnClickListener(this);
         goBackHome.setOnClickListener(this);
+        manageRequests.setOnClickListener(this);
 
     }
 
@@ -81,10 +83,9 @@ public class RequestServiceActivity extends AppCompatActivity implements
         }
 
         ApiCall.postMethod(this, ServiceNames.SUBMIT_SERVICE_REQUEST, data, response -> {
-
             Utils.log(TAG, response.toString());
             Toast.makeText(this, response.optString("message"), Toast.LENGTH_SHORT).show();
-
+            openBookingActivity();
         });
     }
 
@@ -140,11 +141,20 @@ public class RequestServiceActivity extends AppCompatActivity implements
         if (v == backPress) {
             super.onBackPressed();
         }
+
         if (v == goBackHome) {
             Intent goBack = new Intent(this, HomeActivity.class);
             goBack.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(goBack);
-
         }
+        if (v == manageRequests) {
+            openBookingActivity();
+        }
+    }
+
+    private void openBookingActivity() {
+        Intent bookingActivity = new Intent(this, BookingActivity.class);
+        bookingActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(bookingActivity);
     }
 }

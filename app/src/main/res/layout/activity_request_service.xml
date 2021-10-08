@@ -148,7 +148,7 @@
         <TextView
             android:id="@+id/txt_goBackHome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:fontFamily="@font/muli_semibold"
@@ -164,7 +164,7 @@
             android:layout_marginVertical="10dp"
             android:background="@color/light_grey" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/txt_addService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -181,12 +181,12 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginVertical="10dp"
-            android:background="@color/light_grey" />
+            android:background="@color/light_grey" />-->
 
         <TextView
             android:id="@+id/txt_manageRequests"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:fontFamily="@font/muli_semibold"
