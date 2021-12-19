@@ -54,7 +54,7 @@ public class LoginThroughOTPActivity extends AppCompatActivity {
                 startActivity(new Intent(
                         this, OTPInputActivity.class
                 ).putExtra("email", email)
-                        .putExtra("user_type", user_type));
+                        .putExtra("user_type", user_type).putExtra("type", "login"));
             }
 
         });

@@ -96,6 +96,7 @@
 
         <Button
             style="@style/submit_buttons"
+            android:id="@+id/btn_submit"
             android:layout_marginTop="30dp"
             android:onClick="onLoginCLick"
             android:text="Login" />

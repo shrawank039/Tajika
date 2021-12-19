@@ -3,6 +3,7 @@ package com.matrixdeveloper.tajika;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -27,7 +28,8 @@ public class OTPInputActivity extends AppCompatActivity {
     private TextView resendOtp, back;
     private PrefManager prf;
     private final String TAG = "OtpInputAct";
-    private String email, user_type;
+    private String email, user_type, type = "reset";
+    Button submitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,14 @@ public class OTPInputActivity extends AppCompatActivity {
 
         email = getIntent().getStringExtra("email");
         user_type = getIntent().getStringExtra("user_type");
+        type = getIntent().getStringExtra("type");
         resendOtp = findViewById(R.id.txt_resendOtp);
         back = findViewById(R.id.txt_back);
+        submitBtn = findViewById(R.id.btn_submit);
+        if (type.equalsIgnoreCase("reset"))
+            submitBtn.setText("Reset");
+        else
+            submitBtn.setText("Login");
         otp_textbox_one = findViewById(R.id.otp_edit_box1);
         otp_textbox_two = findViewById(R.id.otp_edit_box2);
         otp_textbox_three = findViewById(R.id.otp_edit_box3);
@@ -81,6 +89,62 @@ public class OTPInputActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onValidateOTP(String type) {
+
+        String inputOne = otp_textbox_one.getText().toString(),
+                inputTwo = otp_textbox_two.getText().toString(),
+                inputThree = otp_textbox_three.getText().toString(),
+                inputFour = otp_textbox_four.getText().toString(),
+                inputFive = otp_textbox_five.getText().toString(),
+                inputSix = otp_textbox_six.getText().toString();
+
+        String mergePassword = inputOne + inputTwo + inputThree + inputFour + inputFive + inputSix;
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("email", email);
+            data.put("otp", mergePassword);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.VALIDATE_OTP, data, response -> {
+
+            Utils.log(TAG, "input data: " + data);
+            Utils.toast(OTPInputActivity.this, response.optString("message"));
+
+            try {
+
+                Login login = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), Login.class);
+
+                prf.setString(Global.user_id, login.getId().toString());
+                prf.setString(Global.token, login.getToken());
+                prf.setString(Global.role, login.getRoles().toString());
+                prf.setString(Global.email, login.getEmail());
+                prf.setString(Global.name, login.getName());
+
+                if (type.equalsIgnoreCase("login")){
+                    if (user_type.equals("business") || user_type.equals("individual")){
+                        startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    }else {
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    }
+                } else {
+//                    startActivity(new Intent(getApplicationContext(), HomeActivity.class)
+//                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                }
+
+                finish();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
     }
 
     public void onLoginCLick(View view) {

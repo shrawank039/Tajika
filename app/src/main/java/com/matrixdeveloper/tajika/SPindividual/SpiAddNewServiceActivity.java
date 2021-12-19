@@ -122,8 +122,6 @@ public class SpiAddNewServiceActivity extends AppCompatActivity {
                     finish();
                 });
 
-
-
         saveService.setOnClickListener(v -> {
             if(serviceCatID!=0){
                 if(serviceSubCatID!=0){

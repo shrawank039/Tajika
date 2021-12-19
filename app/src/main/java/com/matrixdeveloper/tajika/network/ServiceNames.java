@@ -15,6 +15,7 @@ public class ServiceNames {
     public static final String SEND_OTP = API + "/sendotp";
     public static final String VALIDATE_OTP = API + "/validateotp";
     public static final String SET_PASSWORD = API + "/setPassword";
+    public static final String CHANGE_PASSWORD = API + "/changePassword";
     public static final String GET_USER_PROFILE = API + "/getProfile";
     public static final String UPDATE_PROFILE = API + "/updateProfile";
     public static final String CATEGORY = API + "/getCategoryList";

@@ -114,7 +114,7 @@ public class MyProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(this, ServiceNames.SET_PASSWORD, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.CHANGE_PASSWORD, data, response -> {
 
             Utils.log(TAG, response.toString());
 
