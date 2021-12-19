@@ -22,6 +22,8 @@ import com.matrixdeveloper.tajika.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
 public class OTPInputActivity extends AppCompatActivity {
 
     private EditText otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four, otp_textbox_five, otp_textbox_six;
@@ -91,7 +93,7 @@ public class OTPInputActivity extends AppCompatActivity {
 
     }
 
-    public void onValidateOTP(String type) {
+    public void onLoginCLick(View view) {
 
         String inputOne = otp_textbox_one.getText().toString(),
                 inputTwo = otp_textbox_two.getText().toString(),
@@ -134,60 +136,9 @@ public class OTPInputActivity extends AppCompatActivity {
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     }
                 } else {
-//                    startActivity(new Intent(getApplicationContext(), HomeActivity.class)
-//                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    startActivity(new Intent(getApplicationContext(), SetPasswordActivity.class).putExtra("user_type", user_type));
                 }
 
-                finish();
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        });
-    }
-
-    public void onLoginCLick(View view) {
-
-        String inputOne = otp_textbox_one.getText().toString(),
-                inputTwo = otp_textbox_two.getText().toString(),
-                inputThree = otp_textbox_three.getText().toString(),
-                inputFour = otp_textbox_four.getText().toString(),
-                inputFive = otp_textbox_five.getText().toString(),
-                inputSix = otp_textbox_six.getText().toString();
-
-        String mergePassword = inputOne + inputTwo + inputThree + inputFour + inputFive + inputSix;
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("email", email);
-            data.put("otp", mergePassword);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        ApiCall.postMethod(this, ServiceNames.VALIDATE_OTP, data, response -> {
-
-            Utils.log(TAG, "input data: " + data);
-            Utils.toast(OTPInputActivity.this, response.optString("message"));
-
-            try {
-
-                Login login = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), Login.class);
-
-                prf.setString(Global.user_id, login.getId().toString());
-                prf.setString(Global.token, login.getToken());
-                prf.setString(Global.role, login.getRoles().toString());
-                prf.setString(Global.email, login.getEmail());
-                prf.setString(Global.name, login.getName());
-
-                if (user_type.equals("business") || user_type.equals("individual")){
-                    startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class)
-                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                }else {
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class)
-                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                }
                 finish();
 
             } catch (JSONException e) {

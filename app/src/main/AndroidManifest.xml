@@ -25,6 +25,9 @@
         tools:replace="android:label,android:usesCleartextTraffic,android:theme"
         tools:targetApi="m">
         <activity
+            android:name=".SetPasswordActivity"
+            android:exported="true" />
+        <activity
             android:name=".SPindividual.SpiAllRequestActivity"
             android:exported="true" />
         <activity
