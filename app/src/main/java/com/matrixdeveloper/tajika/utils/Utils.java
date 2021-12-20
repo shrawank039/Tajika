@@ -49,5 +49,4 @@ public class Utils {
         Log.d(TAG, "" + content);
     }
 
-
 }

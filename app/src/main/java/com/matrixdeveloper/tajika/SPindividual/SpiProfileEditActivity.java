@@ -1,15 +1,24 @@
 package com.matrixdeveloper.tajika.SPindividual;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPbusiness.SpbEditProfileActivity;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
@@ -17,6 +26,11 @@ import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Base64;
 
 public class SpiProfileEditActivity extends AppCompatActivity {
 
@@ -26,6 +40,9 @@ public class SpiProfileEditActivity extends AppCompatActivity {
     private Button updateProfile;
     private PrefManager pref;
     private final String TAG = "SpiProfileEditAct";
+    private RelativeLayout profileContainer;
+    private ImageView profileImage;
+    private String base64String="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +59,43 @@ public class SpiProfileEditActivity extends AppCompatActivity {
         backPress.setOnClickListener(view -> SpiProfileEditActivity.super.onBackPressed());
         updateProfile.setOnClickListener(view -> initiateProfileUpdate());
 
+        profileContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.Companion.with(SpiProfileEditActivity.this)
+                        .crop()
+                        .compress(1024)
+                        .maxResultSize(1080, 1080)
+                        .start();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Uri fileUri = data.getData();
+            File file = new File(fileUri.getPath());
+
+            byte[] fileContent = new byte[0];
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    fileContent = Files.readAllBytes(file.toPath());
+                    base64String = Base64.getEncoder().encodeToString(fileContent);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            profileImage.setImageURI(fileUri);
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setProviderData() {
@@ -114,6 +168,8 @@ public class SpiProfileEditActivity extends AppCompatActivity {
         proQualification = findViewById(R.id.txt_proQualification);
         proQualificationStatus = findViewById(R.id.txt_proQualificationStatus);
 
+        profileContainer = findViewById(R.id.rl_profileContainer);
+        profileImage = findViewById(R.id.iv_profileImage);
     }
 
     private void initiateProfileUpdate() {
@@ -150,7 +206,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
             data.put("upload_passportid", upload_passportid);
             data.put("professional_qualification", professional_qualification);
             data.put("qualification_certification", qualification_certification);
-            data.put("profileimage", profileimage);
+            data.put("profileimage", base64String);
 
         } catch (JSONException e) {
             e.printStackTrace();

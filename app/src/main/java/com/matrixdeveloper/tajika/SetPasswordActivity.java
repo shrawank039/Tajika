@@ -26,13 +26,12 @@ import org.json.JSONObject;
 
 public class SetPasswordActivity extends AppCompatActivity {
 
-    private ImageView backPress, editProfile, profileImage;
-    private EditText currentPassword, newPassword, confirmNewPassword;
+    private ImageView backPress;
+    private EditText newPassword, confirmNewPassword;
     private Button submit;
-    private TextView userName, userMobile, userMail, gender;
     private final String TAG = "MyProfileAct";
     private PrefManager pref;
-    private String email, user_type;
+    private String user_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,29 +54,19 @@ public class SetPasswordActivity extends AppCompatActivity {
 
         user_type = getIntent().getStringExtra("user_type");
         backPress = findViewById(R.id.iv_backPress);
-        profileImage = findViewById(R.id.iv_profileImage);
-        editProfile = findViewById(R.id.iv_editProfile);
 
-        currentPassword = findViewById(R.id.edt_currentPassword);
         newPassword = findViewById(R.id.edt_newPassword);
         confirmNewPassword = findViewById(R.id.edt_confirmNewPassword);
-
-        userName = findViewById(R.id.txt_userName);
-        userMobile = findViewById(R.id.txt_userNumber);
-        userMail = findViewById(R.id.txt_userMail);
-        gender = findViewById(R.id.txt_userGender);
 
         submit = findViewById(R.id.btn_submit);
     }
 
     private void initListeners() {
         backPress.setOnClickListener(view -> super.onBackPressed());
-        editProfile.setOnClickListener(view -> startActivity(new Intent(this, EditProfileActivity.class)));
         submit.setOnClickListener(view -> setPassword());
     }
 
     private void setPassword() {
-        String currentPass = currentPassword.getText().toString().trim();
         String newPass = newPassword.getText().toString().trim();
         String confirmNewPass = confirmNewPassword.getText().toString().trim();
 
@@ -112,7 +101,5 @@ public class SetPasswordActivity extends AppCompatActivity {
             }
 
         });
-
     }
-
 }

@@ -38,12 +38,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            <RelativeLayout
+                android:id="@+id/rl_profileContainer"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/plumbing"
-                app:civ_border_width="1dp" />
+                android:layout_width="100dp"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_profileImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/plumbing"
+                    app:civ_border_width="1dp" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/edit_photo_1x"
+                    app:tint="@color/md_orange_500" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/edt_businessNameTop"

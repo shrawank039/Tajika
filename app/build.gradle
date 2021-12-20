@@ -137,6 +137,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:9.0.0'
     implementation 'com.hbb20:ccp:2.2.2'
 
+    //Choose image from camera and gallery
+    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
     //needed for the pgw sdk
     implementation project(path: ':pgw_sdk')
 

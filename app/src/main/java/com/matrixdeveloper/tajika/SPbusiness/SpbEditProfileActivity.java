@@ -1,16 +1,24 @@
 package com.matrixdeveloper.tajika.SPbusiness;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPBbusinessPhotosVideoAdapter;
 import com.matrixdeveloper.tajika.model.SPBbusinessPhotosVideosModel;
@@ -22,6 +30,11 @@ import com.matrixdeveloper.tajika.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Base64;
+
 public class SpbEditProfileActivity extends AppCompatActivity {
 
     private RecyclerView recViewPhotosVideos;
@@ -32,6 +45,9 @@ public class SpbEditProfileActivity extends AppCompatActivity {
     private Button submit;
     private PrefManager pref;
     private final String TAG = "SpiProfileEditAct";
+    private RelativeLayout profileContainer;
+    private ImageView profileImage;
+    private String base64String="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +57,8 @@ public class SpbEditProfileActivity extends AppCompatActivity {
         pref = new PrefManager(this);
         recViewPhotosVideos = findViewById(R.id.recView_SPBusinessPhotos);
         backPress = findViewById(R.id.iv_backPress);
+        profileContainer = findViewById(R.id.rl_profileContainer);
+        profileImage = findViewById(R.id.iv_profileImage);
         backPress.setOnClickListener(view -> SpbEditProfileActivity.super.onBackPressed());
 
         SPBbusinessPhotosVideosModel[] pvModel = new SPBbusinessPhotosVideosModel[]{
@@ -60,6 +78,43 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                 LinearLayoutManager.HORIZONTAL,
                 false));
         recViewPhotosVideos.setAdapter(mAdapter);
+
+        profileContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.Companion.with(SpbEditProfileActivity.this)
+                        .crop()
+                        .compress(1024)
+                        .maxResultSize(1080, 1080)
+                        .start();
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Uri fileUri = data.getData();
+            File file = new File(fileUri.getPath());
+
+            byte[] fileContent = new byte[0];
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    fileContent = Files.readAllBytes(file.toPath());
+                    base64String = Base64.getEncoder().encodeToString(fileContent);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            profileImage.setImageURI(fileUri);
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void submitProfileUpdate() {
@@ -77,7 +132,6 @@ public class SpbEditProfileActivity extends AppCompatActivity {
         String upload_passportid = userEmail.getText().toString().trim();
         String professional_qualification = userEmail.getText().toString().trim();
         String qualification_certification = userEmail.getText().toString().trim();
-        String profileimage = userEmail.getText().toString().trim();
 
         JSONObject data = new JSONObject();
         try {
@@ -96,7 +150,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
             data.put("upload_passportid", upload_passportid);
             data.put("professional_qualification", professional_qualification);
             data.put("qualification_certification", qualification_certification);
-            data.put("profileimage", profileimage);
+            data.put("profileimage", base64String);
 
         } catch (JSONException e) {
             e.printStackTrace();

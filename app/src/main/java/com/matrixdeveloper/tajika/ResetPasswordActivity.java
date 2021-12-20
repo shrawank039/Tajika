@@ -81,8 +81,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = response.getJSONObject("data");
                     //pref.setString("otp", jsonObject.optString("otp"));
-                    startActivity(new Intent(ResetPasswordActivity.this, OTPInputActivity.class).putExtra("user_type", user_type)
-                    .putExtra("type", "reset"));
+                    startActivity(new Intent(ResetPasswordActivity.this, OTPInputActivity.class)
+                            .putExtra("user_type", user_type)
+                            .putExtra("email", regNumber)
+                            .putExtra("type", "reset"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

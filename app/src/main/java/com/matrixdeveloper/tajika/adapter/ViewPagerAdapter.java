@@ -1,9 +1,12 @@
-package com.matrixdeveloper.tajika;
+package com.matrixdeveloper.tajika.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.matrixdeveloper.tajika.BookedFragment;
+import com.matrixdeveloper.tajika.RequestedFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 

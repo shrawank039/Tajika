@@ -278,7 +278,7 @@ public class SpiHomeActivity extends AppCompatActivity {
 
     public void changeServiceStatus(String id) {
 
-        Toast.makeText(this, ""+requestDetails.getId(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + requestDetails.getId(), Toast.LENGTH_SHORT).show();
         JSONObject data = new JSONObject();
         try {
             data.put("id", id);

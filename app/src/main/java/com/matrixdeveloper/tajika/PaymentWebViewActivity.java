@@ -1,7 +1,6 @@
 package com.matrixdeveloper.tajika;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,13 +9,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.matrixdeveloper.tajika.WebView.WebAppInterface;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.Utils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +55,7 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
                     setResult(1);
                     finish();
                     return true;
-                } else if (urll.contains("transactionStatus=CANCELLED")){
+                } else if (urll.contains("transactionStatus=CANCELLED")) {
                     setResult(1);
                     finish();
                     return true;
@@ -81,11 +84,11 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
     }
 
     private void getPaymentPage(String token) {
-        Map<String,String> params = new HashMap<>();
-        params.put("accessToken",token);
-        params.put("user_id","77");
+        Map<String, String> params = new HashMap<>();
+        params.put("accessToken", token);
+        params.put("user_id", "77");
         params.put("order_id", "2");
-        params.put("amount","1000");
+        params.put("amount", "1000");
         params.put("order_desc", "test payment");
 
         ApiCall.postStringMethod(this, ServiceNames.PAYMENT_PAGE, params, response -> {
@@ -111,7 +114,7 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (v.getId() == R.id.webview && event.getAction() == MotionEvent.ACTION_DOWN){
+        if (v.getId() == R.id.webview && event.getAction() == MotionEvent.ACTION_DOWN) {
             handler.sendEmptyMessageDelayed(CLICK_ON_WEBVIEW, 500);
         }
         return false;
@@ -119,7 +122,7 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
 
     @Override
     public boolean handleMessage(Message msg) {
-        if (msg.what == CLICK_ON_URL){
+        if (msg.what == CLICK_ON_URL) {
             handler.removeMessages(CLICK_ON_WEBVIEW);
             return true;
         }

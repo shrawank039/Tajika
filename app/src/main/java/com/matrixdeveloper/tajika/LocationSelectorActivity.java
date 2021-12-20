@@ -500,7 +500,6 @@ public class LocationSelectorActivity extends FragmentActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         ApiCall.postMethod(this, ServiceNames.SERVICE_PROVIDER_LIST, data, response -> {
             Utils.log(TAG, response.toString());
             JSONArray jsonarray = null;
@@ -530,7 +529,9 @@ public class LocationSelectorActivity extends FragmentActivity
                             Marker m = mMap.addMarker(new MarkerOptions().position(latLng).icon(providerImage(this)));
                             serviceProviderList.add(serviceProvider);
 
-                            m.setTag(serviceProvider.getUserId());
+                            if (m != null) {
+                                m.setTag(serviceProvider.getUserId());
+                            }
 
                             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override

@@ -8,6 +8,7 @@
         <entry key="..\:/Tajika/app/src/main/res/drawable/layout_input_outline.xml" value="0.14104234527687295" />
         <entry key="..\:/Tajika/app/src/main/res/drawable/normal_dark_blue_background.xml" value="0.19895833333333332" />
         <entry key="..\:/Tajika/app/src/main/res/drawable/three_side_round_background.xml" value="0.14104234527687295" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_about_us.xml" value="0.17864583333333334" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_all_service.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_book_service.xml" value="0.12430555555555556" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_booking.xml" value="0.22" />
@@ -31,11 +32,15 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_request_service.xml" value="0.25" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_reset_password.xml" value="0.13" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_search.xml" value="0.13094462540716612" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_set_password.xml" value="0.17864583333333334" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_edit_profile.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_my_services.xml" value="0.17864583333333334" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_profile.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_register.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spbadd_new_service.xml" value="0.2046875" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_add_new_goods.xml" value="0.209375" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_all_bookings.xml" value="0.16354166666666667" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_all_request.xml" value="0.17864583333333334" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_all_transaction.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_credit_wallet.xml" value="0.17864583333333334" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_home.xml" value="0.18" />
@@ -55,6 +60,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_pay_onetime_charge.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_notice.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_successful.xml" value="0.13094462540716612" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/fragment_booked.xml" value="0.1751787538304392" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_booked_or_requested.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_category.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_faq.xml" value="0.13223684210526315" />
@@ -83,17 +89,13 @@
         <entry key="app/src/debug/res/font/muli.xml" value="0.25277777777777777" />
         <entry key="app/src/main/res/layout/activity_all_service.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_booking_details.xml" value="0.2222222222222222" />
-        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_location_selector.xml" value="0.23425925925925925" />
         <entry key="app/src/main/res/layout/activity_login_through_otp.xml" value="0.2222222222222222" />
-        <entry key="app/src/main/res/layout/activity_my_profile.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/activity_otp_input.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.23425925925925925" />
-        <entry key="app/src/main/res/layout/activity_reset_password.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.23425925925925925" />
-        <entry key="app/src/main/res/layout/activity_set_password.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_register.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_spi_service_accept.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_spi_service_request_details.xml" value="0.2546875" />
