@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -77,6 +78,13 @@ public class SpbEditProfileActivity extends AppCompatActivity {
         edtBusinessDesc = findViewById(R.id.edt_businessDesc);
         submit = findViewById(R.id.btn_submit);
 
+        findViewById(R.id.iv_addPhotosVideos).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPhotoChooser(1);
+            }
+        });
+
         backPress.setOnClickListener(view -> SpbEditProfileActivity.super.onBackPressed());
 
         profileContainer.setOnClickListener(v -> openPhotoChooser(0));
@@ -112,7 +120,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     //Not in response
                     txtBusinessName.setText(jsonObject.optString("business_name"));
 
-                    imageList.add(new SPBbusinessPhotosVideosModel("0", "https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png"));
+                   // imageList.add(new SPBbusinessPhotosVideosModel("0", "https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png"));
                     JSONArray jsonArray = jsonObject.optJSONArray("service_offerd_image");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
@@ -224,7 +232,6 @@ public class SpbEditProfileActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         });
 
     }

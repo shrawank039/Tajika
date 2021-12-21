@@ -48,12 +48,13 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         final SPBbusinessPhotosVideosModel list = imageList.get(position);
+
         Glide.with(ctx).load(list.getImageUrl()).into(holder.businessPhotos);
 
-        if (position == 0 && type.equals("editProfile")) {
-            holder.deletePhoto.setVisibility(View.GONE);
-            holder.businessPhotos.setOnClickListener(v -> ((SpbEditProfileActivity) ctx).openPhotoChooser(1));
-        }
+//        if (position == 0 && type.equals("editProfile")) {
+//            holder.deletePhoto.setVisibility(View.GONE);
+//            holder.businessPhotos.setOnClickListener(v -> ((SpbEditProfileActivity) ctx).openPhotoChooser(1));
+//        }
 
         holder.deletePhoto.setOnClickListener(v ->{
             deleteImg(list.getId());

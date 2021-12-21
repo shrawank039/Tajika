@@ -108,6 +108,7 @@
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_recomended_services.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_spb_business_photos_videos.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_subcategory.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.2546875" />

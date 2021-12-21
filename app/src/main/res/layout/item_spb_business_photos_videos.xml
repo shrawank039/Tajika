@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/catering" />
+            android:src="@drawable/logo" />
 
         <ImageView
             android:id="@+id/iv_deletePhotosVideos"
@@ -23,8 +23,7 @@
             android:layout_height="20dp"
             android:layout_alignParentEnd="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_delete"
-            app:tint="@color/md_red_A700" />
+            android:src="@drawable/remove" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
 
