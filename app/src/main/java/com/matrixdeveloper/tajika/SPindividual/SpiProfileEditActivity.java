@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.SPbusiness.SpbEditProfileActivity;
@@ -114,6 +115,10 @@ public class SpiProfileEditActivity extends AppCompatActivity {
                     providerName.setText(jsonObject.optString("name"));
                     providerNumber.setText(jsonObject.optString("phone"));
                     providerEmail.setText(jsonObject.optString("email"));
+                    String profileUrl = jsonObject.optString("profileimage");
+                    if (!profileUrl.equals("null") && !profileUrl.equals("")) {
+                        Glide.with(this).load(profileUrl).into(profileImage);
+                    }
                     businessCategory.setText(jsonObject.optString("business_categories"));
                     providerExperience.setText(jsonObject.optString("year_of_experience"));
                     minCharge.setText(jsonObject.optString("minimum_charge"));
