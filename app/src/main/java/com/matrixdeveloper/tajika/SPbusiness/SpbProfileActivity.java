@@ -95,14 +95,14 @@ public class SpbProfileActivity extends AppCompatActivity {
                     providerExperience.setText(jsonObject.optString("year_of_experience"));
                     businessLink.setText(jsonObject.optString("bussiness_link"));
                     businessDesc.setText(jsonObject.optString("service_description"));
-                    subscriptionPlan.setText(jsonObject.optString("plan_id"));
+                    subscriptionPlan.setText(jsonObject.optString("plan_name"));
                     purchasedOn.setText(jsonObject.optString("start_date"));
                     expiresOn.setText(jsonObject.optString("end_date"));
 
                     Glide.with(this).load(jsonObject.optString("profileimage")).placeholder(R.drawable.app_logo).into(providerImage);
 
                     //Not in response
-                    businessName.setText(jsonObject.optString("business_categories"));
+                    businessName.setText(jsonObject.optString("business_name"));
 
                     JSONArray jsonArray=jsonObject.optJSONArray("service_offerd_image");
                     for(int i=0;i<jsonArray.length();i++){

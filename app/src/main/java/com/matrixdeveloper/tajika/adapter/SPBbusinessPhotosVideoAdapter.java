@@ -8,12 +8,21 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.SPbusiness.SpbEditProfileActivity;
+import com.matrixdeveloper.tajika.SPbusiness.SpbProfileActivity;
 import com.matrixdeveloper.tajika.model.SPBbusinessPhotosVideosModel;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -46,7 +55,12 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
             holder.businessPhotos.setOnClickListener(v -> ((SpbEditProfileActivity) ctx).openPhotoChooser(1));
         }
 
-        holder.deletePhoto.setOnClickListener(v -> Toast.makeText(ctx, "Deleted!!", Toast.LENGTH_SHORT).show());
+        holder.deletePhoto.setOnClickListener(v ->{
+            deleteImg(list.getId());
+            imageList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, imageList.size());
+        });
 
     }
 
@@ -63,5 +77,25 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
             businessPhotos = itemView.findViewById(R.id.iv_businessPhotosVideos);
             deletePhoto = itemView.findViewById(R.id.iv_deletePhotosVideos);
         }
+    }
+
+    public void deleteImg(String id){
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(ctx, ServiceNames.DELETE_SERVICE_IMAGE, data, response -> {
+            try {
+                JSONObject jsonObject = response.getJSONObject("data");
+                if (response.optString("status").equals("200")) {
+                    Toast.makeText(ctx, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
     }
 }

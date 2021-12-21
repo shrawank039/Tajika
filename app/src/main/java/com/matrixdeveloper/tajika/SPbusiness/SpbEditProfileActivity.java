@@ -110,7 +110,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     Glide.with(this).load(jsonObject.optString("profileimage")).placeholder(R.drawable.app_logo).into(profileImage);
 
                     //Not in response
-                    txtBusinessName.setText(jsonObject.optString("business_categories"));
+                    txtBusinessName.setText(jsonObject.optString("business_name"));
 
                     imageList.add(new SPBbusinessPhotosVideosModel("0", "https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png"));
                     JSONArray jsonArray = jsonObject.optJSONArray("service_offerd_image");
@@ -151,6 +151,8 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     } else if (selectionType == 1) {
                         encodeImageList.add(base64String);
                         imageUri.add(fileUri);
+                        imageList.add(new SPBbusinessPhotosVideosModel("0", fileUri.getPath()));
+                        mAdapter.notifyDataSetChanged();
                     }
                 }
             } catch (IOException e) {
@@ -165,6 +167,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
     }
 
     private void submitProfileUpdate() {
+
         String name = edtName.getText().toString().trim();
         String phoneNumber = edtPhone.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
@@ -180,6 +183,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
             data.put("name", name);
             data.put("phone", phoneNumber);
             data.put("email", email);
+            data.put("business_name", businessName);
             data.put("business_categories", business_categories);
             data.put("service_description", service_description);
             data.put("year_of_experience", year_of_experience);
@@ -193,12 +197,36 @@ public class SpbEditProfileActivity extends AppCompatActivity {
             Utils.log(TAG, response.toString());
 
             if (response.optString("status").equals("200")) {
-                Utils.toast(this, response.optString("message"));
-                finish();
+             //   Utils.toast(this, response.optString("message"));
+                uploadBusinessImage();
             } else {
                 Toast.makeText(this, response.optString("message"), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void uploadBusinessImage() {
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+            data.put("image", encodeImageList);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.UPLOAD_MULTIPLE_IMAGE, data, response -> {
+            Utils.log(TAG, response.toString());
+            try {
+                JSONObject jsonObject = response.getJSONObject("data");
+                if (response.optString("status").equals("200")) {
+                    Utils.toast(this, response.optString("message"));
+                    finish();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
+
     }
 
     public void openPhotoChooser(int type) {
