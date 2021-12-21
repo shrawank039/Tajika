@@ -259,7 +259,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 JSONObject jsonObject = response.getJSONObject("data");
                 String profileUrl = jsonObject.optString("profileimage");
                 if (!profileUrl.equals("null") && !profileUrl.equals("")) {
-                    Glide.with(this).load(jsonObject.optString("profileimage")).into(profilePicture);
+                    Glide.with(this).load(profileUrl).into(profilePicture);
                 }
                 txtUserName.setText(jsonObject.optString("name"));
                 edtUserName.setText(jsonObject.optString("name"));

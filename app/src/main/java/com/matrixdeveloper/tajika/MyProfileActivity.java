@@ -62,7 +62,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 JSONObject jsonObject = response.getJSONObject("data");
                 String profileUrl = jsonObject.optString("profileimage");
                 if (!profileUrl.equals("null") && !profileUrl.equals("")) {
-                    Glide.with(this).load(jsonObject.optString("profileimage")).into(profileImage);
+                    Glide.with(this).load(profileUrl).into(profileImage);
                 }
                 userName.setText(jsonObject.optString("name"));
                 userMobile.setText(jsonObject.optString("phone"));
@@ -78,7 +78,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
     private void intiViews() {
         backPress = findViewById(R.id.iv_backPress);
-        profileImage = findViewById(R.id.iv_profileImage);
+        profileImage = findViewById(R.id.iv_userImage);
         editProfile = findViewById(R.id.iv_editProfile);
 
         currentPassword = findViewById(R.id.edt_currentPassword);

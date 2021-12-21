@@ -29,7 +29,7 @@ public class SetPasswordActivity extends AppCompatActivity {
     private ImageView backPress;
     private EditText newPassword, confirmNewPassword;
     private Button submit;
-    private final String TAG = "MyProfileAct";
+    private final String TAG = "SetPasswordAct";
     private PrefManager pref;
     private String user_type;
 

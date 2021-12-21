@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -85,6 +86,10 @@ public class SpiProfileActivity extends AppCompatActivity {
                     providerName.setText(jsonObject.optString("name"));
                     providerNumber.setText(jsonObject.optString("phone"));
                     providerEmail.setText(jsonObject.optString("email"));
+                    String profileUrl = jsonObject.optString("profileimage");
+                    if (!profileUrl.equals("null") && !profileUrl.equals("")) {
+                        Glide.with(this).load(profileUrl).into(providerImage);
+                    }
                     businessCategory.setText(jsonObject.optString("business_categories"));
                     providerExperience.setText(jsonObject.optString("year_of_experience") + " Yrs");
                     businessLink.setText(jsonObject.optString("bussiness_link"));
