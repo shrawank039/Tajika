@@ -62,7 +62,7 @@
 
             <EditText
                 android:focusable="false"
-                android:id="@+id/edt_businessNameTop"
+                android:id="@+id/txt_businessNameTop"
                 style="@style/topDesign_textView_bold"
                 android:backgroundTint="@color/white"
                 android:layout_width="wrap_content"

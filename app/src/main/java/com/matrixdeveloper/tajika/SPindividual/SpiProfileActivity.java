@@ -56,7 +56,7 @@ public class SpiProfileActivity extends AppCompatActivity {
         providerName = findViewById(R.id.edt_providerName);
         providerEmail = findViewById(R.id.txt_providerEmail);
         providerNumber = findViewById(R.id.edt_providerPhone);
-        businessName = findViewById(R.id.edt_businessNameTop);
+        businessName = findViewById(R.id.txt_businessNameTop);
         businessLink = findViewById(R.id.txt_businessLink);
         businessCategory = findViewById(R.id.txt_businessCategory);
         providerExperience = findViewById(R.id.txt_providerExperience);

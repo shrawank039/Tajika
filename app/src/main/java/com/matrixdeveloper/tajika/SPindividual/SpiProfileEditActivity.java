@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.SPbusiness.SpbEditProfileActivity;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
@@ -159,7 +158,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
         providerName = findViewById(R.id.edt_providerName);
         providerEmail = findViewById(R.id.edt_providerEmail);
         providerNumber = findViewById(R.id.edt_providerPhone);
-        businessNameTop = findViewById(R.id.edt_businessNameTop);
+        businessNameTop = findViewById(R.id.txt_businessNameTop);
         businessName = findViewById(R.id.edt_businessName);
         businessLink = findViewById(R.id.edt_businessLink);
         businessCategory = findViewById(R.id.edt_businessCategory);

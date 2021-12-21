@@ -13,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.matrixdeveloper.tajika.AboutUsActivity;
 import com.matrixdeveloper.tajika.HelpActivity;
 import com.matrixdeveloper.tajika.LandingPage;
-import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.ReferralActivity;
 import com.matrixdeveloper.tajika.SPbusiness.SpbMyServicesActivity;
+import com.matrixdeveloper.tajika.SPbusiness.SpbProfileActivity;
 import com.matrixdeveloper.tajika.adapter.SPIMoreOptionsBaseAdapter;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
@@ -41,7 +41,11 @@ public class SpiMoreActivity extends AppCompatActivity {
         moreOptions.setOnItemClickListener((adapterView, view, i, l) -> {
             switch (i) {
                 case 0:
-                    startActivity(new Intent(getApplicationContext(), SpiProfileActivity.class));
+                    if (prf.getString("role").equals("3")) {
+                        startActivity(new Intent(getApplicationContext(), SpiProfileActivity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), SpbProfileActivity.class));
+                    }
                     break;
                 case 1:
                     if (prf.getString("role").equals("3")) {

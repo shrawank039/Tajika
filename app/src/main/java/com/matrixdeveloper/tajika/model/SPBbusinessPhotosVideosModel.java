@@ -1,27 +1,27 @@
 package com.matrixdeveloper.tajika.model;
 
 public class SPBbusinessPhotosVideosModel {
-    private int id;
-    private int imageUrl;
+    private String id;
+    private String imageUrl;
 
-    public SPBbusinessPhotosVideosModel(int id, int imageUrl) {
+    public SPBbusinessPhotosVideosModel(String id, String imageUrl) {
         this.id = id;
         this.imageUrl = imageUrl;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(int imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 }

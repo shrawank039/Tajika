@@ -33,7 +33,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_reset_password.xml" value="0.13" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_search.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_set_password.xml" value="0.17864583333333334" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_edit_profile.xml" value="0.25" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_edit_profile.xml" value="0.25965177895533686" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_my_services.xml" value="0.17864583333333334" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_profile.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_register.xml" value="0.13223684210526315" />
@@ -45,7 +45,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_credit_wallet.xml" value="0.17864583333333334" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_home.xml" value="0.18" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_more.xml" value="0.12361111111111112" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_profile.xml" value="0.209375" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_profile.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_profile_edit.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_register.xml" value="0.15" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_accept.xml" value="0.25" />
@@ -66,6 +66,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/item_faq.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_more_options.xml" value="0.12960526315789472" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_redeem_coin.xml" value="0.14537037037037037" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/item_spb_business_photos_videos.xml" value="0.33" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_spb_my_goods.xml" value="0.33" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_spi_my_services.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_subcategory.xml" value="0.22" />

@@ -15,11 +15,11 @@
 
         <ImageView
             android:id="@+id/iv_backPress"
-          style="@style/appBar_imageView" />
+            style="@style/appBar_imageView" />
 
         <TextView
-            android:text="Edit Profile"
-           style="@style/appBar_textView" />
+            style="@style/appBar_textView"
+            android:text="Edit Profile" />
     </LinearLayout>
 
     <ScrollView
@@ -40,9 +40,9 @@
 
             <RelativeLayout
                 android:id="@+id/rl_profileContainer"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_profileImage"
@@ -61,15 +61,15 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/edt_businessNameTop"
+                android:id="@+id/txt_businessNameTop"
+                style="@style/topDesign_textView_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="15dp"
                 android:gravity="center"
                 android:text="Royal Catering"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                style="@style/topDesign_textView_bold"/>
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:background="@drawable/layout_input_outline"
-                android:backgroundTint="@color/grey_300"
+                android:backgroundTint="@color/grey_100"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -98,21 +98,20 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Name:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/edt_providerName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
@@ -125,7 +124,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="5dp"
                     android:background="@color/grey_300" />
 
                 <LinearLayout
@@ -135,16 +133,16 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Phone:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/edt_providerPhone"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
@@ -157,7 +155,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="5dp"
                     android:background="@color/grey_300" />
 
                 <LinearLayout
@@ -167,16 +164,16 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Email:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_providerEmail"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/edt_providerEmail"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
@@ -193,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/layout_input_outline"
-                android:backgroundTint="@color/grey_300"
+                android:backgroundTint="@color/grey_100"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -215,20 +212,20 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Business name:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_serviceCategory"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/edt_businessName"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="Royal Catering"
+                        android:text=""
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -247,16 +244,16 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Category:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_serviceExperience"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/edt_businessCategory"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
@@ -279,16 +276,16 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Experience:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_serviceMinCharge"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/edt_experience"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
@@ -311,16 +308,16 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Business link:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txt_businessLink"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/edt_businessLink"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
@@ -345,15 +342,16 @@
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/edt_businessDesc"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_weight="1"
                     android:justificationMode="inter_word"
                     android:maxLines="5"
                     android:text="@string/dummy_text"
-                    android:textColor="@color/dark_blue" />
+                    android:textColor="@color/dark_blue"
+                    android:textSize="13sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -361,7 +359,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:background="@color/grey_300" />
-
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -375,12 +372,11 @@
                     android:id="@+id/recView_SPBusinessPhotos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
-
+                    tools:listitem="@layout/item_spb_business_photos_videos" />
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_renew"
+                android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -50,7 +50,7 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_profileImage"
+                android:id="@+id/iv_providerImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
@@ -58,6 +58,7 @@
                 app:civ_border_width="1dp" />
 
             <TextView
+                android:id="@+id/txt_businessNameTop"
                 style="@style/topDesign_textView_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,18 +77,20 @@
                 android:gravity="center">
 
                 <RatingBar
+                    android:id="@+id/rating_providerRating"
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:numStars="5"
-                    android:rating="3.5"
+                    android:rating="0"
                     android:theme="@style/RatingBar" />
 
                 <TextView
+                    android:id="@+id/txt_ratings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="3.5 star ratings"
+                    android:text="0 star ratings"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -137,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="John Doe"
+                        android:text=""
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -169,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="+1234567890"
+                        android:text=""
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -201,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="johndoe@gmail.com"
+                        android:text=""
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -245,7 +248,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_serviceCategory"
+                        android:id="@+id/txt_businessName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -277,7 +280,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_serviceExperience"
+                        android:id="@+id/txt_businessCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -309,7 +312,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txt_serviceMinCharge"
+                        android:id="@+id/txt_providerExperience"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -368,6 +371,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/txt_businessDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
