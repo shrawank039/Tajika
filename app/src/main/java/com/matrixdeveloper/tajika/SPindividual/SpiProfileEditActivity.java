@@ -115,7 +115,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
                     providerNumber.setText(jsonObject.optString("phone"));
                     providerEmail.setText(jsonObject.optString("email"));
                     businessCategory.setText(jsonObject.optString("business_categories"));
-                    providerExperience.setText(jsonObject.optString("year_of_experience") + " Yrs");
+                    providerExperience.setText(jsonObject.optString("year_of_experience"));
                     minCharge.setText(jsonObject.optString("minimum_charge"));
                     businessLink.setText(jsonObject.optString("bussiness_link"));
                     businessDesc.setText(jsonObject.optString("service_description"));
@@ -187,7 +187,6 @@ public class SpiProfileEditActivity extends AppCompatActivity {
         String upload_passportid = "0";
         String professional_qualification = proQualification.getText().toString().trim();
         String qualification_certification = "0";
-        String profileimage = "0";
 
         JSONObject data = new JSONObject();
         try {

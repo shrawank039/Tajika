@@ -37,6 +37,11 @@ public class SpiProfileActivity extends AppCompatActivity {
         backPress.setOnClickListener(view -> SpiProfileActivity.super.onBackPressed());
         profileEdit.setOnClickListener(view -> startActivity(new Intent(SpiProfileActivity.this, SpiProfileEditActivity.class)));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getProfile();
     }
 

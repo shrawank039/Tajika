@@ -7,6 +7,7 @@ public class Global {
     public static String token = "token";
     public static String role = "role";
     public static String name = "name";
+    public static String profileImage = "profileImage";
 
     public static String compareAddOne = "Add 1";
     public static String compareAddOneID = "";

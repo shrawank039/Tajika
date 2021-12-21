@@ -1,17 +1,10 @@
 package com.matrixdeveloper.tajika;
 
-import android.Manifest;
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,12 +12,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
@@ -33,15 +26,10 @@ import com.matrixdeveloper.tajika.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.nio.file.Files;
+import java.util.Base64;
 
 public class EditProfileActivity extends AppCompatActivity {
     private ImageView backPress, choosePhoto, profilePicture;
@@ -51,12 +39,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private PrefManager pref;
     private final String TAG = "EditProfileAct";
 
-    private Bitmap bitmap;
-    private File destination = null;
-    private InputStream inputStreamImg;
-    private String imgPath = null;
-    private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
-    private final int MY_CAMERA_REQUEST_CODE = 100;
+    private String base64String = "";
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -68,9 +51,9 @@ public class EditProfileActivity extends AppCompatActivity {
         pref = new PrefManager(this);
 
         initViews();
+        setUserDetails();
         initListeners();
 
-        setUserDetails();
     }
 
     private void initViews() {
@@ -93,115 +76,43 @@ public class EditProfileActivity extends AppCompatActivity {
         backPress.setOnClickListener(view -> EditProfileActivity.super.onBackPressed());
         submit.setOnClickListener(view -> processProfileUpdate());
         selectGender.setOnClickListener(view -> initiatePopupMenu());
-        choosePhoto.setOnClickListener(view -> initiatePhotoSelection());
-        profilePicture.setOnClickListener(view -> initiatePhotoSelection());
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void initiatePhotoSelection() {
-        try {
-            final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Select Option");
-            builder.setItems(options, new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int item) {
-
-                    if (options[item].equals("Take Photo")) {
-                        dialog.dismiss();
-                        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                            requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
-                        } else {
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, PICK_IMAGE_CAMERA);
-                        }
-                    } else if (options[item].equals("Choose From Gallery")) {
-                        dialog.dismiss();
-                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(pickPhoto, PICK_IMAGE_GALLERY);
-                    } else if (options[item].equals("Cancel")) {
-                        dialog.dismiss();
-                    }
-                }
-            });
-            builder.show();
-        } catch (Exception e) {
-            Toast.makeText(this, "Camera Permission error", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+        choosePhoto.setOnClickListener(view ->
+                ImagePicker.Companion.with(EditProfileActivity.this)
+                        .crop()
+                        .compress(1024)
+                        .maxResultSize(1080, 1080)
+                        .start());
+        profilePicture.setOnClickListener(view ->
+                ImagePicker.Companion.with(EditProfileActivity.this)
+                        .crop()
+                        .compress(1024)
+                        .maxResultSize(1080, 1080)
+                        .start());
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        inputStreamImg = null;
-        if (requestCode == PICK_IMAGE_CAMERA) {
+        if (resultCode == Activity.RESULT_OK) {
+            Uri fileUri = data.getData();
+            File file = new File(fileUri.getPath());
+
+            byte[] fileContent = new byte[0];
             try {
-                Uri selectedImage = data.getData();
-                bitmap = (Bitmap) data.getExtras().get("data");
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
-
-                Log.e("Activity", "Pick from Camera::>>> ");
-
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-                destination = new File(Environment.getExternalStorageDirectory() + "/" +
-                        getString(R.string.app_name), "IMG_" + timeStamp + ".jpg");
-                FileOutputStream fo;
-                try {
-                    destination.createNewFile();
-                    fo = new FileOutputStream(destination);
-                    fo.write(bytes.toByteArray());
-                    fo.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    fileContent = Files.readAllBytes(file.toPath());
+                    base64String = Base64.getEncoder().encodeToString(fileContent);
                 }
-
-                imgPath = destination.getAbsolutePath();
-                profilePicture.setImageBitmap(bitmap);
-
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (requestCode == PICK_IMAGE_GALLERY) {
-            Uri selectedImage = data.getData();
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
-                Log.e("Activity", "Pick from Gallery::>>> ");
 
-                imgPath = getRealPathFromURI(selectedImage);
-                destination = new File(imgPath);
-                profilePicture.setImageBitmap(bitmap);
+            profilePicture.setImageURI(fileUri);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public String getRealPathFromURI(Uri contentUri) {
-        String[] proj = {MediaStore.Audio.Media.DATA};
-        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
-            }
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -229,7 +140,7 @@ public class EditProfileActivity extends AppCompatActivity {
             data.put("phone", phoneNumber);
             data.put("email", email);
             data.put("gender", gender);
-            data.put("profileimage", "null");
+            data.put("profileimage", base64String);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -258,9 +169,9 @@ public class EditProfileActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = response.getJSONObject("data");
                 String profileUrl = jsonObject.optString("profileimage");
-                if (!profileUrl.equals("null") && !profileUrl.equals("")) {
-                    Glide.with(this).load(jsonObject.optString("profileimage")).into(profilePicture);
-                }
+
+                Glide.with(this).load(jsonObject.optString("profileimage")).placeholder(R.drawable.app_logo).into(profilePicture);
+
                 txtUserName.setText(jsonObject.optString("name"));
                 edtUserName.setText(jsonObject.optString("name"));
                 userMobileNumber.setText(jsonObject.optString("phone"));
@@ -270,7 +181,6 @@ public class EditProfileActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         });
     }
 }
