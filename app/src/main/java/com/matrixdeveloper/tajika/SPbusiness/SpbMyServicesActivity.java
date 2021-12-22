@@ -1,6 +1,5 @@
 package com.matrixdeveloper.tajika.SPbusiness;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -59,7 +58,6 @@ public class SpbMyServicesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         serviceArray.clear();
         goodsArray.clear();
 
@@ -84,14 +82,14 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.PROVIDER_GOODS_LIST, data, response -> {
             Utils.log(TAG, response.toString());
 
-            for (int i = 0; i < response.length(); i++) {
-                try {
-                    JSONArray myServices = response.getJSONArray("data");
+            try {
+                JSONArray myServices = response.getJSONArray("data");
+                for (int i = 0; i < myServices.length(); i++) {
                     SPIMyServicesModel servicesModel = MySingleton.getGson().fromJson(myServices.getJSONObject(i).toString(), SPIMyServicesModel.class);
                     goodsArray.add(servicesModel);
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
             goodsAdapter.notifyDataSetChanged();
@@ -110,16 +108,16 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         }
         ApiCall.postMethod(this, ServiceNames.PROVIDER_SERVICE_LIST, data, response -> {
             Utils.log(TAG, response.toString());
-
-            for (int i = 0; i < response.length(); i++) {
-                try {
-                    JSONArray myServices = response.getJSONArray("data");
+            try {
+                JSONArray myServices = response.getJSONArray("data");
+                for (int i = 0; i < myServices.length(); i++) {
                     SPIMyServicesModel servicesModel = MySingleton.getGson().fromJson(myServices.getJSONObject(i).toString(), SPIMyServicesModel.class);
                     serviceArray.add(servicesModel);
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
             servicesAdapter.notifyDataSetChanged();
             concatAdapter.notifyDataSetChanged();
         });

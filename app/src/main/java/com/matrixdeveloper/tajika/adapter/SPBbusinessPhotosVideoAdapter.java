@@ -8,19 +8,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.R;
-import com.matrixdeveloper.tajika.SPbusiness.SpbEditProfileActivity;
-import com.matrixdeveloper.tajika.SPbusiness.SpbProfileActivity;
 import com.matrixdeveloper.tajika.model.SPBbusinessPhotosVideosModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
-import com.matrixdeveloper.tajika.utils.Utils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,18 +46,20 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
 
         Glide.with(ctx).load(list.getImageUrl()).into(holder.businessPhotos);
 
-//        if (position == 0 && type.equals("editProfile")) {
-//            holder.deletePhoto.setVisibility(View.GONE);
-//            holder.businessPhotos.setOnClickListener(v -> ((SpbEditProfileActivity) ctx).openPhotoChooser(1));
-//        }
+        if (type.equals("profile")) {
+            holder.deletePhoto.setVisibility(View.GONE);
+        }
 
-        holder.deletePhoto.setOnClickListener(v ->{
-            deleteImg(list.getId());
+        holder.deletePhoto.setOnClickListener(v -> {
             imageList.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, imageList.size());
-        });
 
+            //0 for server & 1 for local image picked
+            if (list.getTypeServerLocal() == 0) {
+                deleteImg(list.getId());
+            }
+        });
     }
 
     @Override
@@ -80,7 +77,7 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
         }
     }
 
-    public void deleteImg(String id){
+    public void deleteImg(String id) {
         JSONObject data = new JSONObject();
         try {
             data.put("id", id);

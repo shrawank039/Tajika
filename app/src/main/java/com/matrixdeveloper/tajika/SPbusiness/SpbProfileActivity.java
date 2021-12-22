@@ -107,7 +107,7 @@ public class SpbProfileActivity extends AppCompatActivity {
                     JSONArray jsonArray=jsonObject.optJSONArray("service_offerd_image");
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                        imageList.add(new SPBbusinessPhotosVideosModel(jsonObject1.optString("id"),ServiceNames.PRODUCTION_API+jsonObject1.optString("link")));
+                        imageList.add(new SPBbusinessPhotosVideosModel(jsonObject1.optString("id"),ServiceNames.PRODUCTION_API+jsonObject1.optString("link"),0));
                     }
 
                     mAdapter = new SPBbusinessPhotosVideoAdapter(this, imageList,"profile");

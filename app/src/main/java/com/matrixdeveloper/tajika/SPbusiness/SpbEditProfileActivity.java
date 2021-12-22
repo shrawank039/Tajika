@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,7 +47,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
     private EditText edtName, edtPhone, edtEmail, edtBusinessName, edtCategory, edtExperience, edtBusinessLink, edtBusinessDesc;
     private Button submit;
     private PrefManager pref;
-    private final String TAG = "SpiProfileEditAct";
+    private final String TAG = "SpbProfileEditAct";
     private RelativeLayout profileContainer;
     private String base64String = "";
     private String profileBase64String = "";
@@ -116,11 +115,11 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     //Not in response
                     txtBusinessName.setText(jsonObject.optString("business_name"));
 
-                   // imageList.add(new SPBbusinessPhotosVideosModel("0", "https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png"));
+                    // imageList.add(new SPBbusinessPhotosVideosModel("0", "https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png"));
                     JSONArray jsonArray = jsonObject.optJSONArray("service_offerd_image");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        imageList.add(new SPBbusinessPhotosVideosModel(jsonObject1.optString("id"), ServiceNames.PRODUCTION_API + jsonObject1.optString("link")));
+                        imageList.add(new SPBbusinessPhotosVideosModel(jsonObject1.optString("id"), ServiceNames.PRODUCTION_API + jsonObject1.optString("link"),0));
                     }
 
                     mAdapter = new SPBbusinessPhotosVideoAdapter(this, imageList, "editProfile");
@@ -152,10 +151,11 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     base64String = Base64.getEncoder().encodeToString(fileContent);
                     if (selectionType == 0) {
                         profileImage.setImageURI(fileUri);
+                        profileBase64String = base64String;
                     } else if (selectionType == 1) {
                         encodeImageList.put(base64String);
                         imageUri.add(fileUri);
-                        imageList.add(new SPBbusinessPhotosVideosModel("0", fileUri.getPath()));
+                        imageList.add(new SPBbusinessPhotosVideosModel("0", fileUri.getPath(),1));
                         mAdapter.notifyDataSetChanged();
                     }
                 }
@@ -201,8 +201,12 @@ public class SpbEditProfileActivity extends AppCompatActivity {
             Utils.log(TAG, response.toString());
 
             if (response.optString("status").equals("200")) {
-             //   Utils.toast(this, response.optString("message"));
-                uploadBusinessImage();
+                if (encodeImageList.length() > 0) {
+                    uploadBusinessImage();
+                } else {
+                    Utils.toast(this, response.optString("message"));
+                    finish();
+                }
             } else {
                 Toast.makeText(this, response.optString("message"), Toast.LENGTH_LONG).show();
             }
@@ -219,14 +223,10 @@ public class SpbEditProfileActivity extends AppCompatActivity {
         }
         ApiCall.postMethod(this, ServiceNames.UPLOAD_MULTIPLE_IMAGE, data, response -> {
             Utils.log(TAG, response.toString());
-            try {
-                JSONObject jsonObject = response.getJSONObject("data");
-                if (response.optString("status").equals("200")) {
-                    Utils.toast(this, response.optString("message"));
-                    finish();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+
+            if (response.optString("status").equals("200")) {
+                Utils.toast(this, response.optString("message"));
+                finish();
             }
         });
 

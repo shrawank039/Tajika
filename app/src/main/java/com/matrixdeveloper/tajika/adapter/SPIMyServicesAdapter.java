@@ -27,7 +27,7 @@ import java.util.List;
 public class SPIMyServicesAdapter extends RecyclerView.Adapter<SPIMyServicesAdapter.viewHolder> {
 
     private final Context ctx;
-    List<SPIMyServicesModel> listdata;
+    private List<SPIMyServicesModel> listdata;
     private final int serviceType;
 
     public SPIMyServicesAdapter(Context ctx, List<SPIMyServicesModel> listdata, int serviceType) {
