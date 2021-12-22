@@ -95,6 +95,7 @@
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.23425925925925925" />
         <entry key="app/src/main/res/layout/activity_set_password.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_edit_profile.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/activity_spb_my_services.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_register.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_spi_profile.xml" value="0.2546875" />
@@ -109,6 +110,7 @@
         <entry key="app/src/main/res/layout/item_category.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_recomended_services.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_spb_business_photos_videos.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/item_spb_my_goods.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_subcategory.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.2546875" />

@@ -51,8 +51,9 @@ public class SpbEditProfileActivity extends AppCompatActivity {
     private final String TAG = "SpiProfileEditAct";
     private RelativeLayout profileContainer;
     private String base64String = "";
+    private String profileBase64String = "";
     private List<SPBbusinessPhotosVideosModel> imageList = new ArrayList<>();
-    private List<String> encodeImageList = new ArrayList<>();
+    private JSONArray encodeImageList = new JSONArray();
     private List<Uri> imageUri = new ArrayList<>();
     private int selectionType = 0;
 
@@ -78,12 +79,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
         edtBusinessDesc = findViewById(R.id.edt_businessDesc);
         submit = findViewById(R.id.btn_submit);
 
-        findViewById(R.id.iv_addPhotosVideos).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openPhotoChooser(1);
-            }
-        });
+        findViewById(R.id.iv_addPhotosVideos).setOnClickListener(v -> openPhotoChooser(1));
 
         backPress.setOnClickListener(view -> SpbEditProfileActivity.super.onBackPressed());
 
@@ -157,7 +153,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     if (selectionType == 0) {
                         profileImage.setImageURI(fileUri);
                     } else if (selectionType == 1) {
-                        encodeImageList.add(base64String);
+                        encodeImageList.put(base64String);
                         imageUri.add(fileUri);
                         imageList.add(new SPBbusinessPhotosVideosModel("0", fileUri.getPath()));
                         mAdapter.notifyDataSetChanged();
@@ -196,7 +192,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
             data.put("service_description", service_description);
             data.put("year_of_experience", year_of_experience);
             data.put("bussiness_link", bussiness_link);
-            data.put("profileimage", base64String);
+            data.put("profileimage", profileBase64String);
 
         } catch (JSONException e) {
             e.printStackTrace();

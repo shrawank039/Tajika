@@ -73,7 +73,6 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         myGoodsList();
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private void myGoodsList() {
 
         JSONObject data = new JSONObject();
@@ -101,7 +100,6 @@ public class SpbMyServicesActivity extends AppCompatActivity {
         });
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private void myServiceList() {
 
         JSONObject data = new JSONObject();
@@ -122,7 +120,8 @@ public class SpbMyServicesActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-           servicesAdapter.notifyDataSetChanged();
+            servicesAdapter.notifyDataSetChanged();
+            concatAdapter.notifyDataSetChanged();
         });
     }
 
