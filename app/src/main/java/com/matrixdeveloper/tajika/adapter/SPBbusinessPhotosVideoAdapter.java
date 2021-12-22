@@ -55,10 +55,11 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, imageList.size());
 
-            //0 for server & 1 for local image picked
-            if (list.getTypeServerLocal() == 0) {
+            Toast.makeText(ctx, ""+list.getId(), Toast.LENGTH_SHORT).show();
+            if (!list.getId().equals("0")) {
                 deleteImg(list.getId());
             }
+
         });
     }
 
@@ -85,15 +86,9 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
             e.printStackTrace();
         }
         ApiCall.postMethod(ctx, ServiceNames.DELETE_SERVICE_IMAGE, data, response -> {
-            try {
-                JSONObject jsonObject = response.getJSONObject("data");
-                if (response.optString("status").equals("200")) {
-                    Toast.makeText(ctx, "Deleted Successfully", Toast.LENGTH_SHORT).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (response.optString("status").equals("200")) {
+                Toast.makeText(ctx, "Deleted Successfully", Toast.LENGTH_SHORT).show();
             }
-
         });
     }
 }

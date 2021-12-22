@@ -119,7 +119,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject.optJSONArray("service_offerd_image");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        imageList.add(new SPBbusinessPhotosVideosModel(jsonObject1.optString("id"), ServiceNames.PRODUCTION_API + jsonObject1.optString("link"),0));
+                        imageList.add(new SPBbusinessPhotosVideosModel(jsonObject1.optString("id"), ServiceNames.PRODUCTION_API + jsonObject1.optString("link")));
                     }
 
                     mAdapter = new SPBbusinessPhotosVideoAdapter(this, imageList, "editProfile");
@@ -155,7 +155,7 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     } else if (selectionType == 1) {
                         encodeImageList.put(base64String);
                         imageUri.add(fileUri);
-                        imageList.add(new SPBbusinessPhotosVideosModel("0", fileUri.getPath(),1));
+                        imageList.add(new SPBbusinessPhotosVideosModel("0", fileUri.getPath()));
                         mAdapter.notifyDataSetChanged();
                     }
                 }
