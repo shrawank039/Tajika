@@ -206,10 +206,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 abServiceUserContact.setText("Contact No: " + requestDetails.getContactPersonPhone());
                 abServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
                 abUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
-                //amountToPay.setText(requestDetails.);
                 abAmountWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
                 //finalAmountToPay.setText(requestDetails.);
-
 
                 //for pending declined service request
                 pdServiceName.setText("Name: " + requestDetails.getServiceName());
@@ -221,8 +219,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 pdServiceDate.setText(requestDetails.getServiceDate());
                 pdServiceTime.setText(requestDetails.getServiceTime());
                 pdServiceWorkDesc.setText(requestDetails.getWorkDescription());
-                //pdAmountToBePay.setText(requestDetails.);
-
+                pdAmountToBePay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
 
                 //for upcoming service request
                 upServiceName.setText("Name: " + requestDetails.getServiceName());

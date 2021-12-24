@@ -520,7 +520,8 @@ public class LocationSelectorActivity extends FragmentActivity
 
                     recommendedByTajika.setVisibility(View.VISIBLE);
                     ServiceProvider serviceProvider1 = MySingleton.getGson().fromJson(response.getJSONObject("recommended").toString(), ServiceProvider.class);
-                    getServiceProviderDetails(serviceProvider1.getId().toString());
+                    getServiceProviderDetails(serviceProvider1.getId().toString(), serviceProvider1.getBusinessCategories(), lat, longi);
+                    selected_id = serviceProvider1.getId().toString();
 
                     for (int i = 0; i < jsonarray.length(); i++) {
                         try {
@@ -533,34 +534,31 @@ public class LocationSelectorActivity extends FragmentActivity
                                 m.setTag(serviceProvider.getUserId());
                             }
 
-                            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                                @Override
-                                public boolean onMarkerClick(@NonNull Marker m) {
+                            mMap.setOnMarkerClickListener(m1 -> {
 
-                                    selected_id = String.valueOf(m.getTag());
+                                selected_id = String.valueOf(m1.getTag());
 
-                                    recommendedByTajika.setVisibility(View.INVISIBLE);
+                                recommendedByTajika.setVisibility(View.INVISIBLE);
 
-                                    providerDetails.setVisibility(View.VISIBLE);
+                                providerDetails.setVisibility(View.VISIBLE);
 
-                                    getServiceProviderDetails(selected_id);
+                                getServiceProviderDetails(selected_id, serviceProvider1.getBusinessCategories(), lat, longi);
 
 
-                                    if (service_type.equals("goods")) {
-                                        behavior2.setPeekHeight(peekHeight);
-                                    } else if (service_type.equals("service")) {
-                                        behavior.setPeekHeight(peekHeight);
-                                    }
-
-                                    viewDetails.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                                            moreDetailsService.setVisibility(View.VISIBLE);
-                                        }
-                                    });
-                                    return true;
+                                if (service_type.equals("goods")) {
+                                    behavior2.setPeekHeight(peekHeight);
+                                } else if (service_type.equals("service")) {
+                                    behavior.setPeekHeight(peekHeight);
                                 }
+
+                                viewDetails.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                                        moreDetailsService.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                                return true;
                             });
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -618,11 +616,15 @@ public class LocationSelectorActivity extends FragmentActivity
         dialog.show();
     }
 
-    private void getServiceProviderDetails(String providerID) {
+    private void getServiceProviderDetails(String providerID, String service_id, String latitude, String longitude) {
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", providerID);
             data.put("service_type", service_type);
+            data.put("latitude", latitude);
+            data.put("longitude", longitude);
+            data.put("service_id", service_id);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

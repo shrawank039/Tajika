@@ -116,8 +116,8 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
                 jobType.setText(requestDetails.getServiceType());
                 address.setText(requestDetails.getAddress());
                 description.setText(requestDetails.getWorkDescription());
-                contactNumber.setText(requestDetails.getContactPersonPhone());
-                contactName.setText(requestDetails.getContactPersonName());
+                contactNumber.setText(requestDetails.getCustomerphone());
+                contactName.setText(requestDetails.getCustomername());
                 amtWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay().toString());
 
 

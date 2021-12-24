@@ -16,6 +16,9 @@ public class NotificationModel implements Serializable
     @SerializedName("to_user_id")
     @Expose
     private Integer toUserId;
+    @SerializedName("service_request_id")
+    @Expose
+    private Integer service_request_id;
     @SerializedName("notificationtext")
     @Expose
     private String notificationtext;
@@ -45,6 +48,14 @@ public class NotificationModel implements Serializable
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getService_request_id() {
+        return service_request_id;
+    }
+
+    public void setService_request_id(Integer service_request_id) {
+        this.service_request_id = service_request_id;
     }
 
     public Integer getFromUserId() {
