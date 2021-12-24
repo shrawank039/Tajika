@@ -81,6 +81,10 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
 
         ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
+
+            if (response.optInt("status")==400){
+                Utils.toast(getApplicationContext(), response.optString("message"));
+            }else {
             if (status.equals("Accept")) {
                 startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
                         .putExtra("requestDetails", requestDetails));
@@ -90,6 +94,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 Toast.makeText(this, "Service has been declined..", Toast.LENGTH_SHORT).show();
+            }
             }
         });
     }

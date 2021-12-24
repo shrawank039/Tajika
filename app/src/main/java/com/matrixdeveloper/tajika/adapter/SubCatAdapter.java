@@ -3,19 +3,23 @@ package com.matrixdeveloper.tajika.adapter;
 import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.matrixdeveloper.tajika.LocationSelectorActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.SubCategory;
+import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -25,11 +29,13 @@ public class SubCatAdapter extends RecyclerView.Adapter<SubCatAdapter.MyViewHold
 
     private final Context ctx;
     private final List<SubCategory> subCategories;
+    private String TAG = "SearchAda";
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         final TextView title, message;
         ImageView imageView;
+        LinearLayout llItem;
 
 
         MyViewHolder(View view) {
@@ -38,6 +44,7 @@ public class SubCatAdapter extends RecyclerView.Adapter<SubCatAdapter.MyViewHold
             title = view.findViewById(R.id.txt_title);
             message = view.findViewById(R.id.txt_message);
             imageView = view.findViewById(R.id.image);
+            llItem = view.findViewById(R.id.ll_item);
         }
     }
 
@@ -65,6 +72,15 @@ public class SubCatAdapter extends RecyclerView.Adapter<SubCatAdapter.MyViewHold
                 .load(PRODUCTION_API + subCategory.getServiceImage())
                 .placeholder(R.drawable.plumbing)
                 .into(holder.imageView);
+
+        holder.llItem.setOnClickListener(v -> {
+                ctx.startActivity(new Intent(ctx, LocationSelectorActivity.class)
+                        .putExtra("service_name", subCategory.getServiceName())
+                        .putExtra("service_type", subCategory.getServiceType())
+                        .putExtra("service_id", String.valueOf(subCategory.getId())));
+
+            Utils.log(TAG, position+" "+subCategory.getServiceType()+" "+ subCategory.getId());
+        });
 
     }
 

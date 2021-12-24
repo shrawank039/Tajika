@@ -91,6 +91,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .putExtra("service_type", subCategory.getServiceType())
                         .putExtra("service_id", String.valueOf(subCategory.getId())));
 
+                Utils.log(TAG, subCategory.getServiceName()+" "+subCategory.getServiceType()+" "+ subCategory.getId());
+
             }
 
             @Override
@@ -117,6 +119,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .putExtra("service_name", subCategory.getServiceName())
                         .putExtra("service_type", subCategory.getServiceType())
                         .putExtra("service_id", String.valueOf(subCategory.getId())));
+
+                Utils.log(TAG, subCategory.getServiceName()+" "+subCategory.getServiceType()+" "+ subCategory.getId());
 
             }
 

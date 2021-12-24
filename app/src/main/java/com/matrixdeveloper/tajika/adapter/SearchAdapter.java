@@ -17,6 +17,7 @@ import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.SubCategory;
 import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
+import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +31,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     private RecyclerView rvSubcategory;
     private SubCatAdapter subCatAdapter;
     private List<SubCategory> subCategories = new ArrayList<>();
+    private String TAG = "SearchAda";
 
 
     public SearchAdapter(Context context, List<Category> categories) {
@@ -51,7 +53,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         final Category category = categories.get(position);
 
         subCategories = category.getSubCategory();
-        subCatAdapter = new SubCatAdapter(ctx.getApplicationContext(), subCategories);
+        subCatAdapter = new SubCatAdapter(ctx, subCategories);
 
         holder.title.setText(category.getName());
 
@@ -60,23 +62,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         rvSubcategory.setLayoutManager(new LinearLayoutManager(ctx));
         rvSubcategory.setItemAnimator(new DefaultItemAnimator());
         rvSubcategory.setAdapter(subCatAdapter);
-
-        rvSubcategory.addOnItemTouchListener(new RecyclerTouchListener(ctx, rvSubcategory, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                SubCategory subCategory = subCategories.get(position);
-
-                ctx.startActivity(new Intent(ctx, LocationSelectorActivity.class)
-                        .putExtra("service_name", subCategory.getServiceName())
-                        .putExtra("service_type", subCategory.getServiceType())
-                        .putExtra("service_id", String.valueOf(subCategory.getId())));
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
 
     }
 
