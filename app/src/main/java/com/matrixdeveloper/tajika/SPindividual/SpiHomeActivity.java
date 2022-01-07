@@ -83,10 +83,14 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         initListeners();
 
-        getHomeData();
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getHomeData();
+    }
 
     private void initViews() {
         pref = new PrefManager(this);
@@ -189,6 +193,9 @@ public class SpiHomeActivity extends AppCompatActivity {
 
     private void getHomeData() {
 
+        requestLists = new ArrayList<>();
+        upcomingJobList = new ArrayList<>();
+
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", pref.getString("id"));
@@ -278,7 +285,6 @@ public class SpiHomeActivity extends AppCompatActivity {
 
     public void changeServiceStatus(String id) {
 
-        Toast.makeText(this, "" + requestDetails.getId(), Toast.LENGTH_SHORT).show();
         JSONObject data = new JSONObject();
         try {
             data.put("id", id);
@@ -292,8 +298,12 @@ public class SpiHomeActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
 
-            startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
-                    .putExtra("requestDetails", requestDetails));
+            if (response.optInt("status")==400){
+                Utils.toast(getApplicationContext(), response.optString("message"));
+            }else {
+                startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
+                        .putExtra("requestDetails", requestDetails));
+            }
         });
     }
 }

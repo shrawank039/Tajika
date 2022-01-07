@@ -2,6 +2,7 @@ package com.matrixdeveloper.tajika.SPindividual;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -115,6 +116,9 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
 
                 requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
 
+                if (!requestDetails.getStatus().equals("Pending")){
+                    findViewById(R.id.linearLayout9).setVisibility(View.GONE);
+                }
                 requestId.setText(requestDetails.getId().toString());
                 jobDate.setText(requestDetails.getServiceDate());
                 jobTime.setText(requestDetails.getServiceTime());

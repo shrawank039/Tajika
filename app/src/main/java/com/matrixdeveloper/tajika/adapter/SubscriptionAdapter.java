@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.LocationSelectorActivity;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPbusiness.SpbProfileActivity;
+import com.matrixdeveloper.tajika.SPindividual.SpiProfileActivity;
 import com.matrixdeveloper.tajika.model.SubscriptionModel;
 
 import java.util.List;
@@ -42,8 +44,12 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
         holder.cvSelectPackage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ctx instanceof LocationSelectorActivity) {
-                    ((LocationSelectorActivity)ctx).showSubscriptionAlert();
+                if (ctx instanceof SpbProfileActivity) {
+                    ((SpbProfileActivity)ctx).showSubscriptionAlert(subscriptionModel.getId(),subscriptionModel.getAmount(),subscriptionModel.getName());
+                }else if (ctx instanceof LocationSelectorActivity) {
+                    ((LocationSelectorActivity)ctx).showSubscriptionAlert(subscriptionModel.getId(),subscriptionModel.getAmount(),subscriptionModel.getName());
+                }else if (ctx instanceof SpiProfileActivity) {
+                    ((SpiProfileActivity)ctx).showSubscriptionAlert(subscriptionModel.getId(),subscriptionModel.getAmount(),subscriptionModel.getName());
                 }
             }
         });

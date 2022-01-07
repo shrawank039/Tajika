@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -86,8 +87,12 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
         ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
 
-            startActivity(new Intent(SpiServiceAcceptActivity.this, SpiServiceCompletedStatusActivity.class));
-            finish();
+            if (response.optInt("status")==400){
+                Utils.toast(getApplicationContext(), response.optString("message"));
+            } else {
+                startActivity(new Intent(SpiServiceAcceptActivity.this, SpiServiceCompletedStatusActivity.class));
+                finish();
+            }
 
         });
     }

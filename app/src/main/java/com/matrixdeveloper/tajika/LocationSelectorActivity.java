@@ -106,7 +106,7 @@ public class LocationSelectorActivity extends FragmentActivity
     private RecyclerView recSubscription;
     private LinearLayout parentTwoService, parentOneService, parentOneGoods;
     int availableHeight;
-    String subscriptionStatus;
+    String subscriptionStatus, planID;
     private final int PAYMENT_REQUEST = 1;
 
     private ImageView spProviderImage, gpGoodsProviderImage;
@@ -212,7 +212,7 @@ public class LocationSelectorActivity extends FragmentActivity
         } else if (subscriptionStatus.equals("unsubscribed") || subscriptionStatus.equals("")) {
             showSubscriptionPayOneTimeAlert();
         } else if (subscriptionStatus.equals("expired")) {
-            showSubscriptionAlert();
+            showSubscriptionPayOneTimeAlert();
         }
     }
 
@@ -240,7 +240,8 @@ public class LocationSelectorActivity extends FragmentActivity
         dialog.show();
     }
 
-    public void showSubscriptionAlert() {
+    public void showSubscriptionAlert(String id, String amount, String title) {
+        planID = id;
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -251,6 +252,8 @@ public class LocationSelectorActivity extends FragmentActivity
 
         makePayment.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), PaymentWebViewActivity.class);
+            intent.putExtra("amount",amount);
+            intent.putExtra("order_desc",title);
             startActivityForResult(intent, PAYMENT_REQUEST);
             // dialog.dismiss();
         });
@@ -495,6 +498,7 @@ public class LocationSelectorActivity extends FragmentActivity
         JSONObject data = new JSONObject();
         try {
             data.put("service_id", service_id);
+            data.put("type", service_type);
             data.put("latitude", lat);
             data.put("longitude", longi);
         } catch (JSONException e) {
@@ -836,11 +840,36 @@ public class LocationSelectorActivity extends FragmentActivity
 
         if (requestCode == PAYMENT_REQUEST) {
             if (resultCode == 1) {
-                showSubscriptionSuccessAlert();
+                addSubscription();
             } else {
+                addSubscription();
                 Utils.toast(getApplicationContext(), "Payment Failed!!!");
             }
         }
+
+    }
+
+    public void addSubscription() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", pref.getString("id"));
+            data.put("plan_id", planID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.ADD_SUBSCRIPTION, data, response -> {
+            Utils.log(TAG, response.toString());
+            try {
+                JSONObject jsonObject = response.getJSONObject("data");
+                if (response.optString("status").equals("200")) {
+                    showSubscriptionSuccessAlert();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
 
     }
 

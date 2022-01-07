@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.matrixdeveloper.tajika.WebView.WebAppInterface;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONException;
@@ -26,8 +27,9 @@ import java.util.Map;
 public class PaymentWebViewActivity extends AppCompatActivity implements View.OnTouchListener, Handler.Callback {
 
     WebView myWebView;
-    String url;
+    String url, amount, description, planId;
     String TAG = "PaymentWebViewAct";
+    private PrefManager prf;
     private static final int CLICK_ON_WEBVIEW = 1;
     private static final int CLICK_ON_URL = 2;
     private final Handler handler = new Handler(this);
@@ -39,7 +41,10 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_web_view);
 
         getToken();
-
+        prf = new PrefManager(this);
+        amount = getIntent().getStringExtra("amount");
+        description = getIntent().getStringExtra("order_desc");
+        planId = getIntent().getStringExtra("plan_id");
         myWebView = findViewById(R.id.webview);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
@@ -49,14 +54,15 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
 
         myWebView.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String urll) {
-                Utils.log(TAG, urll);
-                if (urll.contains("transactionStatus=SUCCESS")) {
+            public boolean shouldOverrideUrlLoading(WebView view, String callback_url) {
+                Utils.log(TAG, callback_url);
+                myWebView.loadData(callback_url, "text/html", "UTF-8");
+                if (callback_url.contains("transactionStatus=SUCCESS")) {
                     setResult(1);
                     finish();
                     return true;
-                } else if (urll.contains("transactionStatus=CANCELLED")) {
-                    setResult(1);
+                } else if (callback_url.contains("transactionStatus=CANCELLED")) {
+                    setResult(0);
                     finish();
                     return true;
                 }
@@ -84,12 +90,13 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
     }
 
     private void getPaymentPage(String token) {
+
         Map<String, String> params = new HashMap<>();
         params.put("accessToken", token);
-        params.put("user_id", "77");
-        params.put("order_id", "2");
-        params.put("amount", "1000");
-        params.put("order_desc", "test payment");
+        params.put("user_id", prf.getString("id"));
+        params.put("amount", amount);
+        params.put("plan_id", amount);
+        params.put("order_desc", description);
 
         ApiCall.postStringMethod(this, ServiceNames.PAYMENT_PAGE, params, response -> {
 

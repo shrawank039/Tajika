@@ -6,17 +6,27 @@ import com.google.gson.annotations.SerializedName;
 
 public class SubscriptionModel implements Serializable
 {
-
+    @SerializedName("id")
+    @Expose
+    private String id;
     @SerializedName("name")
     @Expose
     private String name;
     @SerializedName("amount")
     @Expose
-    private Integer amount;
+    private String amount;
     @SerializedName("no_of_days")
     @Expose
     private Integer noOfDays;
     private final static long serialVersionUID = -2345764122788519939L;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -26,11 +36,11 @@ public class SubscriptionModel implements Serializable
         this.name = name;
     }
 
-    public Integer getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
