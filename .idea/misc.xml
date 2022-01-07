@@ -83,6 +83,7 @@
         <entry key="app/src/debug/res/font/muli.xml" value="0.25277777777777777" />
         <entry key="app/src/main/res/layout/activity_all_service.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_book_service.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/activity_booking.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_booking_details.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2546875" />
@@ -101,6 +102,7 @@
         <entry key="app/src/main/res/layout/activity_spb_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_register.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_spi_all_request.xml" value="0.22685185185185186" />
+        <entry key="app/src/main/res/layout/activity_spi_more.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_profile_edit.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/activity_spi_service_accept.xml" value="0.2222222222222222" />

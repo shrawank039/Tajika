@@ -32,6 +32,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
     private final String TAG = "BookingDetailsAct";
     private String id;
+    private double discount =0;
     private ImageView backPress, serviceImage;
 
     //for accepted booked
@@ -54,7 +55,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private CardView congratsContainer, cheersContainer;
     private LinearLayout abContainerServiceAddress, abContainerBottomBookCancel, abContainerRequestSummery, abCouponContainer;
     private ConstraintLayout abContainerContactHelp;
-
+    private RequestDetails requestDetails;
     private String status;
 
     @Override
@@ -172,7 +173,12 @@ public class BookingDetailsActivity extends AppCompatActivity {
     }
 
     private void initListeners() {
-        backPress.setOnClickListener(view -> BookingDetailsActivity.super.onBackPressed());
+        backPress.setOnClickListener(v -> BookingDetailsActivity.super.onBackPressed());
+        bookThisService.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), BookServiceActivity.class)
+            .putExtra("booking_id", id ).putExtra("amount", requestDetails.getWillingAmountPay() ).putExtra("discount", String.valueOf(discount) )
+            );
+        });
     }
 
     private void getBookingDetails(String bookingID) {
@@ -188,7 +194,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
             Utils.log(TAG, response.toString());
 
             try {
-                RequestDetails requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+                requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
 
                 //for accepted booked service request
                 abServiceName.setText("Name: " + requestDetails.getServiceName());
@@ -207,6 +213,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 abServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
                 abUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
                 abAmountWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
+                abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
                 //finalAmountToPay.setText(requestDetails.);
 
                 //for pending declined service request

@@ -1,10 +1,12 @@
 package com.matrixdeveloper.tajika;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -18,9 +20,11 @@ public class BookServiceActivity extends AppCompatActivity {
 
     private ImageView backPress;
     private final String TAG = "BookServiceAct";
-    String bookingID;
+    String bookingID, amount, discount;
+    double payableAmt;
     private EditText name, phoneNUmber, flatNumber, streetAddress, landmark, anyInstruction;
     private LinearLayout llMakePayment;
+    private final int PAYMENT_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +32,20 @@ public class BookServiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_service);
 
         bookingID = getIntent().getStringExtra("booking_id");
+        amount = getIntent().getStringExtra("amount");
+        discount = getIntent().getStringExtra("discount");
+
+        payableAmt = Double.parseDouble(amount) - Double.parseDouble(discount);
 
         initViews();
 
         backPress.setOnClickListener(view -> BookServiceActivity.super.onBackPressed());
-        llMakePayment.setOnClickListener(view -> bookService());
+        llMakePayment.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), PaymentWebViewActivity.class);
+            intent.putExtra("amount",String.valueOf(payableAmt));
+            intent.putExtra("order_desc","service booking");
+            startActivityForResult(intent, PAYMENT_REQUEST);
+                });
 
     }
 
@@ -49,6 +62,21 @@ public class BookServiceActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PAYMENT_REQUEST) {
+            if (resultCode == 1) {
+                bookService();
+            } else {
+                bookService();
+                Utils.toast(getApplicationContext(), "Payment Failed!!!");
+            }
+        }
+
+    }
+
     private void bookService() {
 
         JSONObject data = new JSONObject();
@@ -60,7 +88,8 @@ public class BookServiceActivity extends AppCompatActivity {
             data.put("serviceaddress_streetaddress", streetAddress.getText().toString());
             data.put("serviceaddress_landmark", landmark.getText().toString());
             data.put("instruction", anyInstruction.getText().toString());
-            data.put("adminpayableamount", "5050");
+            data.put("discount", discount);
+            data.put("adminpayableamount", String.valueOf(payableAmt));
         } catch (JSONException e) {
             e.printStackTrace();
         }
