@@ -56,7 +56,6 @@ public class RequestedFragment extends Fragment {
 
         getRequestData();
 
-
         rvRequested.addOnItemTouchListener(new RecyclerTouchListener(getContext(), rvRequested, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {

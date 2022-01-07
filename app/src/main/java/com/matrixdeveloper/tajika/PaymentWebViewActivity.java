@@ -56,7 +56,7 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String callback_url) {
                 Utils.log(TAG, callback_url);
-                myWebView.loadData(callback_url, "text/html", "UTF-8");
+                myWebView.loadUrl(callback_url);
                 if (callback_url.contains("transactionStatus=SUCCESS")) {
                     setResult(1);
                     finish();

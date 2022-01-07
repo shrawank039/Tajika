@@ -98,6 +98,8 @@ public class BookServiceActivity extends AppCompatActivity {
 
             Utils.log(TAG, response.toString());
             Utils.toast(this, response.optString("message"));
+            startActivity(new Intent(getApplicationContext(), BookingActivity.class));
+            finish();
 
         });
     }

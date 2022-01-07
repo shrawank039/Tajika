@@ -625,6 +625,7 @@ public class LocationSelectorActivity extends FragmentActivity
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", providerID);
+            data.put("uid", pref.getString("id"));
             data.put("service_type", service_type);
             data.put("latitude", latitude);
             data.put("longitude", longitude);
@@ -655,15 +656,17 @@ public class LocationSelectorActivity extends FragmentActivity
                 spAddress.setText(serviceProviderDetails.getServiceArea());
 
                 String skills = "";
+                if (serviceProviderDetails.getSkills() !=null){
                 for (int i = 0; i < serviceProviderDetails.getSkills().size(); i++) {
                     skills = skills + serviceProviderDetails.getSkills().get(i);
                     spSkills.setText(skills);
-                }
+                }}
 
                 List<ServiceImageModel> serviceImageModels = new ArrayList<>();
+                if (serviceProviderDetails.getServiceimage()!=null){
                 for (int j = 0; j < serviceProviderDetails.getServiceimage().size(); j++) {
                     serviceImageModels.add(new ServiceImageModel(serviceProviderDetails.getServiceimage().get(j)));
-                }
+                }}
 
                 ServiceImageAdapter serviceImageAdapter = new ServiceImageAdapter(this, serviceImageModels);
                 GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this, 1);

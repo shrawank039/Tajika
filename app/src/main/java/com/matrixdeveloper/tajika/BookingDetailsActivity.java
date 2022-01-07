@@ -35,7 +35,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
     private final String TAG = "BookingDetailsAct";
     private String id;
-    private double discount = 0;
+    private double discount = 0.0;
     private ImageView backPress, serviceImage;
     private PrefManager prf;
 
@@ -59,7 +59,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private CardView congratsContainer, cheersContainer;
     private LinearLayout abContainerServiceAddress, abContainerBottomBookCancel, abContainerRequestSummery, abCouponContainer;
     private ConstraintLayout abContainerContactHelp;
-    private RequestDetails requestDetails;
+    RequestDetails requestDetails;
     private String status;
 
     @Override
@@ -74,7 +74,6 @@ public class BookingDetailsActivity extends AppCompatActivity {
         id = getIntent().getStringExtra("booking_id");
         status = getIntent().getStringExtra("status");
 
-        Toast.makeText(this, "" + status, Toast.LENGTH_SHORT).show();
         switch (status) {
             case "Booked":
                 bookingViewFlipper.setDisplayedChild(0);
@@ -217,7 +216,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                     try {
                         jsonObject = response.optJSONObject("data");
                         double marginAmount = jsonObject.optDouble("margin_amount");
-                        double totalAmount = requestDetails.getWillingAmountPay();
+                        double totalAmount = Double.parseDouble(requestDetails.getWillingAmountPay());
                         double finalAmount = totalAmount - marginAmount;
                         abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + finalAmount);
                         dialog.dismiss();

@@ -24,7 +24,7 @@ public class RequestDetails implements Serializable
     private String serviceType;
     @SerializedName("willing_amount_pay")
     @Expose
-    private Integer willingAmountPay;
+    private String willingAmountPay;
     @SerializedName("work_description")
     @Expose
     private String workDescription;
@@ -157,11 +157,11 @@ public class RequestDetails implements Serializable
         this.serviceType = serviceType;
     }
 
-    public Integer getWillingAmountPay() {
+    public String getWillingAmountPay() {
         return willingAmountPay;
     }
 
-    public void setWillingAmountPay(Integer willingAmountPay) {
+    public void setWillingAmountPay(String willingAmountPay) {
         this.willingAmountPay = willingAmountPay;
     }
 
