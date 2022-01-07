@@ -75,6 +75,7 @@ public class ServiceNames {
     public static final String UPDATE_PROVIDER_PROFILE_BUSI = API + "/updateServiceBuisnessDetails";
     public static final String DELETE_SERVICE_IMAGE = API + "/deleteServiceImage";
     public static final String UPLOAD_MULTIPLE_IMAGE = API + "/uploadMultipleImage";
+    public static final String VALIDATE_COUPON = API + "/validateCoupen";
 
     public static boolean is = true;
 

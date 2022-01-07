@@ -28,7 +28,16 @@ public class Login implements Serializable
     @SerializedName("phone_number")
     @Expose
     private String phoneNumber;
-    private final static long serialVersionUID = -3505989218861640897L;
+    @SerializedName("amount")
+    @Expose
+    private Double amount;
+    @SerializedName("rating")
+    @Expose
+    private String rating;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    private final static long serialVersionUID = -3485361231184272798L;
 
     public Integer getId() {
         return id;
@@ -84,6 +93,30 @@ public class Login implements Serializable
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

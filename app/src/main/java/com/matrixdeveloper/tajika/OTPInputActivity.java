@@ -1,5 +1,7 @@
 package com.matrixdeveloper.tajika;
 
+import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,8 +23,6 @@ import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Set;
 
 public class OTPInputActivity extends AppCompatActivity {
 
@@ -83,7 +83,7 @@ public class OTPInputActivity extends AppCompatActivity {
                     Utils.log(TAG, response.toString());
                     Utils.toast(OTPInputActivity.this, response.optString("message"));
 
-                    if (response.optInt("status") == 200){
+                    if (response.optInt("status") == 200) {
                         JSONObject dataObj = response.optJSONObject("data");
                     }
 
@@ -126,12 +126,14 @@ public class OTPInputActivity extends AppCompatActivity {
                 prf.setString(Global.role, login.getRoles().toString());
                 prf.setString(Global.email, login.getEmail());
                 prf.setString(Global.name, login.getName());
+                prf.setString(Global.rating, login.getRating());
+                prf.setString(Global.profileImage, PRODUCTION_API + login.getImage());
 
-                if (type.equalsIgnoreCase("login")){
-                    if (user_type.equals("business") || user_type.equals("individual")){
+                if (type.equalsIgnoreCase("login")) {
+                    if (user_type.equals("business") || user_type.equals("individual")) {
                         startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                    }else {
+                    } else {
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     }

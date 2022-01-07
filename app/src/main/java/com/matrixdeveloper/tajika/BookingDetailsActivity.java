@@ -23,17 +23,22 @@ import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 public class BookingDetailsActivity extends AppCompatActivity {
 
     private final String TAG = "BookingDetailsAct";
     private String id;
-    private double discount =0;
+    private double discount = 0;
     private ImageView backPress, serviceImage;
+    private PrefManager prf;
 
     //for accepted booked
     private TextView abServiceName, abServiceAddress, abServiceType, abServiceBookingId, abServiceStatus, abRequestedOn;
@@ -106,6 +111,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
     private void initViews() {
 
+        prf = new PrefManager(this);
         bookingViewFlipper = findViewById(R.id.vf_bookingViewFlipper);
         backPress = findViewById(R.id.iv_backPress);
 
@@ -176,9 +182,57 @@ public class BookingDetailsActivity extends AppCompatActivity {
         backPress.setOnClickListener(v -> BookingDetailsActivity.super.onBackPressed());
         bookThisService.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), BookServiceActivity.class)
-            .putExtra("booking_id", id ).putExtra("amount", requestDetails.getWillingAmountPay() ).putExtra("discount", String.valueOf(discount) )
+                    .putExtra("booking_id", id).putExtra("amount", requestDetails.getWillingAmountPay()).putExtra("discount", String.valueOf(discount))
             );
         });
+        applyCoupon.setOnClickListener(v -> {
+            dialogApplyCoupon();
+        });
+    }
+
+    private void dialogApplyCoupon() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_apply_coupon);
+
+        EditText enterCoupon = (EditText) dialog.findViewById(R.id.edt_enterCoupon);
+        TextView txtApply = (TextView) dialog.findViewById(R.id.txt_apply);
+        TextView txtCancel = (TextView) dialog.findViewById(R.id.txt_cancel);
+        ImageView closeDialog = (ImageView) dialog.findViewById(R.id.iv_dialogCancel);
+
+        txtApply.setOnClickListener(v -> {
+            JSONObject data = new JSONObject();
+            try {
+                data.put("user_id", prf.getString("id"));
+                data.put("coupen_code", enterCoupon.getText().toString().trim());
+                data.put("total_amount", requestDetails.getWillingAmountPay());
+                data.put("request_id", requestDetails.getRequestId());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            ApiCall.postMethod(this, ServiceNames.VALIDATE_COUPON, data, response -> {
+
+                JSONObject jsonObject = null;
+                if (Objects.equals(response.opt("status"), 200)) {
+                    try {
+                        jsonObject = response.optJSONObject("data");
+                        double marginAmount = jsonObject.optDouble("margin_amount");
+                        double totalAmount = requestDetails.getWillingAmountPay();
+                        double finalAmount = totalAmount - marginAmount;
+                        abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + finalAmount);
+                        dialog.dismiss();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                Toast.makeText(this, "" + response.optString("message"), Toast.LENGTH_SHORT).show();
+            });
+        });
+        txtCancel.setOnClickListener(v -> dialog.dismiss());
+        closeDialog.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 
     private void getBookingDetails(String bookingID) {

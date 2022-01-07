@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.glide.slider.library.SliderLayout;
 import com.glide.slider.library.slidertypes.BaseSliderView;
@@ -192,7 +193,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         greeting = findViewById(R.id.txt_homeGreeting);
 
         //setting navigation drawer
-        //Glide.with(this).load(personPhoto).into(profileImage);
+        Glide.with(this).load(prf.getString("profileImage")).placeholder(R.drawable.app_logo).into(profileImage);
         userName.setText(prf.getString("name"));
     }
 

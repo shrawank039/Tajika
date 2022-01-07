@@ -60,7 +60,6 @@ public class MyProfileActivity extends AppCompatActivity {
 
             try {
                 JSONObject jsonObject = response.getJSONObject("data");
-                String profileUrl = jsonObject.optString("profileimage");
                 Glide.with(this).load(jsonObject.optString("profileimage")).placeholder(R.drawable.app_logo).into(profileImage);
 
                 userName.setText(jsonObject.optString("name"));

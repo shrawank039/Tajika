@@ -1,5 +1,7 @@
 package com.matrixdeveloper.tajika;
 
+import static com.matrixdeveloper.tajika.network.ServiceNames.PRODUCTION_API;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -78,7 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                 prf.setString(Global.role, login.getRoles().toString());
                 prf.setString(Global.email, login.getEmail());
                 prf.setString(Global.name, login.getName());
-                prf.setString(Global.profileImage, login.getName());
+                prf.setString(Global.rating, login.getRating());
+                prf.setString(Global.profileImage, PRODUCTION_API+login.getImage());
 
                 startActivity(new Intent(getApplicationContext(), HomeActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));

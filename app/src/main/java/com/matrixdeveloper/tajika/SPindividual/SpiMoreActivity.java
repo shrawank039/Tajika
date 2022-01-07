@@ -4,12 +4,15 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.AboutUsActivity;
 import com.matrixdeveloper.tajika.HelpActivity;
 import com.matrixdeveloper.tajika.LandingPage;
@@ -24,6 +27,8 @@ public class SpiMoreActivity extends AppCompatActivity {
 
     private ListView moreOptions;
     private PrefManager prf;
+    private ImageView businessImage;
+    private TextView businessName, businessRating;
     String[] settingsList = {"My Profile", "Services you offer", "All requests", "All bookings",
             "Credit wallet", "Refer Friends", "Switch to user", "Rate App", "Contact us", "About us", "Logout"};
 
@@ -31,9 +36,16 @@ public class SpiMoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_more);
-        moreOptions = findViewById(R.id.lv_moreOptions);
 
         prf = new PrefManager(this);
+        moreOptions = findViewById(R.id.lv_moreOptions);
+        businessImage = findViewById(R.id.iv_profileImage);
+        businessName = findViewById(R.id.txt_businessName);
+        businessRating = findViewById(R.id.txt_businessRating);
+
+        Glide.with(this).load(prf.getString("profileImage")).placeholder(R.drawable.app_logo).into(businessImage);
+        businessName.setText(prf.getString("name"));
+        businessRating.setText(prf.getString("rating") + " star ratings");
 
         SPIMoreOptionsBaseAdapter customAdapter = new SPIMoreOptionsBaseAdapter(getApplicationContext(), settingsList);
         moreOptions.setAdapter(customAdapter);

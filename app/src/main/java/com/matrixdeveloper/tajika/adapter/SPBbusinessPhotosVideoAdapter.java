@@ -59,7 +59,6 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
             if (!list.getId().equals("0")) {
                 deleteImg(list.getId());
             }
-
         });
     }
 

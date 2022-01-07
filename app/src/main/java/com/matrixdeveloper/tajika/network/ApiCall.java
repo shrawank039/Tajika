@@ -25,7 +25,7 @@ public class ApiCall {
     private static final String TAG = "APPTAJIKA";
 
     public static void postMethod(final Context context, final String url, final JSONObject jsonObject, final VolleyCallback volleyCallback) {
-        Utils.log(TAG, "getMethod:" + ", url: " + url);
+        Utils.log(TAG, "getMethod:" + ", url: " + url + jsonObject);
         Utils.show(context);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                 url, jsonObject,
@@ -213,15 +213,15 @@ public class ApiCall {
                     Log.d(TAG, "onResponse: " + url + ",response:" + response);
                     Utils.dismiss();
 
-                        volleyCallback.onSuccess(response);
+                    volleyCallback.onSuccess(response);
 
                 }, error -> {
-                    Log.d(TAG, "onResponse: " + url + ",onErrorResponse:" + error);
-                    Utils.dismiss();
-                    VolleyErrorHandler.handle(url, error);
-                }) {
+            Log.d(TAG, "onResponse: " + url + ",onErrorResponse:" + error);
+            Utils.dismiss();
+            VolleyErrorHandler.handle(url, error);
+        }) {
             @Override
-            public Map<String, String> getParams(){
+            public Map<String, String> getParams() {
                 return params;
             }
         };
