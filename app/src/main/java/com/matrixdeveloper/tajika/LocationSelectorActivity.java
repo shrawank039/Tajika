@@ -20,7 +20,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.Button;
@@ -52,10 +51,12 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.matrixdeveloper.tajika.adapter.ServiceImageAdapter;
 import com.matrixdeveloper.tajika.adapter.SubscriptionAdapter;
 import com.matrixdeveloper.tajika.location.LiveGpsTracker;
 import com.matrixdeveloper.tajika.model.AddressBean;
 import com.matrixdeveloper.tajika.model.PlaceBean;
+import com.matrixdeveloper.tajika.model.ServiceImageModel;
 import com.matrixdeveloper.tajika.model.ServiceProvider;
 import com.matrixdeveloper.tajika.model.ServiceProviderDetails;
 import com.matrixdeveloper.tajika.model.SubscriptionModel;
@@ -108,9 +109,10 @@ public class LocationSelectorActivity extends FragmentActivity
     int availableHeight;
     String subscriptionStatus, planID;
     private final int PAYMENT_REQUEST = 1;
+    private RecyclerView rvServiceImages;
 
     private ImageView spProviderImage, gpGoodsProviderImage;
-    private TextView spProviderName, spServiceName, spDistance, spRating, spAbout, spJobsCompleted, spEducation, spAddress, spSkillOne, spSkillTwo, spSkillThree;
+    private TextView spProviderName, spServiceName, spDistance, spRating, spAbout, spJobsCompleted, spEducation, spAddress, spSkills;
     private TextView gpGoodsProviderName, gpServiceName, gpDistance, gpRating, gpAbout, gpProductName, gpProductCost, gpCustomerAddress, gpProductCategory, gpProductDetails;
 
     @Override
@@ -252,8 +254,8 @@ public class LocationSelectorActivity extends FragmentActivity
 
         makePayment.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), PaymentWebViewActivity.class);
-            intent.putExtra("amount",amount);
-            intent.putExtra("order_desc",title);
+            intent.putExtra("amount", amount);
+            intent.putExtra("order_desc", title);
             startActivityForResult(intent, PAYMENT_REQUEST);
             // dialog.dismiss();
         });
@@ -322,12 +324,11 @@ public class LocationSelectorActivity extends FragmentActivity
         spJobsCompleted = findViewById(R.id.txt_spJobsCompleted);
         spEducation = findViewById(R.id.txt_spEducation);
         spAddress = findViewById(R.id.txt_spAddress);
-        spSkillOne = findViewById(R.id.txt_spSkillOne);
-        spSkillTwo = findViewById(R.id.txt_spSkillTwo);
-        spSkillThree = findViewById(R.id.txt_spSkillThree);
+        spSkills = findViewById(R.id.txt_spSkills);
         parentOneService = findViewById(R.id.ll_oneService);
         moreDetailsService = findViewById(R.id.ll_moreDetailsService);
         spRecommendedService = findViewById(R.id.ll_spRecommendedService);
+        rvServiceImages = findViewById(R.id.rv_serviceProviderImages);
 
 
         //BottomSheet Goods Provider
@@ -641,7 +642,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
                 serviceProviderDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), ServiceProviderDetails.class);
 
-                Glide.with(this).load(serviceProviderDetails.getProfileimage()).placeholder(R.drawable.provider_image_1x).into(spProviderImage);
+                Glide.with(this).load(ServiceNames.PRODUCTION_API + serviceProviderDetails.getProfileimage()).placeholder(R.drawable.provider_image_1x).into(spProviderImage);
 
                 //for service
                 spProviderName.setText(serviceProviderDetails.getName());
@@ -652,12 +653,28 @@ public class LocationSelectorActivity extends FragmentActivity
                 spJobsCompleted.setText(String.valueOf(serviceProviderDetails.getJobCompleted()));
                 spEducation.setText(serviceProviderDetails.getEducationLevel());
                 spAddress.setText(serviceProviderDetails.getServiceArea());
-                //spSkillOne.setText(serviceProviderDetails.);
-                //spSkillTwo.setText(serviceProviderDetails.);
-                //spSkillThree.setText(serviceProviderDetails.);
 
+                String skills = "";
+                for (int i = 0; i < serviceProviderDetails.getSkills().size(); i++) {
+                    skills = skills + serviceProviderDetails.getSkills().get(i);
+                    spSkills.setText(skills);
+                }
+
+                List<ServiceImageModel> serviceImageModels = new ArrayList<>();
+                for (int j = 0; j < serviceProviderDetails.getServiceimage().size(); j++) {
+                    serviceImageModels.add(new ServiceImageModel(serviceProviderDetails.getServiceimage().get(j)));
+                }
+
+                ServiceImageAdapter serviceImageAdapter = new ServiceImageAdapter(this, serviceImageModels);
+                GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this, 1);
+                gridLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
+                rvServiceImages.setHasFixedSize(true);
+                rvServiceImages.setLayoutManager(gridLayoutManager1);
+                rvServiceImages.setAdapter(serviceImageAdapter);
 
                 // for goods
+                Glide.with(this).load(ServiceNames.PRODUCTION_API + serviceProviderDetails.getProfileimage()).placeholder(R.drawable.provider_image_1x).into(gpGoodsProviderImage);
+
                 gpGoodsProviderName.setText(serviceProviderDetails.getName());
                 gpServiceName.setText(serviceProviderDetails.getBusinessCategories());
                 gpDistance.setText(serviceProviderDetails.getDistance());
@@ -670,11 +687,9 @@ public class LocationSelectorActivity extends FragmentActivity
                 gpCustomerAddress.setText(serviceProviderDetails.getServiceArea());
                 subscriptionStatus = serviceProviderDetails.getSubscription();
 
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         });
     }
 

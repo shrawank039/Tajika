@@ -26,7 +26,6 @@ import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,6 +74,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         id = getIntent().getStringExtra("booking_id");
         status = getIntent().getStringExtra("status");
 
+        Toast.makeText(this, "" + status, Toast.LENGTH_SHORT).show();
         switch (status) {
             case "Booked":
                 bookingViewFlipper.setDisplayedChild(0);
@@ -98,14 +98,13 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 break;
             case "Declined":
             case "Pending":
+            case "Cancelled":
                 bookingViewFlipper.setDisplayedChild(1);
                 break;
             case "Upcoming":
                 bookingViewFlipper.setDisplayedChild(2);
                 break;
-
         }
-
         getBookingDetails(id);
     }
 

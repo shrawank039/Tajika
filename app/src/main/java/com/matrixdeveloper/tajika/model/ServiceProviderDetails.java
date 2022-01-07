@@ -1,6 +1,7 @@
 package com.matrixdeveloper.tajika.model;
 
 import java.io.Serializable;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -64,30 +65,37 @@ public class ServiceProviderDetails implements Serializable
     @SerializedName("longitude")
     @Expose
     private String longitude;
+    @SerializedName("recommended")
+    @Expose
+    private String recommended;
     @SerializedName("distance")
     @Expose
     private String distance;
     @SerializedName("about")
     @Expose
     private String about;
-    @SerializedName("subscription")
-    @Expose
-    private String subscription;
     @SerializedName("rating")
     @Expose
     private Double rating;
     @SerializedName("job_completed")
     @Expose
     private Integer jobCompleted;
-    private final static long serialVersionUID = 3584886829135607527L;
-
-    public String getSubscription() {
-        return subscription;
-    }
-
-    public void setSubscription(String subscription) {
-        this.subscription = subscription;
-    }
+    @SerializedName("image")
+    @Expose
+    private Object image;
+    @SerializedName("service_type")
+    @Expose
+    private String serviceType;
+    @SerializedName("subscription")
+    @Expose
+    private String subscription;
+    @SerializedName("skills")
+    @Expose
+    private List<String> skills = null;
+    @SerializedName("serviceimage")
+    @Expose
+    private List<String> serviceimage = null;
+    private final static long serialVersionUID = -1711579347649834232L;
 
     public Integer getId() {
         return id;
@@ -241,6 +249,14 @@ public class ServiceProviderDetails implements Serializable
         this.longitude = longitude;
     }
 
+    public String getRecommended() {
+        return recommended;
+    }
+
+    public void setRecommended(String recommended) {
+        this.recommended = recommended;
+    }
+
     public String getDistance() {
         return distance;
     }
@@ -271,6 +287,46 @@ public class ServiceProviderDetails implements Serializable
 
     public void setJobCompleted(Integer jobCompleted) {
         this.jobCompleted = jobCompleted;
+    }
+
+    public Object getImage() {
+        return image;
+    }
+
+    public void setImage(Object image) {
+        this.image = image;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public String getSubscription() {
+        return subscription;
+    }
+
+    public void setSubscription(String subscription) {
+        this.subscription = subscription;
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
+
+    public List<String> getServiceimage() {
+        return serviceimage;
+    }
+
+    public void setServiceimage(List<String> serviceimage) {
+        this.serviceimage = serviceimage;
     }
 
 }
