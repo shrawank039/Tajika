@@ -25,6 +25,9 @@ public class RequestDetails implements Serializable
     @SerializedName("willing_amount_pay")
     @Expose
     private String willingAmountPay;
+    @SerializedName("service_tax_fee")
+    @Expose
+    private String serviceTaxAmount;
     @SerializedName("work_description")
     @Expose
     private String workDescription;
@@ -227,6 +230,14 @@ public class RequestDetails implements Serializable
 
     public void setRequestAcceptDate(Object requestAcceptDate) {
         this.requestAcceptDate = requestAcceptDate;
+    }
+
+    public String getServiceTaxAmount() {
+        return serviceTaxAmount;
+    }
+
+    public void setServiceTaxAmount(String serviceTaxAmount) {
+        this.serviceTaxAmount = serviceTaxAmount;
     }
 
     public Object getRequestAcceptTime() {

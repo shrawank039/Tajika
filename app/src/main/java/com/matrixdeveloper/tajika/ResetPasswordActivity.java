@@ -28,7 +28,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private Button next;
     private final String TAG = "ResetPasswordAct";
     private PrefManager pref;
-    private String user_type;
+    private String user_type, mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +65,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
             JSONObject data = new JSONObject();
             try {
                 if (regNumber.equals("") && !regMail.equals("")) {
-                    data.put("email", regMail);
+                    mail = regMail;
                 } else if (regMail.equals("") && regNumber.length() == 10) {
-                    data.put("email", regNumber);
+                    mail = regNumber;
                 }
+                data.put("email", mail);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -83,7 +84,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     //pref.setString("otp", jsonObject.optString("otp"));
                     startActivity(new Intent(ResetPasswordActivity.this, OTPInputActivity.class)
                             .putExtra("user_type", user_type)
-                            .putExtra("email", regNumber)
+                            .putExtra("email", mail)
                             .putExtra("type", "reset"));
                 } catch (JSONException e) {
                     e.printStackTrace();

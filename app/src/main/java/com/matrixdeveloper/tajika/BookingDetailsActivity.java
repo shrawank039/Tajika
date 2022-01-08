@@ -44,7 +44,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     //for accepted booked
     private TextView abServiceName, abServiceAddress, abServiceType, abServiceBookingId, abServiceStatus, abRequestedOn;
     private TextView abAcceptedOn, abRequestNumber, abServiceDate, abServiceTime, abServiceWorkDesc, abServiceUserName;
-    private TextView abServiceUserContact, abServiceUserAddress, abUserInstruction, abAmountToPay, abAmountWillingToPay, applyCoupon, abFinalAmountToPay;
+    private TextView abServiceUserContact, abServiceUserAddress, abUserInstruction, abAmountToPay, abAmountWillingToPay, applyCoupon, abFinalAmountToPay, abServiceTaxAmount;
     private TextView bookThisService;
 
     //for pending declined
@@ -53,7 +53,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
     //for pending declined
     private TextView upServiceName, upServiceAddress, upServiceType, upServiceBookingId, upServiceBookingDate, upServiceStatus;
-    private TextView upServiceDate, upServiceTime, upServiceWorkDesc, upServiceUserName, upServiceUserContact, upServiceUserAddress, upUserInstruction, upAmountToBePaid;
+    private TextView upServiceDate, upServiceTime, upServiceWorkDesc, upServiceUserName, upServiceUserContact, upServiceUserAddress,
+            upUserInstruction, upAmountToBePaid;
 
     private String cancellationReason;
     private EditText cancellationComment;
@@ -63,6 +64,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private ConstraintLayout abContainerContactHelp;
     RequestDetails requestDetails;
     private String status;
+    double finalAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +137,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         abAmountWillingToPay = findViewById(R.id.txt_abServiceUserAmountWillingToPay);
         applyCoupon = findViewById(R.id.txt_applyCoupon);
         abFinalAmountToPay = findViewById(R.id.txt_abFinalAmountToPay);
+        abServiceTaxAmount = findViewById(R.id.txt_abServiceTaxAmount);
         bookThisService = findViewById(R.id.txt_bookThisService);
 
         //Containers to show or Hide
@@ -187,7 +190,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         upBackPress.setOnClickListener(v -> super.onBackPressed());
         bookThisService.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), BookServiceActivity.class)
-                    .putExtra("booking_id", id).putExtra("amount", requestDetails.getWillingAmountPay()).putExtra("discount", String.valueOf(discount))
+                    .putExtra("booking_id", id).putExtra("amount", String.valueOf(finalAmount)).putExtra("discount", String.valueOf(discount))
             );
         });
         applyCoupon.setOnClickListener(v -> {
@@ -224,8 +227,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
                     try {
                         jsonObject = response.optJSONObject("data");
                         double marginAmount = jsonObject.optDouble("margin_amount");
-                        double totalAmount = Double.parseDouble(requestDetails.getWillingAmountPay());
-                        double finalAmount = totalAmount - marginAmount;
+                        double totalAmount = requestDetails.getAdminpayableamount();
+                        finalAmount = totalAmount - marginAmount;
                         abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + finalAmount);
                         dialog.dismiss();
                     } catch (Exception e) {
@@ -256,6 +259,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
             try {
                 requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
 
+                finalAmount = requestDetails.getAdminpayableamount();
+
                 //for accepted booked service request
                 abServiceName.setText("Name: " + requestDetails.getServiceName());
                 abServiceAddress.setText("Address: " + requestDetails.getAddress());
@@ -273,7 +278,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 abServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
                 abUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
                 abAmountWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
-                abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
+                abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
+                abServiceTaxAmount.setText(requestDetails.getCurrency() + " " + requestDetails.getServiceTaxAmount());
                 //finalAmountToPay.setText(requestDetails.);
 
                 //for pending declined service request
@@ -286,7 +292,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 pdServiceDate.setText(requestDetails.getServiceDate());
                 pdServiceTime.setText(requestDetails.getServiceTime());
                 pdServiceWorkDesc.setText(requestDetails.getWorkDescription());
-                pdAmountToBePay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
+                pdAmountToBePay.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
 
                 //for upcoming service request
                 upServiceName.setText("Name: " + requestDetails.getServiceName());
@@ -302,7 +308,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 upServiceUserContact.setText("Contact No: " + requestDetails.getContactPersonPhone());
                 upServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
                 upUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
-                //upAmountToBePaid.setText(requestDetails.);
+                upAmountToBePaid.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -119,7 +119,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
                 if (!requestDetails.getStatus().equals("Pending")){
                     findViewById(R.id.linearLayout9).setVisibility(View.GONE);
                 }
-                requestId.setText(requestDetails.getId().toString());
+                requestId.setText(requestDetails.getRequestId());
                 jobDate.setText(requestDetails.getServiceDate());
                 jobTime.setText(requestDetails.getServiceTime());
                 jobType.setText(requestDetails.getServiceType());
@@ -127,7 +127,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
                 description.setText(requestDetails.getWorkDescription());
                 contactNumber.setText(requestDetails.getCustomerphone());
                 contactName.setText(requestDetails.getCustomername());
-                amtWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay().toString());
+                amtWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
 
 
             } catch (JSONException e) {
