@@ -38,7 +38,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private final String TAG = "BookingDetailsAct";
     private String id;
     private double discount = 0.0;
-    private ImageView backPress, serviceImage;
+    private ImageView backPress,pdBackPress,upBackPress, serviceImage;
     private PrefManager prf;
 
     //for accepted booked
@@ -148,6 +148,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
 
         // for pending declined service viewFlipper --> pd stands for pending_declined
+        pdBackPress = findViewById(R.id.iv_pdBackPress);
         pdServiceName = findViewById(R.id.txt_pdServiceName);
         pdServiceAddress = findViewById(R.id.txt_pdServiceAddress);
         pdServiceType = findViewById(R.id.txt_pdServiceType);
@@ -161,6 +162,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
 
         // for upcoming service viewFlipper --> up stands for upcoming
+
+        upBackPress = findViewById(R.id.iv_upBackPress);
         upServiceName = findViewById(R.id.txt_upServiceName);
         upServiceAddress = findViewById(R.id.txt_upServiceAddress);
         upServiceType = findViewById(R.id.txt_upServiceType);
@@ -179,7 +182,9 @@ public class BookingDetailsActivity extends AppCompatActivity {
     }
 
     private void initListeners() {
-        backPress.setOnClickListener(v -> BookingDetailsActivity.super.onBackPressed());
+        backPress.setOnClickListener(v -> super.onBackPressed());
+        pdBackPress.setOnClickListener(v -> super.onBackPressed());
+        upBackPress.setOnClickListener(v -> super.onBackPressed());
         bookThisService.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), BookServiceActivity.class)
                     .putExtra("booking_id", id).putExtra("amount", requestDetails.getWillingAmountPay()).putExtra("discount", String.valueOf(discount))
