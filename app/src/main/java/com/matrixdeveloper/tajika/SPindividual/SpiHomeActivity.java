@@ -46,8 +46,8 @@ public class SpiHomeActivity extends AppCompatActivity {
     private RecyclerView requestRecycler, upcomingJobRecycler;
     private NewRequestAdapter requestAdapter;
     private UpcomingJobAdapter upcomingJobAdapter;
-    private List<ServiceRequestList> requestLists;
-    private List<UpcomingJob> upcomingJobList;
+    List<ServiceRequestList> requestLists =new ArrayList<>();
+    List<UpcomingJob> upcomingJobList = new ArrayList<>();
     private PrefManager pref;
     private final String TAG = "SPHomeAct";
     private ImageView allBookings;
@@ -66,8 +66,6 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         initViews();
 
-        requestLists = new ArrayList<>();
-        upcomingJobList = new ArrayList<>();
         requestAdapter = new NewRequestAdapter(SpiHomeActivity.this, requestLists, 0);
         upcomingJobAdapter = new UpcomingJobAdapter(SpiHomeActivity.this, upcomingJobList, 0);
 
@@ -193,8 +191,8 @@ public class SpiHomeActivity extends AppCompatActivity {
 
     private void getHomeData() {
 
-        requestLists = new ArrayList<>();
-        upcomingJobList = new ArrayList<>();
+        requestLists.clear();
+        upcomingJobList.clear();
 
         JSONObject data = new JSONObject();
         try {
@@ -236,34 +234,30 @@ public class SpiHomeActivity extends AppCompatActivity {
 
 
                 for (int i = 0; i < requestArray.length(); i++) {
-
                     try {
-
                         serviceList = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), ServiceRequestList.class);
                         requestLists.add(serviceList);
-                        requestAdapter.notifyDataSetChanged();
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
 
+                requestAdapter.notifyDataSetChanged();
+
                 // upcoming job list
-                if (requestArray.length() < 1) {
+                if (upcominJobArray.length() < 1) {
                     upcomingJobsNotFound.setVisibility(View.VISIBLE);
                 }
                 for (int i = 0; i < upcominJobArray.length(); i++) {
 
                     try {
-
                         UpcomingJob upcomingJob = MySingleton.getGson().fromJson(upcominJobArray.getJSONObject(i).toString(), UpcomingJob.class);
                         upcomingJobList.add(upcomingJob);
-                        upcomingJobAdapter.notifyDataSetChanged();
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
+                upcomingJobAdapter.notifyDataSetChanged();
 
             } catch (JSONException e) {
                 e.printStackTrace();
