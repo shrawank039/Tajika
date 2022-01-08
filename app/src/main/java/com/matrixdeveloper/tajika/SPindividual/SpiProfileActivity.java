@@ -150,7 +150,7 @@ public class SpiProfileActivity extends AppCompatActivity {
 
     public void showSubscriptionAlert(String id, String amount, String title) {
         planID = id;
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_payment_notice);
@@ -232,7 +232,7 @@ public class SpiProfileActivity extends AppCompatActivity {
     private void showSubscriptionSuccessAlert() {
         recSubscription.setVisibility(View.GONE);
 
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_payment_successful);

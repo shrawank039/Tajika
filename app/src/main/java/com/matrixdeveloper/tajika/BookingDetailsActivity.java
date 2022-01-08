@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -189,14 +191,15 @@ public class BookingDetailsActivity extends AppCompatActivity {
     }
 
     private void dialogApplyCoupon() {
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_apply_coupon);
 
-        EditText enterCoupon = (EditText) dialog.findViewById(R.id.edt_enterCoupon);
-        TextView txtApply = (TextView) dialog.findViewById(R.id.txt_apply);
-        TextView txtCancel = (TextView) dialog.findViewById(R.id.txt_cancel);
-        ImageView closeDialog = (ImageView) dialog.findViewById(R.id.iv_dialogCancel);
+        EditText enterCoupon = dialog.findViewById(R.id.edt_enterCoupon);
+        TextView txtApply = dialog.findViewById(R.id.txt_apply);
+        TextView txtCancel = dialog.findViewById(R.id.txt_cancel);
+        ImageView closeDialog = dialog.findViewById(R.id.iv_dialogCancel);
 
         txtApply.setOnClickListener(v -> {
             JSONObject data = new JSONObject();
@@ -303,7 +306,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
     }
 
     public void onCancelRequestClick(View view) {
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
 
         dialog.setContentView(R.layout.dialog_booking_cancellation_reason);
@@ -358,7 +362,8 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
             Utils.log(TAG, response.toString());
             if (response.optString("status").equals("200")) {
-                final Dialog dialog = new Dialog(this);
+                final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(false);
 
                 dialog.setContentView(R.layout.dialog_booking_cancelled);

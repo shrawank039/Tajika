@@ -7,6 +7,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -66,17 +67,16 @@ public class RedeemCoinAdapter extends RecyclerView.Adapter<RedeemCoinAdapter.vi
 
                     if(response.optString("status").equals("200")){
 
-                        final Dialog dialog = new Dialog(ctx);
+                        final Dialog dialog = new Dialog(ctx, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setCancelable(false);
                         dialog.setContentView(R.layout.dialog_redeem);
 
                         ImageView dialogButton = dialog.findViewById(R.id.iv_dialogCancel);
-                        dialogButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                                ((RedeemCoinActivity)ctx).finish();
-                            }
+
+                        dialogButton.setOnClickListener(v -> {
+                            dialog.dismiss();
+                            ((RedeemCoinActivity)ctx).finish();
                         });
                         dialog.show();
                     }

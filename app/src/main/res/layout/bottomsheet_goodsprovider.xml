@@ -448,39 +448,10 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ImageView
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_serviceProviderImages"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/keyboard_arrow_down_icon"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/plumbing" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/catering" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/plumbing" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/catering" />
-
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton

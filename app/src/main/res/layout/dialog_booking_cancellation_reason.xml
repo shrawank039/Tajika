@@ -17,6 +17,8 @@
             android:padding="20dp">
 
             <LinearLayout
+
+                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -39,11 +41,11 @@
                     app:tint="@color/black" />
             </LinearLayout>
 
-            <LinearLayout style="@style/register_input_container">
+            <LinearLayout
+                style="@style/register_input_container">
 
                 <Spinner
                     android:id="@+id/spinner"
-                    android:paddingStart="20dp"
                     android:paddingVertical="5dp"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -66,10 +68,10 @@
                     android:background="@null"
                     android:gravity="start"
                     android:hint="Comment (Optional)"
-                    android:paddingHorizontal="20dp"
+                    android:paddingHorizontal="10dp"
                     android:paddingVertical="5dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:minHeight="80dp"/>
 
             </LinearLayout>
 
@@ -78,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:gravity="center"
-                android:text="Cancellation charge: Ksh500"
+                android:text="Cancellation charge: Ksh 500"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
@@ -86,7 +88,6 @@
                 android:id="@+id/btn_submitCancellationRequest"
                 style="@style/submit_buttons"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
                 android:text="Submit" />
 
         </LinearLayout>

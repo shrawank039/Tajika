@@ -220,7 +220,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
     private void showSubscriptionPayOneTimeAlert() {
 
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_pay_onetime_charge);
@@ -244,7 +244,7 @@ public class LocationSelectorActivity extends FragmentActivity
 
     public void showSubscriptionAlert(String id, String amount, String title) {
         planID = id;
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_payment_notice);
@@ -270,7 +270,7 @@ public class LocationSelectorActivity extends FragmentActivity
         recSubscription.setVisibility(View.GONE);
         btnGetDetailsGoods.setVisibility(View.GONE);
 
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_payment_successful);
@@ -577,7 +577,8 @@ public class LocationSelectorActivity extends FragmentActivity
     }
 
     private void initiatePopUp() {
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_provider_compare_list);
 
         TextView addOne = dialog.findViewById(R.id.txt_addOne);
@@ -848,8 +849,8 @@ public class LocationSelectorActivity extends FragmentActivity
     @Override
     protected void onResume() {
         super.onResume();
-        //  initLocation();
-        //  Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
+        //initLocation();
+        //Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
     }
 
     @Override

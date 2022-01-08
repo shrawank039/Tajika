@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,7 +56,8 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
         completeJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(SpiServiceAcceptActivity.this);
+                final Dialog dialog = new Dialog(SpiServiceAcceptActivity.this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.dialog_job_completion);
 
