@@ -216,7 +216,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void handleClickListener() {
 
         notificationList.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), PaymentWebViewActivity.class));
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
         });
         coinsWallet.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), CoinsWalletActivity.class)));

@@ -280,6 +280,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 abAmountWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
                 abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
                 abServiceTaxAmount.setText(requestDetails.getCurrency() + " " + requestDetails.getServiceTaxAmount());
+                abAmountToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
                 //finalAmountToPay.setText(requestDetails.);
 
                 //for pending declined service request

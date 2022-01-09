@@ -10,11 +10,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPindividual.SpiServiceAcceptActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiServiceRequestDetailsActivity;
+import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.model.UpcomingJob;
+import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
+import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -60,14 +68,39 @@ public class UpcomingJobAdapter extends RecyclerView.Adapter<UpcomingJobAdapter.
         holder.requestId.setText(serviceList.getBookingId());
         holder.jobDate.setText(serviceList.getServiceDate());
         holder.jobType.setText(serviceList.getServiceType());
+        holder.accept.setText("Complete");
 
         holder.accept.setOnClickListener(v -> {
-
+            getServiceDetails(String.valueOf(serviceList.getId()));
         });
 
         holder.viewInfo.setOnClickListener(v -> {
             ctx.startActivity(new Intent(ctx, SpiServiceRequestDetailsActivity.class)
                     .putExtra("id", serviceList.getId()));
+        });
+
+    }
+
+    public void getServiceDetails(String id) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(ctx, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
+            Utils.log("TAG", response.toString());
+            try {
+                RequestDetails requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+                ctx.startActivity(new Intent(ctx, SpiServiceAcceptActivity.class)
+                        .putExtra("requestDetails", requestDetails));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         });
 
     }
