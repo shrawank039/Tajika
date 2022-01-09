@@ -43,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:backgroundTint="@color/md_grey_100"
             app:cardCornerRadius="30dp"
             app:cardElevation="3dp">
 
@@ -69,19 +70,15 @@
                         android:layout_weight="1"
                         android:gravity="center">
 
-
-                        <androidx.cardview.widget.CardView
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_fpImage"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            app:cardCornerRadius="50dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/logo" />
-                        </androidx.cardview.widget.CardView>
+                            android:src="@drawable/logo"
+                            app:civ_border_width="1dp" />
 
                         <TextView
+                            android:id="@+id/txt_fpName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -104,19 +101,15 @@
                         android:layout_weight="1"
                         android:gravity="center">
 
-
-                        <androidx.cardview.widget.CardView
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_spImage"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            app:cardCornerRadius="50dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/logo" />
-                        </androidx.cardview.widget.CardView>
+                            android:src="@drawable/logo"
+                            app:civ_border_width="1dp" />
 
                         <TextView
+                            android:id="@+id/txt_spName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -154,10 +147,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_fpRating"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="4.5/5"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <TextView
@@ -168,10 +162,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_fpCompletedJobs"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="5000"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <TextView
@@ -182,24 +177,26 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_fpEducationLevel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Catering Management"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Address"
+                            android:text="Skills"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_fpAddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Block B, mayur vihar, New Dehli"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <TextView
@@ -210,13 +207,15 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_fpDistance"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="3.5 KM"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_fpSelectButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="20dp"
@@ -279,10 +278,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_spRating"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="4.5/5"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <TextView
@@ -293,10 +293,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_spCompletedJobs"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="5000"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <TextView
@@ -307,24 +308,26 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_spEducationLevel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Catering Management"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Address"
+                            android:text="Skills"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_spAddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Block B, mayur vihar, New Dehli"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <TextView
@@ -335,13 +338,15 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_spDistance"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="3.5 KM"
+                            android:text=""
                             android:textColor="@color/black" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_spSelectButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="20dp"

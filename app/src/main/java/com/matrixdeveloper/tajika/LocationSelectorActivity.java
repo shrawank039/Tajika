@@ -1,10 +1,13 @@
 package com.matrixdeveloper.tajika;
 
 import static com.matrixdeveloper.tajika.utils.Global.compareAddOne;
-import static com.matrixdeveloper.tajika.utils.Global.compareAddOneID;
+import static com.matrixdeveloper.tajika.utils.Global.compareAddOneServiceID;
 import static com.matrixdeveloper.tajika.utils.Global.compareAddTwo;
-import static com.matrixdeveloper.tajika.utils.Global.compareAddTwoID;
+import static com.matrixdeveloper.tajika.utils.Global.compareAddTwoServiceID;
+import static com.matrixdeveloper.tajika.utils.Global.firstItemToCompare;
+import static com.matrixdeveloper.tajika.utils.Global.secondItemToCompare;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -289,6 +292,7 @@ public class LocationSelectorActivity extends FragmentActivity
         service_name = getIntent().getStringExtra("service_name");
         service_id = getIntent().getStringExtra("service_id");
         service_type = getIntent().getStringExtra("service_type");
+
         edtAddress = findViewById(R.id.edt_location);
         inner = findViewById(R.id.inner);
         gotoCurrentLocation = findViewById(R.id.iv_gotoCurrentLocation);
@@ -590,34 +594,61 @@ public class LocationSelectorActivity extends FragmentActivity
         addOne.setText(compareAddOne);
         addTwo.setText(compareAddTwo);
 
-        addOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        addOne.setOnClickListener(v -> {
+            if (compareAddOne.equals("Click to add first provider")) {
+                firstItemToCompare.add(serviceProviderDetails);
                 compareAddOne = serviceProviderDetails.getName();
-                compareAddOneID = serviceProviderDetails.getId().toString();
+                compareAddOneServiceID = service_id;
                 addOne.setText(compareAddOne);
+            } else {
+                new AlertDialog.Builder(LocationSelectorActivity.this)
+                        .setCancelable(false)
+                        .setTitle("Warning!!")
+                        .setMessage("Do you want to replace the provider?")
+                        .setPositiveButton(android.R.string.yes, (dialog1, which) -> {
+                            firstItemToCompare.clear();
+                            firstItemToCompare.add(serviceProviderDetails);
+                            compareAddOne = serviceProviderDetails.getName();
+                            compareAddOneServiceID = service_id;
+                            addOne.setText(compareAddOne);
+                        })
+                        .setNegativeButton(android.R.string.no, (dialog1, which) -> dialog1.dismiss())
+                        .create()
+                        .show();
             }
         });
-        addTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+        addTwo.setOnClickListener(v -> {
+            if (compareAddTwo.equals("Click to add second provider")) {
+                secondItemToCompare.add(serviceProviderDetails);
                 compareAddTwo = serviceProviderDetails.getName();
-                compareAddTwoID = serviceProviderDetails.getId().toString();
+                compareAddTwoServiceID = service_id;
                 addTwo.setText(compareAddTwo);
+            } else {
+                new AlertDialog.Builder(LocationSelectorActivity.this)
+                        .setCancelable(false)
+                        .setTitle("Warning!!")
+                        .setMessage("Do you want to replace the provider?")
+                        .setPositiveButton(android.R.string.yes, (dialog1, which) -> {
+                            secondItemToCompare.clear();
+                            secondItemToCompare.add(serviceProviderDetails);
+                            compareAddTwo = serviceProviderDetails.getName();
+                            compareAddTwoServiceID = service_id;
+                            addTwo.setText(compareAddTwo);
+                        })
+                        .setNegativeButton(android.R.string.no, (dialog1, which) -> dialog1.dismiss())
+                        .create()
+                        .show();
             }
         });
-        compareProviders.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        compareProviders.setOnClickListener(v -> {
+            if(addOne.getText().toString().equals("Click to add first provider") || addTwo.getText().toString().equals("Click to add second provider")){
+                Toast.makeText(this, "Please add 2 providers for comparison.", Toast.LENGTH_SHORT).show();
+            }else{
                 startActivity(new Intent(LocationSelectorActivity.this, CompareListActivity.class));
             }
         });
-        closeDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        closeDialog.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
@@ -657,17 +688,19 @@ public class LocationSelectorActivity extends FragmentActivity
                 spAddress.setText(serviceProviderDetails.getServiceArea());
 
                 String skills = "";
-                if (serviceProviderDetails.getSkills() !=null){
-                for (int i = 0; i < serviceProviderDetails.getSkills().size(); i++) {
-                    skills = skills + serviceProviderDetails.getSkills().get(i);
-                    spSkills.setText(skills);
-                }}
+                if (serviceProviderDetails.getSkills() != null) {
+                    for (int i = 0; i < serviceProviderDetails.getSkills().size(); i++) {
+                        skills = skills +"\n"+ serviceProviderDetails.getSkills().get(i);
+                        spSkills.setText(skills.trim());
+                    }
+                }
 
                 List<ServiceImageModel> serviceImageModels = new ArrayList<>();
-                if (serviceProviderDetails.getServiceimage()!=null){
-                for (int j = 0; j < serviceProviderDetails.getServiceimage().size(); j++) {
-                    serviceImageModels.add(new ServiceImageModel(serviceProviderDetails.getServiceimage().get(j)));
-                }}
+                if (serviceProviderDetails.getServiceimage() != null) {
+                    for (int j = 0; j < serviceProviderDetails.getServiceimage().size(); j++) {
+                        serviceImageModels.add(new ServiceImageModel(serviceProviderDetails.getServiceimage().get(j)));
+                    }
+                }
 
                 ServiceImageAdapter serviceImageAdapter = new ServiceImageAdapter(this, serviceImageModels);
                 GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this, 1);
