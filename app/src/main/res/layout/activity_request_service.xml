@@ -81,6 +81,7 @@
             <LinearLayout style="@style/register_input_container">
 
                 <EditText
+                    android:focusable="false"
                     android:id="@+id/edt_service"
                     style="@style/register_editText_container"
                     android:hint="Select Service" />

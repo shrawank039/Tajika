@@ -28,7 +28,7 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_redeem_coin.xml" value="0.12430555555555556" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_referral.xml" value="0.18" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_register.xml" value="0.13223684210526315" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_request_service.xml" value="0.25" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_request_service.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_reset_password.xml" value="0.13" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_search.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spb_my_services.xml" value="0.17864583333333334" />
@@ -44,8 +44,8 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_profile.xml" value="0.209375" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_profile_edit.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_register.xml" value="0.15" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_accept.xml" value="0.25" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_completed_status.xml" value="0.13223684210526315" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_accept.xml" value="0.18" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_completed_status.xml" value="0.25" />
         <entry key="..\:/Tajika/app/src/main/res/layout/activity_spi_service_request_details.xml" value="0.12430555555555556" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottom_sheet_address.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/bottomsheet_goodsprovider.xml" value="0.12" />
