@@ -262,8 +262,6 @@ public class SpiHomeActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
         });
     }
 

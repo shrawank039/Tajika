@@ -52,7 +52,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
         customerNumber.setText(requestDetails.getCustomerphone());
         serviceArea.setText(requestDetails.getAddress());
         serviceDescription.setText(requestDetails.getWorkDescription());
-        amountWillingToPay.setText(requestDetails.getWillingAmountPay());
+        amountWillingToPay.setText(requestDetails.getCurrency()+" "+requestDetails.getWillingAmountPay());
     }
 
     private void initListeners() {
