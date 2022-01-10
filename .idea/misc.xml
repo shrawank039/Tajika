@@ -81,6 +81,7 @@
         <entry key="app/src/debug/res/font/lato.xml" value="0.25277777777777777" />
         <entry key="app/src/debug/res/font/lato_black.xml" value="0.25277777777777777" />
         <entry key="app/src/debug/res/font/muli.xml" value="0.25277777777777777" />
+        <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_all_service.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_book_service.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_booking.xml" value="0.2546875" />
@@ -93,6 +94,7 @@
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/activity_otp_input.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.23425925925925925" />
+        <entry key="app/src/main/res/layout/activity_privacy_policy.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_request_service.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/activity_reset_password.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.23425925925925925" />
@@ -128,6 +130,7 @@
         <entry key="app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/viewpager_upcoming_booking_details.xml" value="0.2546875" />
+        <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.2546875" />
       </map>
     </option>
   </component>

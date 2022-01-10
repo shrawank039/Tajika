@@ -47,7 +47,15 @@ public class RedeemCoinActivity extends AppCompatActivity {
     }
 
     private void getRedeemCoinsList() {
-        ApiCall.getMethod(this, ServiceNames.REDEEM_COIN_LIST, response -> {
+
+        JSONObject object = new JSONObject();
+        try {
+            object.put("user_id", prf.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.REDEEM_COIN_LIST, object, response -> {
             Utils.log(TAG, response.toString());
             JSONArray jsonArray = null;
             try {
@@ -70,9 +78,5 @@ public class RedeemCoinActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
-    }
-
-    public void userId(){
-        prf.getString("id");
     }
 }

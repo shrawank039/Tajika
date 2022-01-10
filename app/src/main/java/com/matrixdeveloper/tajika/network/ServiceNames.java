@@ -77,6 +77,8 @@ public class ServiceNames {
     public static final String UPLOAD_MULTIPLE_IMAGE = API + "/uploadMultipleImage";
     public static final String VALIDATE_COUPON = API + "/validateCoupen";
 
+    public static final String PRIVACY_TnC = API + "/gettermandcondition";
+
     public static boolean is = true;
 
 }

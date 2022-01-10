@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.AboutUsActivity;
 import com.matrixdeveloper.tajika.HelpActivity;
 import com.matrixdeveloper.tajika.LandingPage;
+import com.matrixdeveloper.tajika.PrivacyPolicyActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.ReferralActivity;
 import com.matrixdeveloper.tajika.SPbusiness.SpbMyServicesActivity;
@@ -30,7 +31,7 @@ public class SpiMoreActivity extends AppCompatActivity {
     private ImageView businessImage;
     private TextView businessName, businessRating;
     String[] settingsList = {"My Profile", "Services you offer", "All requests", "All bookings",
-            "Credit wallet", "Refer Friends", "Switch to user", "Rate App", "Contact us", "About us", "Logout"};
+            "Credit wallet", "Refer Friends", "Switch to user", "Rate App", "Contact us","Privacy Policy", "About us", "Logout"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,7 @@ public class SpiMoreActivity extends AppCompatActivity {
                 case 6:
                     openAlertDialog("Switch User", "Are you sure you want to switch user?");
                     break;
-                case 10:
+                case 11:
                     openAlertDialog("Confirm Logout", "Are you sure you want to Logout?");
                     break;
                 case 7:
@@ -95,6 +96,9 @@ public class SpiMoreActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), HelpActivity.class));
                     break;
                 case 9:
+                    startActivity(new Intent(getApplicationContext(), PrivacyPolicyActivity.class));
+                    break;
+                case 10:
                     startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
                     break;
                 default:
