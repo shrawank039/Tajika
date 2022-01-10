@@ -1,38 +1,52 @@
 package com.matrixdeveloper.tajika.model;
 
-public class SPIAllBookingsModel {
-    int id;
-    String bookingID;
-    String customerName;
-    String serviceDate;
-    String serviceType;
-    String status;
-    String completedOn;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-    public SPIAllBookingsModel(int id, String bookingID, String customerName, String serviceDate, String serviceType, String status, String completedOn) {
-        this.id = id;
-        this.bookingID = bookingID;
-        this.customerName = customerName;
-        this.serviceDate = serviceDate;
-        this.serviceType = serviceType;
-        this.status = status;
-        this.completedOn = completedOn;
-    }
+public class SPIAllBookingsModel implements Serializable
+{
 
-    public int getId() {
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("user_id")
+    @Expose
+    private Integer userId;
+    @SerializedName("customer_name")
+    @Expose
+    private String customerName;
+    @SerializedName("booking_id")
+    @Expose
+    private String bookingId;
+    @SerializedName("service_date")
+    @Expose
+    private String serviceDate;
+    @SerializedName("service_time")
+    @Expose
+    private String serviceTime;
+    @SerializedName("service_type")
+    @Expose
+    private String serviceType;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    private final static long serialVersionUID = 8369251832624986978L;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getBookingID() {
-        return bookingID;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setBookingID(String bookingID) {
-        this.bookingID = bookingID;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getCustomerName() {
@@ -43,12 +57,28 @@ public class SPIAllBookingsModel {
         this.customerName = customerName;
     }
 
+    public String getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(String bookingId) {
+        this.bookingId = bookingId;
+    }
+
     public String getServiceDate() {
         return serviceDate;
     }
 
     public void setServiceDate(String serviceDate) {
         this.serviceDate = serviceDate;
+    }
+
+    public String getServiceTime() {
+        return serviceTime;
+    }
+
+    public void setServiceTime(String serviceTime) {
+        this.serviceTime = serviceTime;
     }
 
     public String getServiceType() {
@@ -67,11 +97,4 @@ public class SPIAllBookingsModel {
         this.status = status;
     }
 
-    public String getCompletedOn() {
-        return completedOn;
-    }
-
-    public void setCompletedOn(String completedOn) {
-        this.completedOn = completedOn;
-    }
 }

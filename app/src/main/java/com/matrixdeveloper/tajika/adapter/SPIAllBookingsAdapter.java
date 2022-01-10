@@ -34,20 +34,18 @@ public class SPIAllBookingsAdapter extends RecyclerView.Adapter<SPIAllBookingsAd
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         final SPIAllBookingsModel myListData = listdata.get(position);
-        holder.bookingID.setText("Booking id: " + myListData.getBookingID());
+        holder.bookingID.setText("Booking id: " + myListData.getBookingId());
         holder.customerName.setText(myListData.getCustomerName());
         holder.serviceDate.setText(myListData.getServiceDate());
         holder.serviceType.setText(myListData.getServiceType());
-        holder.completedOn.setText(myListData.getCompletedOn());
+        holder.completedOn.setText(myListData.getServiceTime());
+        holder.bookingStatus.setText(myListData.getStatus());
 
-        if (myListData.getStatus().equals("0")) {
-            holder.bookingStatus.setText("Pending");
+        if (myListData.getStatus().equals("Pending")) {
             holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.light_red));
-        } else if (myListData.getStatus().equals("1")) {
-            holder.bookingStatus.setText("Ongoing");
+        } else if (myListData.getStatus().equals("Ongoing")) {
             holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.golden));
-        } else if (myListData.getStatus().equals("2")) {
-            holder.bookingStatus.setText("Completed");
+        } else if (myListData.getStatus().equals("Completed")) {
             holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.light_green));
         }
 

@@ -501,7 +501,7 @@
                     <TextView
                         android:id="@+id/txt_abServiceAmountToBePaid"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="Ksh 3000"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -628,7 +628,7 @@
                     <TextView
                         android:id="@+id/txt_abFinalAmountToPay"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="Ksh 3000"
                         android:textColor="@color/black"
                         android:textStyle="bold" />

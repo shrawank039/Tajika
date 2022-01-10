@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIAllBookingsAdapter;
 import com.matrixdeveloper.tajika.model.SPIAllBookingsModel;
+import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,7 +62,7 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
                 completed.setBackgroundResource(R.color.white);
                 completed.setTextColor(getResources().getColor(R.color.dark_blue));
 
-                getAllBooking("Upcoming");
+                getAllBooking("Pending");
             }
         });
         completed.setOnClickListener(new View.OnClickListener() {
@@ -83,10 +86,12 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
             }
         });
 
-        getAllBooking("Upcoming");
+        getAllBooking("Pending");
     }
 
     private void getAllBooking(String status) {
+
+        spiAllBookingsModels.clear();
 
         JSONObject data = new JSONObject();
         try {
@@ -97,6 +102,24 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
         }
         ApiCall.postMethod(this, ServiceNames.PROVIDER_ALL_BOOKING, data, response -> {
             Utils.log(TAG, response.toString());
+
+            JSONArray requestArray;
+
+            JSONObject jsonObject = response.optJSONObject("data");
+            try {
+                requestArray = jsonObject.getJSONArray("tajikaServiceRequest");
+                for (int i = 0; i < requestArray.length(); i++) {
+                    try {
+                        SPIAllBookingsModel spiAllBookingsModel = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), SPIAllBookingsModel.class);
+                        spiAllBookingsModels.add(spiAllBookingsModel);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                allBookingsAdapter.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         });
     }
