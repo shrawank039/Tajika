@@ -103,6 +103,7 @@
         <entry key="app/src/main/res/layout/activity_spb_my_services.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_register.xml" value="0.2222222222222222" />
+        <entry key="app/src/main/res/layout/activity_spi_all_bookings.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_all_request.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/activity_spi_home.xml" value="0.13072916666666667" />
         <entry key="app/src/main/res/layout/activity_spi_more.xml" value="0.2546875" />
@@ -117,6 +118,9 @@
         <entry key="app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/dialog_payment_notice.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/fragment_booked.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/fragment_requested.xml" value="0.22037037037037038" />
+        <entry key="app/src/main/res/layout/item_booked_or_requested.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_coins_wallet.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_job_completed_or_pending.xml" value="0.2546875" />

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,6 +54,10 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
         serviceArea.setText(requestDetails.getAddress());
         serviceDescription.setText(requestDetails.getWorkDescription());
         amountWillingToPay.setText(requestDetails.getCurrency()+" "+requestDetails.getWillingAmountPay());
+
+        if (!requestDetails.getStatus().equals("Booked")){
+            completeJob.setVisibility(View.GONE);
+        }
     }
 
     private void initListeners() {

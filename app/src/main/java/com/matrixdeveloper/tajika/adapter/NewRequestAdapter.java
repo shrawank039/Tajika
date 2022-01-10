@@ -63,7 +63,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
 
 
         holder.accept.setOnClickListener(v -> {
-            ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString());
+            ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString(), "Accept");
         });
 
         holder.viewInfo.setOnClickListener(v -> {

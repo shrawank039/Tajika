@@ -37,6 +37,7 @@ public class ServiceNames {
     public static final String REDEEM_COIN_TO_USER = API + "/addRedddomCoinToUser";
     public static final String VOUCHER_LIST = API + "/getVouchersList";
     public static final String GET_SERVICE_REQUEST_DETAILS = API + "/getParticularServiceRequestDetails";
+    public static final String ADD_RATING = API + "/addservicerating";
 
     public static final String PAYMENT_TOKEN = API + "/createPaymentAccessToken";
     public static final String PAYMENT_PAGE = API + "/getPaymentPage";
@@ -48,7 +49,6 @@ public class ServiceNames {
     public static final String GET_SERVICE_REQUEST = API + "/getAllServiceRequest";
     public static final String CHANGE_SERVICE_REQUEST_STATUS = API + "/changeServiceRequestStatus";
     public static final String UPDATE_SERVICE_BOOKING_DETAILS = API + "/updateservicebookingdetails";
-    public static final String CANCEL_SERVICE_REQUEST = API + "/cancelservicebooking";
     public static final String ADD_SERVICE_RATING = API + "/addservicerating";
     public static final String PROVIDER_ALL_BOOKING = API + "/serviceProviderAllBooking";
     public static final String PROVIDER_SERVICE_LIST = API + "/myServiceList";

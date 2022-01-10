@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class SPIAllBookingsAdapter extends RecyclerView.Adapter<SPIAllBookingsAd
         } else if (myListData.getStatus().equals("Ongoing")) {
             holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.golden));
         } else if (myListData.getStatus().equals("Completed")) {
+            holder.llCompleted.setVisibility(View.VISIBLE);
             holder.bookingStatus.setTextColor(ctx.getResources().getColor(R.color.light_green));
         }
 
@@ -58,9 +60,11 @@ public class SPIAllBookingsAdapter extends RecyclerView.Adapter<SPIAllBookingsAd
 
     public class viewHolder extends RecyclerView.ViewHolder {
         TextView bookingID, customerName, serviceDate, serviceType, bookingStatus, completedOn;
+        LinearLayout llCompleted;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
+            llCompleted = itemView.findViewById(R.id.ll_completed);
             bookingID = itemView.findViewById(R.id.txt_bookingID);
             customerName = itemView.findViewById(R.id.txt_customerName);
             serviceDate = itemView.findViewById(R.id.txt_serviceDate);

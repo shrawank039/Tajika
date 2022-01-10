@@ -164,7 +164,7 @@ public class SpiHomeActivity extends AppCompatActivity {
 
     }
 
-    public void getServiceDetails(String id) {
+    public void getServiceDetails(String id, String status) {
 
         JSONObject data = new JSONObject();
         try {
@@ -179,7 +179,7 @@ public class SpiHomeActivity extends AppCompatActivity {
             try {
 
                 requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
-                changeServiceStatus(requestDetails.getId().toString());
+                changeServiceStatus(requestDetails.getId().toString(), status);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -275,12 +275,12 @@ public class SpiHomeActivity extends AppCompatActivity {
         }
     }
 
-    public void changeServiceStatus(String id) {
+    public void changeServiceStatus(String id, String status) {
 
         JSONObject data = new JSONObject();
         try {
             data.put("id", id);
-            data.put("status", "Accept");
+            data.put("status", status);
             data.put("service_provider_id", pref.getString("id"));
 
         } catch (JSONException e) {

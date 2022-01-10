@@ -102,6 +102,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
             case "Declined":
             case "Pending":
             case "Cancelled":
+            case "Completed":
                 bookingViewFlipper.setDisplayedChild(1);
                 break;
             case "Upcoming":
@@ -363,6 +364,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
+            data.put("user_id",prf.getString("id"));
             data.put("id", id);
             data.put("cancelation_reason", cancellationReason);
             data.put("cancelation_comment", cancellationComment.getText().toString());
@@ -385,6 +387,26 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 dialogButton.setOnClickListener(v -> finish());
 
                 dialog.show();
+            }
+        });
+    }
+
+    private void addRating() {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("user_id", prf.getString("id"));
+            data.put("service_id", id);
+            data.put("rate", "5");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ApiCall.postMethod(this, ServiceNames.ADD_RATING, data, response -> {
+
+            Utils.log(TAG, response.toString());
+            if (response.optString("status").equals("200")) {
+                Utils.toast(getApplicationContext(), "Thanks for Rating.");
             }
         });
     }

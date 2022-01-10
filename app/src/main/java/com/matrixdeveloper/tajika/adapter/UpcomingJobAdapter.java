@@ -36,7 +36,7 @@ public class UpcomingJobAdapter extends RecyclerView.Adapter<UpcomingJobAdapter.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        final TextView requestId, jobDate, jobType, accept, viewInfo;
+        final TextView requestId, jobDate, jobType, accept, viewInfo, jobD, reqID;
 
         MyViewHolder(View view) {
             super(view);
@@ -46,6 +46,8 @@ public class UpcomingJobAdapter extends RecyclerView.Adapter<UpcomingJobAdapter.
             jobType = view.findViewById(R.id.txt_job_type);
             accept = view.findViewById(R.id.txt_accept);
             viewInfo = view.findViewById(R.id.txt_view_info);
+            jobD = view.findViewById(R.id.txt_jobDate);
+            reqID = view.findViewById(R.id.txt_reqID);
         }
     }
 
@@ -70,11 +72,14 @@ public class UpcomingJobAdapter extends RecyclerView.Adapter<UpcomingJobAdapter.
         final UpcomingJob serviceList = serviceLists.get(position);
 
         holder.requestId.setText(serviceList.getBookingId());
-        holder.jobDate.setText(serviceList.getServiceDate());
+        holder.reqID.setText("Job Id");
+        holder.jobDate.setText(serviceList.getCustomerName());
+        holder.jobD.setText("Customer Name");
         holder.jobType.setText(serviceList.getServiceType());
+        holder.accept.setText("Complete");
 
         holder.accept.setOnClickListener(v -> {
-            ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString());
+            ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString(), "Completed");
         });
 
         holder.viewInfo.setOnClickListener(v -> {
