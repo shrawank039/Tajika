@@ -351,7 +351,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 abUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
                 abAmountWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
                 abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
-                abServiceTaxAmount.setText(requestDetails.getCurrency() + " " + requestDetails.getServiceTaxAmount());
+                abServiceTaxAmount.setText(requestDetails.getCurrency() + " " + requestDetails.getServiceTaxFee());
                 abAmountToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
                 //finalAmountToPay.setText(requestDetails.);
 
@@ -400,10 +400,12 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 ccAmountToBePaid.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
                 ccCancelledOn.setText(getString(R.string.cancelled_on) + requestDetails.getCancelationDate() + " at " + requestDetails.getCancelationTime());
                 //CancellationCharge and Rating missing
-                ccCancellationCharge.setText(getString(R.string.cancellation_charge) + requestDetails.getCurrency() + " ");
-                //ccRateYourExperience.setRating(requestDetails.getR);
+                ccCancellationCharge.setText(getString(R.string.cancellation_charge) + requestDetails.getCurrency() + " "+ requestDetails.getCancellationCharges());
+                if (!requestDetails.getUserRating().equals(""))
+                ccRateYourExperience.setRating(requestDetails.getUserRating());
                 ccCancellationComment.setText(getString(R.string.cancellation_comment) + requestDetails.getCancelationComment());
                 ccCancellationReason.setText(getString(R.string.cancellation_reason) + requestDetails.getCancelationReason());
+                Glide.with(this).load(requestDetails.getServiceProviderImage()).placeholder(R.drawable.app_logo).into(pdServiceImage);
 
             } catch (JSONException e) {
                 e.printStackTrace();

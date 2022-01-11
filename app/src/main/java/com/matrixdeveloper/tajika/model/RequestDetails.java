@@ -24,10 +24,16 @@ public class RequestDetails implements Serializable
     private String serviceType;
     @SerializedName("willing_amount_pay")
     @Expose
-    private String willingAmountPay;
-    @SerializedName("service_tax_fee")
+    private Integer willingAmountPay;
+    @SerializedName("service_fees")
     @Expose
-    private String serviceTaxAmount;
+    private Integer serviceFees;
+    @SerializedName("commission_fees")
+    @Expose
+    private Integer commissionFees;
+    @SerializedName("total_amount_pay")
+    @Expose
+    private Integer totalAmountPay;
     @SerializedName("work_description")
     @Expose
     private String workDescription;
@@ -36,7 +42,7 @@ public class RequestDetails implements Serializable
     private String requestId;
     @SerializedName("booking_id")
     @Expose
-    private Object bookingId;
+    private Integer bookingId;
     @SerializedName("status")
     @Expose
     private String status;
@@ -51,13 +57,13 @@ public class RequestDetails implements Serializable
     private String requestTime;
     @SerializedName("request_accept_date")
     @Expose
-    private Object requestAcceptDate;
+    private String requestAcceptDate;
     @SerializedName("request_accept_time")
     @Expose
-    private Object requestAcceptTime;
+    private String requestAcceptTime;
     @SerializedName("request_declined_datetime")
     @Expose
-    private Object requestDeclinedDatetime;
+    private String requestDeclinedDatetime;
     @SerializedName("contact_person_name")
     @Expose
     private String contactPersonName;
@@ -66,40 +72,49 @@ public class RequestDetails implements Serializable
     private String contactPersonPhone;
     @SerializedName("serviceaddress_building_no")
     @Expose
-    private Object serviceaddressBuildingNo;
+    private String serviceaddressBuildingNo;
     @SerializedName("serviceaddress_streetaddress")
     @Expose
-    private Object serviceaddressStreetaddress;
+    private String serviceaddressStreetaddress;
     @SerializedName("serviceaddress_landmark")
     @Expose
-    private Object serviceaddressLandmark;
+    private String serviceaddressLandmark;
     @SerializedName("instruction")
     @Expose
-    private Object instruction;
+    private String instruction;
     @SerializedName("booking_datetime")
     @Expose
-    private Object bookingDatetime;
+    private String bookingDatetime;
     @SerializedName("cancelation_reason")
     @Expose
-    private Object cancelationReason;
+    private String cancelationReason;
     @SerializedName("cancelation_comment")
     @Expose
-    private Object cancelationComment;
+    private String cancelationComment;
     @SerializedName("cancelation_date")
     @Expose
-    private Object cancelationDate;
+    private String cancelationDate;
     @SerializedName("cancelation_time")
     @Expose
-    private Object cancelationTime;
+    private String cancelationTime;
+    @SerializedName("cancelled_by")
+    @Expose
+    private String cancelledBy;
+    @SerializedName("cancellation_charges")
+    @Expose
+    private String cancellationCharges;
     @SerializedName("competed_on")
     @Expose
-    private Object competedOn;
+    private String competedOn;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    @SerializedName("service_provider_image")
+    @Expose
+    private String serviceProviderImage;
     @SerializedName("service_name")
     @Expose
     private String serviceName;
@@ -115,10 +130,16 @@ public class RequestDetails implements Serializable
     @SerializedName("currency")
     @Expose
     private String currency;
+    @SerializedName("service_tax_fee")
+    @Expose
+    private Double serviceTaxFee;
     @SerializedName("adminpayableamount")
     @Expose
     private Double adminpayableamount;
-    private final static long serialVersionUID = 8171282150038736230L;
+    @SerializedName("user_rating")
+    @Expose
+    private Integer userRating;
+    private final static long serialVersionUID = -3018194043628059431L;
 
     public Integer getId() {
         return id;
@@ -160,12 +181,36 @@ public class RequestDetails implements Serializable
         this.serviceType = serviceType;
     }
 
-    public String getWillingAmountPay() {
+    public Integer getWillingAmountPay() {
         return willingAmountPay;
     }
 
-    public void setWillingAmountPay(String willingAmountPay) {
+    public void setWillingAmountPay(Integer willingAmountPay) {
         this.willingAmountPay = willingAmountPay;
+    }
+
+    public Integer getServiceFees() {
+        return serviceFees;
+    }
+
+    public void setServiceFees(Integer serviceFees) {
+        this.serviceFees = serviceFees;
+    }
+
+    public Integer getCommissionFees() {
+        return commissionFees;
+    }
+
+    public void setCommissionFees(Integer commissionFees) {
+        this.commissionFees = commissionFees;
+    }
+
+    public Integer getTotalAmountPay() {
+        return totalAmountPay;
+    }
+
+    public void setTotalAmountPay(Integer totalAmountPay) {
+        this.totalAmountPay = totalAmountPay;
     }
 
     public String getWorkDescription() {
@@ -184,11 +229,11 @@ public class RequestDetails implements Serializable
         this.requestId = requestId;
     }
 
-    public Object getBookingId() {
+    public Integer getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(Object bookingId) {
+    public void setBookingId(Integer bookingId) {
         this.bookingId = bookingId;
     }
 
@@ -224,35 +269,27 @@ public class RequestDetails implements Serializable
         this.requestTime = requestTime;
     }
 
-    public Object getRequestAcceptDate() {
+    public String getRequestAcceptDate() {
         return requestAcceptDate;
     }
 
-    public void setRequestAcceptDate(Object requestAcceptDate) {
+    public void setRequestAcceptDate(String requestAcceptDate) {
         this.requestAcceptDate = requestAcceptDate;
     }
 
-    public String getServiceTaxAmount() {
-        return serviceTaxAmount;
-    }
-
-    public void setServiceTaxAmount(String serviceTaxAmount) {
-        this.serviceTaxAmount = serviceTaxAmount;
-    }
-
-    public Object getRequestAcceptTime() {
+    public String getRequestAcceptTime() {
         return requestAcceptTime;
     }
 
-    public void setRequestAcceptTime(Object requestAcceptTime) {
+    public void setRequestAcceptTime(String requestAcceptTime) {
         this.requestAcceptTime = requestAcceptTime;
     }
 
-    public Object getRequestDeclinedDatetime() {
+    public String getRequestDeclinedDatetime() {
         return requestDeclinedDatetime;
     }
 
-    public void setRequestDeclinedDatetime(Object requestDeclinedDatetime) {
+    public void setRequestDeclinedDatetime(String requestDeclinedDatetime) {
         this.requestDeclinedDatetime = requestDeclinedDatetime;
     }
 
@@ -272,83 +309,99 @@ public class RequestDetails implements Serializable
         this.contactPersonPhone = contactPersonPhone;
     }
 
-    public Object getServiceaddressBuildingNo() {
+    public String getServiceaddressBuildingNo() {
         return serviceaddressBuildingNo;
     }
 
-    public void setServiceaddressBuildingNo(Object serviceaddressBuildingNo) {
+    public void setServiceaddressBuildingNo(String serviceaddressBuildingNo) {
         this.serviceaddressBuildingNo = serviceaddressBuildingNo;
     }
 
-    public Object getServiceaddressStreetaddress() {
+    public String getServiceaddressStreetaddress() {
         return serviceaddressStreetaddress;
     }
 
-    public void setServiceaddressStreetaddress(Object serviceaddressStreetaddress) {
+    public void setServiceaddressStreetaddress(String serviceaddressStreetaddress) {
         this.serviceaddressStreetaddress = serviceaddressStreetaddress;
     }
 
-    public Object getServiceaddressLandmark() {
+    public String getServiceaddressLandmark() {
         return serviceaddressLandmark;
     }
 
-    public void setServiceaddressLandmark(Object serviceaddressLandmark) {
+    public void setServiceaddressLandmark(String serviceaddressLandmark) {
         this.serviceaddressLandmark = serviceaddressLandmark;
     }
 
-    public Object getInstruction() {
+    public String getInstruction() {
         return instruction;
     }
 
-    public void setInstruction(Object instruction) {
+    public void setInstruction(String instruction) {
         this.instruction = instruction;
     }
 
-    public Object getBookingDatetime() {
+    public String getBookingDatetime() {
         return bookingDatetime;
     }
 
-    public void setBookingDatetime(Object bookingDatetime) {
+    public void setBookingDatetime(String bookingDatetime) {
         this.bookingDatetime = bookingDatetime;
     }
 
-    public Object getCancelationReason() {
+    public String getCancelationReason() {
         return cancelationReason;
     }
 
-    public void setCancelationReason(Object cancelationReason) {
+    public void setCancelationReason(String cancelationReason) {
         this.cancelationReason = cancelationReason;
     }
 
-    public Object getCancelationComment() {
+    public String getCancelationComment() {
         return cancelationComment;
     }
 
-    public void setCancelationComment(Object cancelationComment) {
+    public void setCancelationComment(String cancelationComment) {
         this.cancelationComment = cancelationComment;
     }
 
-    public Object getCancelationDate() {
+    public String getCancelationDate() {
         return cancelationDate;
     }
 
-    public void setCancelationDate(Object cancelationDate) {
+    public void setCancelationDate(String cancelationDate) {
         this.cancelationDate = cancelationDate;
     }
 
-    public Object getCancelationTime() {
+    public String getCancelationTime() {
         return cancelationTime;
     }
 
-    public void setCancelationTime(Object cancelationTime) {
+    public void setCancelationTime(String cancelationTime) {
         this.cancelationTime = cancelationTime;
     }
 
-    public Object getCompetedOn() {
+    public String getCancelledBy() {
+        return cancelledBy;
+    }
+
+    public void setCancelledBy(String cancelledBy) {
+        this.cancelledBy = cancelledBy;
+    }
+
+    public String getCancellationCharges() {
+        return cancellationCharges;
+    }
+
+    public void setCancellationCharges(String cancellationCharges) {
+        this.cancellationCharges = cancellationCharges;
+    }
+
+    public String getCompetedOn() {
         return competedOn;
     }
 
-    public void setCompetedOn(Object competedOn) {
+    public void setCompetedOn(String competedOn) {
         this.competedOn = competedOn;
     }
 
@@ -366,6 +419,14 @@ public class RequestDetails implements Serializable
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getServiceProviderImage() {
+        return serviceProviderImage;
+    }
+
+    public void setServiceProviderImage(String serviceProviderImage) {
+        this.serviceProviderImage = serviceProviderImage;
     }
 
     public String getServiceName() {
@@ -408,12 +469,28 @@ public class RequestDetails implements Serializable
         this.currency = currency;
     }
 
+    public Double getServiceTaxFee() {
+        return serviceTaxFee;
+    }
+
+    public void setServiceTaxFee(Double serviceTaxFee) {
+        this.serviceTaxFee = serviceTaxFee;
+    }
+
     public Double getAdminpayableamount() {
         return adminpayableamount;
     }
 
     public void setAdminpayableamount(Double adminpayableamount) {
         this.adminpayableamount = adminpayableamount;
+    }
+
+    public Integer getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(Integer userRating) {
+        this.userRating = userRating;
     }
 
 }

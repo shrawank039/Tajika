@@ -29,7 +29,6 @@ public class ServiceNames {
     public static final String SAVE_FCM_TOKEN = API + "/save_fcmtoken";
     public static final String NOTIFICATION_LIST = API + "/notificationList";
     public static final String DELETE_NOTIFICATION = API + "/removeNotification";
-    public static final String BOOKING_DETAILS = API + "/servicebookingDetails";
     public static final String HELP_FAQ = API + "/gethelps";
     public static final String CANCEL_SERVICE_BOOKING = API + "/cancelservicebooking";
     public static final String USER_WALLET_DETAILS = API + "/getPointCounter";
