@@ -17,8 +17,9 @@
             style="@style/appBar_imageView" />
 
         <TextView
+            android:id="@+id/txt_appbartitle"
             style="@style/appBar_textView"
-            android:text="Request Details" />
+            android:text="Request Detail" />
 
     </LinearLayout>
 
@@ -124,7 +125,6 @@
                                 android:text="Service type: cleaning" />
 
                             <TextView
-                                android:visibility="gone"
                                 android:id="@+id/txt_abServiceBookingId"
                                 style="@style/topDesign_textView"
                                 android:layout_width="match_parent"
@@ -621,7 +621,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Final amount ot pay"
+                        android:text="Final amount to pay:"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -644,7 +644,7 @@
                 android:layout_marginBottom="20dp">
 
                 <TextView
-                    android:id="@+id/txt_contactUs"
+                    android:id="@+id/txt_abContactUs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/call_icon"
@@ -659,6 +659,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/txt_abHelp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"

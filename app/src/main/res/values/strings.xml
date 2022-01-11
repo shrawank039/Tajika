@@ -21,7 +21,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="successfully_redeemed_the_coins">You have successfully redeemed the coins.</string>
     <string name="voucher_added_to_account">Your voucher is added to your account you can use it in your next booking.</string>
     <string name="check_points_history">Check points history</string>
-    <string name="cancellation_details"><u>Cancellation Details</u></string>
+    <string name="cancellation_details"><u>Cancellation details</u></string>
     <string name="dummy_services">1. Catering \n2. Cooking\n3. Dine-in\n 4. Italian</string>
     <string name="dummy_skills">1. Chopped cooking \n2. Plater\n3. Dine in specialist</string>
     <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
@@ -98,6 +98,10 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="add_your_new_good"><u>Add your new good</u></string>
     <string name="add_goods_instead"><u>Add goods instead</u></string>
     <string name="request_summery"><u>Request Summery</u></string>
-    <string name="service_summery"><u>Service Summery</u></string>
+    <string name="service_summery"><u>Service details</u></string>
+    <string name="cancellation_charge"><b>Cancellation Charge: </b></string>
+    <string name="cancellation_reason"><b>Reason: </b></string>
+    <string name="cancellation_comment"><b>Comment: </b></string>
+    <string name="cancelled_on"><b>Cancelled On: </b></string>
 
 </resources>

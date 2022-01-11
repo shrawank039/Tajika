@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.bumptech.glide.Glide;
 import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
@@ -38,29 +39,41 @@ public class BookingDetailsActivity extends AppCompatActivity {
     private final String TAG = "BookingDetailsAct";
     private String id;
     private double discount = 0.0;
-    private ImageView backPress,pdBackPress,upBackPress, serviceImage;
+    private ImageView backPress, pdBackPress, upBackPress, ccBackPress;
     private PrefManager prf;
 
     //for accepted booked
+    private ImageView abServiceImage;
     private TextView abServiceName, abServiceAddress, abServiceType, abServiceBookingId, abServiceStatus, abRequestedOn;
     private TextView abAcceptedOn, abRequestNumber, abServiceDate, abServiceTime, abServiceWorkDesc, abServiceUserName;
     private TextView abServiceUserContact, abServiceUserAddress, abUserInstruction, abAmountToPay, abAmountWillingToPay, applyCoupon, abFinalAmountToPay, abServiceTaxAmount;
-    private TextView bookThisService;
+    private TextView appbarTitle, bookThisService, abContactUs, abHelp;;
 
     //for pending declined
+    private ImageView pdServiceImage;
     private TextView pdServiceName, pdServiceAddress, pdServiceType, pdServiceStatus, pdRequestedOn;
     private TextView pdRequestNumber, pdServiceDate, pdServiceTime, pdServiceWorkDesc, pdAmountToBePay;
+    private TextView  pdContactUs, pdHelp;
 
-    //for pending declined
+    //for upComing
+    private ImageView upServiceImage;
     private TextView upServiceName, upServiceAddress, upServiceType, upServiceBookingId, upServiceBookingDate, upServiceStatus;
-    private TextView upServiceDate, upServiceTime, upServiceWorkDesc, upServiceUserName, upServiceUserContact, upServiceUserAddress,
-            upUserInstruction, upAmountToBePaid;
+    private TextView upServiceDate, upServiceTime, upServiceWorkDesc, upServiceUserName, upServiceUserContact, upServiceUserAddress, upUserInstruction, upAmountToBePaid;
+    private TextView  upContactUs, upHelp;
+
+    //for Completed Cancelled
+    private ImageView ccServiceImage;
+    private TextView ccServiceName, ccServiceAddress, ccServiceType, ccServiceBookingId, ccServiceBookingDate, ccServiceStatus;
+    private TextView ccServiceDate, ccServiceTime, ccServiceWorkDesc, ccServiceUserName, ccServiceUserContact, ccServiceUserAddress, ccUserInstruction;
+    private TextView ccAmountToBePaid, ccCancelledOn, ccCancellationReason, ccCancellationCharge, ccCancellationComment, ccContactUs, ccHelp;
+    private RatingBar ccRateYourExperience;
+    private Button submitRating;
 
     private String cancellationReason;
     private EditText cancellationComment;
     private ViewFlipper bookingViewFlipper;
     private CardView congratsContainer, cheersContainer;
-    private LinearLayout abContainerServiceAddress, abContainerBottomBookCancel, abContainerRequestSummery, abCouponContainer;
+    private LinearLayout abContainerServiceAddress, abContainerBottomBookCancel, abContainerRequestSummery, abCouponContainer, ccCancellationDetailsContainer, ccRateYourExperienceContainer;
     private ConstraintLayout abContainerContactHelp;
     RequestDetails requestDetails;
     private String status;
@@ -80,7 +93,9 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
         switch (status) {
             case "Booked":
+                appbarTitle.setText("Booking Confirmation");
                 bookingViewFlipper.setDisplayedChild(0);
+                abServiceBookingId.setVisibility(View.VISIBLE);
                 congratsContainer.setVisibility(View.VISIBLE);
                 cheersContainer.setVisibility(View.GONE);
                 abContainerRequestSummery.setVisibility(View.GONE);
@@ -91,6 +106,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 break;
             case "Accepted":
                 bookingViewFlipper.setDisplayedChild(0);
+                abServiceBookingId.setVisibility(View.GONE);
                 congratsContainer.setVisibility(View.GONE);
                 cheersContainer.setVisibility(View.VISIBLE);
                 abContainerRequestSummery.setVisibility(View.VISIBLE);
@@ -101,12 +117,18 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 break;
             case "Declined":
             case "Pending":
-            case "Cancelled":
-            case "Completed":
                 bookingViewFlipper.setDisplayedChild(1);
                 break;
             case "Upcoming":
                 bookingViewFlipper.setDisplayedChild(2);
+                break;
+            case "Cancelled":
+                bookingViewFlipper.setDisplayedChild(3);
+                ccRateYourExperienceContainer.setVisibility(View.GONE);
+                break;
+            case "Completed":
+                bookingViewFlipper.setDisplayedChild(3);
+                ccCancellationDetailsContainer.setVisibility(View.GONE);
                 break;
         }
         getBookingDetails(id);
@@ -119,6 +141,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         backPress = findViewById(R.id.iv_backPress);
 
         // for accepted booked service viewFlipper--> ab stands for accepted_booked
+        pdServiceImage = findViewById(R.id.iv_abServiceImage);
         abServiceName = findViewById(R.id.txt_abServiceName);
         abServiceAddress = findViewById(R.id.txt_abServiceAddress);
         abServiceType = findViewById(R.id.txt_abServiceType);
@@ -140,6 +163,9 @@ public class BookingDetailsActivity extends AppCompatActivity {
         abFinalAmountToPay = findViewById(R.id.txt_abFinalAmountToPay);
         abServiceTaxAmount = findViewById(R.id.txt_abServiceTaxAmount);
         bookThisService = findViewById(R.id.txt_bookThisService);
+        appbarTitle = findViewById(R.id.txt_appbartitle);
+        abHelp = findViewById(R.id.txt_abHelp);
+        abContactUs = findViewById(R.id.txt_abContactUs);
 
         //Containers to show or Hide
         abContainerRequestSummery = findViewById(R.id.ll_abRequestSummeryContainer);
@@ -149,9 +175,12 @@ public class BookingDetailsActivity extends AppCompatActivity {
         cheersContainer = findViewById(R.id.cv_cheersContainer);
         abCouponContainer = findViewById(R.id.ll_abCouponContainer);
         abContainerContactHelp = findViewById(R.id.cl_containerContactHelp);
+        ccCancellationDetailsContainer = findViewById(R.id.ll_cancellationDetails);
+        ccRateYourExperienceContainer = findViewById(R.id.ll_rateExperience);
 
 
         // for pending declined service viewFlipper --> pd stands for pending_declined
+        pdServiceImage = findViewById(R.id.iv_pdServiceImage);
         pdBackPress = findViewById(R.id.iv_pdBackPress);
         pdServiceName = findViewById(R.id.txt_pdServiceName);
         pdServiceAddress = findViewById(R.id.txt_pdServiceAddress);
@@ -163,10 +192,12 @@ public class BookingDetailsActivity extends AppCompatActivity {
         pdServiceTime = findViewById(R.id.txt_pdServiceTime);
         pdServiceWorkDesc = findViewById(R.id.txt_pdServiceWorkDescription);
         pdAmountToBePay = findViewById(R.id.txt_pdServiceAmountToBePaid);
+        pdHelp = findViewById(R.id.txt_pdHelp);
+        pdContactUs = findViewById(R.id.txt_pdContactUs);
 
 
         // for upcoming service viewFlipper --> up stands for upcoming
-
+        pdServiceImage = findViewById(R.id.iv_upServiceImage);
         upBackPress = findViewById(R.id.iv_upBackPress);
         upServiceName = findViewById(R.id.txt_upServiceName);
         upServiceAddress = findViewById(R.id.txt_upServiceAddress);
@@ -182,6 +213,34 @@ public class BookingDetailsActivity extends AppCompatActivity {
         upServiceUserAddress = findViewById(R.id.txt_upServiceUserAddress);
         upUserInstruction = findViewById(R.id.txt_upServiceUserInstruction);
         upAmountToBePaid = findViewById(R.id.txt_upServiceAmountToBePaid);
+        upHelp = findViewById(R.id.txt_upHelp);
+        upContactUs = findViewById(R.id.txt_upContactUs);
+
+        // for Completed Cancelled service viewFlipper --> cc stands for Completed Cancelled
+        pdServiceImage = findViewById(R.id.iv_ccServiceImage);
+        ccBackPress = findViewById(R.id.iv_ccBackPress);
+        ccServiceName = findViewById(R.id.txt_ccServiceName);
+        ccServiceAddress = findViewById(R.id.txt_ccServiceAddress);
+        ccServiceType = findViewById(R.id.txt_ccServiceType);
+        ccServiceBookingId = findViewById(R.id.txt_ccServiceBookingId);
+        ccServiceBookingDate = findViewById(R.id.txt_ccServiceBookingDate);
+        ccServiceStatus = findViewById(R.id.txt_ccServiceStatus);
+        ccServiceDate = findViewById(R.id.txt_ccServiceDate);
+        ccServiceTime = findViewById(R.id.txt_ccServiceTime);
+        ccServiceWorkDesc = findViewById(R.id.txt_ccServiceWorkDescription);
+        ccServiceUserName = findViewById(R.id.txt_ccServiceUserName);
+        ccServiceUserContact = findViewById(R.id.txt_ccServiceUserContactNumber);
+        ccServiceUserAddress = findViewById(R.id.txt_ccServiceUserAddress);
+        ccUserInstruction = findViewById(R.id.txt_ccServiceUserInstruction);
+        ccAmountToBePaid = findViewById(R.id.txt_ccServiceAmountToBePaid);
+        ccCancelledOn = findViewById(R.id.txt_ccCancelledOn);
+        ccCancellationCharge = findViewById(R.id.txt_ccCancellationCharge);
+        ccCancellationReason = findViewById(R.id.txt_ccCancellationReason);
+        ccCancellationComment = findViewById(R.id.txt_ccCancellationComment);
+        ccRateYourExperience = findViewById(R.id.rb_ccRateYourExperience);
+        submitRating = findViewById(R.id.btn_ccSubmitRating);
+        ccHelp = findViewById(R.id.txt_ccHelp);
+        ccContactUs = findViewById(R.id.txt_ccContactUs);
 
     }
 
@@ -189,6 +248,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         backPress.setOnClickListener(v -> super.onBackPressed());
         pdBackPress.setOnClickListener(v -> super.onBackPressed());
         upBackPress.setOnClickListener(v -> super.onBackPressed());
+        ccBackPress.setOnClickListener(v -> super.onBackPressed());
         bookThisService.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), BookServiceActivity.class)
                     .putExtra("booking_id", id).putExtra("amount", String.valueOf(finalAmount)).putExtra("discount", String.valueOf(discount))
@@ -197,6 +257,16 @@ public class BookingDetailsActivity extends AppCompatActivity {
         applyCoupon.setOnClickListener(v -> {
             dialogApplyCoupon();
         });
+        submitRating.setOnClickListener(v -> addRating());
+        ccHelp.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+        pdHelp.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+        abHelp.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+        upHelp.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+
+        ccContactUs.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
+        pdContactUs.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
+        abContactUs.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
+        upContactUs.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
     }
 
     private void dialogApplyCoupon() {
@@ -263,6 +333,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 finalAmount = requestDetails.getAdminpayableamount();
 
                 //for accepted booked service request
+                //Glide.with(this).load(requestDetails.).placeholder(R.drawable.app_logo).into(abServiceImage);
                 abServiceName.setText("Name: " + requestDetails.getServiceName());
                 abServiceAddress.setText("Address: " + requestDetails.getAddress());
                 abServiceType.setText("Service Type: " + requestDetails.getServiceType());
@@ -311,6 +382,28 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 upServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
                 upUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
                 upAmountToBePaid.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
+
+                //for Cancelled Completed service request
+                ccServiceName.setText("Name: " + requestDetails.getServiceName());
+                ccServiceAddress.setText("Address: " + requestDetails.getAddress());
+                ccServiceType.setText("Service Type: " + requestDetails.getServiceType());
+                ccServiceBookingId.setText("Booking Id: " + requestDetails.getBookingId());
+                ccServiceBookingDate.setText("Booked on: " + requestDetails.getBookingDatetime());
+                ccServiceStatus.setText("Status: " + requestDetails.getStatus());
+                ccServiceDate.setText(requestDetails.getServiceDate());
+                ccServiceTime.setText(requestDetails.getServiceTime());
+                ccServiceWorkDesc.setText(requestDetails.getWorkDescription());
+                ccServiceUserName.setText("Name: " + requestDetails.getContactPersonName());
+                ccServiceUserContact.setText("Contact No: " + requestDetails.getContactPersonPhone());
+                ccServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
+                ccUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
+                ccAmountToBePaid.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
+                ccCancelledOn.setText(getString(R.string.cancelled_on) + requestDetails.getCancelationDate() + " at " + requestDetails.getCancelationTime());
+                //CancellationCharge and Rating missing
+                ccCancellationCharge.setText(getString(R.string.cancellation_charge) + requestDetails.getCurrency() + " ");
+                //ccRateYourExperience.setRating(requestDetails.getR);
+                ccCancellationComment.setText(getString(R.string.cancellation_comment) + requestDetails.getCancelationComment());
+                ccCancellationReason.setText(getString(R.string.cancellation_reason) + requestDetails.getCancelationReason());
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -364,7 +457,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
         JSONObject data = new JSONObject();
         try {
-            data.put("user_id",prf.getString("id"));
+            data.put("user_id", prf.getString("id"));
             data.put("id", id);
             data.put("cancelation_reason", cancellationReason);
             data.put("cancelation_comment", cancellationComment.getText().toString());
@@ -397,7 +490,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         try {
             data.put("user_id", prf.getString("id"));
             data.put("service_id", id);
-            data.put("rate", "5");
+            data.put("rate", ccRateYourExperience.getRating());
 
         } catch (Exception e) {
             e.printStackTrace();

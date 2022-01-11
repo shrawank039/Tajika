@@ -16,5 +16,7 @@
 
         <include layout="@layout/viewpager_upcoming_booking_details" />
 
+        <include layout="@layout/viewpager_completed_cancelled_service_details" />
+
     </ViewFlipper>
 </LinearLayout>

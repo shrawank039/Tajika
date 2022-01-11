@@ -55,9 +55,11 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_pay_onetime_charge.xml" value="0.13094462540716612" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_notice.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/dialog_payment_successful.xml" value="0.13094462540716612" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/fragment_requested.xml" value="0.16018518518518518" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_booked_or_requested.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_category.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_faq.xml" value="0.13223684210526315" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/item_job_completed_or_pending.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_more_options.xml" value="0.12960526315789472" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_redeem_coin.xml" value="0.14537037037037037" />
         <entry key="..\:/Tajika/app/src/main/res/layout/item_spb_my_goods.xml" value="0.33" />
@@ -72,16 +74,17 @@
         <entry key="..\:/Tajika/app/src/main/res/layout/spb_personal_info.xml" value="0.17864583333333334" />
         <entry key="..\:/Tajika/app/src/main/res/layout/spi_business_details.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/spi_personal_info.xml" value="0.17864583333333334" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.14" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.22" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_completed_cancelled_details.xml" value="0.17864583333333334" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_completed_cancelled_service_details.xml" value="0.2" />
         <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_pending_declined_details.xml" value="0.16" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.14" />
-        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_upcoming_booking_details.xml" value="0.12" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.25" />
+        <entry key="..\:/Tajika/app/src/main/res/layout/viewpager_upcoming_booking_details.xml" value="0.22" />
         <entry key="..\:/Tajika/app/src/main/res/menu/clear_all_notification_menu.xml" value="0.13223684210526315" />
         <entry key="..\:/Tajika/app/src/main/res/menu/nav_drawer_menu.xml" value="0.13094462540716612" />
         <entry key="app/src/debug/res/font/lato.xml" value="0.25277777777777777" />
         <entry key="app/src/debug/res/font/lato_black.xml" value="0.25277777777777777" />
         <entry key="app/src/debug/res/font/muli.xml" value="0.25277777777777777" />
-        <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_all_service.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_book_service.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_booking.xml" value="0.2546875" />
@@ -94,7 +97,6 @@
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/activity_otp_input.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.23425925925925925" />
-        <entry key="app/src/main/res/layout/activity_privacy_policy.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_request_service.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/activity_reset_password.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.23425925925925925" />
@@ -103,7 +105,6 @@
         <entry key="app/src/main/res/layout/activity_spb_my_services.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_register.xml" value="0.2222222222222222" />
-        <entry key="app/src/main/res/layout/activity_spi_all_bookings.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_all_request.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/activity_spi_home.xml" value="0.13072916666666667" />
         <entry key="app/src/main/res/layout/activity_spi_more.xml" value="0.2546875" />
@@ -118,9 +119,6 @@
         <entry key="app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/dialog_payment_notice.xml" value="0.2546875" />
-        <entry key="app/src/main/res/layout/fragment_booked.xml" value="0.2546875" />
-        <entry key="app/src/main/res/layout/fragment_requested.xml" value="0.22037037037037038" />
-        <entry key="app/src/main/res/layout/item_booked_or_requested.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_coins_wallet.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_job_completed_or_pending.xml" value="0.2546875" />
@@ -134,7 +132,6 @@
         <entry key="app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/viewpager_upcoming_booking_details.xml" value="0.2546875" />
-        <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.2546875" />
       </map>
     </option>
   </component>
