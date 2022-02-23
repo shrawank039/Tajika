@@ -109,11 +109,10 @@ public class SpbEditProfileActivity extends AppCompatActivity {
                     edtExperience.setText(jsonObject.optString("year_of_experience"));
                     edtBusinessLink.setText(jsonObject.optString("bussiness_link"));
                     edtBusinessDesc.setText(jsonObject.optString("service_description"));
+                    txtBusinessName.setText(jsonObject.optString("business_name"));
+                    edtBusinessName.setText(jsonObject.optString("business_name"));
 
                     Glide.with(this).load(jsonObject.optString("profileimage")).placeholder(R.drawable.app_logo).into(profileImage);
-
-                    //Not in response
-                    txtBusinessName.setText(jsonObject.optString("business_name"));
 
                     // imageList.add(new SPBbusinessPhotosVideosModel("0", "https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png"));
                     JSONArray jsonArray = jsonObject.optJSONArray("service_offerd_image");

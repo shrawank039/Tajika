@@ -44,7 +44,7 @@ public class SpbProfileActivity extends AppCompatActivity implements BottomSheet
     private SPBbusinessPhotosVideoAdapter mAdapter;
     private final String TAG = "SpbProfileAct";
     private PrefManager pref;
-    private TextView profileEdit, txtRating, providerName, providerNumber, providerEmail, businessName, businessCategory, providerExperience, businessLink, businessDesc;
+    private TextView profileEdit, txtRating, providerName, providerNumber, providerEmail, businessName, businessNameTop, businessCategory, providerExperience, businessLink, businessDesc;
     private TextView subscriptionPlan, purchasedOn, expiresOn;
     private RatingBar providerRating;
     private Button btnRenew;
@@ -66,7 +66,8 @@ public class SpbProfileActivity extends AppCompatActivity implements BottomSheet
         providerName = findViewById(R.id.edt_providerName);
         providerEmail = findViewById(R.id.txt_providerEmail);
         providerNumber = findViewById(R.id.edt_providerPhone);
-        businessName = findViewById(R.id.txt_businessNameTop);
+        businessName = findViewById(R.id.txt_businessName);
+        businessNameTop = findViewById(R.id.txt_businessNameTop);
         businessLink = findViewById(R.id.txt_businessLink);
         businessCategory = findViewById(R.id.txt_businessCategory);
         providerExperience = findViewById(R.id.txt_providerExperience);
@@ -195,11 +196,10 @@ public class SpbProfileActivity extends AppCompatActivity implements BottomSheet
                     subscriptionPlan.setText(jsonObject.optString("plan_name"));
                     purchasedOn.setText(jsonObject.optString("start_date"));
                     expiresOn.setText(jsonObject.optString("end_date"));
+                    businessName.setText(jsonObject.optString("business_name"));
+                    businessNameTop.setText(jsonObject.optString("business_name"));
 
                     Glide.with(this).load(jsonObject.optString("profileimage")).placeholder(R.drawable.app_logo).into(providerImage);
-
-                    //Not in response
-                    businessName.setText(jsonObject.optString("business_name"));
 
                     JSONArray jsonArray = jsonObject.optJSONArray("service_offerd_image");
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -256,7 +256,6 @@ public class SpbProfileActivity extends AppCompatActivity implements BottomSheet
             if (resultCode == 1) {
                 addSubscription();
             } else {
-                addSubscription();
                 Utils.toast(getApplicationContext(), "Payment Failed!!!");
             }
         }

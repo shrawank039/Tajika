@@ -542,7 +542,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Amount willing to pay"
+                        android:text="Amount willing to pay for service"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -621,7 +621,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Final amount to pay:"
+                        android:text="Booking fee to pay :"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 

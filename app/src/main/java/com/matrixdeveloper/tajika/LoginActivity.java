@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 prf.setString(Global.token, login.getToken());
                 prf.setString(Global.role, login.getRoles().toString());
                 prf.setString(Global.email, login.getEmail());
+                prf.setString(Global.phone, login.getPhoneNumber());
                 prf.setString(Global.name, login.getName());
                 prf.setString(Global.rating, login.getRating());
                 prf.setString(Global.profileImage, PRODUCTION_API+login.getImage());

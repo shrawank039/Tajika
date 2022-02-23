@@ -24,16 +24,16 @@ public class RequestDetails implements Serializable
     private String serviceType;
     @SerializedName("willing_amount_pay")
     @Expose
-    private Integer willingAmountPay;
+    private String willingAmountPay;
     @SerializedName("service_fees")
     @Expose
-    private Integer serviceFees;
+    private String serviceFees;
     @SerializedName("commission_fees")
     @Expose
-    private Integer commissionFees;
+    private String commissionFees;
     @SerializedName("total_amount_pay")
     @Expose
-    private Integer totalAmountPay;
+    private String totalAmountPay;
     @SerializedName("work_description")
     @Expose
     private String workDescription;
@@ -42,7 +42,7 @@ public class RequestDetails implements Serializable
     private String requestId;
     @SerializedName("booking_id")
     @Expose
-    private Integer bookingId;
+    private String bookingId;
     @SerializedName("status")
     @Expose
     private String status;
@@ -138,8 +138,8 @@ public class RequestDetails implements Serializable
     private Double adminpayableamount;
     @SerializedName("user_rating")
     @Expose
-    private Integer userRating;
-    private final static long serialVersionUID = -3018194043628059431L;
+    private Float userRating;
+    private final static long serialVersionUID = -4720370573774085753L;
 
     public Integer getId() {
         return id;
@@ -181,35 +181,35 @@ public class RequestDetails implements Serializable
         this.serviceType = serviceType;
     }
 
-    public Integer getWillingAmountPay() {
+    public String getWillingAmountPay() {
         return willingAmountPay;
     }
 
-    public void setWillingAmountPay(Integer willingAmountPay) {
+    public void setWillingAmountPay(String willingAmountPay) {
         this.willingAmountPay = willingAmountPay;
     }
 
-    public Integer getServiceFees() {
+    public String getServiceFees() {
         return serviceFees;
     }
 
-    public void setServiceFees(Integer serviceFees) {
+    public void setServiceFees(String serviceFees) {
         this.serviceFees = serviceFees;
     }
 
-    public Integer getCommissionFees() {
+    public String getCommissionFees() {
         return commissionFees;
     }
 
-    public void setCommissionFees(Integer commissionFees) {
+    public void setCommissionFees(String commissionFees) {
         this.commissionFees = commissionFees;
     }
 
-    public Integer getTotalAmountPay() {
+    public String getTotalAmountPay() {
         return totalAmountPay;
     }
 
-    public void setTotalAmountPay(Integer totalAmountPay) {
+    public void setTotalAmountPay(String totalAmountPay) {
         this.totalAmountPay = totalAmountPay;
     }
 
@@ -229,11 +229,11 @@ public class RequestDetails implements Serializable
         this.requestId = requestId;
     }
 
-    public Integer getBookingId() {
+    public String getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(Integer bookingId) {
+    public void setBookingId(String bookingId) {
         this.bookingId = bookingId;
     }
 
@@ -485,11 +485,11 @@ public class RequestDetails implements Serializable
         this.adminpayableamount = adminpayableamount;
     }
 
-    public Integer getUserRating() {
+    public Float getUserRating() {
         return userRating;
     }
 
-    public void setUserRating(Integer userRating) {
+    public void setUserRating(Float userRating) {
         this.userRating = userRating;
     }
 

@@ -120,7 +120,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
             if (response.optInt("status") == 400) {
                 Utils.toast(getApplicationContext(), response.optString("message"));
             } else {
-                startActivity(new Intent(SpiServiceAcceptActivity.this, SpiServiceCompletedStatusActivity.class));
+                startActivity(new Intent(SpiServiceAcceptActivity.this, SpiServiceCompletedStatusActivity.class).putExtra("requestDetails", requestDetails));
                 finish();
             }
 

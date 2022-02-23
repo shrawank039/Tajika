@@ -257,6 +257,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 bannerArray = jsonObject.getJSONArray("bannerlist");
                 serviceArray = catObj.getJSONArray("service");
                 goodsArray = catObj.getJSONArray("goods");
+                String text = jsonObject.optString("text");
+                greeting.setText(text);
+
 
                 for (int i = 0; i < serviceArray.length(); i++) {
 

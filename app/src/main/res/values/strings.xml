@@ -32,7 +32,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="home_search_keyword">Search all services</string>
+    <string name="home_search_keyword">Search all services.</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

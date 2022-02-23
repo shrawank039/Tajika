@@ -1,5 +1,6 @@
 package com.matrixdeveloper.tajika.SPindividual;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,14 +10,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.matrixdeveloper.tajika.BookingDetailsActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIAllBookingsAdapter;
+import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.model.SPIAllBookingsModel;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
+import com.matrixdeveloper.tajika.utils.RecyclerTouchListener;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONArray;
@@ -50,6 +54,22 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
         allBookingsRecyclerView.setHasFixedSize(true);
         allBookingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         allBookingsRecyclerView.setAdapter(allBookingsAdapter);
+
+        allBookingsRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(SpiAllBookingsActivity.this, allBookingsRecyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                SPIAllBookingsModel spiAllBookingsModel = spiAllBookingsModels.get(position);
+
+                getServiceDetails(String.valueOf(spiAllBookingsModel.getId()));
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         upcoming.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,5 +142,30 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    private void getServiceDetails(String id) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
+            Utils.log(TAG, response.toString());
+            try {
+                RequestDetails requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+                startActivity(new Intent(SpiAllBookingsActivity.this, SpiServiceCompletedStatusActivity.class).putExtra("requestDetails", requestDetails));
+                finish();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
+
     }
 }

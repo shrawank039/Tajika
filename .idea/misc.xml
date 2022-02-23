@@ -105,10 +105,11 @@
         <entry key="app/src/main/res/layout/activity_spb_register.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_spi_all_bookings.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_all_request.xml" value="0.22685185185185186" />
-        <entry key="app/src/main/res/layout/activity_spi_home.xml" value="0.13072916666666667" />
+        <entry key="app/src/main/res/layout/activity_spi_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_spi_more.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_profile_edit.xml" value="0.22685185185185186" />
+        <entry key="app/src/main/res/layout/activity_spi_register.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_spi_service_accept.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_spi_service_completed_status.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_service_request_details.xml" value="0.2546875" />
@@ -117,6 +118,7 @@
         <entry key="app/src/main/res/layout/bottomsheet_service_and_goods_provider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/bottomsheet_serviceprovider.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/dialog_booking_cancellation_reason.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/dialog_payment_notice.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/fragment_booked.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/fragment_requested.xml" value="0.22037037037037038" />
@@ -131,6 +133,9 @@
         <entry key="app/src/main/res/layout/item_spb_my_goods.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_subcategory.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/layout_new_orders.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/spb_business_details.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/spi_business_details.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/viewpager_completed_cancelled_service_details.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.2546875" />

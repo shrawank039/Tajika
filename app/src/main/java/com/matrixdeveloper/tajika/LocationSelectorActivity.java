@@ -894,7 +894,6 @@ public class LocationSelectorActivity extends FragmentActivity
             if (resultCode == 1) {
                 addSubscription();
             } else {
-                addSubscription();
                 Utils.toast(getApplicationContext(), "Payment Failed!!!");
             }
         }

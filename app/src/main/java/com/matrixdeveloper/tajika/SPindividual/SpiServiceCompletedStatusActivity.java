@@ -29,7 +29,7 @@ public class SpiServiceCompletedStatusActivity extends AppCompatActivity {
         jobType.setText(requestDetails.getServiceType());
         serviceStatus.setText(requestDetails.getStatus());
         dateOfCompletion.setText(""+requestDetails.getCompetedOn());
-        //customerRating.setText(requestDetails.rat);
+        customerRating.setText(String.valueOf(requestDetails.getUserRating()));
         customerName.setText(requestDetails.getCustomername());
         customerNumber.setText(requestDetails.getCustomerphone());
         serviceArea.setText(requestDetails.getAddress());

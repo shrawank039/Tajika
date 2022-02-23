@@ -76,7 +76,7 @@ public class SpiProfileActivity extends AppCompatActivity {
         providerName = findViewById(R.id.edt_providerName);
         providerEmail = findViewById(R.id.txt_providerEmail);
         providerNumber = findViewById(R.id.edt_providerPhone);
-        businessName = findViewById(R.id.txt_businessNameTop);
+        businessName = findViewById(R.id.txt_businessName);
         businessLink = findViewById(R.id.txt_businessLink);
         businessCategory = findViewById(R.id.txt_businessCategory);
         providerExperience = findViewById(R.id.txt_providerExperience);
@@ -135,9 +135,7 @@ public class SpiProfileActivity extends AppCompatActivity {
                     subscriptionPlan.setText(jsonObject.optString("plan_id"));
                     purchasedOn.setText(jsonObject.optString("start_date"));
                     expiresOn.setText(jsonObject.optString("end_date"));
-
-                    //Not in response
-                    businessName.setText(jsonObject.optString("business_categories"));
+                    businessName.setText(jsonObject.optString("business_name"));
 
                 }
             } catch (JSONException e) {
@@ -254,7 +252,6 @@ public class SpiProfileActivity extends AppCompatActivity {
             if (resultCode == 1) {
                 addSubscription();
             } else {
-                addSubscription();
                 Utils.toast(getApplicationContext(), "Payment Failed!!!");
             }
         }

@@ -135,10 +135,8 @@ public class SpiProfileEditActivity extends AppCompatActivity {
                     passportCopyStatus.setText(jsonObject.optString("upload_passportid"));
                     proQualification.setText(jsonObject.optString("professional_qualification"));
                     proQualificationStatus.setText(jsonObject.optString("qualification_certification"));
-
-                    //Not in response
-                    businessName.setText(jsonObject.optString("service_area"));
-                    businessNameTop.setText(jsonObject.optString("business_categories"));
+                    businessName.setText(jsonObject.optString("business_name"));
+                    businessNameTop.setText(jsonObject.optString("business_name"));
 
                 }
             } catch (JSONException e) {
@@ -181,7 +179,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
         String phoneNumber = providerNumber.getText().toString().trim();
         String email = providerEmail.getText().toString().trim();
         String business_categories = businessCategory.getText().toString().trim();
-        String business_name = businessCategory.getText().toString().trim();
+        String business_name = businessName.getText().toString().trim();
         String year_of_experience = providerExperience.getText().toString().trim();
         String bussiness_link = businessLink.getText().toString().trim();
         String service_description = businessDesc.getText().toString().trim();
@@ -199,6 +197,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
             data.put("phone", phoneNumber);
             data.put("email", email);
             data.put("service_area", business_name);
+            data.put("business_name", business_name);
             data.put("business_categories", business_categories);
             data.put("service_description", service_description);
             data.put("year_of_experience", year_of_experience);

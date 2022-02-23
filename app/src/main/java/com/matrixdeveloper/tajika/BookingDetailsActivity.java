@@ -263,10 +263,10 @@ public class BookingDetailsActivity extends AppCompatActivity {
         abHelp.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
         upHelp.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
 
-        ccContactUs.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
-        pdContactUs.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
-        abContactUs.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
-        upContactUs.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
+        ccContactUs.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+        pdContactUs.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+        abContactUs.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+        upContactUs.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
     }
 
     private void dialogApplyCoupon() {
@@ -300,7 +300,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                         double marginAmount = jsonObject.optDouble("margin_amount");
                         double totalAmount = requestDetails.getAdminpayableamount();
                         finalAmount = totalAmount - marginAmount;
-                        abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + finalAmount);
+                        abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + marginAmount);
                         dialog.dismiss();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -401,8 +401,16 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 ccCancelledOn.setText(getString(R.string.cancelled_on) + requestDetails.getCancelationDate() + " at " + requestDetails.getCancelationTime());
                 //CancellationCharge and Rating missing
                 ccCancellationCharge.setText(getString(R.string.cancellation_charge) + requestDetails.getCurrency() + " "+ requestDetails.getCancellationCharges());
-                if (!requestDetails.getUserRating().equals(""))
+
                 ccRateYourExperience.setRating(requestDetails.getUserRating());
+
+                if (!requestDetails.getUserRating().equals("0")){
+                    submitRating.setVisibility(View.GONE);
+                    ccRateYourExperience.setIsIndicator(false);
+                    ccRateYourExperience.setFocusable(false);
+                }
+
+
                 ccCancellationComment.setText(getString(R.string.cancellation_comment) + requestDetails.getCancelationComment());
                 ccCancellationReason.setText(getString(R.string.cancellation_reason) + requestDetails.getCancelationReason());
                 Glide.with(this).load(requestDetails.getServiceProviderImage()).placeholder(R.drawable.app_logo).into(pdServiceImage);
@@ -424,6 +432,9 @@ public class BookingDetailsActivity extends AppCompatActivity {
         Button submitCancellationRequest = dialog.findViewById(R.id.btn_submitCancellationRequest);
         Spinner spinner = dialog.findViewById(R.id.spinner);
         cancellationComment = dialog.findViewById(R.id.edt_cancellationComment);
+
+        TextView cc = dialog.findViewById(R.id.txt_cancellationCharge);
+        cc.setText(getString(R.string.cancellation_charge) + requestDetails.getCurrency() + " "+ requestDetails.getCancellationCharges());
 
         String[] simpleArrayEducation = {"Select Reason", "I no longer need it", "Booked from somewhere else", "i don't like your service", "Response is late", "Fixed myself", "Others"};
         ArrayAdapter aa = new ArrayAdapter(BookingDetailsActivity.this, android.R.layout.simple_spinner_item, simpleArrayEducation);

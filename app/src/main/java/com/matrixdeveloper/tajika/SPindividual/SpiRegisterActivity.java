@@ -95,11 +95,11 @@ public class SpiRegisterActivity extends AppCompatActivity {
     int serviceCatID;
     protected boolean hasReadWritePermissions;
     protected static final int REQUEST_PERMISSIONS_READ_WRITE = 4;
-    private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
+    private String name, phone, email, pass, Cpass, service_area, business_name, business_categories, service_description, year_of_experience,
             bussiness_link, minimum_charge, education_level, passportnumber, upload_passportid = "", professional_qualification,
             qualification_certification, latitude, longitude;
     private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass, edtServiceArea, edtYourExperience,
-            edtBusinessLink, edtServiceCharge, edtSkillDescription, edtHighestEducation, edtPassportNumber, edtProQualification;
+            edtBusinessLink, edtServiceCharge, edtSkillDescription, edtHighestEducation, edtPassportNumber, edtProQualification, edtBusinessName;
     private ImageView showPass, showCPass;
     private static PrefManager prf;
 
@@ -147,6 +147,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
         showCPass = regViewFlipper.findViewById(R.id.showCPass);
 
         edtServiceArea = regViewFlipper.findViewById(R.id.edt_serviceArea);
+        edtBusinessName = regViewFlipper.findViewById(R.id.edt_businessName);
 
         //edtBusinessCategories = regViewFlipper.findViewById(R.id.edt_businessCategory);
 
@@ -323,6 +324,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
         pass = edtPass.getText().toString();
         Cpass = edtCPass.getText().toString();
         service_area = edtServiceArea.getText().toString();
+        business_name = edtBusinessName.getText().toString();
         year_of_experience = edtYourExperience.getText().toString();
         bussiness_link = edtBusinessLink.getText().toString();
         minimum_charge = edtServiceCharge.getText().toString();
@@ -343,6 +345,7 @@ public class SpiRegisterActivity extends AppCompatActivity {
                 data.put("password_confirmation", pass);
                 data.put("role", "3");
                 data.put("service_area", service_area);
+                data.put("business_name", business_name);
                 data.put("business_categories", String.valueOf(serviceCatID));
                 data.put("service_description", service_description);
                 data.put("year_of_experience", year_of_experience);

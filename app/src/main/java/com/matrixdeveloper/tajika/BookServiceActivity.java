@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.ServiceNames;
+import com.matrixdeveloper.tajika.utils.Global;
+import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
 
 import org.json.JSONException;
@@ -25,12 +27,14 @@ public class BookServiceActivity extends AppCompatActivity {
     private EditText name, phoneNUmber, flatNumber, streetAddress, landmark, anyInstruction;
     private LinearLayout llMakePayment;
     private final int PAYMENT_REQUEST = 1;
+    private PrefManager prf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_service);
 
+        prf = new PrefManager(this);
         bookingID = getIntent().getStringExtra("booking_id");
         amount = getIntent().getStringExtra("amount");
         discount = getIntent().getStringExtra("discount");
@@ -60,6 +64,9 @@ public class BookServiceActivity extends AppCompatActivity {
         anyInstruction = findViewById(R.id.edt_anyInstruction);
         llMakePayment = findViewById(R.id.ll_makePayment);
 
+        name.setText(prf.getString(Global.name));
+        phoneNUmber.setText(prf.getString(Global.phone));
+
     }
 
     @Override
@@ -70,7 +77,6 @@ public class BookServiceActivity extends AppCompatActivity {
             if (resultCode == 1) {
                 bookService();
             } else {
-                bookService();
                 Utils.toast(getApplicationContext(), "Payment Failed!!!");
             }
         }

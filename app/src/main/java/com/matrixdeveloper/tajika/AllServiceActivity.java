@@ -52,8 +52,11 @@ public class AllServiceActivity extends AppCompatActivity {
         llnotFount = findViewById(R.id.ll_noItemFound);
         type = getIntent().getStringExtra("type");
 
-        if (type.equals("goods"))
+        if (type.equals("goods")){
             titleView.setText("Browse Goods");
+            inputSearch.setHint("Search all goods.");
+        }
+
 
         catService = new ArrayList<>();
         catGoods = new ArrayList<>();

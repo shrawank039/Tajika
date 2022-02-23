@@ -66,10 +66,10 @@ public class SpbRegisterActivity extends AppCompatActivity {
     private ViewFlipper regViewFlipper;
     Button nextToBusinessDetails, submit;
     private static final String TAG = "SpbRegisterAct";
-    private String name, phone, email, pass, Cpass, service_area, business_categories, service_description, year_of_experience,
+    private String name, phone, email, pass, Cpass, service_area, business_name, business_categories, service_description, year_of_experience,
             bussiness_link, minimum_charge, bussiness_logo, service_photo, latitude, longitude;
     private EditText edtName, edtPhone, edtEmail, edtPass, edtCPass, edtLogo, edtServicePhoto, edtServiceArea, edt_description,
-            edtYearExperience, edtBusinessLink, edtMinCharges;
+            edtYearExperience, edtBusinessLink, edtMinCharges, edtBusinessName;
     private ImageView showPass, showCPass;
     private LinearLayout ll_logo_upload, ll_service_photo_upload;
     private int type = AppConstants.DOCUMENT_TYPE_ID;
@@ -105,6 +105,7 @@ public class SpbRegisterActivity extends AppCompatActivity {
         edtLogo = regViewFlipper.findViewById(R.id.edt_logo);
         edtServicePhoto = regViewFlipper.findViewById(R.id.edt_service_photo);
         edtServiceArea = regViewFlipper.findViewById(R.id.edt_areaOfService);
+        edtBusinessName = regViewFlipper.findViewById(R.id.edt_businessName);
         edt_description = regViewFlipper.findViewById(R.id.edt_description);
         edtYearExperience = regViewFlipper.findViewById(R.id.edt_year_of_experience);
         edtBusinessLink = regViewFlipper.findViewById(R.id.edt_business_link);
@@ -312,6 +313,7 @@ public class SpbRegisterActivity extends AppCompatActivity {
         pass = edtPass.getText().toString();
         Cpass = edtCPass.getText().toString();
         service_area = edtServiceArea.getText().toString();
+        business_name = edtBusinessName.getText().toString();
         service_description = edt_description.getText().toString();
         year_of_experience = edtYearExperience.getText().toString();
         bussiness_link = edtBusinessLink.getText().toString();
@@ -326,7 +328,7 @@ public class SpbRegisterActivity extends AppCompatActivity {
                 data.put("password", pass);
                 data.put("password_confirmation", pass);
                 data.put("role", "4");
-                data.put("business_name", name);
+                data.put("business_name", business_name);
                 data.put("location_address", service_area);
                 data.put("location", service_area);
                 data.put("business_categories", String.valueOf(serviceCatID));

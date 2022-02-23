@@ -82,6 +82,15 @@
 
             <LinearLayout style="@style/register_input_container">
 
+                <EditText
+                    android:id="@+id/edt_businessName"
+                    style="@style/register_editText_container"
+                    android:hint="Enter business name" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/register_input_container">
+
                 <Spinner
                     android:id="@+id/spinner"
                     android:paddingStart="20dp"
