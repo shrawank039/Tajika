@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.28072916666666664" />
         <entry key="..\:/Tajika/app/src/main/res/drawable-v24/three_side_round_background_bottom.xml" value="0.14104234527687295" />
         <entry key="..\:/Tajika/app/src/main/res/drawable/job_switch_background.xml" value="0.19895833333333332" />
         <entry key="..\:/Tajika/app/src/main/res/drawable/layout_input_outline.xml" value="0.14104234527687295" />
@@ -126,7 +127,9 @@
         <entry key="app/src/main/res/layout/item_category.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_coins_wallet.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_job_completed_or_pending.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/item_more_options.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/item_new_services_request.xml" value="0.22037037037037038" />
+        <entry key="app/src/main/res/layout/item_recent_transaction.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/item_recomended_services.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_redeem_coin.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/item_spb_business_photos_videos.xml" value="0.2546875" />
@@ -136,7 +139,7 @@
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/spb_business_details.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/spi_business_details.xml" value="0.25416666666666665" />
-        <entry key="app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.2222222222222222" />
+        <entry key="app/src/main/res/layout/viewpager_accepted_booked_service_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/viewpager_completed_cancelled_service_details.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/viewpager_pending_declined_service_details.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/viewpager_upcoming_booking_details.xml" value="0.2546875" />

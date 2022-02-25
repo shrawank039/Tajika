@@ -55,7 +55,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/plumbing"
-                app:civ_border_width="1dp" />
+                app:civ_border_width="0dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -642,6 +642,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
                     android:id="@+id/rv_subscription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

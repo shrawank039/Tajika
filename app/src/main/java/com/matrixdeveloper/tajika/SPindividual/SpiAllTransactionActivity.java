@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIRecentTransactionAdapter;
+import com.matrixdeveloper.tajika.model.Category;
 import com.matrixdeveloper.tajika.model.SPIRecentTransactionModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
@@ -30,11 +32,14 @@ public class SpiAllTransactionActivity extends AppCompatActivity {
     private ImageView backPress;
     private PrefManager prf;
     private final String TAG = "AllTransactionsAct";
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_all_transaction);
+
+        type = getIntent().getStringExtra("type");
         backPress = findViewById(R.id.iv_backPress);
         prf=new PrefManager(this);
 
@@ -64,14 +69,8 @@ public class SpiAllTransactionActivity extends AppCompatActivity {
             try {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject object = jsonArray.getJSONObject(i);
-
-                    myListData.add(new SPIRecentTransactionModel(
-                            object.optString("id"),
-                            object.optString("transcation_id"),
-                            object.optString("submit_date"),
-                            object.optString("amount")
-                    ));
+                    SPIRecentTransactionModel spiRecentTransactionModel = MySingleton.getGson().fromJson(jsonArray.getJSONObject(i).toString(), SPIRecentTransactionModel.class);
+                    myListData.add(spiRecentTransactionModel);
 
                 }
             } catch (JSONException e) {

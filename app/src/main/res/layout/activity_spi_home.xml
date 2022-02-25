@@ -25,11 +25,17 @@
             android:layout_gravity="center"
             android:layout_marginVertical="20dp"
             android:layout_marginLeft="20dp"
-            android:layoutDirection="rtl"
-            android:text="You are offline"
             android:textSize="16sp"
             android:theme="@style/switchTheme"
             app:switchPadding="10dp" />
+
+        <TextView
+            android:id="@+id/txt_switchText"
+            style="@style/topDesign_textView_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="You are offline"/>
 
         <ImageView
             android:id="@+id/iv_indicator"
@@ -49,7 +55,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Credit Bal: Ksh 0.00"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 
     <ViewFlipper
@@ -173,10 +179,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="25dp"
+                android:layout_width="20dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/message_2x"
+                android:src="@drawable/home_icon"
                 app:tint="@color/white" />
         </androidx.cardview.widget.CardView>
 

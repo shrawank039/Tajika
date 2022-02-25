@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.matrixdeveloper.tajika.ConversationListActivity;
+import com.matrixdeveloper.tajika.HomeActivity;
 import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.NewRequestAdapter;
@@ -54,7 +55,7 @@ public class SpiHomeActivity extends AppCompatActivity {
     private CardView cvMessageButton;
     private Button checkNewOffers;
     private ViewFlipper viewFlipper;
-    private TextView creditBalance, todaySales, weekSales, totalSales, consumerGoods, clientConnected;
+    private TextView creditBalance, todaySales, weekSales, totalSales, consumerGoods, clientConnected, txtSwitchText, txtEarning;
     private TextView totalServiceProvided, totalGoodsSold, totalClientConnected, totalFailedService;
     ServiceRequestList serviceList;
     RequestDetails requestDetails;
@@ -100,6 +101,8 @@ public class SpiHomeActivity extends AppCompatActivity {
         notifications = findViewById(R.id.iv_notifications);
         onlineOffline = findViewById(R.id.switch_onlineOffline);
         indicator = findViewById(R.id.iv_indicator);
+        txtSwitchText = findViewById(R.id.txt_switchText);
+        txtEarning = findViewById(R.id.txt_earning);
         newServiceRequestNotFound = findViewById(R.id.ll_newServiceRequestNotFound);
         upcomingJobsNotFound = findViewById(R.id.ll_upComingJobsRequestNotFound);
         cvMessageButton = findViewById(R.id.cv_conversation);
@@ -120,7 +123,11 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         checkNewOffers.setOnClickListener(v -> viewFlipper.setDisplayedChild(1));
 
-        cvMessageButton.setOnClickListener(view -> startActivity(new Intent(SpiHomeActivity.this, ConversationListActivity.class)));
+        cvMessageButton.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), SpiHomeActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+        });
 
         allBookings.setOnClickListener(view -> startActivity(new Intent(SpiHomeActivity.this, SpiAllBookingsActivity.class)));
 
@@ -128,10 +135,11 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         notifications.setOnClickListener(view -> startActivity(new Intent(SpiHomeActivity.this, NotificationActivity.class)));
 
+        txtEarning.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), SpiAllTransactionActivity.class)));
+
         onlineOffline.setOnClickListener(view -> {
             if (onlineOffline.isChecked()) {
                 changeStatus("1");
-
             } else {
                 changeStatus("0");
             }
@@ -141,10 +149,10 @@ public class SpiHomeActivity extends AppCompatActivity {
     private void changeStatus(String status) {
 
         if (status.equals("1")) {
-            onlineOffline.setText("You are Online");
+            txtSwitchText.setText("You are Online");
             indicator.setColorFilter(getResources().getColor(R.color.md_green_700));
         } else if (status.equals("0")) {
-            onlineOffline.setText("You are Offline");
+            txtSwitchText.setText("You are Offline");
             indicator.setColorFilter(getResources().getColor(R.color.md_red_A700));
         }
 
@@ -222,6 +230,9 @@ public class SpiHomeActivity extends AppCompatActivity {
                 }
 
                 creditBalance.setText("Credit Bal: Ksh " + jsonObject.optString("creditbalance"));
+                txtEarning.setText("Ksh " + jsonObject.optString("walletamount"));
+                if (jsonObject.optInt("online") == 1)
+                    onlineOffline.setChecked(true);
                 todaySales.setText(jsonObject1.optString("today_sale") + " Ksh");
                 weekSales.setText(jsonObject1.optString("week_sale") + " Ksh");
                 totalSales.setText(jsonObject1.optString("total_sale") + " Ksh");
@@ -289,12 +300,16 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
             Utils.log(TAG, response.toString());
-
-            if (response.optInt("status")==400){
-                Utils.toast(getApplicationContext(), response.optString("message"));
-            }else {
-                startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
-                        .putExtra("requestDetails", requestDetails));
+            try {
+                requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+                if (response.optInt("status")==400){
+                    Utils.toast(getApplicationContext(), response.optString("message"));
+                }else {
+                    startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
+                            .putExtra("requestDetails", requestDetails));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         });
     }

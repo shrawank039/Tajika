@@ -22,6 +22,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
+import com.matrixdeveloper.tajika.helpers.ExpandableTextView;
 import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
@@ -45,26 +46,27 @@ public class BookingDetailsActivity extends AppCompatActivity {
     //for accepted booked
     private ImageView abServiceImage;
     private TextView abServiceName, abServiceAddress, abServiceType, abServiceBookingId, abServiceStatus, abRequestedOn;
-    private TextView abAcceptedOn, abRequestNumber, abServiceDate, abServiceTime, abServiceWorkDesc, abServiceUserName;
+    private TextView abAcceptedOn, abRequestNumber, abServiceDate, abServiceTime, abServiceUserName;
+    private ExpandableTextView abServiceWorkDesc, pdServiceWorkDesc, upServiceWorkDesc, ccServiceWorkDesc;
     private TextView abServiceUserContact, abServiceUserAddress, abUserInstruction, abAmountToPay, abAmountWillingToPay, applyCoupon, abFinalAmountToPay, abServiceTaxAmount;
     private TextView appbarTitle, bookThisService, abContactUs, abHelp;;
 
     //for pending declined
     private ImageView pdServiceImage;
     private TextView pdServiceName, pdServiceAddress, pdServiceType, pdServiceStatus, pdRequestedOn;
-    private TextView pdRequestNumber, pdServiceDate, pdServiceTime, pdServiceWorkDesc, pdAmountToBePay;
+    private TextView pdRequestNumber, pdServiceDate, pdServiceTime, pdAmountToBePay;
     private TextView  pdContactUs, pdHelp;
 
     //for upComing
     private ImageView upServiceImage;
     private TextView upServiceName, upServiceAddress, upServiceType, upServiceBookingId, upServiceBookingDate, upServiceStatus;
-    private TextView upServiceDate, upServiceTime, upServiceWorkDesc, upServiceUserName, upServiceUserContact, upServiceUserAddress, upUserInstruction, upAmountToBePaid;
+    private TextView upServiceDate, upServiceTime, upServiceUserName, upServiceUserContact, upServiceUserAddress, upUserInstruction, upAmountToBePaid;
     private TextView  upContactUs, upHelp;
 
     //for Completed Cancelled
     private ImageView ccServiceImage;
     private TextView ccServiceName, ccServiceAddress, ccServiceType, ccServiceBookingId, ccServiceBookingDate, ccServiceStatus;
-    private TextView ccServiceDate, ccServiceTime, ccServiceWorkDesc, ccServiceUserName, ccServiceUserContact, ccServiceUserAddress, ccUserInstruction;
+    private TextView ccServiceDate, ccServiceTime, ccServiceUserName, ccServiceUserContact, ccServiceUserAddress, ccUserInstruction;
     private TextView ccAmountToBePaid, ccCancelledOn, ccCancellationReason, ccCancellationCharge, ccCancellationComment, ccContactUs, ccHelp;
     private RatingBar ccRateYourExperience;
     private Button submitRating;
@@ -345,6 +347,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 abServiceDate.setText(requestDetails.getServiceDate());
                 abServiceTime.setText(requestDetails.getServiceTime());
                 abServiceWorkDesc.setText(requestDetails.getWorkDescription());
+
                 abServiceUserName.setText("Name: " + requestDetails.getContactPersonName());
                 abServiceUserContact.setText("Contact No: " + requestDetails.getContactPersonPhone());
                 abServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
@@ -520,4 +523,6 @@ public class BookingDetailsActivity extends AppCompatActivity {
     public void onHelpClick(View view) {
         new Intent(BookingDetailsActivity.this, HelpActivity.class);
     }
+
 }
+

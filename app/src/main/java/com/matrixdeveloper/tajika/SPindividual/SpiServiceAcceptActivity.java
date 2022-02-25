@@ -41,6 +41,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
 
         requestDetails = (RequestDetails) getIntent().getSerializableExtra("requestDetails");
 
+
         setViews();
     }
 

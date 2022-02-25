@@ -31,7 +31,7 @@ public class SpiMoreActivity extends AppCompatActivity {
     private ImageView businessImage;
     private TextView businessName, businessRating;
     String[] settingsList = {"My Profile", "Services you offer", "All requests", "All bookings",
-            "Credit wallet", "Refer Friends", "Switch to user", "Rate App", "Contact us","Privacy Policy", "About us", "Logout"};
+            "Credit wallet", "Switch to user", "Rate App", "Contact us","Privacy Policy", "About us", "Logout"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,28 +77,25 @@ public class SpiMoreActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), SpiCreditWalletActivity.class));
                     break;
                 case 5:
-                    startActivity(new Intent(getApplicationContext(), ReferralActivity.class));
-                    break;
-                case 6:
                     openAlertDialog("Switch User", "Are you sure you want to switch user?");
                     break;
-                case 11:
+                case 10:
                     openAlertDialog("Confirm Logout", "Are you sure you want to Logout?");
                     break;
-                case 7:
+                case 6:
                     try {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
                     } catch (ActivityNotFoundException e) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
                     }
                     break;
-                case 8:
+                case 7:
                     startActivity(new Intent(getApplicationContext(), HelpActivity.class));
                     break;
-                case 9:
+                case 8:
                     startActivity(new Intent(getApplicationContext(), PrivacyPolicyActivity.class));
                     break;
-                case 10:
+                case 9:
                     startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
                     break;
                 default:

@@ -34,9 +34,17 @@ public class SPIRecentTransactionAdapter extends RecyclerView.Adapter<SPIRecentT
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         final SPIRecentTransactionModel myListData = listdata.get(position);
-        holder.transactionID.setText(myListData.getTransactionId());
-        holder.transactionDate.setText(myListData.getTransactionDate());
-        holder.debitAmount.setText("Ksh "+myListData.getDebitAmount());
+        holder.transactionID.setText(myListData.getTranscationId());
+        holder.transactionDate.setText(myListData.getSubmitDate());
+        holder.debitAmount.setText("Ksh "+myListData.getAmount());
+
+        if (myListData.getType().equals("credit"))
+            holder.transactionType.setText("Credit amount:");
+
+        if (myListData.getBalanceType().equals("EARNINGBALANCE")){
+            holder.txtDate.setText("Order date:");
+            holder.txtId.setText("Order id:");
+        }
     }
 
     @Override
@@ -47,12 +55,15 @@ public class SPIRecentTransactionAdapter extends RecyclerView.Adapter<SPIRecentT
     public static class viewHolder extends RecyclerView.ViewHolder {
         private final TextView transactionID;
         private final TextView transactionDate;
-        private final TextView debitAmount;
+        private final TextView debitAmount, transactionType, txtDate, txtId;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             transactionID=itemView.findViewById(R.id.txt_txnID);
             transactionDate=itemView.findViewById(R.id.txt_txnDate);
             debitAmount=itemView.findViewById(R.id.txt_debitAmount);
+            transactionType=itemView.findViewById(R.id.txt_transactionType);
+            txtDate = itemView.findViewById(R.id.txt_order_date);
+            txtId = itemView.findViewById(R.id.txt_order_id);
         }
     }
 }

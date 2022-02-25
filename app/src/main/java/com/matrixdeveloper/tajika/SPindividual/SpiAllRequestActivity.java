@@ -5,14 +5,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.matrixdeveloper.tajika.NotificationActivity;
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.adapter.NewRequestAdapter;
 import com.matrixdeveloper.tajika.adapter.NotificationAdapter;
 import com.matrixdeveloper.tajika.model.NotificationModel;
+import com.matrixdeveloper.tajika.model.ServiceRequestList;
+import com.matrixdeveloper.tajika.model.UpcomingJob;
 import com.matrixdeveloper.tajika.network.ApiCall;
 import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
@@ -29,8 +33,8 @@ import java.util.List;
 public class SpiAllRequestActivity extends AppCompatActivity {
 
     RecyclerView notificationRecyclerview;
-    NotificationAdapter notificationAdapter;
-    private List<NotificationModel> notificationModelList;
+    private NewRequestAdapter requestAdapter;
+    List<ServiceRequestList> requestLists =new ArrayList<>();
     private PrefManager prf;
     private final String TAG = "AllServiceAct";
     private ImageView backPress, clearAllNotification;
@@ -42,20 +46,19 @@ public class SpiAllRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spi_all_request);
 
         prf = new PrefManager(this);
-        notificationModelList = new ArrayList<>();
 
         notificationRecyclerview = findViewById(R.id.recView_notifications);
         clearAllNotification = findViewById(R.id.iv_refreshNotification);
 
-        notificationAdapter = new NotificationAdapter(this, notificationModelList);
+        requestAdapter = new NewRequestAdapter(SpiAllRequestActivity.this, requestLists, 0);
         notificationRecyclerview.setHasFixedSize(true);
         notificationRecyclerview.setLayoutManager(new LinearLayoutManager(this));
-        notificationRecyclerview.setAdapter(notificationAdapter);
+        notificationRecyclerview.setAdapter(requestAdapter);
         backPress = findViewById(R.id.iv_backPress);
         backPress.setOnClickListener(view -> SpiAllRequestActivity.super.onBackPressed());
         clearAllNotification.setOnClickListener(view -> refreshPopup());
 
-        getNotificationList();
+        getRequestData();
     }
 
     private void refreshPopup() {
@@ -71,46 +74,44 @@ public class SpiAllRequestActivity extends AppCompatActivity {
         popup.show();
     }
 
-    private void getNotificationList() {
-
-        notificationModelList.clear();
+    private void getRequestData() {
 
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", prf.getString("id"));
+            data.put("type", "Pending");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        ApiCall.postMethod(this, ServiceNames.NOTIFICATION_LIST, data, response -> {
+        ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST, data, response -> {
 
             Utils.log(TAG, response.toString());
 
-            JSONArray jsonarray = null;
+            JSONArray requestArray;
+
             try {
 
-                JSONObject jsonObject = response.optJSONObject("data");
+                requestArray = response.getJSONArray("data");
 
-                jsonarray = jsonObject.getJSONArray("notificationlist");
-
-                for (int i = 0; i < jsonarray.length(); i++) {
+                for (int i = 0; i < requestArray.length(); i++) {
 
                     try {
 
-                        NotificationModel serviceList = MySingleton.getGson().fromJson(jsonarray.getJSONObject(i).toString(), NotificationModel.class);
-
-                        notificationModelList.add(serviceList);
-
-                        notificationAdapter.notifyDataSetChanged();
+                        ServiceRequestList serviceList = MySingleton.getGson().fromJson(requestArray.getJSONObject(i).toString(), ServiceRequestList.class);
+                        requestLists.add(serviceList);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
 
+                requestAdapter.notifyDataSetChanged();
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
 
         });
     }

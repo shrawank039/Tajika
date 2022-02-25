@@ -103,5 +103,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="cancellation_reason"><b>Reason: </b></string>
     <string name="cancellation_comment"><b>Comment: </b></string>
     <string name="cancelled_on"><b>Cancelled On: </b></string>
+    <string name="resizable_text_read_more">Read More</string>
+    <string name="resizable_text_read_less">Read Less</string>
 
 </resources>

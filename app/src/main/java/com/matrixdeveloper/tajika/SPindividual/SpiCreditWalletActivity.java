@@ -14,6 +14,7 @@ import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.SPIRecentTransactionAdapter;
 import com.matrixdeveloper.tajika.model.SPIRecentTransactionModel;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
@@ -75,14 +76,8 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
                 walletBalance.setText("Ksh " + jsonObject.optString("walletamount"));
 
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject object = jsonArray.getJSONObject(i);
-
-                    myListData.add(new SPIRecentTransactionModel(
-                            object.optString("id"),
-                            object.optString("transcation_id"),
-                            object.optString("submit_date"),
-                            object.optString("amount")
-                    ));
+                    SPIRecentTransactionModel spiRecentTransactionModel = MySingleton.getGson().fromJson(jsonArray.getJSONObject(i).toString(), SPIRecentTransactionModel.class);
+                    myListData.add(spiRecentTransactionModel);
 
                 }
             } catch (JSONException e) {

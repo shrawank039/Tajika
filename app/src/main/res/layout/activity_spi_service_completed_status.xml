@@ -18,7 +18,7 @@
            style="@style/appBar_imageView"/>
 
         <TextView
-            android:text="Service request details"
+            android:text="Service booking details"
             style="@style/appBar_textView" />
     </LinearLayout>
 
@@ -50,7 +50,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Service Request"
+                    android:text="Service Booking"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp"
                     style="@style/topDesign_textView_bold" />
@@ -66,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Request Id:"
+                        android:text="Booking Id:"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 

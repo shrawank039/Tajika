@@ -66,7 +66,6 @@ public class BookServiceActivity extends AppCompatActivity {
 
         name.setText(prf.getString(Global.name));
         phoneNUmber.setText(prf.getString(Global.phone));
-
     }
 
     @Override
