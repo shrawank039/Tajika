@@ -55,6 +55,7 @@ public class SpiAllTransactionActivity extends AppCompatActivity {
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", prf.getString("id"));
+            data.put("type", type);
         } catch (JSONException e) {
             e.printStackTrace();
         }

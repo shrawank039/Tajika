@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.network.ApiCall;
+import com.matrixdeveloper.tajika.network.MySingleton;
 import com.matrixdeveloper.tajika.network.ServiceNames;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 import com.matrixdeveloper.tajika.utils.Utils;
@@ -30,19 +31,19 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
     private final String TAG = "SpiServiceAcceptAct";
     private PrefManager pref;
     RequestDetails requestDetails;
+    private String serID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spi_service_accept);
 
+        pref = new PrefManager(this);
+        serID = getIntent().getStringExtra("ser_id");
         initViews();
         initListeners();
 
-        requestDetails = (RequestDetails) getIntent().getSerializableExtra("requestDetails");
-
-
-        setViews();
+        getServiceDetails(serID);
     }
 
     private void setViews() {
@@ -102,6 +103,32 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
         amountWillingToPay = findViewById(R.id.txt_willingAmountToPAy);
         completeJob = findViewById(R.id.txt_completeJob);
         voiceCall = findViewById(R.id.ll_voiceCall);
+    }
+
+    private void getServiceDetails(String id) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
+            Utils.log(TAG, response.toString());
+            try {
+
+                requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+
+                setViews();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
+
     }
 
     private void changeServiceStatus(String id, String status) {

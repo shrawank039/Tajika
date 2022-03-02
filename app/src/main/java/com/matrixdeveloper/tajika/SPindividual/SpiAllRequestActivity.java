@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.matrixdeveloper.tajika.R;
 import com.matrixdeveloper.tajika.adapter.NewRequestAdapter;
 import com.matrixdeveloper.tajika.adapter.NotificationAdapter;
 import com.matrixdeveloper.tajika.model.NotificationModel;
+import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
 import com.matrixdeveloper.tajika.model.UpcomingJob;
 import com.matrixdeveloper.tajika.network.ApiCall;
@@ -38,6 +40,7 @@ public class SpiAllRequestActivity extends AppCompatActivity {
     private PrefManager prf;
     private final String TAG = "AllServiceAct";
     private ImageView backPress, clearAllNotification;
+    RequestDetails requestDetails;
 
 
     @Override
@@ -50,7 +53,7 @@ public class SpiAllRequestActivity extends AppCompatActivity {
         notificationRecyclerview = findViewById(R.id.recView_notifications);
         clearAllNotification = findViewById(R.id.iv_refreshNotification);
 
-        requestAdapter = new NewRequestAdapter(SpiAllRequestActivity.this, requestLists, 0);
+        requestAdapter = new NewRequestAdapter(SpiAllRequestActivity.this, requestLists, 1);
         notificationRecyclerview.setHasFixedSize(true);
         notificationRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         notificationRecyclerview.setAdapter(requestAdapter);
@@ -58,6 +61,12 @@ public class SpiAllRequestActivity extends AppCompatActivity {
         backPress.setOnClickListener(view -> SpiAllRequestActivity.super.onBackPressed());
         clearAllNotification.setOnClickListener(view -> refreshPopup());
 
+        //getRequestData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getRequestData();
     }
 
@@ -75,7 +84,7 @@ public class SpiAllRequestActivity extends AppCompatActivity {
     }
 
     private void getRequestData() {
-
+        requestLists.clear();
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", prf.getString("id"));
@@ -113,6 +122,59 @@ public class SpiAllRequestActivity extends AppCompatActivity {
             }
 
 
+        });
+    }
+
+    public void getServiceDetails(String id, String status) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.GET_SERVICE_REQUEST_DETAILS, data, response -> {
+            Utils.log(TAG, response.toString());
+            try {
+
+                requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+                changeServiceStatus(requestDetails.getId().toString(), status);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+    }
+
+    public void changeServiceStatus(String id, String status) {
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("id", id);
+            data.put("status", status);
+            data.put("service_provider_id", prf.getString("id"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiCall.postMethod(this, ServiceNames.CHANGE_SERVICE_REQUEST_STATUS, data, response -> {
+            Utils.log(TAG, response.toString());
+            try {
+                requestDetails = MySingleton.getGson().fromJson(response.getJSONObject("data").toString(), RequestDetails.class);
+                if (response.optInt("status")==400){
+                    Utils.toast(getApplicationContext(), response.optString("message"));
+                }else {
+                    startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
+                            .putExtra("ser_id", requestDetails.getId().toString()));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         });
     }
 

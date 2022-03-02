@@ -300,9 +300,9 @@ public class BookingDetailsActivity extends AppCompatActivity {
                     try {
                         jsonObject = response.optJSONObject("data");
                         double marginAmount = jsonObject.optDouble("margin_amount");
-                        double totalAmount = requestDetails.getAdminpayableamount();
+                        double totalAmount = Double.parseDouble(requestDetails.getWillingAmountPay());
                         finalAmount = totalAmount - marginAmount;
-                        abFinalAmountToPay.setText(requestDetails.getCurrency() + " " + marginAmount);
+                        abAmountWillingToPay.setText(requestDetails.getCurrency() + " " + marginAmount);
                         dialog.dismiss();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -407,9 +407,9 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
                 ccRateYourExperience.setRating(requestDetails.getUserRating());
 
-                if (!requestDetails.getUserRating().equals("0")){
+                if (requestDetails.getUserRating() != 0){
                     submitRating.setVisibility(View.GONE);
-                    ccRateYourExperience.setIsIndicator(false);
+                    ccRateYourExperience.setIsIndicator(true);
                     ccRateYourExperience.setFocusable(false);
                 }
 
@@ -492,6 +492,9 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.dialog_booking_cancelled);
 
                 ImageView dialogButton = dialog.findViewById(R.id.iv_dialogCancel);
+
+                TextView cc = dialog.findViewById(R.id.txt_cancelledCharge);
+                cc.setText(getString(R.string.cancellation_charge) + requestDetails.getCurrency() + " "+ requestDetails.getCancellationCharges());
 
                 dialogButton.setOnClickListener(v -> finish());
 

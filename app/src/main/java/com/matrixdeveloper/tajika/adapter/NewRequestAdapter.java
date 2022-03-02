@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.SPindividual.SpiAllRequestActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiHomeActivity;
 import com.matrixdeveloper.tajika.SPindividual.SpiServiceRequestDetailsActivity;
 import com.matrixdeveloper.tajika.model.ServiceRequestList;
@@ -22,6 +23,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
 
     private final Context ctx;
     private final List<ServiceRequestList> serviceLists;
+    private int type;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -42,6 +44,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
     public NewRequestAdapter(Context context, List<ServiceRequestList> serviceLists, int type) {
         ctx = context;
         this.serviceLists = serviceLists;
+        this.type = type;
     }
 
     @NotNull
@@ -62,9 +65,15 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         holder.jobType.setText(serviceList.getServiceType());
 
 
-        holder.accept.setOnClickListener(v -> {
-            ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString(), "Accept");
-        });
+        if (type ==0) {
+            holder.accept.setOnClickListener(v -> {
+                ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString(), "Accept");
+            });
+        } else {
+            holder.accept.setOnClickListener(v -> {
+                ((SpiAllRequestActivity) ctx).getServiceDetails(serviceList.getId().toString(), "Accept");
+            });
+        }
 
         holder.viewInfo.setOnClickListener(v -> {
             Intent intent = new Intent(ctx, SpiServiceRequestDetailsActivity.class);

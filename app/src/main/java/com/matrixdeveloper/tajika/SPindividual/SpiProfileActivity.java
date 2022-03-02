@@ -2,6 +2,7 @@ package com.matrixdeveloper.tajika.SPindividual;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -47,6 +48,7 @@ public class SpiProfileActivity extends AppCompatActivity {
     private final int PAYMENT_REQUEST = 1;
     String planID;
     private RecyclerView recSubscription;
+    private String certificateImg, passportImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class SpiProfileActivity extends AppCompatActivity {
 
         backPress.setOnClickListener(view -> SpiProfileActivity.super.onBackPressed());
         profileEdit.setOnClickListener(view -> startActivity(new Intent(SpiProfileActivity.this, SpiProfileEditActivity.class)));
+        passportCopyStatus.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(passportImg))));
+        proQualificationStatus.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(certificateImg))));
 
     }
 
@@ -129,9 +133,11 @@ public class SpiProfileActivity extends AppCompatActivity {
                     businessDesc.setText(jsonObject.optString("service_description"));
                     providerEducation.setText(jsonObject.optString("education_level"));
                     passportNumber.setText(jsonObject.optString("passportnumber"));
-                    passportCopyStatus.setText(jsonObject.optString("upload_passportid"));
+                   // passportCopyStatus.setText(jsonObject.optString("upload_passportid"));
+                    passportImg =jsonObject.optString("upload_passportid");
                     proQualification.setText(jsonObject.optString("professional_qualification"));
-                    proQualificationStatus.setText(jsonObject.optString("qualification_certification"));
+                  //  proQualificationStatus.setText(jsonObject.optString("qualification_certification"));
+                    certificateImg = jsonObject.optString("qualification_certification");
                     subscriptionPlan.setText(jsonObject.optString("plan_id"));
                     purchasedOn.setText(jsonObject.optString("start_date"));
                     expiresOn.setText(jsonObject.optString("end_date"));

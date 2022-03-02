@@ -49,11 +49,11 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/plumbing"
-                    app:civ_border_width="0dp" />
+                    app:civ_border_width="1dp" />
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:src="@drawable/edit_photo_1x"
@@ -115,6 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
+                        android:backgroundTint="@color/transparent"
                         android:text="John Doe"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
@@ -146,6 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
+                        android:backgroundTint="@color/transparent"
                         android:text="+1234567890"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
@@ -177,6 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
+                        android:backgroundTint="@color/transparent"
                         android:text="johndoe@gmail.com"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
@@ -224,6 +227,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:backgroundTint="@color/transparent"
                         android:gravity="end"
                         android:text=""
                         android:textColor="@color/dark_blue"
@@ -256,6 +260,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:backgroundTint="@color/transparent"
                         android:gravity="end"
                         android:text="Catering"
                         android:textColor="@color/dark_blue"
@@ -289,6 +294,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
+                        android:backgroundTint="@color/transparent"
                         android:text="6.5 Years"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
@@ -321,6 +327,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
+                        android:backgroundTint="@color/transparent"
                         android:text="www.royalcatering.com"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
@@ -346,6 +353,7 @@
                     android:id="@+id/edt_businessDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/transparent"
                     android:layout_marginTop="10dp"
                     android:justificationMode="inter_word"
                     android:maxLines="5"

@@ -43,6 +43,7 @@ public class SpiProfileEditActivity extends AppCompatActivity {
     private RelativeLayout profileContainer;
     private ImageView profileImage;
     private String base64String="";
+    private String certificateImg, passportImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,9 @@ public class SpiProfileEditActivity extends AppCompatActivity {
     private void initListeners() {
         backPress.setOnClickListener(view -> SpiProfileEditActivity.super.onBackPressed());
         updateProfile.setOnClickListener(view -> initiateProfileUpdate());
+
+        passportCopyStatus.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(passportImg))));
+        proQualificationStatus.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(certificateImg))));
 
         profileContainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,15 +130,11 @@ public class SpiProfileEditActivity extends AppCompatActivity {
 
                     providerEducation.setText(jsonObject.optString("education_level"));
                     passportNumber.setText(jsonObject.optString("passportnumber"));
-                    passportCopyStatus.setText(jsonObject.optString("upload_passportid"));
+                  //  passportCopyStatus.setText(jsonObject.optString("upload_passportid"));
+                    passportImg =jsonObject.optString("upload_passportid");
                     proQualification.setText(jsonObject.optString("professional_qualification"));
-                    proQualificationStatus.setText(jsonObject.optString("qualification_certification"));
-
-                    providerEducation.setText(jsonObject.optString("education_level"));
-                    passportNumber.setText(jsonObject.optString("passportnumber"));
-                    passportCopyStatus.setText(jsonObject.optString("upload_passportid"));
-                    proQualification.setText(jsonObject.optString("professional_qualification"));
-                    proQualificationStatus.setText(jsonObject.optString("qualification_certification"));
+                 //   proQualificationStatus.setText(jsonObject.optString("qualification_certification"));
+                    certificateImg = jsonObject.optString("qualification_certification");
                     businessName.setText(jsonObject.optString("business_name"));
                     businessNameTop.setText(jsonObject.optString("business_name"));
 

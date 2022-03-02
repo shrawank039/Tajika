@@ -272,15 +272,15 @@
                         android:text="@string/dummy_text"
                         android:textColor="@color/dark_blue" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="10dp"
-                        android:text="Read more"
-                        android:textColor="@color/golden"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="end"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:text="Read more"-->
+<!--                        android:textColor="@color/golden"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold" />-->
 
                     <View
                         android:layout_width="match_parent"
@@ -304,10 +304,11 @@
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/keyboard_arrow_down_icon" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="30dp"-->
+<!--                            android:src="@drawable/keyboard_arrow_down_icon" />-->
+<!--                 -->
                     </LinearLayout>
 
                     <LinearLayout
@@ -412,10 +413,11 @@
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/keyboard_arrow_down_icon" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="30dp"-->
+<!--                            android:src="@drawable/keyboard_arrow_down_icon" />-->
+<!--                    -->
                     </LinearLayout>
 
                     <LinearLayout

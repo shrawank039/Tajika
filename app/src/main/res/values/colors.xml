@@ -29,6 +29,7 @@
     <color name="orange">#EF941A</color>
     <color name="dark_blue">#202A44</color>
     <color name="blue">#2F80ED</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="purple_400">#603EC6</color>
 
     <color name="home_search_hint">#888888</color>

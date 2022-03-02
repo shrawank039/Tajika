@@ -88,7 +88,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
             }else {
             if (status.equals("Accept")) {
                 startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
-                        .putExtra("requestDetails", requestDetails));
+                        .putExtra("ser_id", requestDetails.getId().toString()));
                 finish();
             } else {
                 Intent intent = new Intent(this, SpiHomeActivity.class);

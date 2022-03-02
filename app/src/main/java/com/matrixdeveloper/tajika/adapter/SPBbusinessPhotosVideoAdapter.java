@@ -55,7 +55,7 @@ public class SPBbusinessPhotosVideoAdapter extends RecyclerView.Adapter<SPBbusin
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, imageList.size());
 
-            Toast.makeText(ctx, ""+list.getId(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(ctx, ""+list.getId(), Toast.LENGTH_SHORT).show();
             if (!list.getId().equals("0")) {
                 deleteImg(list.getId());
             }

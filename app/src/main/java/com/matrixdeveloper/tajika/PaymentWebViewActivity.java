@@ -62,7 +62,7 @@ public class PaymentWebViewActivity extends AppCompatActivity implements View.On
                     finish();
                     return true;
                 } else if (callback_url.contains("transactionStatus=CANCELLED")) {
-                    setResult(0);
+                    setResult(1);  // 0 for cancel
                     finish();
                     return true;
                 }

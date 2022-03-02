@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/grey_100"
+    android:layout_margin="20dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
@@ -49,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Sorry your last payment validity on 12 June 2021 has expired, please make payment again to view the details."
+            android:text="Sorry your last payment validity has expired, please make payment again to view the details."
             android:textColor="@color/dark_blue" />
 
         <com.google.android.material.button.MaterialButton

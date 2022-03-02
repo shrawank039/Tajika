@@ -47,7 +47,7 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
                 if (ctx instanceof SpbProfileActivity) {
                     ((SpbProfileActivity)ctx).showSubscriptionAlert(subscriptionModel.getId(),subscriptionModel.getAmount(),subscriptionModel.getName());
                 }else if (ctx instanceof LocationSelectorActivity) {
-                    ((LocationSelectorActivity)ctx).showSubscriptionAlert(subscriptionModel.getId(),subscriptionModel.getAmount(),subscriptionModel.getName());
+                    ((LocationSelectorActivity)ctx).getSubscription(subscriptionModel.getId(),subscriptionModel.getAmount(),subscriptionModel.getName());
                 }else if (ctx instanceof SpiProfileActivity) {
                     ((SpiProfileActivity)ctx).showSubscriptionAlert(subscriptionModel.getId(),subscriptionModel.getAmount(),subscriptionModel.getName());
                 }

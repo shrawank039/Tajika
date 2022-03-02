@@ -473,7 +473,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Uploaded"
+                        android:text="View"
+                        android:gravity="end"
                         android:textColor="@color/golden"
                         android:textSize="16sp" />
 
@@ -536,7 +537,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="uploaded"
+                        android:text="View"
+                        android:gravity="end"
                         android:textColor="@color/golden"
                         android:textSize="16sp" />
 

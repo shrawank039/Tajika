@@ -89,6 +89,9 @@ public class ServiceProviderDetails implements Serializable
     @SerializedName("subscription")
     @Expose
     private String subscription;
+    @SerializedName("subscription_date")
+    @Expose
+    private String subscription_date;
     @SerializedName("skills")
     @Expose
     private List<String> skills = null;
@@ -147,6 +150,14 @@ public class ServiceProviderDetails implements Serializable
 
     public String getBusinessCategories() {
         return businessCategories;
+    }
+
+    public String getSubscription_date() {
+        return subscription_date;
+    }
+
+    public void setSubscription_date(String subscription_date) {
+        this.subscription_date = subscription_date;
     }
 
     public void setBusinessCategories(String businessCategories) {

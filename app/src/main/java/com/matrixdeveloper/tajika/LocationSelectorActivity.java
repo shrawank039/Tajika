@@ -217,7 +217,7 @@ public class LocationSelectorActivity extends FragmentActivity
         } else if (subscriptionStatus.equals("unsubscribed") || subscriptionStatus.equals("")) {
             showSubscriptionPayOneTimeAlert();
         } else if (subscriptionStatus.equals("expired")) {
-            showSubscriptionPayOneTimeAlert();
+            showSubscriptionAlert();
         }
     }
 
@@ -245,8 +245,7 @@ public class LocationSelectorActivity extends FragmentActivity
         dialog.show();
     }
 
-    public void showSubscriptionAlert(String id, String amount, String title) {
-        planID = id;
+    public void showSubscriptionAlert() {
         final Dialog dialog = new Dialog(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -256,11 +255,11 @@ public class LocationSelectorActivity extends FragmentActivity
         ImageView dialogCancel = dialog.findViewById(R.id.iv_dialogCancel);
 
         makePayment.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), PaymentWebViewActivity.class);
-            intent.putExtra("amount", amount);
-            intent.putExtra("order_desc", title);
-            startActivityForResult(intent, PAYMENT_REQUEST);
-            // dialog.dismiss();
+            behavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
+            recSubscription.setVisibility(View.VISIBLE);
+            moreDetailsGoods.setVisibility(View.GONE);
+            btnGetDetailsGoods.setVisibility(View.GONE);
+            dialog.dismiss();
         });
         dialogCancel.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
@@ -285,6 +284,14 @@ public class LocationSelectorActivity extends FragmentActivity
         close.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
 
+    }
+
+    public void getSubscription(String id, String amount, String title) {
+        planID = id;
+        Intent intent = new Intent(getApplicationContext(), PaymentWebViewActivity.class);
+            intent.putExtra("amount", amount);
+            intent.putExtra("order_desc", title);
+            startActivityForResult(intent, PAYMENT_REQUEST);
     }
 
     private void initViews() {

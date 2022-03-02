@@ -87,7 +87,6 @@ public class SpiHomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         getHomeData();
     }
 
@@ -135,7 +134,8 @@ public class SpiHomeActivity extends AppCompatActivity {
 
         notifications.setOnClickListener(view -> startActivity(new Intent(SpiHomeActivity.this, NotificationActivity.class)));
 
-        txtEarning.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), SpiAllTransactionActivity.class)));
+        txtEarning.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), SpiAllTransactionActivity.class)
+        .putExtra("type", "EARNINGBALANCE")));
 
         onlineOffline.setOnClickListener(view -> {
             if (onlineOffline.isChecked()) {
@@ -231,8 +231,11 @@ public class SpiHomeActivity extends AppCompatActivity {
 
                 creditBalance.setText("Credit Bal: Ksh " + jsonObject.optString("creditbalance"));
                 txtEarning.setText("Ksh " + jsonObject.optString("walletamount"));
-                if (jsonObject.optInt("online") == 1)
+                if (jsonObject.optInt("online") == 1) {
                     onlineOffline.setChecked(true);
+                    txtSwitchText.setText("You are Online");
+                    indicator.setColorFilter(getResources().getColor(R.color.md_green_700));
+                }
                 todaySales.setText(jsonObject1.optString("today_sale") + " Ksh");
                 weekSales.setText(jsonObject1.optString("week_sale") + " Ksh");
                 totalSales.setText(jsonObject1.optString("total_sale") + " Ksh");
@@ -306,7 +309,7 @@ public class SpiHomeActivity extends AppCompatActivity {
                     Utils.toast(getApplicationContext(), response.optString("message"));
                 }else {
                     startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
-                            .putExtra("requestDetails", requestDetails));
+                            .putExtra("ser_id", requestDetails.getId().toString()));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -46,7 +46,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.notificationContent.setText(notificationModel.getMessage());
         holder.notificationFooter.setText(notificationModel.getActiontext());
 
-        holder.clearNotification.setOnClickListener(view -> ((NotificationActivity) ctx).deleteNotification(String.valueOf(notificationModel.getId())));
+        holder.clearNotification.setOnClickListener(view -> {
+            ((NotificationActivity) ctx).deleteNotification(String.valueOf(notificationModel.getId()));
+            notificationModelList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, notificationModelList.size());
+        });
         holder.notificationBody.setOnClickListener(view -> ctx.startActivity(new Intent(ctx, SpiServiceRequestDetailsActivity.class)
                 .putExtra("ser_id", notificationModel.getService_request_id().toString())));
     }

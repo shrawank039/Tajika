@@ -60,6 +60,7 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
         JSONObject data = new JSONObject();
         try {
             data.put("user_id", prf.getString("id"));
+            data.put("type", "CREDITBALANCE");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -101,7 +102,8 @@ public class SpiCreditWalletActivity extends AppCompatActivity implements View.O
             startActivity(new Intent(SpiCreditWalletActivity.this, SpiAddCreditActivity.class));
         }
         if (view == allTransaction) {
-            startActivity(new Intent(SpiCreditWalletActivity.this, SpiAllTransactionActivity.class));
+            startActivity(new Intent(SpiCreditWalletActivity.this, SpiAllTransactionActivity.class)
+            .putExtra("type", "CREDITBALANCE"));
         }
     }
 

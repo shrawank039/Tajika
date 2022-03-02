@@ -83,7 +83,7 @@ public class UpcomingJobAdapter extends RecyclerView.Adapter<UpcomingJobAdapter.
         });
 
         holder.viewInfo.setOnClickListener(v -> {
-            ctx.startActivity(new Intent(ctx, SpiServiceRequestDetailsActivity.class)
+            ctx.startActivity(new Intent(ctx, SpiServiceAcceptActivity.class)
                     .putExtra("ser_id", serviceList.getId().toString()));
         });
 
