@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/golden"
+        android:background="@drawable/gradient_white"
         android:gravity="center"
         android:onClick="llClick"
         android:orientation="vertical"
@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout style="@style/appBar_container">
+        <LinearLayout style="@style/appBar_containerWhite">
 
             <ImageView
                 android:id="@+id/iv_backPress"

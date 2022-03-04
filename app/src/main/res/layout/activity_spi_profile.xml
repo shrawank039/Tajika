@@ -78,7 +78,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="3.5 star ratings"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -128,7 +127,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="John Doe"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -160,7 +158,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="+1234567890"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -192,7 +189,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="johndoe@gmail.com"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -240,7 +236,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="Royal Catering"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -272,7 +267,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="Catering"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -304,7 +298,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="6.5 Years"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -336,7 +329,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="www.royalcatering.com"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -365,7 +357,6 @@
                     android:layout_weight="1"
                     android:justificationMode="inter_word"
                     android:maxLines="5"
-                    android:text="@string/dummy_text"
                     android:textColor="@color/dark_blue" />
 
             </LinearLayout>
@@ -410,7 +401,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="Bachelors"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -442,7 +432,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="PSPFYOUJLY123"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -505,7 +494,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="Catering Qualified"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -585,7 +573,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="Gold Plan"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -611,7 +598,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="05 Jan 2020"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 
@@ -637,7 +623,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="j05 Jan 2021"
                         android:textColor="@color/dark_blue"
                         android:textSize="16sp" />
 

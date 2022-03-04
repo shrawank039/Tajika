@@ -227,6 +227,8 @@ public class SpiHomeActivity extends AppCompatActivity {
                 // request list
                 if (requestArray.length() < 1) {
                     newServiceRequestNotFound.setVisibility(View.VISIBLE);
+                } else {
+                    newServiceRequestNotFound.setVisibility(View.GONE);
                 }
 
                 creditBalance.setText("Credit Bal: Ksh " + jsonObject.optString("creditbalance"));
@@ -261,6 +263,8 @@ public class SpiHomeActivity extends AppCompatActivity {
                 // upcoming job list
                 if (upcominJobArray.length() < 1) {
                     upcomingJobsNotFound.setVisibility(View.VISIBLE);
+                } else {
+                    upcomingJobsNotFound.setVisibility(View.GONE);
                 }
                 for (int i = 0; i < upcominJobArray.length(); i++) {
 
@@ -308,7 +312,7 @@ public class SpiHomeActivity extends AppCompatActivity {
                 if (response.optInt("status")==400){
                     Utils.toast(getApplicationContext(), response.optString("message"));
                 }else {
-                    startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
+                    startActivity(new Intent(getApplicationContext(), SpiServiceRequestDetailsActivity.class)
                             .putExtra("ser_id", requestDetails.getId().toString()));
                 }
             } catch (JSONException e) {

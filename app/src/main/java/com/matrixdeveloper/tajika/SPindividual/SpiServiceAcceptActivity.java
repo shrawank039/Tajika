@@ -27,7 +27,6 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
 
     private TextView requestID, jobDate, jobTime, jobType,customerName, customerNumber,serviceArea,serviceDescription,amountWillingToPay, completeJob;
     private LinearLayout voiceCall;
-    private String id;
     private final String TAG = "SpiServiceAcceptAct";
     private PrefManager pref;
     RequestDetails requestDetails;
@@ -72,6 +71,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
         });
 
         completeJob.setOnClickListener(view -> {
+
             final Dialog dialog = new Dialog(SpiServiceAcceptActivity.this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(false);
@@ -82,7 +82,7 @@ public class SpiServiceAcceptActivity extends AppCompatActivity {
             TextView no = dialog.findViewById(R.id.txt_no);
             dialogButton.setOnClickListener(v -> dialog.dismiss());
             yes.setOnClickListener(v -> {
-                changeServiceStatus(id, "Completed");
+                changeServiceStatus(serID, "Completed");
                 dialog.dismiss();
             });
             no.setOnClickListener(v -> dialog.dismiss());

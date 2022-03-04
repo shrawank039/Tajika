@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.matrixdeveloper.tajika.R;
+import com.matrixdeveloper.tajika.helpers.ExpandableTextView;
 import com.matrixdeveloper.tajika.model.RequestDetails;
 import com.matrixdeveloper.tajika.utils.PrefManager;
 
 public class SpiServiceCompletedStatusActivity extends AppCompatActivity {
 
-    private TextView requestID, jobDate, jobTime, jobType,serviceStatus,dateOfCompletion,customerRating,customerName, customerNumber,serviceArea,serviceDescription,amountWillingToPay;
+    private TextView requestID, jobDate, jobTime, jobType,serviceStatus,dateOfCompletion,customerRating,customerName, customerNumber,serviceArea,amountWillingToPay;
     RequestDetails requestDetails;
+    private ExpandableTextView serviceDescription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

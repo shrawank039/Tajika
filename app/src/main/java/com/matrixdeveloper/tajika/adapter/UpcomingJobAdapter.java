@@ -1,10 +1,13 @@
 package com.matrixdeveloper.tajika.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,7 +82,21 @@ public class UpcomingJobAdapter extends RecyclerView.Adapter<UpcomingJobAdapter.
         holder.accept.setText("Complete");
 
         holder.accept.setOnClickListener(v -> {
-            ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString(), "Completed");
+            final Dialog dialog = new Dialog(ctx, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialog_job_completion);
+
+            ImageView dialogButton = dialog.findViewById(R.id.iv_dialogCancel);
+            TextView yes = dialog.findViewById(R.id.txt_yes);
+            TextView no = dialog.findViewById(R.id.txt_no);
+            dialogButton.setOnClickListener(view -> dialog.dismiss());
+            yes.setOnClickListener(view -> {
+                ((SpiHomeActivity) ctx).getServiceDetails(serviceList.getId().toString(), "Completed");
+                dialog.dismiss();
+            });
+            no.setOnClickListener(view -> dialog.dismiss());
+            dialog.show();
         });
 
         holder.viewInfo.setOnClickListener(v -> {

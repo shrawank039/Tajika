@@ -376,7 +376,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <com.matrixdeveloper.tajika.helpers.ExpandableTextView
                         android:id="@+id/txt_serviceDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -388,16 +388,6 @@
                         android:textColor="@color/dark_blue"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/descReadMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="5dp"
-                        android:text="Read More"
-                        android:textColor="@color/golden"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -415,7 +405,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Amount willing to pay"
+                    android:layout_marginLeft="10dp"
+                    android:text="Amount received for the service"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp"
                     style="@style/topDesign_textView_bold"/>

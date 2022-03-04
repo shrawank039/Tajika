@@ -82,6 +82,13 @@
         <entry key="app/src/debug/res/font/lato.xml" value="0.25277777777777777" />
         <entry key="app/src/debug/res/font/lato_black.xml" value="0.25277777777777777" />
         <entry key="app/src/debug/res/font/muli.xml" value="0.25277777777777777" />
+        <entry key="app/src/main/res/drawable-v24/btn_grey_rounded_normal.xml" value="0.2165" />
+        <entry key="app/src/main/res/drawable-v24/btn_grey_rounded_selector.xml" value="0.1475" />
+        <entry key="app/src/main/res/drawable-v24/job_switch_background_white.xml" value="0.1475" />
+        <entry key="app/src/main/res/drawable/gradient_white.xml" value="0.1475" />
+        <entry key="app/src/main/res/drawable/job_switch_background.xml" value="0.2165" />
+        <entry key="app/src/main/res/drawable/layout_input_outline.xml" value="0.2595" />
+        <entry key="app/src/main/res/drawable/normal_dark_blue_background.xml" value="0.2085" />
         <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_all_service.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_book_service.xml" value="0.2546875" />
@@ -104,8 +111,10 @@
         <entry key="app/src/main/res/layout/activity_spb_my_services.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_profile.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spb_register.xml" value="0.2222222222222222" />
+        <entry key="app/src/main/res/layout/activity_spi_add_credit.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_spi_all_bookings.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_all_request.xml" value="0.22685185185185186" />
+        <entry key="app/src/main/res/layout/activity_spi_credit_wallet.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_spi_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_spi_more.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/activity_spi_profile.xml" value="0.2546875" />
@@ -121,6 +130,8 @@
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/dialog_booking_cancellation_reason.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/dialog_booking_cancelled.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/dialog_job_completion.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/dialog_job_completion_thankyou.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/dialog_pay_onetime_charge.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/dialog_payment_notice.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/dialog_payment_successful.xml" value="0.25416666666666665" />

@@ -183,57 +183,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginVertical="10dp"
-                        android:background="@color/white" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_videoCall"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:drawableStart="@drawable/ic_videocall_icon"
-                            android:drawablePadding="5dp"
-                            android:drawableTint="@color/white"
-                            android:gravity="center"
-                            android:text="Video Call"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginVertical="10dp"
-                        android:background="@color/white" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_message"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:drawableStart="@drawable/ic_message_icon"
-                            android:drawablePadding="5dp"
-                            android:drawableTint="@color/white"
-                            android:gravity="center"
-                            android:text="Message"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -424,12 +373,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Amount to be paid"
+                    android:text="Booking fees"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_upServiceAmountToBePaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 3000"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Amount payable to service provider"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_upServiceAmountToBePaidToProvider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ksh 3000"

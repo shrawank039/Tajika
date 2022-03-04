@@ -21,22 +21,13 @@
             android:text="All Request"
             style="@style/appBar_textView" />
 
-        <ImageView
-            android:id="@+id/iv_refreshNotification"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/three_dots_vert"
-            app:tint="@color/dark_blue" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/layout_input_outline"
-        android:backgroundTint="@color/grey_100"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:paddingHorizontal="15dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"

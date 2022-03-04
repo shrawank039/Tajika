@@ -2,6 +2,7 @@ package com.matrixdeveloper.tajika;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -60,14 +61,14 @@ public class BookingDetailsActivity extends AppCompatActivity {
     //for upComing
     private ImageView upServiceImage;
     private TextView upServiceName, upServiceAddress, upServiceType, upServiceBookingId, upServiceBookingDate, upServiceStatus;
-    private TextView upServiceDate, upServiceTime, upServiceUserName, upServiceUserContact, upServiceUserAddress, upUserInstruction, upAmountToBePaid;
+    private TextView upServiceDate, upServiceTime, upServiceUserName, upServiceUserContact, upServiceUserAddress, upUserInstruction, upAmountToBePaid, upAmountPayableToProvider;
     private TextView  upContactUs, upHelp;
 
     //for Completed Cancelled
     private ImageView ccServiceImage;
     private TextView ccServiceName, ccServiceAddress, ccServiceType, ccServiceBookingId, ccServiceBookingDate, ccServiceStatus;
     private TextView ccServiceDate, ccServiceTime, ccServiceUserName, ccServiceUserContact, ccServiceUserAddress, ccUserInstruction;
-    private TextView ccAmountToBePaid, ccCancelledOn, ccCancellationReason, ccCancellationCharge, ccCancellationComment, ccContactUs, ccHelp;
+    private TextView ccAmountToBePaid, ccAmountPaidToProvider, ccCancelledOn, ccCancellationReason, ccCancellationCharge, ccCancellationComment, ccContactUs, ccHelp;
     private RatingBar ccRateYourExperience;
     private Button submitRating;
 
@@ -80,6 +81,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
     RequestDetails requestDetails;
     private String status;
     double finalAmount;
+    private LinearLayout ll_voiceCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,15 +98,15 @@ public class BookingDetailsActivity extends AppCompatActivity {
         switch (status) {
             case "Booked":
                 appbarTitle.setText("Booking Confirmation");
-                bookingViewFlipper.setDisplayedChild(0);
-                abServiceBookingId.setVisibility(View.VISIBLE);
-                congratsContainer.setVisibility(View.VISIBLE);
-                cheersContainer.setVisibility(View.GONE);
-                abContainerRequestSummery.setVisibility(View.GONE);
-                abContainerServiceAddress.setVisibility(View.VISIBLE);
-                abCouponContainer.setVisibility(View.GONE);
-                abContainerBottomBookCancel.setVisibility(View.GONE);
-                abContainerContactHelp.setVisibility(View.VISIBLE);
+                bookingViewFlipper.setDisplayedChild(2);
+//                abServiceBookingId.setVisibility(View.VISIBLE);
+//                congratsContainer.setVisibility(View.VISIBLE);
+//                cheersContainer.setVisibility(View.GONE);
+//                abContainerRequestSummery.setVisibility(View.GONE);
+//                abContainerServiceAddress.setVisibility(View.VISIBLE);
+//                abCouponContainer.setVisibility(View.GONE);
+//                abContainerBottomBookCancel.setVisibility(View.GONE);
+//                abContainerContactHelp.setVisibility(View.VISIBLE);
                 break;
             case "Accepted":
                 bookingViewFlipper.setDisplayedChild(0);
@@ -143,6 +145,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         backPress = findViewById(R.id.iv_backPress);
 
         // for accepted booked service viewFlipper--> ab stands for accepted_booked
+        ll_voiceCall = findViewById(R.id.ll_voiceCall);
         pdServiceImage = findViewById(R.id.iv_abServiceImage);
         abServiceName = findViewById(R.id.txt_abServiceName);
         abServiceAddress = findViewById(R.id.txt_abServiceAddress);
@@ -215,6 +218,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         upServiceUserAddress = findViewById(R.id.txt_upServiceUserAddress);
         upUserInstruction = findViewById(R.id.txt_upServiceUserInstruction);
         upAmountToBePaid = findViewById(R.id.txt_upServiceAmountToBePaid);
+        upAmountPayableToProvider = findViewById(R.id.txt_upServiceAmountToBePaidToProvider);
         upHelp = findViewById(R.id.txt_upHelp);
         upContactUs = findViewById(R.id.txt_upContactUs);
 
@@ -235,6 +239,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         ccServiceUserAddress = findViewById(R.id.txt_ccServiceUserAddress);
         ccUserInstruction = findViewById(R.id.txt_ccServiceUserInstruction);
         ccAmountToBePaid = findViewById(R.id.txt_ccServiceAmountToBePaid);
+        ccAmountPaidToProvider = findViewById(R.id.txt_ccServiceAmountToBePaidToProvider);
         ccCancelledOn = findViewById(R.id.txt_ccCancelledOn);
         ccCancellationCharge = findViewById(R.id.txt_ccCancellationCharge);
         ccCancellationReason = findViewById(R.id.txt_ccCancellationReason);
@@ -247,6 +252,14 @@ public class BookingDetailsActivity extends AppCompatActivity {
     }
 
     private void initListeners() {
+
+        ll_voiceCall.setOnClickListener(v -> {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            String temp = "tel:" + requestDetails.getContactPersonPhone();
+            callIntent.setData(Uri.parse(temp));
+            startActivity(callIntent);
+        });
+
         backPress.setOnClickListener(v -> super.onBackPressed());
         pdBackPress.setOnClickListener(v -> super.onBackPressed());
         upBackPress.setOnClickListener(v -> super.onBackPressed());
@@ -385,6 +398,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 upServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
                 upUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
                 upAmountToBePaid.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
+                upAmountPayableToProvider.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
 
                 //for Cancelled Completed service request
                 ccServiceName.setText("Name: " + requestDetails.getServiceName());
@@ -401,6 +415,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
                 ccServiceUserAddress.setText("Address: " + requestDetails.getServiceaddressBuildingNo() + " " + requestDetails.getServiceaddressStreetaddress() + " " + requestDetails.getServiceaddressLandmark());
                 ccUserInstruction.setText("Instruction: " + requestDetails.getInstruction());
                 ccAmountToBePaid.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
+                ccAmountPaidToProvider.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
                 ccCancelledOn.setText(getString(R.string.cancelled_on) + requestDetails.getCancelationDate() + " at " + requestDetails.getCancelationTime());
                 //CancellationCharge and Rating missing
                 ccCancellationCharge.setText(getString(R.string.cancellation_charge) + requestDetails.getCurrency() + " "+ requestDetails.getCancellationCharges());
@@ -518,6 +533,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
             Utils.log(TAG, response.toString());
             if (response.optString("status").equals("200")) {
+                submitRating.setVisibility(View.GONE);
                 Utils.toast(getApplicationContext(), "Thanks for Rating.");
             }
         });

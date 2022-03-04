@@ -6,8 +6,11 @@
         android:id="@+id/ll_newServiceRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
+    android:background="@drawable/layout_input_outline"
+    android:backgroundTint="@color/grey_100"
+     android:layout_marginTop="20dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
         android:orientation="vertical"
         android:visibility="visible">
 
@@ -88,6 +91,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:weightSum="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -98,24 +102,19 @@
                 android:id="@+id/txt_accept"
                 android:backgroundTint="@color/golden"
                 android:text="Accept"
+                android:layout_weight="1"
                 android:paddingVertical="15dp"
-                android:paddingHorizontal="40dp"
-               style="@style/submit_buttons" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end">
+                android:layout_marginEnd="5dp"
+                style="@style/submit_buttons_weight" />
 
                 <TextView
+                    android:layout_marginStart="5dp"
                     android:id="@+id/txt_view_info"
+                    android:layout_weight="1"
                     android:backgroundTint="@color/dark_blue"
-                    android:gravity="end"
-                    android:paddingHorizontal="40dp"
                     android:paddingVertical="15dp"
                     android:text="View info"
-                    style="@style/submit_buttons"
+                    style="@style/submit_buttons_weight"
                     android:textColor="@color/golden"/>
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>

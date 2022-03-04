@@ -130,6 +130,16 @@
 
     </style>
 
+    <style name="appBar_containerWhite">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingHorizontal" tools:targetApi="o">15dp</item>
+        <item name="android:paddingVertical" tools:targetApi="o">10dp</item>
+
+    </style>
+
     <style name="appBar_imageView">
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
@@ -174,8 +184,19 @@
         <item name="fontFamily">@font/lato_black</item>
         <item name="android:letterSpacing">0.03</item>
         <item name="android:textSize">16sp</item>
+    </style>
 
-
+    <style name="submit_buttons_weight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/layout_input_outline</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingVertical" tools:targetApi="o">10dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/yellow_header_text_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/lato_black</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="allButton_txtDesigns">

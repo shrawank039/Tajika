@@ -87,9 +87,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
                 Utils.toast(getApplicationContext(), response.optString("message"));
             }else {
             if (status.equals("Accept")) {
-                startActivity(new Intent(getApplicationContext(), SpiServiceAcceptActivity.class)
-                        .putExtra("ser_id", requestDetails.getId().toString()));
-                finish();
+                    findViewById(R.id.linearLayout9).setVisibility(View.GONE);
             } else {
                 Intent intent = new Intent(this, SpiHomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -127,7 +125,7 @@ public class SpiServiceRequestDetailsActivity extends AppCompatActivity {
                 description.setText(requestDetails.getWorkDescription());
                 contactNumber.setText(requestDetails.getCustomerphone());
                 contactName.setText(requestDetails.getCustomername());
-                amtWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getAdminpayableamount());
+                amtWillingToPay.setText(requestDetails.getCurrency() + " " + requestDetails.getWillingAmountPay());
 
 
             } catch (JSONException e) {

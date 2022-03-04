@@ -263,7 +263,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Amount willing to pay"
+                    android:text="Amount to be received"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp" />
 
@@ -355,7 +355,6 @@
     </ScrollView>
 
     <LinearLayout
-
         android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

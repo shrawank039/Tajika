@@ -74,12 +74,12 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
         upcoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //upcoming.setBackground(getResources().getDrawable(R.drawable.job_switch_background));
+                upcoming.setBackground(getResources().getDrawable(R.drawable.job_switch_background));
                 upcoming.setTextColor(getResources().getColor(R.color.white));
-                upcoming.setBackgroundResource(R.color.dark_blue);
+//                upcoming.setBackgroundResource(R.color.dark_blue);
 
                 //completed.setBackgroundTintList(getResources().getColorStateList(R.color.white));
-                completed.setBackgroundResource(R.color.white);
+                completed.setBackground(getResources().getDrawable(R.drawable.job_switch_background_white));
                 completed.setTextColor(getResources().getColor(R.color.dark_blue));
 
                 getAllBooking("Pending");
@@ -88,13 +88,13 @@ public class SpiAllBookingsActivity extends AppCompatActivity {
         completed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //completed.setBackground(getResources().getDrawable(R.drawable.job_switch_background));
+                completed.setBackground(getResources().getDrawable(R.drawable.job_switch_background));
                 completed.setTextColor(getResources().getColor(R.color.white));
-                completed.setBackgroundResource(R.color.dark_blue);
+               // completed.setBackgroundResource(R.color.dark_blue);
 
                 //upcoming.setBackgroundTintList(getResources().getColorStateList(R.color.white));
                 upcoming.setTextColor(getResources().getColor(R.color.dark_blue));
-                upcoming.setBackgroundResource(R.color.white);
+                upcoming.setBackground(getResources().getDrawable(R.drawable.job_switch_background_white));
 
                 getAllBooking("Completed");
             }
